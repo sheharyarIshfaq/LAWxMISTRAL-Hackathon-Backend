@@ -376,7 +376,7 @@ Structured summary of the decision (legal team's prompt): Markdown, sections 0�
 }
 ```
 
-- Each citation link opens **our decision viewer** (`viewer_url`, `GET /cases/:id/decision?c=<citation id>`): the full decision, scrolled to the cited paragraph with the cited words highlighted, plus a button to the official Légifrance page (`decision_url`). Légifrance itself can't be used for highlighting: it loads its text with JavaScript, so `#:~:text=` links land at the top of the page.
+- Each citation link opens the **official Légifrance text scrolled to the cited paragraph** (`citations[].url`): the link highlights from the start of the paragraph ("21. Au total, …") to the end of the cited words. Légifrance only scrolls reliably to text that is unique on the page, hence the paragraph number. Fallback: **our decision viewer** (`viewer_url`, `GET /cases/:id/decision?c=<citation id>`), which highlights the exact words.
 - Every citation was checked by code: its words must be in the cited paragraph. Wrong § numbers are corrected (`cited_label` = what the model wrote, `label` = where the words actually are).
 - `verified: false` → the link text ends with ` ⚠`; show a warning. `note` explains why.
 

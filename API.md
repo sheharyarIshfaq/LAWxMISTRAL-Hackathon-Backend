@@ -320,6 +320,29 @@ The association edits the brief before sending it to investors. Keys are dot pat
 - Editing a `decision` or `computed` field → `400 { "error": "victims.number comes from the CNIL decision and cannot be edited" }`.
 - Unknown path → `400`. Nothing is saved if any edit in the request is rejected.
 
+## `GET /cases/:id/summary`
+
+Plain-language summary of the decision, 6–8 sentences, each with the supporting quote.
+
+```json
+{
+  "sentences": [
+    {
+      "text": "The CNIL imposed a fine of 27 million euros on Free Mobile for the breaches.",
+      "quote": "prononcer à l’encontre de la société FREE MOBILE, une amende administrative d’un montant de 27 000 000 (vingt-sept millions) d’euros ...",
+      "page": 28,
+      "quote_verified": true
+    }
+  ]
+}
+```
+
+`quote_fixed` (optional, on any quote object): `page_corrected` | `repaired` | `trimmed` when code replaced the model's page or wording with the decision's own text. Show "check support" for `repaired`/`trimmed`.
+
+## `GET /cases/:id/brief.pdf`
+
+Downloads the funding brief as a PDF (page 1: brief in the card layout, then the summary and a verification appendix listing every quote with its page and check). Includes the association's edits. Takes ~2 s.
+
 ## `GET /cases/:id/scorecard`
 
 Funder view: every pitch claim checked against the decision, plus scores and red flags.

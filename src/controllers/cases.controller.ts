@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type Page } from "../services/storage.ts";
 import { applyEdits, EditRejected, type Brief } from "../services/brief.ts";
+import { printPdf, renderReportHtml } from "../services/report.ts";
 
 type CaseParams = { id: string };
 type PageParams = { id: string; n: string };
@@ -57,6 +58,22 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   const saved = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
   await writeJson(id, "brief-edits.json", { ...saved, ...edits, _edited_at: new Date().toISOString() });
   res.json({ brief: await loadBrief(id) });
+}
+
+export async function getSummary(req: Request<CaseParams>, res: Response) {
+  const { sentences } = await readJson(req.params.id, "summary.json");
+  res.json({ sentences });
+}
+
+// The funding brief as a PDF (brief + summary + verification appendix), with the association's edits.
+export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
+  const { id } = req.params;
+  const brief = await loadBrief(id);
+  if (!brief) throw new NotFound(`${id} has no brief yet`);
+  const summary = await readJsonOr(id, "summary.json", null);
+  const html = await renderReportHtml(brief, summary, { decisionFile: `decisions/${id}.pdf` });
+  const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
+  res.download(pdfPath, `${id}-funding-brief.pdf`);
 }
 
 export async function getScorecard(req: Request<CaseParams>, res: Response) {

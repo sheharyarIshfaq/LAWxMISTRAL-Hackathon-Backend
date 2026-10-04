@@ -1,0 +1,88 @@
+{
+  "case_id": "free-mobile-2026",
+  "decision": {
+    "regulator": "CNIL",
+    "reference": "Délibération SAN-2026-001 du 8 janvier 2026",
+    "date": "2026-01-08",
+    "fine_total_eur": 27000000,
+    "fines": [
+      {
+        "entity": "FREE MOBILE",
+        "amount_eur": 27000000
+      }
+    ],
+    "under_appeal": null,
+    "source_url": null
+  },
+  "defendant": {
+    "name": "FREE MOBILE",
+    "legal_form": "private",
+    "sector": "télécommunications",
+    "annual_revenue_eur": null
+  },
+  "breach": {
+    "date_start": "2024-09-28",
+    "date_discovered": "2024-10-21",
+    "summary": "Unauthorized access to subscriber data via a compromised VPN and internal tool, affecting millions of contracts.",
+    "attack_vector": "compromised VPN and internal tool (MOBO) access",
+    "data_types": [
+      "identity",
+      "contact",
+      "iban",
+      "other"
+    ],
+    "sensitive_data": false,
+    "people_affected": 24633469,
+    "people_affected_unit": "contracts",
+    "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats",
+    "page": 3,
+    "quote_verified": true
+  },
+  "violations": [
+    {
+      "gdpr_article": "5-1-e",
+      "label": "storage limitation",
+      "finding": "Data of millions of former subscribers were retained beyond necessary durations without justification.",
+      "quote": "la société conservait donc des données à caractère personnel de millions d’anciens abonnés pendant une durée excessive",
+      "page": 4,
+      "quote_verified": true
+    },
+    {
+      "gdpr_article": "32",
+      "label": "security of processing",
+      "finding": "Insufficient security measures (VPN authentication, detection of suspicious behavior, password storage) facilitated the breach.",
+      "quote": "la société n’avait pas déployé les moyens suffisants pour être en mesure de détecter les activités suspectes sur son VPN",
+      "page": 15,
+      "quote_verified": true
+    },
+    {
+      "gdpr_article": "34",
+      "label": "communication of a personal data breach to the data subject",
+      "finding": "Initial notification to affected individuals lacked essential details on risks, consequences, and remediation measures.",
+      "quote": "le courriel d’information initial n’a pas constitué une communication appropriée",
+      "page": 21,
+      "quote_verified": true
+    }
+  ],
+  "victim_notification": {
+    "notified": true,
+    "adequate": false,
+    "quote": "elle a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
+    "page": 2,
+    "quote_verified": true
+  },
+  "harm_evidence": {
+    "complaints_count": 2614,
+    "fraud_or_phishing_reported": true,
+    "data_published_or_sold": null,
+    "quote": "la CNIL avait reçu 2 614 plaintes de personnes concernées par cette violation de données",
+    "page": 2,
+    "quote_verified": true
+  },
+  "missing_information": [
+    "decision.under_appeal",
+    "decision.source_url",
+    "defendant.annual_revenue_eur",
+    "harm_evidence.data_published_or_sold"
+  ]
+}

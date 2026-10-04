@@ -1,0 +1,74 @@
+{
+  "case_id": "france-travail-2026",
+  "decision": {
+    "regulator": "CNIL",
+    "reference": "Délibération SAN–2026-003 du 22 janvier 2026",
+    "date": "2026-01-22",
+    "fine_total_eur": 5000000,
+    "fines": [
+      {
+        "entity": "FRANCE TRAVAIL",
+        "amount_eur": 5000000
+      }
+    ],
+    "under_appeal": null,
+    "source_url": null
+  },
+  "defendant": {
+    "name": "FRANCE TRAVAIL",
+    "legal_form": "public",
+    "sector": "employment services",
+    "annual_revenue_eur": null
+  },
+  "breach": {
+    "date_start": "2024-02-06",
+    "date_discovered": "2024-03-04",
+    "summary": "Unauthorized access and exfiltration of personal data via compromised CAP EMPLOI advisor accounts using social engineering techniques",
+    "attack_vector": "social engineering",
+    "data_types": [
+      "identity",
+      "contact",
+      "other"
+    ],
+    "sensitive_data": true,
+    "people_affected": 36820828,
+    "people_affected_unit": "persons",
+    "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
+    "page": 3,
+    "quote_verified": true
+  },
+  "violations": [
+    {
+      "gdpr_article": "32",
+      "label": "security of processing",
+      "finding": "Insufficient technical and organizational measures to ensure data security, including weak password policies, lack of multi-factor authentication, inadequate logging monitoring, and overly broad access permissions for CAP EMPLOI advisors.",
+      "quote": "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
+      "page": 13,
+      "quote_verified": true
+    }
+  ],
+  "victim_notification": {
+    "notified": true,
+    "adequate": null,
+    "quote": "FRANCE TRAVAIL a précisé que les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
+    "page": 3,
+    "quote_verified": true
+  },
+  "harm_evidence": {
+    "complaints_count": null,
+    "fraud_or_phishing_reported": null,
+    "data_published_or_sold": null,
+    "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes vers des plateformes d’hébergement externes",
+    "page": 3,
+    "quote_verified": true
+  },
+  "missing_information": [
+    "decision.under_appeal",
+    "decision.source_url",
+    "defendant.annual_revenue_eur",
+    "victim_notification.adequate",
+    "harm_evidence.complaints_count",
+    "harm_evidence.fraud_or_phishing_reported",
+    "harm_evidence.data_published_or_sold"
+  ]
+}

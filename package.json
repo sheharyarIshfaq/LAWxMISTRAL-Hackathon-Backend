@@ -16,7 +16,8 @@
     "discover": "tsx scripts/discover-funders.ts",
     "radar": "tsx scripts/radar.ts",
     "smoke": "tsx scripts/smoke.ts",
-    "revenue": "tsx scripts/revenue.ts"
+    "revenue": "tsx scripts/revenue.ts",
+    "assess": "tsx scripts/assess.ts"
   },
   "keywords": [],
   "author": "",

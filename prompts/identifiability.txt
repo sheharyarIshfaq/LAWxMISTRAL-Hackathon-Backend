@@ -1,0 +1,16 @@
+VICTIM IDENTIFIABILITY
+
+Decide whether the victims are identifiable by answering two questions from the decision:
+(a) Does someone hold a list of the victims? (the defendant has a contractual relationship with them, notified them individually, or holds orders, invoices or contracts)
+(b) Can each victim prove membership of the group? (notification email or letter, contract, invoice, bank statement, order confirmation)
+
+Levels:
+- Yes: both (a) and (b) are met for the whole group.
+- Partly: a list exists but the victims were not individually informed, or only part of the group meets both conditions.
+- No: victims are diffuse, with no direct relationship to the defendant and no record (e.g. in-store purchases, end consumers buying through intermediaries).
+
+Rules:
+1. Base the answer only on the decision. Never assume a list or a proof exists if the decision does not mention it.
+2. Name the evidence and cite its source. Example: "Yes: subscribers notified by email between 24 and 29 October 2024 (§ 3)."
+3. If only a sub-group is identifiable, give the level "Partly" and name both parts. Example: "Partly: 524,867 patients known to the hospital; 202,246 designated relatives never informed (§ 137)."
+4. Flag any wording that weakens identification: "third parties", "former customers", "terminated contracts", or a notification found insufficient by the authority.

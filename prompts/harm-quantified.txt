@@ -1,0 +1,17 @@
+regarding quantifiying the harm = IS THE HARM QUANTIFIED?
+
+Classify the harm into one of three levels by answering these questions in order, using only the decision:
+
+1. Does the decision, a statute or a contract fix the amount? → Quantified.
+   (e.g. statutory late-payment penalties, an amount wrongly collected stated in the decision)
+2. If not, can the amount be calculated from objective figures with a known method, without the judge's discretion? → Quantifiable.
+   (e.g. sales value × overcharge in a cartel, gap between the displayed and the real price, interest to be refunded, documented fraud losses)
+3. If not, does the existence or the amount of the harm depend on the judge's assessment or on proof by each victim? → To be proven.
+   (e.g. non-material harm, anxiety, loss of chance, loss of control over personal data)
+
+Rules:
+1. Wording such as "de nature à créer un préjudice" (likely to cause harm), "risque" (risk) or "susceptible de" (liable to) describes a potential harm, not an established one: it points to "To be proven".
+2. If the authority admits uncertainty about causation (e.g. "pas possible de déterminer avec certitude"), quote it: it confirms "To be proven".
+3. For data protection cases, an infringement of the GDPR is not enough: each victim must prove damage (CJEU case law). Default to "To be proven" unless the decision gives figures.
+4. If sub-groups differ, give a level for each. Example: "To be proven for all subscribers (non-material harm, § 82); Quantifiable for victims of proven fraud (bank statements), subject to proving the link with the breach (§ 84)."
+5. Justify the level in one or two sentences, quoting the decision with its paragraph number. Never invent an amount.

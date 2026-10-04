@@ -2,7 +2,7 @@
 
 Base URL: `http://localhost:3001` · JSON everywhere · CORS open.
 
-> **Mock data:** `free-2026` is currently hand-written sample data (`"mock": true`). The shapes are final; the content will be replaced by real model output. Show a "mock" badge when `mock` is true.
+> **Mock data:** `mock-free-2026` is hand-written sample data (`"mock": true`) kept as a stable fixture. Real cases (`free-mobile-2026`, `free-2026`, `france-travail-2026`, `hopital-prive-loire-2026`) appear in `GET /cases` as the pipeline produces them; same shapes. Show a "mock" badge when `mock` is true.
 
 ## Conventions
 
@@ -27,7 +27,7 @@ All cases, newest decision first.
 ```json
 [
   {
-    "id": "free-2026",
+    "id": "mock-free-2026",
     "defendant": "Free Mobile and Free",
     "date": "2026-01-13",
     "fine_total_eur": 42000000,
@@ -47,7 +47,7 @@ The full case JSON. Abridged example:
 ```json
 {
   "mock": true,
-  "case_id": "free-2026",
+  "case_id": "mock-free-2026",
   "decision": {
     "regulator": "CNIL",
     "reference": "SAN-2026-000 (mock)",

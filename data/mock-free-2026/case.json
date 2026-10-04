@@ -1,6 +1,6 @@
 {
   "mock": true,
-  "case_id": "free-2026",
+  "case_id": "mock-free-2026",
   "decision": {
     "regulator": "CNIL",
     "reference": "SAN-2026-000 (mock)",

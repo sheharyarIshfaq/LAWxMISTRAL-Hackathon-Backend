@@ -11,7 +11,8 @@
     "extract": "tsx scripts/extract.ts",
     "pitch": "tsx scripts/pitch.ts",
     "summary": "tsx scripts/summary.ts",
-    "report": "tsx scripts/report.ts"
+    "report": "tsx scripts/report.ts",
+    "check": "tsx scripts/check.ts"
   },
   "keywords": [],
   "author": "",

@@ -46,6 +46,7 @@ const SOURCE_LABEL: Record<string, string> = {
   decision: "CNIL decision",
   assessment: "AI assessment",
   computed: "Computed",
+  web: "Web source",
   assumption: "Assumption",
   association: "Association",
   missing: "To be provided",
@@ -77,6 +78,8 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
   const assoc = b.association.name.value as string | null;
   const facts = b.timeline.facts.value as { start?: string; end?: string } | null;
   const revenue = b.defendant.revenue.value as { amount_eur: number; entity: string; year: number } | null;
+  const current = (b.defendant as any).current_revenue?.value as { amount_eur: number; entity: string; year: number | null } | null;
+  const solv = b.defendant.solvency.calc as { ratio: number; exposure_eur: number; revenue_eur: number } | undefined;
   const today = new Date().toISOString().slice(0, 10);
 
   const header = `
@@ -120,8 +123,8 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
     ${chips([["private_company", "Private company"], ["listed_group", "Listed group"], ["public_body", "Public body"], ["association_or_union", "Association or union"]], b.defendant.nature.value as string[], "soft")}
     <div class="label">Solvency ${tag(b.defendant.solvency)}</div>
     ${chips([["low", "Low"], ["medium", "Medium"], ["strong", "Strong"]], b.defendant.solvency.value as string, "wide")}
-    ${b.defendant.solvency.note ? `<p class="muted">${esc(b.defendant.solvency.note)}</p>` : ""}
-    <p><b>Indicators:</b> revenue ${revenue ? `${eurM(revenue.amount_eur)} (${esc(revenue.entity)}, ${revenue.year})` : blank()}, group ${esc(b.defendant.group.value) || blank()},
+    ${solv ? `<div class="solv"><b>${(solv.ratio * 100).toFixed(1)}%</b> = exposure ${eurM(solv.exposure_eur)} ÷ revenue ${eurM(solv.revenue_eur)}<div class="muted">Strong &lt; 10% · medium 10–50% · low &gt; 50% (exposure = base scenario)</div></div>` : `<p class="muted">${esc(b.defendant.solvency.note ?? "")}</p>`}
+    <p><b>Indicators:</b> revenue ${current ? `${eurM(current.amount_eur)} (${esc(current.entity)}${current.year ? `, ${current.year}` : ""}${b.defendant.current_revenue.source_url ? `, <a href="${esc(b.defendant.current_revenue.source_url)}">source</a>` : ""})` : blank()}${revenue && (!current || revenue.entity !== current.entity) ? `; group ${esc(revenue.entity)} ${eurM(revenue.amount_eur)} (${revenue.year}, decision)` : `, group ${esc(b.defendant.group.value) || blank()}`},
       insurance ${blank()}, competent court ${esc(b.defendant.competent_court.value) || blank("civil / administrative")} ${tag(b.defendant.competent_court)}</p>
     ${cite(b.defendant.revenue)}`);
 
@@ -230,6 +233,7 @@ main { padding: 8px 0 0; }
 .chip { border: 1px solid #ccd; border-radius: 99px; padding: 1px 8px; font-size: 9px; }
 .chip.on { font-weight: 700; outline: 2px solid currentColor; }
 .c-defendant .chip.on { background: #6b2d7b; color: #fff; outline: none; }
+.c-defendant .solv { background: #f1e6f4; border-radius: 6px; padding: 5px 8px; margin: 6px 0; color: #4a1f55; } .c-defendant .solv b { font-size: 13px; } .c-defendant a { color: #6b2d7b; }
 .chip.plain { border: none; padding: 2px 4px; }
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0; }
 .box { background: #e5ecf8; border-radius: 6px; padding: 8px 10px; }
@@ -243,7 +247,7 @@ main { padding: 8px 0 0; }
 .ok { color: #12805c; font-weight: 700; font-style: normal; } .ok.warn { color: #b54708; } .bad { color: #c0262d; font-weight: 700; }
 .tag { font-size: 7.5px; font-weight: 600; letter-spacing: 0; text-transform: none; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; font-family: -apple-system, Arial, sans-serif; }
 .t-decision { background: #dcfae6; color: #085d3a; } .t-assessment { background: #fef0c7; color: #93370d; } .t-computed { background: #e0eaff; color: #2d31a6; }
-.t-assumption { background: #fbe8ff; color: #821890; } .t-association { background: #e0f2fe; color: #065986; } .t-missing { background: #f2f4f7; color: #667085; }
+.t-assumption { background: #fbe8ff; color: #821890; } .t-web { background: #e0f2fe; color: #065986; } .t-association { background: #e0f2fe; color: #065986; } .t-missing { background: #f2f4f7; color: #667085; }
 .scen { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 9.5px; }
 .scen th { background: #fbefdc; text-align: left; padding: 3px 5px; } .scen td { padding: 3px 5px; border-bottom: 1px solid #f0e6d6; }
 .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }

@@ -85,8 +85,6 @@ export function NgoDashboard({ entryNav, matterId: entryCase }: { entryNav?: str
           {navId === "funders" ? <FundersTab caseId={current} options={pickerOptions} onCase={setCaseId} onOpenCase={() => go.current("cases")} /> : null}
           {navId === "agent" ? (
             <AgentPanel
-              title="Ask the decision"
-              subtitle="Questions about the decision behind one of your cases."
               options={pickerOptions}
               value={current}
               onChange={setCaseId}

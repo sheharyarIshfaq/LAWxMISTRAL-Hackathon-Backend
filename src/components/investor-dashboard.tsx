@@ -155,8 +155,6 @@ export function InvestorDashboard({ entryNav, matterId: entryCase }: { entryNav?
           {navId === "ai" ? (
             <div className="h-[calc(100%-45px)]">
               <AgentPanel
-                title="Question a pitch"
-                subtitle="Question the CNIL decision behind a pitch you received."
                 options={options}
                 value={currentChat}
                 onChange={setChatCase}

@@ -1,104 +1,98 @@
 import Link from "next/link";
-import { money, multiple } from "@/lib/format";
-import { funds } from "@/lib/funds";
-import { library } from "@/lib/library";
-import { runModel } from "@/lib/model";
 import { Kicker, primaryLink, secondaryLink } from "@/components/ui";
+import { API_URL, day, eur, num, type CaseListItem } from "@/lib/api";
 
-export default function Home() {
+// Live cases from the backend; the page still renders if the backend is down.
+async function liveCases(): Promise<CaseListItem[]> {
+  try {
+    const res = await fetch(`${API_URL}/cases`, { cache: "no-store" });
+    return res.ok ? await res.json() : [];
+  } catch {
+    return [];
+  }
+}
+
+const STEPS = [
+  ["Radar", "Every sanction the CNIL publishes is scanned. Data breaches with a private defendant and a published decision are flagged, with the reason in the CNIL's own words."],
+  ["Summary", "The decision is summarised by the legal team's method: facts, procedure, breaches, arguments, sanction. Every fact cites its paragraph and links to Légifrance."],
+  ["Funding brief", "The association gets a brief it can edit and send: harm, victims, defendant solvency, value of the claim. Figures come from the legal team's opt-in table, computed in code."],
+  ["Matchmaking", "The brief is matched against the legal team's list of funders, completed by web search, criterion by criterion. Unknown facts stay unknown."],
+  ["Questions", "Funders read the brief and question the decision directly. Answers quote the decision, word for word, and never give a chance of winning."],
+];
+
+const RULES = [
+  ["Traceable", "Every quote is checked word for word against the decision by code; the paragraph (§) is found by code, never by the model."],
+  ["Computed, not generated", "Opt-in rates, claim values and solvency are calculated in code from the legal team's tables. The model never does the arithmetic."],
+  ["No win probability", "A CNIL sanction establishes a regulatory breach, not liability in court. Bina.ai never estimates the chance of winning."],
+];
+
+export default async function Home() {
+  const cases = await liveCases();
   return (
     <div>
       <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-8 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
         <div>
-          <Kicker n="01">Class actions, read before they are funded</Kicker>
-          <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[0.95] tracking-tight text-paper md:text-7xl">
-            Point a folder at the desk. Leave with a pitch.
-          </h1>
+          <Kicker n="01">CNIL sanctions, turned into fundable collective actions</Kicker>
+          <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[0.95] tracking-tight text-paper md:text-7xl">From a CNIL sanction to a funded action de groupe.</h1>
           <div className="mt-6 h-0.5 w-10 rounded-full bg-gold" aria-hidden />
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Bina.ai is for NGOs bringing class actions and for the hedge funds and litigation desks that finance them. An agent reads the folder and composes the deck. Capital runs a recovery model, a Rule 23 worksheet, and deep research before anyone takes a meeting.
+            When the CNIL sanctions a data breach, its decision already establishes the fault, the facts and the number of people affected. Bina.ai finds those
+            decisions, builds the funding brief an association can send under the law of 30 April 2025, and matches it with litigation funders.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/desk" className={primaryLink}>
-              I represent an NGO
+              I represent an association
             </Link>
             <Link href="/book" className={secondaryLink}>
-              I represent capital
+              I represent a funder
             </Link>
           </div>
-          <p className="mt-4 text-xs text-faint">No account. Drafts stay in this browser until you list them.</p>
         </div>
         <aside className="surface">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
-            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold">On the book</span>
-            <span className="font-mono text-[11px] text-faint">{library.length} matters</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold">Cases ready</span>
+            <span className="font-mono text-[11px] text-faint">{cases.length} case{cases.length === 1 ? "" : "s"}</span>
           </div>
           <ul>
-            {library.map((matter) => (
-              <li key={matter.id} className="border-b border-line last:border-b-0">
-                <Link href={`/book/${matter.id}`} className="block cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-ink">
-                  <p className="font-serif text-2xl text-paper">{matter.title}</p>
-                  <p className="mt-1 text-sm text-muted">{matter.ngo}</p>
+            {cases.map((c) => (
+              <li key={c.id} className="border-b border-line last:border-b-0">
+                <Link href={`/desk/cases/${c.id}`} className="block cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-ink">
+                  <p className="font-serif text-2xl text-paper">{c.defendant ?? c.id}</p>
+                  <p className="mt-1 text-sm text-muted">CNIL · {day(c.date)}</p>
                   <p className="mt-3 flex items-baseline justify-between font-mono text-xs text-faint">
-                    <span className="text-gold tabular-nums">{money(matter.assumptions.fundingAsk)}</span>
-                    <span>{multiple(runModel(matter.assumptions).moic)} base</span>
+                    <span className="text-gold tabular-nums">Fine {eur(c.fine_total_eur)}</span>
+                    <span>{num(c.people_affected)} affected</span>
                   </p>
                 </Link>
               </li>
             ))}
+            {!cases.length ? <li className="px-4 py-6 text-sm text-faint">Start the backend to see the cases.</li> : null}
           </ul>
         </aside>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
-        <Kicker n="02">How a matter moves</Kicker>
-        <ol className="mt-8 grid gap-3 md:grid-cols-3">
-          <li className="surface p-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-gold">01</p>
-            <h2 className="mt-3 font-serif text-3xl">The folder</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              NGOs drop pleadings, notices, expert notes, and a caption sheet. The agent inventories parties, the class, the theories, and every figure it can actually find.
-            </p>
-          </li>
-          <li className="surface p-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-gold">02</p>
-            <h2 className="mt-3 font-serif text-3xl">The deck</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              Ten slides, same order every time: harm, class, claims, evidence, damages, use of proceeds, the bargain, the risks, the ask. Missing facts stay missing.
-            </p>
-          </li>
-          <li className="surface p-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-gold">03</p>
-            <h2 className="mt-3 font-serif text-3xl">The book</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              Hedge funds and specialist funders open a matter, move the recovery levers, read the Rule 23 worksheet, and search the source library and the live web.
-            </p>
-          </li>
+        <Kicker n="02">How a case moves</Kicker>
+        <ol className="mt-8 grid gap-3 md:grid-cols-5">
+          {STEPS.map(([title, text], i) => (
+            <li key={title} className="surface p-5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-gold">0{i + 1}</p>
+              <h2 className="mt-3 font-serif text-2xl">{title}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{text}</p>
+            </li>
+          ))}
         </ol>
       </section>
 
       <section className="border-t border-line">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <Kicker n="03">Capital on the desk</Kicker>
-              <h2 className="mt-3 font-serif text-4xl tracking-tight">Mandates, not a feed.</h2>
-            </div>
-            <Link href="/desk/capital" className="text-sm text-gold">
-              Score a matter against these desks
-            </Link>
-          </div>
-          <ul className="surface mt-8 divide-y divide-line">
-            {funds.map((fund) => (
-              <li key={fund.id} className="grid gap-2 py-4 md:grid-cols-[minmax(0,1.2fr)_auto_auto] md:items-baseline md:gap-8">
-                <div>
-                  <p className="font-serif text-2xl">{fund.name}</p>
-                  <p className="text-sm text-muted">{fund.city}</p>
-                </div>
-                <p className="text-sm text-faint">{fund.kind}</p>
-                <p className="font-mono text-sm tabular-nums text-gold">
-                  {money(fund.checkMin)}–{money(fund.checkMax)}
-                </p>
+          <Kicker n="03">Built for trust</Kicker>
+          <h2 className="mt-3 font-serif text-4xl tracking-tight">Every fact traceable to the decision.</h2>
+          <ul className="mt-8 grid gap-3 md:grid-cols-3">
+            {RULES.map(([title, text]) => (
+              <li key={title} className="surface p-5">
+                <h3 className="font-serif text-2xl">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{text}</p>
               </li>
             ))}
           </ul>

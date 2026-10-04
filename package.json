@@ -15,7 +15,8 @@
     "check": "tsx scripts/check.ts",
     "category": "tsx scripts/category.ts",
     "discover": "tsx scripts/discover-funders.ts",
-    "radar": "tsx scripts/radar.ts"
+    "radar": "tsx scripts/radar.ts",
+    "smoke": "tsx scripts/smoke.ts"
   },
   "keywords": [],
   "author": "",

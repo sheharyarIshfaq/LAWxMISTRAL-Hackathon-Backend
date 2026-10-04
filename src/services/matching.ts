@@ -10,11 +10,13 @@ export type Match = {
   not_met: number;
   unknown: number;
   criteria: Criterion[];
+  to_confirm: string[]; // criteria still unknown, to check with the funder
   note: string;
 };
 
 // Hard criteria: one "not met" makes the fit weak. Others lower it to partial.
 const HARD = new Set(["jurisdiction", "collective_actions", "defendant_type", "funder_type"]);
+const KEY = ["funder_type", "jurisdiction", "collective_actions", "case_type"];
 
 // Types in the legal team's list. Law firms are not funders; patent specialists do not fund data-protection claims.
 const FUNDER_TYPES = /financeur|hedge fund|fonds d'investissement/i;
@@ -59,8 +61,14 @@ export function matchFunder(funder: Funder, c: { claim_base_eur: number | null; 
   const met = criteria.filter((x) => x.status === "met").length;
   const notMet = criteria.filter((x) => x.status === "not_met");
   const unknown = criteria.filter((x) => x.status === "unknown").length;
-  // Strong only when every criterion is confirmed; anything unknown keeps it partial.
-  const fit = notMet.some((x) => HARD.has(x.criterion)) || notMet.length >= 2 ? "weak" : notMet.length === 0 && unknown === 0 ? "strong" : "partial";
+  // Strong: the key criteria are confirmed and nothing failed. Claim size and public-defendant policy may stay
+  // unknown ("to confirm"): unknown is not a failure, and it stays visible. Partial: a key criterion is unknown,
+  // or one soft criterion failed. Weak: a hard criterion failed, or two failed.
+  // Against a public body, whether the funder accepts public defendants is a key question too.
+  const keys = c.legal_form === "public" ? [...KEY, "defendant_type"] : KEY;
+  const keyConfirmed = keys.every((k) => criteria.find((x) => x.criterion === k)?.status === "met");
+  const fit = notMet.some((x) => HARD.has(x.criterion)) || notMet.length >= 2 ? "weak" : notMet.length === 0 && keyConfirmed ? "strong" : "partial";
+  const to_confirm = criteria.filter((c) => c.status === "unknown").map((c) => c.criterion);
   const note =
     funder.origin === "curated"
       ? `From the legal team's list (European Commission study).${funder.web_facts?.length ? ` Also from public web sources: ${funder.web_facts.join(", ").replace(/_/g, " ")} (see sources; not confirmed by the funder).` : ""} Not contacted.`
@@ -69,7 +77,7 @@ export function matchFunder(funder: Funder, c: { claim_base_eur: number | null; 
       : funder.demo
         ? "Fictional demo profile."
         : "Profile registered on the platform by the funder.";
-  return { funder, fit, met, not_met: notMet.length, unknown, criteria, note };
+  return { funder, fit, met, not_met: notMet.length, unknown, to_confirm, criteria, note };
 }
 
 const ORDER = { strong: 0, partial: 1, weak: 2 };

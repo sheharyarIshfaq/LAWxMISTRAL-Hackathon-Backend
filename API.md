@@ -431,7 +431,8 @@ Funders matched to the case, strong → weak, then legal-team list first. `?limi
 }
 ```
 
-- `fit`: `strong` = every criterion met; `partial` = nothing failed but something is unknown or one soft criterion failed; `weak` = a hard criterion failed (jurisdiction, collective actions, defendant type) or two criteria failed.
+- `fit`: `strong` = the key criteria are confirmed (funder, France, collective actions, case type; plus defendant type when the defendant is a public body) and nothing failed; claim size / public-defendant policy may still be unknown and are listed in `to_confirm`. `partial` = a key criterion is unknown, or one soft criterion failed. `weak` = a hard criterion failed (jurisdiction, collective actions, defendant type, not a funder) or two criteria failed.
+- `to_confirm`: criteria still unknown (e.g. `["claim_size"]`), to check with the funder.
 - `criterion`: `funder_type` (litigation funder or investment fund; law firms are not funders), `jurisdiction`, `collective_actions`, `case_type`, `claim_size` (base claim vs the funder's minimum), `defendant_type` (public defendants).
 - `status`: `met` | `not_met` | `unknown` (unknown is never assumed either way).
 

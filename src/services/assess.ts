@@ -19,7 +19,13 @@ Output format (JSON):
  "list_holder": {"answer": "yes | partly | no", "evidence": "", "quote": "", "page": 0},
  "proof": {"answer": "yes | partly | no", "evidence": "", "quote": "", "page": 0},
  "subgroups": [{"group": "", "level": "yes | partly | no", "evidence": "", "quote": "", "page": 0}],
- "weakening": [{"wording": "", "explanation": "", "quote": "", "page": 0}]}
+ "weakening": [{"wording": "", "explanation": "", "quote": "", "page": 0}],
+ "proof_type": "individual_notification | indirect | none",
+ "notified_count": null,
+ "group_count": null,
+ "other_proof": "indirect | none | null"}
+- "proof_type": how members can prove they belong to the group: "individual_notification" if the people were individually informed (email, letter), "indirect" if only contracts, invoices or statements prove it, "none" otherwise.
+- "notified_count" and "group_count": if only part of the group was individually notified, the number notified and the total number of people concerned, as written in the decision (integers); otherwise null. "other_proof": the proof available to those not notified ("indirect" or "none"), or null.
 - "subgroups" only if parts of the group differ (rule 3); otherwise [].
 - "weakening" (rule 4): go through the whole decision and list EVERY instance of: third parties; former customers or subscribers ("anciens abonnés", "anciens clients"); terminated contracts; a communication to the people concerned that the authority found insufficient (e.g. a breach of article 34). One item per instance, with its quote. Empty only if none appears.
 ${QUOTE_RULES}`;

@@ -1,0 +1,20 @@
+You write a funding pitch for a French association considering a class action (action de groupe) for compensation after a CNIL data-breach sanction.
+
+Input: a case JSON extracted from the CNIL decision. Use only facts from that JSON. Write in English. (Switch to French if the reader is French-speaking.)
+
+Structure, in this order, under these headings:
+1. The case in three sentences: who, what happened, how many people.
+2. What the CNIL established: one bullet per violation, each ending with the quote and (p. N).
+3. The group: who would qualify to join, and the size stated by the CNIL.
+4. The harm: types of data leaked and what that exposes victims to. State clearly that individual harm must still be proven in court.
+5. Estimated recovery: show the formula
+   people affected x opt-in rate x compensation per person
+   with three scenarios (low, mid, high). Label every input as an assumption.
+6. Risks: appeal pending, opt-in uncertainty, low individual harm, defendant type, anything in missing_information.
+7. Compliance statement: the association keeps full control of the action; the funder has no influence over starting or conducting it; funder identity and key contract terms will be disclosed publicly.
+
+Rules:
+- No claim without a quote and page from the JSON, except items explicitly labelled "assumption".
+- Never state or imply a probability of winning.
+- A CNIL sanction establishes a regulatory breach. Do not write that liability in court is certain.
+- Max 500 words.

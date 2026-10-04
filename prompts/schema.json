@@ -1,0 +1,53 @@
+{
+  "case_id": "free-2026",
+  "decision": {
+    "regulator": "CNIL",
+    "reference": "",
+    "date": "",
+    "fine_total_eur": 0,
+    "fines": [{"entity": "", "amount_eur": 0}],
+    "under_appeal": null,
+    "source_url": ""
+  },
+  "defendant": {
+    "name": "",
+    "legal_form": "private | public",
+    "sector": "",
+    "annual_revenue_eur": null
+  },
+  "breach": {
+    "date_start": "",
+    "date_discovered": "",
+    "summary": "",
+    "attack_vector": "",
+    "data_types": ["identity", "contact", "iban", "health", "password", "other"],
+    "sensitive_data": false,
+    "people_affected": 0,
+    "people_affected_unit": "persons | contracts | accounts",
+    "quote": "",
+    "page": 0
+  },
+  "violations": [
+    {
+      "gdpr_article": "32",
+      "label": "security of processing",
+      "finding": "",
+      "quote": "",
+      "page": 0
+    }
+  ],
+  "victim_notification": {
+    "notified": null,
+    "adequate": null,
+    "quote": "",
+    "page": 0
+  },
+  "harm_evidence": {
+    "complaints_count": null,
+    "fraud_or_phishing_reported": null,
+    "data_published_or_sold": null,
+    "quote": "",
+    "page": 0
+  },
+  "missing_information": []
+}

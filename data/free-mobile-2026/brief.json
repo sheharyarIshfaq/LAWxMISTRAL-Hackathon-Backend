@@ -1,6 +1,6 @@
 {
   "case_id": "free-mobile-2026",
-  "generated_at": "2026-10-04T11:01:36.713Z",
+  "generated_at": "2026-10-04T11:04:54.070Z",
   "edited_at": null,
   "header": {
     "action_name": {
@@ -91,7 +91,8 @@
       "source": "assessment",
       "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
       "page": 2,
-      "quote_verified": true
+      "quote_verified": true,
+      "quote_fixed": "repaired"
     },
     "categories": {
       "value": [
@@ -100,14 +101,16 @@
       "source": "assessment",
       "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
       "page": 2,
-      "quote_verified": true
+      "quote_verified": true,
+      "quote_fixed": "repaired"
     },
     "proof_of_membership": {
       "value": "the breach notification email sent between 24 and 29 October 2024",
       "source": "assessment",
       "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
       "page": 2,
-      "quote_verified": true
+      "quote_verified": true,
+      "quote_fixed": "repaired"
     },
     "subgroups": {
       "value": [
@@ -117,7 +120,8 @@
       "source": "assessment",
       "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
       "page": 2,
-      "quote_verified": true
+      "quote_verified": true,
+      "quote_fixed": "repaired"
     }
   },
   "defendant": {

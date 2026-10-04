@@ -1,0 +1,55 @@
+{
+  "sentences": [
+    {
+      "text": "The French data protection authority CNIL sanctioned Free Mobile for a personal data breach.",
+      "quote": "Délibération de la formation restreinte n° SAN-2026-001 du 8 janvier 2026 prononçant une sanction pécuniaire à l'encontre de la société FREE MOBILE",
+      "page": 1,
+      "quote_verified": true
+    },
+    {
+      "text": "An attacker accessed Free Mobile’s system between 28 September and 22 October 2024, compromising the confidentiality of subscriber data.",
+      "quote": "Celle-ci a duré du 28 septembre au 22 octobre 2024.",
+      "page": 2,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "text": "The breach exposed data from 24,633,469 contracts, including identity, contact, contractual data, and IBANs for convergent customers.",
+      "quote": "dont 19 460 891 contrats mobiles (FREE MOBILE) et 5 172 577 contrats fixes",
+      "page": 3,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "text": "The CNIL found Free Mobile breached Article 5-1-e) of the GDPR by retaining data for longer than necessary.",
+      "quote": "la formation restreinte considère qu’en conservant des données pendant des durées excessives la société a commis un manquement à l’article 5-1-e) du RGPD",
+      "page": 6,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL found Free Mobile breached Article 32 of the GDPR by failing to implement appropriate security measures.",
+      "quote": "la formation restreinte considère, qu’au jour du contrôle, la société n’avait pas déployé les moyens suffisants pour être en mesure de détecter les activités suspectes sur son VPN, son réseau interne et son outil de gestion de ses abonnés, ce qui constitue un manquement à l’article 32 du RGPD",
+      "page": 15,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL found Free Mobile breached Article 34 of the GDPR by not properly informing affected individuals about the breach.",
+      "quote": "la formation restreinte considère que la société a commis un manquement à l’article 34 du RGPD en ne communiquant pas aux personnes concernées par la violation de données les informations nécessaires dès le premier niveau d’information",
+      "page": 21,
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "text": "Free Mobile notified affected individuals by email between 24 and 29 October 2024 to avoid overloading mail servers.",
+      "quote": "elle a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024 afin de ne pas saturer les serveurs de messagerie",
+      "page": 2,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL imposed a fine of 27 million euros on Free Mobile for the breaches.",
+      "quote": "prononcer à l’encontre de la société FREE MOBILE, une amende administrative d’un montant de 27 000 000 (vingt-sept millions) d’euros au regard des manquements constitués aux articles 5-1-e), 32 et 34 du RGPD",
+      "page": 28,
+      "quote_verified": true
+    }
+  ]
+}

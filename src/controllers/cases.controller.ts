@@ -3,6 +3,7 @@ import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type 
 import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
 import { findRow, loadAssumptions } from "../services/recovery.ts";
 import { chat as chatWithDecision } from "../services/chat.ts";
+import { matchesForCase } from "../services/matching.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
@@ -122,4 +123,9 @@ export async function chat(req: Request<CaseParams>, res: Response) {
 
 export function createCase(_req: Request, res: Response) {
   res.status(501).json({ error: "Pipeline not implemented yet" });
+}
+
+// Funders matched to this case, strong → weak, with the reasons. Plain code, no probability.
+export async function getMatches(req: Request<CaseParams>, res: Response) {
+  res.json(await matchesForCase(req.params.id));
 }

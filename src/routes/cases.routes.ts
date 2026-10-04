@@ -14,5 +14,6 @@ router.get("/:id/scorecard", cases.getScorecard);
 router.post("/:id/check", cases.checkCase);
 router.get("/:id/pages/:n", cases.getPage);
 router.post("/:id/chat", cases.chat);
+router.get("/:id/matches", cases.getMatches);
 
 export default router;

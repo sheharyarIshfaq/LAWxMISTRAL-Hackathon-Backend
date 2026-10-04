@@ -317,7 +317,8 @@ Enum values:
 
 Rebuilt on every read from `config/assumptions.json` (the legal team's opt-in table, €150 per victim) and the case's category of harm, so a config change shows up immediately.
 
-- `harm_category`: one row of the legal team's opt-in table, chosen by the model from the decision (`source: "assessment"`, with quote; `note` gives the reason and other rows that also fit). The association can switch it with `PATCH { "edits": { "value.harm_category": "<exact row name>" } }`; anything not in the table → 400. The totals recalculate.
+- `harm_category`: the row of the legal team's opt-in table used for the scenarios. The model lists every row the decision supports (each with a reason and a verified quote); **a rule in code picks the row**: data-breach rows first when the CNIL found a breach, then the most conservative (lowest base opt-in rate). `note` gives the reason and the rule.
+- `category_alternatives.value`: the other rows the decision supports: `[{ category, reason, quote, page, quote_verified, totals: { low, base, high } | null, note }]` — totals computed in code, `null` when the table has no opt-in data for that row. The association can switch it with `PATCH { "edits": { "value.harm_category": "<exact row name>" } }`; anything not in the table → 400. The totals recalculate.
 - `scenarios.value`: `[{ name: "low" | "base" | "high", opt_in_rate, opt_ins, compensation_per_victim_eur, total_eur, funder_eur, victims_eur, sources }]` — computed in code; `sources` are the footnote numbers of the legal team's table.
 - `opt_in_expected.value`: `{ expected_pct, std_dev_pts }` — expected opt-in in this category across past cases (not a probability of success).
 - `compensation_per_victim_eur`: 150 (legal team), editable by the association.

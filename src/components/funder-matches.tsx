@@ -22,7 +22,17 @@ const LABEL: Record<string, string> = {
 const ORIGIN = { curated: "Legal team's list", platform: "On the platform", discovered: "Found on the web" };
 
 // Step 4: funders matched to the case in code (no score, no probability), with the reason for each criterion.
-export function FunderMatches({ caseId }: { caseId: string }) {
+export function FunderMatches({
+  caseId,
+  selected,
+  onToggle,
+  sent,
+}: {
+  caseId: string;
+  selected?: Set<string>;
+  onToggle?: (funderId: string) => void;
+  sent?: Set<string>;
+}) {
   const [data, setData] = useState<Awaited<ReturnType<typeof getMatches>> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [fit, setFit] = useState<"strong" | "partial" | "weak" | "all">("all");
@@ -61,7 +71,7 @@ export function FunderMatches({ caseId }: { caseId: string }) {
 
       <ul className="mt-4 space-y-3">
         {rows.slice(0, shown).map((m) => (
-          <MatchRow key={m.funder.id} m={m} />
+          <MatchRow key={m.funder.id} m={m} selected={selected?.has(m.funder.id)} onToggle={onToggle} sent={sent?.has(m.funder.id)} />
         ))}
       </ul>
       {rows.length > shown ? (
@@ -73,12 +83,19 @@ export function FunderMatches({ caseId }: { caseId: string }) {
   );
 }
 
-function MatchRow({ m }: { m: Match }) {
+function MatchRow({ m, selected, onToggle, sent }: { m: Match; selected?: boolean; onToggle?: (id: string) => void; sent?: boolean }) {
   const f = m.funder;
   const link = f.website ?? f.lookup_url ?? null;
   return (
-    <li className="rounded-xl bg-panel p-4">
+    <li className={`rounded-xl bg-panel p-4 ${selected ? "outline outline-2 outline-gold" : ""}`}>
       <div className="flex flex-wrap items-center gap-2">
+        {onToggle ? (
+          sent ? (
+            <span className="rounded-full bg-[#dcfae6] px-2 py-0.5 text-[11px] font-semibold text-[#085d3a]">Sent</span>
+          ) : (
+            <input type="checkbox" aria-label={`Select ${f.name}`} checked={Boolean(selected)} onChange={() => onToggle(f.id)} className="size-4 cursor-pointer" />
+          )
+        ) : null}
         <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase ${FIT_STYLE[m.fit]}`}>{m.fit}</span>
         <h3 className="text-base font-semibold text-paper">{f.name}</h3>
         {f.demo ? <span className="rounded-full bg-elevated px-2 py-0.5 text-[11px] text-muted">Fictional demo profile</span> : null}

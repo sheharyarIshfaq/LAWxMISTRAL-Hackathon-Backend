@@ -5,10 +5,11 @@ import { addQuoteFlags, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { computeRecovery, findRow, loadAssumptions, type Assumptions } from "./recovery.ts";
 import type { HarmCategory } from "./category.ts";
+import { rateSolvency, SOLVENCY_RULE, type Revenue } from "./solvency.ts";
 import { readJsonOr, type Page } from "./storage.ts";
 
 // Where each value in the brief comes from. The frontend styles fields by source.
-export type Source = "decision" | "assessment" | "computed" | "assumption" | "association" | "missing";
+export type Source = "decision" | "assessment" | "computed" | "assumption" | "association" | "web" | "missing";
 
 export type Field<T = unknown> = {
   value: T | null;
@@ -18,6 +19,8 @@ export type Field<T = unknown> = {
   quote_verified?: boolean;
   quote_fixed?: "page_corrected" | "repaired" | "trimmed";
   note?: string;
+  source_url?: string; // web facts: where the figure comes from
+  calc?: Record<string, unknown>; // computed fields: the inputs of the calculation
 };
 
 const prompt = (name: string) => fs.readFile(path.resolve("prompts", name), "utf8");
@@ -76,6 +79,7 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
         cited(m.defendant)
       ),
       group: field(m.defendant?.group, "decision", cited(m.defendant)),
+      current_revenue: missing("Latest revenue not looked up yet") as Field<any>, // filled on read from revenue.json
       insurance: missing("Not stated in the decision"),
       competent_court: field((a as any).competent_court_by_legal_form?.[c.defendant?.legal_form], "assumption"),
     },
@@ -125,6 +129,32 @@ function valueSection(cat: HarmCategory | null, a: Assumptions) {
   };
 }
 
+function revenueField(r: Revenue | null): Field<any> {
+  if (!r) return missing("Latest revenue not looked up yet");
+  const v = { amount_eur: r.amount_eur, entity: r.entity, year: r.year };
+  return r.origin === "web"
+    ? field(v, "web", { source_url: r.source?.url, note: `Found by web search: ${r.source?.title ?? r.source?.url}` })
+    : field(v, "decision", { note: "Revenue stated in the CNIL decision (no more recent figure found on the web)" });
+}
+
+// Legal team's rule: exposure (victims × € per victim × base opt-in) ÷ revenue. Computed, never judged by the model.
+function computeSolvency(brief: Brief) {
+  const d = brief.defendant as any;
+  const base = ((brief.value as any).scenarios.value as any[] | null)?.find((s) => s.name === "base");
+  const rv = d.current_revenue.value ?? d.revenue.value;
+  const revenueEur = typeof rv === "number" ? rv : rv?.amount_eur;
+  if (!base || typeof revenueEur !== "number" || revenueEur <= 0) {
+    d.solvency = missing(!base ? "Needs the claim value (category of harm)" : "Needs the defendant's revenue");
+    return;
+  }
+  const { ratio, rating } = rateSolvency(base.total_eur, revenueEur);
+  const who = typeof rv === "object" && rv ? `${rv.entity ?? ""}${rv.year ? `, ${rv.year}` : ""}` : "";
+  d.solvency = field(rating, "computed", {
+    note: `Exposure €${(base.total_eur / 1e6).toFixed(1)}M ÷ revenue €${(revenueEur / 1e9).toFixed(2)}bn${who ? ` (${who})` : ""} = ${(ratio * 100).toFixed(1)}% → ${rating}. Rule: ${SOLVENCY_RULE}.`,
+    calc: { exposure_eur: base.total_eur, revenue_eur: revenueEur, ratio: Number(ratio.toFixed(4)), rule: SOLVENCY_RULE },
+  });
+}
+
 // Fill in the computed scenarios from the (possibly association-edited) category, € per victim and funder share.
 function computeValue(brief: Brief, a: Assumptions) {
   const v = brief.value as ReturnType<typeof valueSection>;
@@ -169,13 +199,16 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
 export async function loadBrief(id: string): Promise<Brief | null> {
   const brief = await readJsonOr<Brief | null>(id, "brief.json", null);
   if (!brief) return null;
-  const [cat, a, edits] = await Promise.all([
+  const [cat, a, edits, revenue] = await Promise.all([
     readJsonOr<HarmCategory | null>(id, "category.json", null),
     loadAssumptions(),
     readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {}),
+    readJsonOr<Revenue | null>(id, "revenue.json", null),
   ]);
   (brief as any).value = valueSection(cat, a);
+  (brief.defendant as any).current_revenue = revenueField(revenue);
   if (Object.keys(edits).length) applyEdits(brief, edits);
   computeValue(brief, a);
+  computeSolvency(brief);
   return brief;
 }

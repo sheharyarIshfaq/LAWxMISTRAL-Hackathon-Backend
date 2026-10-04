@@ -70,6 +70,8 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
   const people = b.victims.number.value as number | null;
   const unit = b.victims.number.note;
   const scenarios = (b.value.scenarios.value as any[] | null) ?? [];
+  const base = scenarios.find((s) => s.name === "base");
+  const expected = b.value.opt_in_expected.value as { expected_pct: number; std_dev_pts: number | null } | null;
   const legal = (b.header.legal_basis.value as any[] | null) ?? [];
   const funding = b.value.funding_sought_eur.value as number | null;
   const assoc = b.association.name.value as string | null;
@@ -132,9 +134,10 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
       ${scenarios.map((s) => `<tr><td>${s.name[0].toUpperCase() + s.name.slice(1)} <span class="muted">(${pct(s.opt_in_rate)})</span></td><td>${num(s.opt_ins)}</td><td>€${num(s.compensation_per_victim_eur)}</td><td><b>${eurM(s.total_eur)}</b></td></tr>`).join("") || `<tr><td colspan="4">${blank("cannot be computed")}</td></tr>`}
     </tbody></table>
     <div class="duo">
-      <div class="box light"><div class="label">Funder's share</div><div class="big">${b.value.funder_share.value != null ? pct(b.value.funder_share.value as number) : "[ ] %"}</div></div>
+      <div class="box dark"><div class="label">Expected opt-in</div><div class="big">${expected ? `${expected.expected_pct}%` : "[ ] %"}</div><div class="sub">${expected?.std_dev_pts != null ? `± ${expected.std_dev_pts} pts · past cases in this category` : "past cases in this category"}</div></div>
+      <div class="box light"><div class="label">Funder's share</div><div class="big">${b.value.funder_share.value != null ? pct(b.value.funder_share.value as number) : "[ ] %"}</div><div class="sub">${base ? `${eurM(base.funder_eur)} at base scenario` : ""}</div></div>
     </div>
-    <p class="muted">${(b.value.opt_in_expected.value as any) ? `Expected opt-in in this category: ${(b.value.opt_in_expected.value as any).expected_pct}% ± ${(b.value.opt_in_expected.value as any).std_dev_pts} pts. ` : ""}€${num(b.value.compensation_per_victim_eur.value as number)} per victim. ${esc(b.value.scenarios.note)} ${esc(b.value.benchmarks_note.value)}</p>`);
+    <p class="muted">Opt-in rates from the legal team's table of past cases; €${num(b.value.compensation_per_victim_eur.value as number)} per victim${b.victims.number.note && b.victims.number.note !== "persons" ? `; each of the ${esc(b.victims.number.note)} counted by the CNIL is treated as one person` : ""}. ${esc(b.value.benchmarks_note.value)}</p>`);
 
   const steps: [string, string, string][] = [
     ["Facts", facts ? monthSpan(facts.start, facts.end) : "", "decision"],
@@ -231,6 +234,7 @@ main { padding: 8px 0 0; }
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0; }
 .box { background: #e5ecf8; border-radius: 6px; padding: 8px 10px; }
 .c-value .box.dark { background: #8a4b08; color: #fff; } .c-value .box.dark .label { color: #f6dcb6; }
+.c-value .box .sub { font-size: 8.5px; margin-top: 1px; opacity: .85; } .c-value .box.light .sub { color: #8a4b08; }
 .c-value .box.light { background: #fbefdc; }
 .big { font-size: 18px; font-weight: 800; }
 .muted { color: #667085; font-size: 9px; font-style: italic; } .small { margin-top: 4px; }

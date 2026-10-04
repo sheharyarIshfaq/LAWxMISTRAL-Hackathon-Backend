@@ -7,7 +7,8 @@
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit",
-    "pages": "tsx scripts/extract-pages.ts"
+    "pages": "tsx scripts/extract-pages.ts",
+    "extract": "tsx scripts/extract.ts"
   },
   "keywords": [],
   "author": "",

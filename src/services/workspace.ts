@@ -28,6 +28,7 @@ export async function startWork(radarId: string): Promise<WorkItem> {
   const feed = await getFeed();
   const item = feed?.items.find((i) => i.id === radarId);
   if (!item) throw new NotFound(`No decision ${radarId} in the radar`);
+  if (!item.case_id) throw new WorkflowError("This decision is not qualified for processing yet");
   const all = await listWork();
   const existing = all.find((w) => w.radar_id === radarId);
   if (existing) return existing;

@@ -1,5 +1,5 @@
 import { Router, type Request, type Response } from "express";
-import { listDeliveries, listWork, startWork } from "../services/workspace.ts";
+import { listDeliveries, listWork, startWork, WorkflowError } from "../services/workspace.ts";
 import { getMonitorState, runMonitor } from "../services/monitor.ts";
 import { listEmails } from "../services/outbox.ts";
 
@@ -10,7 +10,12 @@ router.get("/workspace", async (_req: Request, res: Response) => res.json(await 
 router.post("/workspace", async (req: Request, res: Response) => {
   const id = req.body?.radar_id;
   if (typeof id !== "string") return res.status(400).json({ error: "Body must be { radar_id }" });
-  res.json(await startWork(id));
+  try {
+    res.json(await startWork(id));
+  } catch (err) {
+    if (err instanceof WorkflowError) return res.status(400).json({ error: err.message });
+    throw err;
+  }
 });
 
 // Every brief sent to a funder (used by the funder picker on the funder desk).

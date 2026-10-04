@@ -1,6 +1,6 @@
 {
   "source": "https://www.cnil.fr/fr/les-sanctions-prononcees-par-la-cnil",
-  "scanned_at": "2026-10-04T13:48:45.267Z",
+  "scanned_at": "2026-10-04T13:52:38.554Z",
   "from_cache": false,
   "items": [
     {
@@ -297,7 +297,7 @@
       ],
       "case_id": "free-mobile-2026",
       "first_seen_at": "2026-10-04T13:48:45.267Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "2026-01-08_CNILTEXT000053352643",

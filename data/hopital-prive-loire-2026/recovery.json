@@ -1,0 +1,32 @@
+{
+  "people_affected": 524867,
+  "people_affected_unit": "persons",
+  "compensation_per_person_eur": 500,
+  "compensation_basis": [
+    "health"
+  ],
+  "funder_share": 0.3,
+  "scenarios": [
+    {
+      "name": "low",
+      "opt_in_rate": 0.005,
+      "gross_eur": 1312168,
+      "funder_eur": 393650,
+      "victims_eur": 918518
+    },
+    {
+      "name": "mid",
+      "opt_in_rate": 0.02,
+      "gross_eur": 5248670,
+      "funder_eur": 1574601,
+      "victims_eur": 3674069
+    },
+    {
+      "name": "high",
+      "opt_in_rate": 0.05,
+      "gross_eur": 13121675,
+      "funder_eur": 3936503,
+      "victims_eur": 9185172
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "people_affected": 36820828,
+  "people_affected_unit": "persons",
+  "compensation_per_person_eur": 50,
+  "compensation_basis": [
+    "identity",
+    "contact"
+  ],
+  "funder_share": 0.3,
+  "scenarios": [
+    {
+      "name": "low",
+      "opt_in_rate": 0.005,
+      "gross_eur": 9205207,
+      "funder_eur": 2761562,
+      "victims_eur": 6443645
+    },
+    {
+      "name": "mid",
+      "opt_in_rate": 0.02,
+      "gross_eur": 36820828,
+      "funder_eur": 11046248,
+      "victims_eur": 25774580
+    },
+    {
+      "name": "high",
+      "opt_in_rate": 0.05,
+      "gross_eur": 92052070,
+      "funder_eur": 27615621,
+      "victims_eur": 64436449
+    }
+  ]
+}

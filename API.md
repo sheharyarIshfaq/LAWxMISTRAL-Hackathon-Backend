@@ -397,6 +397,10 @@ Structured summary of the decision (legal team's prompt): Markdown, sections 0�
 - Every citation was checked by code: its words must be in the cited paragraph. Wrong § numbers are corrected (`cited_label` = what the model wrote, `label` = where the words actually are).
 - `verified: false` → the link text ends with ` ⚠`; show a warning. `note` explains why.
 
+## `GET /cases/:id/brief.html`
+
+The funding brief as an HTML page, same layout as page 1 of the PDF (no summary), with live edits applied. For embedding in an `<iframe>`; links open in a new tab.
+
 ## `GET /cases/:id/brief.pdf`
 
 Downloads the funding brief as a PDF (page 1: brief in the card layout, page 2+: structured summary of the decision with § citations). Includes the association's edits. Takes ~2 s.

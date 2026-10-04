@@ -99,6 +99,13 @@ export async function getSummary(req: Request<CaseParams>, res: Response) {
   });
 }
 
+// The funding brief as an HTML page (same layout as the PDF, without the summary) for embedding in the app.
+export async function getBriefHtml(req: Request<CaseParams>, res: Response) {
+  const brief = await loadBrief(req.params.id);
+  if (!brief) throw new NotFound(`${req.params.id} has no brief yet`);
+  res.type("html").send(await renderReportHtml(brief, null, { embed: true }));
+}
+
 // The funding brief as a PDF (brief, platform assessment, summary), with the association's edits.
 export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   const { id } = req.params;

@@ -62,7 +62,7 @@ function card(title: string, icon: string, cls: string, body: string) {
   return `<section class="card ${cls}"><h2>${esc(title)}<span class="icon">${icon}</span></h2><div class="body">${body}</div></section>`;
 }
 
-export async function renderReportHtml(brief: Brief, summaryMarkdown: string | null) {
+export async function renderReportHtml(brief: Brief, summaryMarkdown: string | null, opts: { embed?: boolean } = {}) {
   const b = brief;
   const people = b.victims.number.value as number | null;
   const unit = b.victims.number.note;
@@ -178,7 +178,7 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
       ${marked.parse(summaryMarkdown, { async: false }) as string}</section>`
     : "";
 
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(b.header.action_name.value)} – funding brief</title><style>${CSS}</style></head>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(b.header.action_name.value)} – funding brief</title>${opts.embed ? '<base target="_blank"><style>html { zoom: 1 } body { background: #fff; padding: 12px; }</style>' : ""}<style>${CSS}</style></head>
   <body>${header}<main><div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${summaryPage}</body></html>`;
 }
 

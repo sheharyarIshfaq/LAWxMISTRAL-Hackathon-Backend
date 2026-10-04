@@ -9,6 +9,7 @@ router.get("/:id", cases.getCase);
 router.get("/:id/pitch", cases.getPitch);
 router.patch("/:id/brief", cases.editBrief);
 router.get("/:id/brief.pdf", cases.getBriefPdf);
+router.get("/:id/brief.html", cases.getBriefHtml);
 router.get("/:id/summary", cases.getSummary);
 router.get("/:id/pages/:n", cases.getPage);
 router.post("/:id/chat", cases.chat);

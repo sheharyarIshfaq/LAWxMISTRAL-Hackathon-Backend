@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s · Bina.ai",
   },
   description:
-    "A desk where NGOs turn a class-action folder into a pitch, and hedge funds and litigation funders diligence it.",
+    "CNIL data-breach sanctions turned into fundable collective actions: radar, decision summary, funding brief, funder matching.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

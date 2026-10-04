@@ -29,10 +29,10 @@ export function Shell({ children }: { children: ReactNode }) {
           <nav className="flex flex-wrap items-center justify-end gap-2 text-sm" aria-label="Primary">
             <div className="flex items-center gap-0.5 rounded-full bg-elevated p-1">
               <Link href="/desk" className="cursor-pointer rounded-full px-3 py-1.5 font-medium text-muted transition-colors duration-200 hover:text-paper">
-                For NGOs
+                For associations
               </Link>
               <Link href="/book" className="cursor-pointer rounded-full px-3 py-1.5 font-medium text-muted transition-colors duration-200 hover:text-paper">
-                For capital
+                For funders
               </Link>
             </div>
           </nav>
@@ -43,7 +43,7 @@ export function Shell({ children }: { children: ReactNode }) {
       </main>
       <footer className="border-t border-line">
         <p className="mx-auto max-w-6xl px-4 py-6 text-xs leading-relaxed text-faint md:px-6">
-          Bina.ai is a working demonstration for a funding read. It is not a law firm, not a broker-dealer, and not an offer to sell a security. Worksheet figures are not forecasts.
+          Bina.ai is a hackathon demonstration. It is not a law firm and does not give legal advice. Claim values are estimates computed from stated assumptions, not forecasts, and no probability of winning is ever given.
         </p>
       </footer>
     </div>

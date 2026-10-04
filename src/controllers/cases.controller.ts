@@ -11,9 +11,19 @@ import { decisionUrl, renderCitations, type Summary } from "../services/summary.
 type CaseParams = { id: string };
 type PageParams = { id: string; n: string };
 
-export async function listCases(_req: Request, res: Response) {
+// A case is demo-ready when its brief, summary and category of harm exist.
+async function isReady(id: string): Promise<boolean> {
+  const [brief, summary, category] = await Promise.all(["brief.json", "summary.json", "category.json"].map((f) => readJsonOr(id, f, null)));
+  return Boolean(brief && summary && category);
+}
+
+// Default: demo-ready cases only. ?all=true also lists the mock and partly processed cases.
+export async function listCases(req: Request, res: Response) {
+  const all = req.query.all === "true";
+  const ids = [];
+  for (const id of await listCaseIds()) if (all || (await isReady(id))) ids.push(id);
   const cases = await Promise.all(
-    (await listCaseIds()).map(async (id) => {
+    ids.map(async (id) => {
       const c = await readJson(id, "case.json");
       return {
         id,
@@ -23,6 +33,7 @@ export async function listCases(_req: Request, res: Response) {
         people_affected: c.breach?.people_affected ?? null,
         data_types: c.breach?.data_types ?? [],
         mock: Boolean(c.mock),
+        ready: await isReady(id),
       };
     })
   );

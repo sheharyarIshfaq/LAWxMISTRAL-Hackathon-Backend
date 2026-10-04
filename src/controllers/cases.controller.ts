@@ -7,7 +7,7 @@ import { matchesForCase } from "../services/matching.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
-import { decisionPage, legifranceLink, viewerLink } from "../services/viewer.ts";
+import { legifranceLink } from "../services/legifrance.ts";
 import { buildParagraphs } from "../services/paragraphs.ts";
 
 type CaseParams = { id: string };
@@ -83,14 +83,14 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   res.json({ brief: await briefWithAssessment(id) });
 }
 
-// Citation id → link: Légifrance (scrolled to the passage) when the decision URL is known, else our viewer.
-async function citationLinker(id: string): Promise<(citationId: number) => string> {
+// Citation id → Légifrance link that highlights the passage (null when the decision URL is unknown → plain "(§ N)").
+async function citationLinker(id: string): Promise<(citationId: number) => string | null> {
   const [summary, url, pages] = await Promise.all([readJsonOr<Summary | null>(id, "summary.json", null), decisionUrl(id), readJson<Page[]>(id, "pages.json")]);
   const paragraphs = buildParagraphs(pages);
   const byId = new Map((summary?.citations ?? []).map((c) => [c.id, c]));
   return (cid) => {
     const c = byId.get(cid);
-    return url && c ? legifranceLink(url, c, paragraphs) : viewerLink(id, cid, true);
+    return url && c ? legifranceLink(url, c, paragraphs) : null;
   };
 }
 
@@ -99,11 +99,11 @@ export async function getSummary(req: Request<CaseParams>, res: Response) {
   const summary = await readJson<Summary>(id, "summary.json");
   const url = await decisionUrl(id);
   // Links go to the official Légifrance page (scrolling to the passage) when its URL is known, else to the local PDF page.
-  // Each citation opens the official Légifrance text scrolled to the cited paragraph (fallback: our viewer).
+  // Each citation links to the official Légifrance text with the cited passage highlighted.
   const link = await citationLinker(id);
   res.json({
-    markdown: renderCitations(summary, { viewer: link }),
-    citations: summary.citations.map((c) => ({ ...c, url: link(c.id), viewer_url: viewerLink(id, c.id, true) })),
+    markdown: renderCitations(summary, { link }),
+    citations: summary.citations.map((c) => ({ ...c, url: link(c.id) })),
     decision_url: url,
   });
 }
@@ -116,7 +116,7 @@ export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   const summary = await readJsonOr<Summary | null>(id, "summary.json", null);
   const url = await decisionUrl(id);
-  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { viewer: await citationLinker(id) }) : null);
+  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { link: await citationLinker(id) }) : null);
   const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
   res.download(pdfPath, `${id}-funding-brief.pdf`);
 }
@@ -158,10 +158,4 @@ export function createCase(_req: Request, res: Response) {
 // Funders matched to this case, strong → weak, with the reasons. Plain code, no probability.
 export async function getMatches(req: Request<CaseParams>, res: Response) {
   res.json(await matchesForCase(req.params.id));
-}
-
-// The decision as a web page; ?c=<citation id> (or ?q=<words>&para=<§ N>) scrolls to and highlights the cited passage.
-export async function getDecisionPage(req: Request<CaseParams>, res: Response) {
-  const q = req.query as Record<string, string | undefined>;
-  res.type("html").send(await decisionPage(req.params.id, { c: q.c, q: q.q, para: q.para }));
 }

@@ -99,15 +99,14 @@ export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages
 
 // Turn cite:ID markers into links: the official URL (+ text fragment) when known, else the local decision PDF page,
 // or plain "(§ N)" for print. Unverified citations get a visible warning.
-// Turn cite:ID markers into links. `viewer`: our decision viewer, which scrolls to the paragraph and highlights the
-// cited words (reliable; Légifrance loads its text with JavaScript, so its #:~:text= highlights do not work).
-// `url`: official Légifrance page. `plain`: "(§ N)" without a link. Unverified citations get a visible warning.
-export function renderCitations(summary: Summary, opts: { url?: string | null; viewer?: (citationId: number) => string; plain?: boolean }): string {
+// Turn cite:ID markers into links (`link`: citation id → URL, e.g. Légifrance at the passage) or plain "(§ N)".
+// Unverified citations get a visible warning.
+export function renderCitations(summary: Summary, opts: { link?: (citationId: number) => string | null; plain?: boolean }): string {
   const byId = new Map(summary.citations.map((c) => [c.id, c]));
   return summary.markdown.replace(/\[([^\]]+)\]\(cite:(\d+)\)/g, (_m, label: string, cid: string) => {
     const c = byId.get(Number(cid));
     const warn = c && !c.verified ? " ⚠" : "";
-    const href = opts.viewer ? opts.viewer(Number(cid)) : opts.url ?? null;
+    const href = opts.link ? opts.link(Number(cid)) : null;
     return opts.plain || !href ? `(${label}${warn})` : `[${label}${warn}](${href})`;
   });
 }

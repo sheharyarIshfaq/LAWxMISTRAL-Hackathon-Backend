@@ -67,7 +67,7 @@ export function briefToClaims(brief: Brief, summary: Summary | null): string {
   for (const [k, f] of Object.entries(b.timeline)) if (!["facts", "source_decision"].includes(k)) add(`Timeline ${k}`, f as Field);
   // Summary paragraphs (citations as plain "(§ N)", bold removed), one claim line each.
   if (summary)
-    for (const para of renderCitations(summary, { url: null, plain: true }).split(/\n\s*\n/)) {
+    for (const para of renderCitations(summary, { plain: true }).split(/\n\s*\n/)) {
       const text = para.replace(/^#+\s.*$/gm, "").replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
       if (text.length > 40) lines.push(`- ${text}`);
     }

@@ -177,6 +177,8 @@ export type ReceivedPitch = Delivery & {
   harm_category: string | null;
   solvency: string | null;
   funding_sought_eur: number | null;
+  summary: string | null;
+  scores: Record<string, { score: number | null; label: string | null }>;
 };
 export type FunderDashboard = {
   funder: { id: string; name: string; funder_type: string | null };

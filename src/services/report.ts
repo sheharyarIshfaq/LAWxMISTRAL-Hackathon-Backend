@@ -50,6 +50,14 @@ const check = (f: { quote_verified?: boolean; quote_fixed?: string }) =>
 const cite = (f?: { quote?: string | null; page?: number | null; quote_verified?: boolean; quote_fixed?: string }) =>
   f?.quote ? `<div class="cite">« ${esc(f.quote)} » <b>(p. ${f.page})</b> ${check(f)}</div>` : "";
 
+// "(§ 3, § 21)" with each § linking to the passage on Légifrance; only verified quotes count.
+function secLinks(...objs: any[]): string {
+  const seen = new Map<string, string | null>();
+  for (const o of objs.flat()) if (o?.paragraph && !seen.has(o.paragraph)) seen.set(o.paragraph, o.url ?? null);
+  if (!seen.size) return "";
+  return ` (${[...seen].map(([l, u]) => (u ? `<a href="${esc(u)}">${esc(l)}</a>` : esc(l))).join(", ")})`;
+}
+
 function card(title: string, icon: string, cls: string, body: string) {
   return `<section class="card ${cls}"><h2>${esc(title)}<span class="icon">${icon}</span></h2><div class="body">${body}</div></section>`;
 }
@@ -66,6 +74,8 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
   const funding = b.value.funding_sought_eur.value as number | null;
   const assoc = b.association.name.value as string | null;
   const facts = b.timeline.facts.value as { start?: string; end?: string } | null;
+  const vi = (b.victims.identifiable as any).detail ?? null;
+  const hq = (b.harm.quantified as any).detail ?? null;
   const revenue = b.defendant.revenue.value as { amount_eur: number; entity: string; year: number } | null;
   const current = (b.defendant as any).current_revenue?.value as { amount_eur: number; entity: string; year: number | null } | null;
   const solv = b.defendant.solvency.calc as { ratio: number; exposure_eur: number; revenue_eur: number } | undefined;
@@ -89,10 +99,11 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
   const harm = card("Type of harm", "🛡", "c-harm", `
     <div class="label">Is the harm quantified? ${tag(b.harm.quantified)}</div>
     ${chips([["quantified", "Quantified"], ["quantifiable", "Quantifiable"], ["to_be_proven", "To be proven"]], b.harm.quantified.value as string)}
+    ${hq ? `<div class="why">${esc(hq.justification)}${secLinks(hq.quotes)}${(hq.subgroups ?? []).map((g: any) => `<br>• ${esc(g.group)}: <b>${esc(String(g.level).replace(/_/g, " "))}</b>, ${esc(g.justification)}${secLinks(g)}`).join("")}</div>` : ""}
     <div class="label">Nature ${tag(b.harm.nature)}</div>
     ${chips([["financial", "Financial"], ["non_material", "Non-material"], ["overcharge", "Overcharge"], ["loss_of_chance", "Loss of chance"]], b.harm.nature.value as string[], "soft")}
     <p>${esc(b.harm.description.value) || blank("Description of the harm")}</p>
-    ${cite(b.harm.description)}`);
+    ${hq ? "" : cite(b.harm.description)}`);
 
   const victims = card("Victims", "👥", "c-victims", `
     <div class="duo">
@@ -103,8 +114,8 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
     <div class="label">Category ${tag(b.victims.categories)}</div>
     ${chips([["consumers", "Consumers"], ["businesses", "Businesses"], ["retail_investors", "Retail investors"], ["employees", "Employees"], ["other", "Other"]], b.victims.categories.value as string[], "soft")}
     <p><b>Proof of class membership:</b> ${esc(b.victims.proof_of_membership.value) || blank("document")} ${tag(b.victims.proof_of_membership)}</p>
-    ${(b.victims.subgroups.value as string[] | null)?.length ? `<p class="muted">Subgroups: ${(b.victims.subgroups.value as string[]).map(esc).join("; ")}</p>` : ""}
-    ${cite(b.victims.identifiable)}`);
+    ${!vi && (b.victims.subgroups.value as string[] | null)?.length ? `<p class="muted">Subgroups: ${(b.victims.subgroups.value as string[]).map(esc).join("; ")}</p>` : ""}
+    ${vi ? `<div class="why"><b>${esc(String(vi.level)[0].toUpperCase() + String(vi.level).slice(1))}:</b> ${esc(vi.statement)}${secLinks(vi.list_holder, vi.proof)}${(vi.subgroups ?? []).map((g: any) => `<br>• ${esc(g.group)}: <b>${esc(g.level)}</b>, ${esc(g.evidence)}${secLinks(g)}`).join("")}${vi.weakening?.length ? `<div class="weak">⚠ ${vi.weakening.map((w: any) => `${esc(w.explanation || w.wording)}${secLinks(w.sources)}`).join(" · ")}</div>` : ""}</div>` : cite(b.victims.identifiable)}`);
 
   const defendant = card("Defendant", "🏛", "c-defendant", `
     <div class="label">Nature ${tag(b.defendant.nature)}</div>
@@ -220,6 +231,8 @@ main { padding: 8px 0 0; }
 .big { font-size: 18px; font-weight: 800; }
 .muted { color: #667085; font-size: 9px; font-style: italic; } .small { margin-top: 4px; }
 .blank { color: #98a2b3; }
+.why { font-size: 8.5px; background: #f8f9fb; border-radius: 5px; padding: 4px 7px; margin: 5px 0; color: #344054; } .why a { color: #2350a8; font-weight: 600; text-decoration: none; }
+.why .weak { color: #b54708; margin-top: 3px; }
 .cite { font-size: 7.5px; color: #475467; background: #f8f9fb; border-left: 2px solid #c8ccd6; padding: 3px 6px; margin-top: 6px; }
 .ok { color: #12805c; font-weight: 700; font-style: normal; } .ok.warn { color: #b54708; } .bad { color: #c0262d; font-weight: 700; }
 .tag { font-size: 7.5px; font-weight: 600; letter-spacing: 0; text-transform: none; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; font-family: -apple-system, Arial, sans-serif; }

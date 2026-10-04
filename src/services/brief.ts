@@ -6,6 +6,7 @@ import { withPageMarkers } from "./decisionText.ts";
 import { computeRecovery, findRow, loadAssumptions, type Assumptions } from "./recovery.ts";
 import type { HarmCategory } from "./category.ts";
 import { rateSolvency, SOLVENCY_RULE, type Revenue } from "./solvency.ts";
+import { refs } from "./assess.ts";
 import { readJsonOr, type Page } from "./storage.ts";
 
 // Where each value in the brief comes from. The frontend styles fields by source.
@@ -21,6 +22,7 @@ export type Field<T = unknown> = {
   note?: string;
   source_url?: string; // web facts: where the figure comes from
   calc?: Record<string, unknown>; // computed fields: the inputs of the calculation
+  detail?: any; // legal-team rule assessments: evidence, sub-groups, weakening flags, each with § and Légifrance link
 };
 
 const prompt = (name: string) => fs.readFile(path.resolve("prompts", name), "utf8");
@@ -131,6 +133,32 @@ function valueSection(cat: HarmCategory | null, a: Assumptions) {
   };
 }
 
+// Legal team's rules (prompts/identifiability.txt, harm-quantified.txt) replace the generic brief classification.
+function applyAssessments(brief: Brief, x: any) {
+  const i = x.identifiability;
+  if (i?.level) {
+    const main = i.proof?.quote_verified ? i.proof : i.list_holder;
+    brief.victims.identifiable = field(i.level, "assessment", {
+      quote: main?.quote ?? null,
+      page: main?.page ?? null,
+      quote_verified: Boolean(main?.quote_verified),
+      note: `${i.level[0].toUpperCase() + i.level.slice(1)}: ${i.statement}${refs(i.list_holder, i.proof)}`,
+      detail: i,
+    });
+  }
+  const h = x.harm;
+  if (h?.level) {
+    const q = (h.quotes ?? []).find((o: any) => o.quote_verified) ?? h.quotes?.[0];
+    brief.harm.quantified = field(h.level, "assessment", {
+      quote: q?.quote ?? null,
+      page: q?.page ?? null,
+      quote_verified: Boolean(q?.quote_verified),
+      note: `${h.justification}${refs(h.quotes)}`,
+      detail: h,
+    });
+  }
+}
+
 function revenueField(r: Revenue | null): Field<any> {
   if (!r) return missing("Latest revenue not looked up yet");
   const v = { amount_eur: r.amount_eur, entity: r.entity, year: r.year };
@@ -217,12 +245,14 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
 export async function loadBrief(id: string): Promise<Brief | null> {
   const brief = await readJsonOr<Brief | null>(id, "brief.json", null);
   if (!brief) return null;
-  const [cat, a, edits, revenue] = await Promise.all([
+  const [cat, a, edits, revenue, assessments] = await Promise.all([
     readJsonOr<HarmCategory | null>(id, "category.json", null),
     loadAssumptions(),
     readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {}),
     readJsonOr<Revenue | null>(id, "revenue.json", null),
+    readJsonOr<any>(id, "assessments.json", null),
   ]);
+  if (assessments) applyAssessments(brief, assessments);
   (brief as any).value = valueSection(cat, a);
   (brief.defendant as any).current_revenue = revenueField(revenue);
   if (Object.keys(edits).length) applyEdits(brief, edits);

@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { askJson, mistral, CHAT_MODEL } from "./mistral.ts";
-import { CASE_TYPES, listFunders, saveFunders, type Funder } from "./funders.ts";
-import { writeText } from "./storage.ts";
+import { CASE_TYPES, rebuildFunders, type Funder } from "./funders.ts";
+import { writeJson, writeText } from "./storage.ts";
 
 const SEARCH_PROMPT = `Find litigation funders (third-party funders) that fund, or say they fund, collective actions or group claims in France, especially consumer or data protection claims. Search the web.
 For each funder give: name, website, the countries they fund cases in, whether they fund collective actions, which case types, the minimum claim size and the maximum investment per case if stated, and whether they fund claims against public bodies if stated.
@@ -86,10 +86,10 @@ export async function discoverFunders(): Promise<Funder[]> {
     .filter((f) => f.sources.length > 0);
 }
 
-// Replace previously discovered funders, keep the ones registered on the platform.
+// Save the web results on their own, then rebuild the combined list (legal team's list first).
 export async function runDiscovery(): Promise<Funder[]> {
   const found = await discoverFunders();
-  const platform = (await listFunders()).filter((f) => f.origin === "platform");
-  await saveFunders([...platform, ...found]);
+  await writeJson("funders", "discovered.json", found);
+  await rebuildFunders();
   return found;
 }

@@ -17,7 +17,8 @@
     "radar": "tsx scripts/radar.ts",
     "smoke": "tsx scripts/smoke.ts",
     "revenue": "tsx scripts/revenue.ts",
-    "assess": "tsx scripts/assess.ts"
+    "assess": "tsx scripts/assess.ts",
+    "import-funders": "tsx scripts/import-funders.ts"
   },
   "keywords": [],
   "author": "",

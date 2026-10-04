@@ -132,6 +132,8 @@ export function createCase(_req: Request, res: Response) {
 }
 
 // Funders matched to this case, strong → weak, with the reasons. Plain code, no probability.
+// ?limit=N returns the N best matches (default: all).
 export async function getMatches(req: Request<CaseParams>, res: Response) {
-  res.json(await matchesForCase(req.params.id));
+  const limit = Number(req.query.limit);
+  res.json(await matchesForCase(req.params.id, Number.isFinite(limit) && limit > 0 ? limit : undefined));
 }

@@ -120,6 +120,7 @@ export function addQuoteFlags<T>(value: T, pages: Page[]): T {
           console.log(`  page corrected ${obj.page} → ${found[0]}: "${obj.quote.slice(0, 50)}…"`);
           obj.page = found[0];
           obj.quote_verified = true;
+          obj.quote_fixed = "page_corrected";
         } else if (found.length === 0) {
           const fixed = repairQuote(obj.quote, pages);
           const piece = fixed ? null : longestVerbatimPiece(obj.quote, pages);
@@ -129,6 +130,7 @@ export function addQuoteFlags<T>(value: T, pages: Page[]): T {
             obj.quote = replacement.quote;
             obj.page = replacement.page;
             obj.quote_verified = quoteOk(replacement.quote, replacement.page, pages);
+            obj.quote_fixed = fixed ? "repaired" : "trimmed";
           }
         }
       }

@@ -15,6 +15,7 @@ export type Field<T = unknown> = {
   quote?: string | null;
   page?: number | null;
   quote_verified?: boolean;
+  quote_fixed?: "page_corrected" | "repaired" | "trimmed";
   note?: string;
 };
 
@@ -24,7 +25,7 @@ const field = <T>(value: T | null | undefined, source: Source, extra: Partial<Fi
   const v = value === undefined || (Array.isArray(value) && !value.length) ? null : value;
   return { value: v, source: v === null && source !== "association" ? "missing" : source, ...extra };
 };
-const cited = (o: any) => ({ quote: o?.quote ?? null, page: o?.page ?? null, quote_verified: o?.quote_verified ?? false });
+const cited = (o: any) => ({ quote: o?.quote ?? null, page: o?.page ?? null, quote_verified: o?.quote_verified ?? false, ...(o?.quote_fixed ? { quote_fixed: o.quote_fixed } : {}) });
 const missing = (note = "To be provided") => field(null, "missing", { note });
 
 const BRIEF_FORMAT = `

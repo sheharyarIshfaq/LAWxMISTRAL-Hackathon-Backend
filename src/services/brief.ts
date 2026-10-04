@@ -118,8 +118,10 @@ function valueSection(cat: HarmCategory | null, a: Assumptions) {
   return {
     formula: "Total = victims who opt in × compensation per victim",
     harm_category: cat?.category
-      ? field(cat.category, "assessment", { quote: cat.quote, page: cat.page, quote_verified: cat.quote_verified, ...(cat.quote_fixed ? { quote_fixed: cat.quote_fixed as any } : {}), note: [cat.reason, cat.other_categories.length ? `Also fits: ${cat.other_categories.join("; ")}.` : ""].filter(Boolean).join(" ") })
+      ? field(cat.category, "assessment", { quote: cat.quote, page: cat.page, quote_verified: cat.quote_verified, ...(cat.quote_fixed ? { quote_fixed: cat.quote_fixed as any } : {}), note: `${cat.reason} Chosen by rule: ${cat.rule ?? "most conservative matching row"}.` })
       : missing("Category of harm not classified yet"),
+    // Every row the decision supports (model: reason + quote), turned into alternatives with totals in computeValue.
+    category_alternatives: (cat?.matches?.length ? field(cat.matches, "assessment") : missing("No other category")) as Field<any>,
     scenarios: missing("Cannot be computed") as Field<any>,
     opt_in_expected: missing("Cannot be computed") as Field<any>,
     compensation_per_victim_eur: field(a.compensation_per_victim_eur, "assumption", { note: "Legal team" }),
@@ -166,6 +168,23 @@ function computeValue(brief: Brief, a: Assumptions) {
   v.scenarios = r
     ? field(r.scenarios, "computed", { note: `Opt-in rates from the legal team's table for "${r.category}"; ${r.people_affected_unit !== "persons" ? `the CNIL counts ${r.people_affected_unit}, each treated as one person` : "persons"}.` })
     : missing(category ? (row ? "This category has no opt-in data in the table" : "Category not in the opt-in table") : "Category of harm not classified yet");
+  // Alternatives: the other rows the decision supports, with what the claim would be under each (computed here).
+  const matches = ((v as any).category_alternatives.value as any[] | null) ?? [];
+  const alts = matches
+    .filter((m) => m.category !== category)
+    .map((m) => {
+      const alt = computeRecovery(brief.victims.number.value as number | null, brief.victims.number.note, m.category, { ...a, compensation_per_victim_eur: perVictim, funder_share: share });
+      return {
+        category: m.category,
+        reason: m.reason,
+        quote: m.quote,
+        page: m.page,
+        quote_verified: m.quote_verified,
+        totals: alt ? Object.fromEntries(alt.scenarios.map((s) => [s.name, s.total_eur])) : null,
+        note: alt ? null : "No opt-in data for this category in the table",
+      };
+    });
+  (v as any).category_alternatives = alts.length ? field(alts, "computed", { note: "Other categories the decision supports, with the claim value each would give" }) : missing("No other category");
   v.opt_in_expected = r && r.expected_pct !== null ? field({ expected_pct: r.expected_pct, std_dev_pts: r.std_dev_pts }, "computed", { note: "Expected opt-in rate across past cases in this category (not a probability of success)" }) : missing("Cannot be computed");
 }
 

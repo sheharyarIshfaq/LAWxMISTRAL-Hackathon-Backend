@@ -66,8 +66,9 @@ export const briefPdfUrl = (id: string) => `${API_URL}/cases/${id}/brief.pdf`;
 // ---- Chat ----
 export type ChatTurn = { role: "user" | "assistant"; content: string };
 export type ChatCitation = { quote: string; page: number; paragraph: string | null; verified: boolean; url: string | null };
+export type ChatStep = { label: string; detail: string; status: "ok" | "warn" };
 export const chat = (id: string, question: string, history: ChatTurn[]) =>
-  call<{ answer: string; citations: ChatCitation[] }>(`/cases/${id}/chat`, { method: "POST", body: JSON.stringify({ question, history }) });
+  call<{ answer: string; citations: ChatCitation[]; steps: ChatStep[] }>(`/cases/${id}/chat`, { method: "POST", body: JSON.stringify({ question, history }) });
 
 // ---- Funders & matching ----
 export type Funder = {

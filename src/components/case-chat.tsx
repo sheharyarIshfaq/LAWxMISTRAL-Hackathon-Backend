@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowUp, Gavel, Scale, ShieldCheck, Users } from "lucide-react";
-import { ApiError, chat, type ChatCitation, type ChatTurn } from "@/lib/api";
+import { ApiError, chat, type ChatCitation, type ChatStep, type ChatTurn } from "@/lib/api";
+import { AgentActivity } from "@/components/agent-activity";
 import { Logo } from "@/components/logo";
 import { proseClass, renderMarkdown } from "@/lib/markdown";
 
-type Message = ChatTurn & { citations?: ChatCitation[]; error?: boolean };
+type Message = ChatTurn & { citations?: ChatCitation[]; steps?: ChatStep[]; error?: boolean };
 
 const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 
@@ -54,7 +55,7 @@ export function CaseChat({ caseId }: { caseId: string; defendant?: string }) {
     setBusy(true);
     try {
       const r = await chat(caseId, q, history);
-      setMessages((m) => [...m, { role: "assistant", content: r.answer, citations: r.citations }]);
+      setMessages((m) => [...m, { role: "assistant", content: r.answer, citations: r.citations, steps: r.steps }]);
     } catch (e) {
       setMessages((m) => [...m, { role: "assistant", content: (e as ApiError).message, error: true }]);
     } finally {
@@ -109,6 +110,7 @@ export function CaseChat({ caseId }: { caseId: string; defendant?: string }) {
                       m.error ? "border-[#fecdca] bg-[#fef3f2] text-sm text-[#b42318]" : "border-line bg-panel"
                     }`}
                   >
+                    {!m.error ? <AgentActivity steps={m.steps} /> : null}
                     {m.error ? m.content : <div className={proseClass} dangerouslySetInnerHTML={{ __html: withCitationChips(renderMarkdown(m.content), m.citations) }} />}
                     {m.citations?.length ? (
                       <p className="mt-3 flex items-center gap-1.5 border-t border-line pt-2.5 text-[12px] text-faint">
@@ -121,15 +123,15 @@ export function CaseChat({ caseId }: { caseId: string; defendant?: string }) {
               )
             )}
             {busy ? (
-              <div className="flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-full bg-white ring-1 ring-line">
+              <div className="flex items-start gap-3">
+                <span className="mt-1 flex size-9 items-center justify-center rounded-full bg-white ring-1 ring-line">
                   <Logo size={22} />
                 </span>
-                <div className="flex items-center gap-1.5 rounded-2xl border border-line bg-panel px-4 py-3">
+                <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-line bg-panel px-5 py-4">
+                  <AgentActivity running />
                   <span className="dot" />
                   <span className="dot" />
                   <span className="dot" />
-                  <span className="ml-2 text-[13px] text-faint">Reading the decision…</span>
                 </div>
               </div>
             ) : null}

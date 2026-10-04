@@ -532,6 +532,50 @@ Only `name` is required. `case_types` from: `data_protection`, `consumer`, `comp
 
 Runs the AI agent (Mistral with web search) to find real funders active in French collective actions. ~35 s. Replaces previously discovered funders, keeps registered ones. Only URLs returned by the web search are kept as sources; a funder with no source is dropped. The raw search answer is saved in `data/funders/last-search.md` for audit.
 
+## `GET /radar`
+
+Monitoring feed: every CNIL sanction from the CNIL's official list (https://www.cnil.fr/fr/les-sanctions-prononcees-par-la-cnil), triaged for class-action potential. Newest first.
+
+Query (all optional): `status=candidate|candidate_public|filtered`, `priority=high|medium|low`, `since=YYYY-MM-DD`, `breach=true`.
+
+```json
+{
+  "source": "https://www.cnil.fr/fr/les-sanctions-prononcees-par-la-cnil",
+  "scanned_at": "2026-10-04T12:45:00.000Z",
+  "from_cache": false,
+  "stats": { "total": 394, "data_breaches": 95, "candidates": 34, "candidates_public": 3, "filtered": 357, "high_priority": 7, "new": 1 },
+  "items": [
+    {
+      "id": "2026-01-08_CNILTEXT000053352594",
+      "date": "2026-01-08",
+      "organisation_type": "OPÉRATEUR DE TÉLÉPHONIE MOBILE",
+      "themes": "Durée de conservation Défaut de sécurité des données Obligation de communiquer une violation de données aux personnes concernées",
+      "decision": "Amende administrative de 27 millions d'euros et injonction",
+      "fine_eur": 27000000,
+      "legifrance_url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594",
+      "data_breach": true,
+      "public_body": false,
+      "status": "candidate",
+      "priority": "high",
+      "reasons": ["Data breach: the CNIL lists \"Défaut de sécurité des données\"", "Victims not properly informed (art. 34) is among the breaches", "Fine: €27,000,000"],
+      "case_id": "free-mobile-2026",
+      "first_seen_at": "2026-10-04T12:45:00.000Z",
+      "is_new": true
+    }
+  ]
+}
+```
+
+- Triage is plain rules on the CNIL's own wording (no model): `data_breach` if the CNIL lists data security or a data breach; `public_body` from the organisation type; decisions with no published text (e.g. simplified procedure) are `filtered`.
+- `status`: `candidate` (breach, private defendant, published) · `candidate_public` (same, public body: administrative route) · `filtered` (with the reason).
+- `priority` (candidates only): `high` fine ≥ €1M · `medium` ≥ €100k · `low`.
+- `case_id`: set when the platform already has a brief for this decision → link to `GET /cases/:id/pitch`.
+- `is_new`: first seen in the latest scan. The CNIL list does not name organisations (only their type); the name is in the decision on Légifrance.
+
+## `POST /radar/scan`
+
+Fetches the CNIL list and re-triages (~1 s, no model call). If the CNIL site is unreachable, uses the last saved copy (`from_cache: true`). Returns `{ scanned_at, from_cache, total, new, new_items }`.
+
 ## `GET /cases/:id/pages/:n`
 
 One page of the decision text, for showing a citation in context.

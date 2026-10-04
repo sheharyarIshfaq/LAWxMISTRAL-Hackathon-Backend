@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+/* Light materials: gray page, white cards, gray fills. Blue is #0071E3 so
+   both white-on-blue buttons and blue text on white meet WCAG AA. */
+:root {
+  /* Palette from the logo: navy ink, reading-glass blue, pale sky, on warm paper. */
+  --ink: #f6f4ef;
+  --panel: #ffffff;
+  --elevated: #eceff5;
+  --hover: #dde4ef;
+  --line: rgba(23, 43, 77, 0.12);
+  --gold: #2f5fa3;
+  --gold-2: #244c86;
+  --fill: #2f5fa3;
+  --fill-2: #244c86;
+  --paper: #172b4d;
+  --muted: #3e4d66;
+  --faint: #6b7891;
+  --warn: #9a3412;
+  --sky: #d3e4f5;
+  --background: var(--ink);
+  --foreground: var(--paper);
+  /* SF Pro via the system font, then Helvetica Neue and Helvetica. */
+  --apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-elevated: var(--elevated);
+  --color-hover: var(--hover);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-gold-2: var(--gold-2);
+  --color-fill: var(--fill);
+  --color-fill-2: var(--fill-2);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-warn: var(--warn);
+  --color-background: #ffffff;
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--faint);
+  --color-popover: #ffffff;
+  --color-popover-foreground: var(--paper);
+  --color-accent: var(--elevated);
+  --color-accent-foreground: var(--paper);
+  --color-border: var(--line);
+  --color-sidebar: #eef0f4;
+  --color-sidebar-foreground: var(--paper);
+  --color-sidebar-accent: #dfe6f1;
+  --color-sidebar-accent-foreground: var(--paper);
+  --color-sidebar-border: var(--line);
+  --color-sidebar-primary: var(--fill);
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-ring: var(--fill);
+  --color-card: #ffffff;
+  --color-card-foreground: var(--paper);
+  --color-ring: var(--fill);
+  --animate-collapsible-down: collapsible-down 200ms ease-out;
+  --animate-collapsible-up: collapsible-up 200ms ease-out;
+  --font-sans: var(--apple);
+  --font-serif: var(--apple);
+  --font-mono: var(--apple);
+  --color-sky: var(--sky);
+}
+
+body {
+  /* Warm paper with a faint grain and two soft washes of the logo blues. */
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(211, 228, 245, 0.55), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(168, 203, 235, 0.25), transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.17 0 0 0 0 0.3 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    var(--ink);
+  color: var(--paper);
+  font-family: var(--apple);
+  font-optical-sizing: auto;
+}
+
+/* Display sizes tighten; body stays at the system font's own tracking. */
+.font-serif {
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  font-optical-sizing: auto;
+}
+
+h1.font-serif {
+  letter-spacing: -0.03em;
+}
+
+/* Small uppercase labels, used as eyebrows above titles. */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Staggered fade-up on page load. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-1 { animation-delay: 0.04s; } .rise-2 { animation-delay: 0.08s; } .rise-3 { animation-delay: 0.12s; } .rise-4 { animation-delay: 0.16s; }
+
+/* Typing indicator for the agent. */
+@keyframes blink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+.dot { width: 6px; height: 6px; border-radius: 9999px; background: var(--gold); animation: blink 1.2s infinite both; }
+.dot:nth-child(2) { animation-delay: 0.15s; } .dot:nth-child(3) { animation-delay: 0.3s; }
+
+.chrome {
+  background: rgba(245, 245, 247, 0.8);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* White card with a hairline border and a soft navy shadow. */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 1px 0 rgba(23, 43, 77, 0.03), 0 8px 24px -16px rgba(23, 43, 77, 0.18);
+}
+a.card:hover, button.card:hover { border-color: rgba(47, 95, 163, 0.35); }
+
+.surface {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+button:active:not(:disabled),
+a:active {
+  transform: scale(0.98);
+}
+
+::selection {
+  background: #2f5fa3;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #2f5fa3;
+  outline-offset: 3px;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  scroll-margin-top: 5rem;
+}
+
+@keyframes shimmer-text {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes collapsible-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes agent-pixel-on {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes agent-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.agent-pixel {
+  animation: agent-pixel-on 650ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.agent-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    var(--faint) 35%,
+    var(--paper) 50%,
+    var(--faint) 65%
+  );
+  background-size: 200% 100%;
+  animation: agent-shimmer 1.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-pixel,
+  .agent-shimmer {
+    animation: none;
+  }
+
+  .agent-shimmer {
+    color: var(--muted);
+    background-image: none;
+  }
+}
+
+/* Author display beats the browser's closed-popover rule, so a utility
+   like `block` would leave every source card on screen. */
+.citation-card:not(:popover-open) {
+  display: none;
+}
+
+.citation-card:popover-open {
+  display: block;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="range"] {
+  accent-color: #0071e3;
+  height: 1.75rem;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  button:active:not(:disabled),
+  a:active {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .chrome {
+    background: #f5f5f7;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Inline citation chip: a paragraph of the decision, linking to Légifrance. Amber when the quote could not be verified. */
+a.cite, span.cite {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin: 0 2px; padding: 1px 6px; border-radius: 6px;
+  vertical-align: 1px; white-space: nowrap;
+  background: rgba(211, 228, 245, 0.7); color: var(--fill-2);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500; line-height: 1.5;
+  text-decoration: none; transition: background 0.15s, color 0.15s;
+}
+a.cite:hover { background: var(--fill); color: #fff; }
+.cite.cite-warn { background: #fffaeb; color: #b54708; }
+a.cite.cite-warn:hover { background: #b54708; color: #fff; }
+/* The decision's own words, set apart from the answer. */
+.dq { font-family: var(--font-serif); font-style: italic; color: var(--paper); }
+
+/* Caret at the end of an answer while it streams. */
+.caret { display: inline-block; width: 7px; height: 1em; margin-left: 2px; vertical-align: -2px; background: var(--fill); animation: caret 1s steps(2) infinite; }
+@keyframes caret { 50% { opacity: 0; } }

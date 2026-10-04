@@ -70,7 +70,6 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
   const people = b.victims.number.value as number | null;
   const unit = b.victims.number.note;
   const scenarios = (b.value.scenarios.value as any[] | null) ?? [];
-  const mid = scenarios.find((s) => s.name === "mid");
   const legal = (b.header.legal_basis.value as any[] | null) ?? [];
   const funding = b.value.funding_sought_eur.value as number | null;
   const assoc = b.association.name.value as string | null;
@@ -126,14 +125,17 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
 
   const value = card("Value of the claim", "€", "c-value", `
     <p>${esc(b.value.formula)} ${tag(b.value.scenarios)}</p>
+    <div class="label">Category of harm (opt-in table)</div>
+    <p class="cat">${b.value.harm_category.value ? esc(b.value.harm_category.value) : blank("not classified")} ${b.value.harm_category.source === "association" ? tag(b.value.harm_category) : ""}</p>
+    ${cite(b.value.harm_category)}
     <table class="scen"><thead><tr><th>Scenario</th><th>Opt-ins</th><th>€ / victim</th><th>Total</th></tr></thead><tbody>
-      ${scenarios.map((s) => `<tr><td>${s.name === "mid" ? "Base" : s.name[0].toUpperCase() + s.name.slice(1)} <span class="muted">(${pct(s.opt_in_rate)})</span></td><td>${num(s.opt_ins)}</td><td>€${num(s.compensation_per_victim_eur)}</td><td><b>${eurM(s.total_eur)}</b></td></tr>`).join("") || `<tr><td colspan="4">${blank("cannot be computed")}</td></tr>`}
+      ${scenarios.map((s) => `<tr><td>${s.name[0].toUpperCase() + s.name.slice(1)} <span class="muted">(${pct(s.opt_in_rate)})</span></td><td>${num(s.opt_ins)}</td><td>€${num(s.compensation_per_victim_eur)}</td><td><b>${eurM(s.total_eur)}</b></td></tr>`).join("") || `<tr><td colspan="4">${blank("cannot be computed")}</td></tr>`}
     </tbody></table>
     <div class="duo">
       <div class="box dark"><div class="label">Funding sought</div><div class="big">${funding ? eurM(funding) : "€[ ]M"}</div></div>
       <div class="box light"><div class="label">Funder's share ${tag(b.value.funder_share)}</div><div class="big">${b.value.funder_share.value != null ? pct(b.value.funder_share.value as number) : "[ ] %"}</div></div>
     </div>
-    <p class="muted">${esc(b.value.scenarios.note)}. ${esc(b.value.benchmarks_note.value)}</p>`);
+    <p class="muted">${(b.value.opt_in_expected.value as any) ? `Expected opt-in in this category: ${(b.value.opt_in_expected.value as any).expected_pct}% ± ${(b.value.opt_in_expected.value as any).std_dev_pts} pts. ` : ""}€${num(b.value.compensation_per_victim_eur.value as number)} per victim. ${esc(b.value.scenarios.note)} ${esc(b.value.benchmarks_note.value)}</p>`);
 
   const steps: [string, string, string][] = [
     ["Facts", facts ? monthSpan(facts.start, facts.end) : "", "decision"],
@@ -219,7 +221,7 @@ main { padding: 8px 0 0; }
 .c-harm h2 { background: #17614f; } .c-harm .label { color: #17614f; } .c-harm .chip { border-color: #17614f; color: #17614f; } .c-harm .chip.soft { background: #e3f1ec; border-color: transparent; }
 .c-victims h2 { background: #2350a8; } .c-victims .label { color: #2350a8; } .c-victims .chip.soft { background: #e5ecf8; border-color: transparent; color: #2350a8; }
 .c-defendant h2 { background: #6b2d7b; } .c-defendant .label { color: #6b2d7b; } .c-defendant .chip { background: #f1e6f4; color: #6b2d7b; border-color: transparent; } .c-defendant .chip.wide { flex: 1; text-align: center; }
-.c-value h2 { background: #8a4b08; } .c-value .label { color: #8a4b08; }
+.c-value h2 { background: #8a4b08; } .c-value .label { color: #8a4b08; } .c-value .cat { font-weight: 700; margin: 2px 0; }
 .c-timeline h2 { background: #b23a2b; } .full { margin-top: 8px; }
 .label { font-size: 8px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; margin: 6px 0 3px; }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }

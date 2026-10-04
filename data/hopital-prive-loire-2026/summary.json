@@ -1,54 +1,765 @@
 {
-  "sentences": [
+  "markdown": "# 0. Identification\n\nThe decision is **SAN-2026-009** of **21 July 2026** by the *formation restreinte* of the **CNIL** (French data protection authority). It is a **penalty decision** with a **public version** and the organisation name (**HOPITAL PRIVE DE LA LOIRE**) is visible. The status is \"appeal possible; to be checked\". In one sentence: the CNIL fines **HOPITAL PRIVE DE LA LOIRE** **€500,000** for breaches of **GDPR Articles 32 (security) and 34 (communication of a personal data breach)** following a **June–July 2025 cyberattack** that exposed **524,867 patient records** and **202,246 records of designated trusted third parties** [header](cite:1) [operative part, 1st indent](cite:2).\n\n---\n\n---\n\n# 1. Facts\n\n## Who\nThe sanctioned organisation is **HOPITAL PRIVE DE LA LOIRE**, a *société anonyme* (public limited company) created on **1 January 1970**, registered at the **Saint-Étienne** Trade and Companies Register under number **704 501 006**, and headquartered at **39, boulevard de la Palle, Saint-Étienne (42100)** [§ 1](cite:3). It is part of the **RAMSAY SANTE group**, described as the leader in private hospitalisation and primary care in Europe and the **leading private healthcare actor in France, Sweden, Denmark and Norway** [§ 2](cite:4).\n\nBetween **July 2023 and June 2024**, the hospital generated **€91.8 million** in revenue with a **net loss of €2.9 million**; between **July 2024 and June 2025**, it generated **€93.4 million** in revenue with a **net loss of €5.2 million** [§ 3](cite:5). The group’s revenue and profit figures for **July 2024–June 2025** are **redacted** [§ 3](cite:6).\n\nThe hospital employs **566 full-time equivalent staff**, including **about 15 doctors**, and has a medical community of **about 200 self-employed practitioners** (surgeons, doctors, physiotherapists, midwives) linked to the hospital by practice contracts [§ 4](cite:7).\n\nThe case originated from a **data breach notification** by the hospital to the CNIL on **4 July 2025** [§ 13](cite:8). The CNIL also received **nine complaints** from individuals affected by the breach [§ 14](cite:9).\n\nThe people affected are:\n- **Patients**: **530,000** in the DPI in **2025** [§ 7](cite:10).\n- **Designated trusted third parties**: **202,246** individuals whose data was also exfiltrated [§ 12](cite:11) [§ 137](cite:12).\n\nThe hospital **did not individually inform** the **202,246 trusted third parties** of the breach [§ 137](cite:13).\n\n## What\nThe processing at issue is the **Dossier Patient Informatisé (DPI)**, a centralised electronic patient record system used to trace patient care pathways and coordinate healthcare interventions. It is managed via a **web application** accessible with a **username and password**, and patient files can be accessed via a **URL containing a patient-specific identifier** [§ 5](cite:14).\n\nThe **data concerned** in the DPI includes:\n- **Administrative data**: patient file number, title, first and last names, date and place of birth, sex, **social security number**, postal address, **permanent patient identifier (IPP)**, marital status, professional status, identity and contact details of a designated trusted person, and in some cases, **a copy of the front of the national identity card** of the patient, their guardian, or legal representative for minors [§ 7](cite:15).\n- **Biometric data**: security photograph [§ 7](cite:16).\n- **Health data**: nursing, medical, and paramedical observations before and during hospitalisation, including **reasons for hospitalisation, consultation lists, and anaesthesia-related information** [§ 7](cite:17).\n\nThe **incident** occurred between **26 June and 1 July 2025**, when an attacker **gained access to the DPI** using the credentials of a **self-employed doctor** linked to the hospital. The attacker **exfiltrated 524,867 patient files**, including:\n- **46,185 files** containing a **copy of the front of the national identity card** [§ 12](cite:18).\n- **43 files** containing **health data** [§ 12](cite:19).\n- **202,246 files** containing data on **designated trusted third parties** (relationship, name, first name, phone number) [§ 12](cite:20).\n\nThe **risks and harm** identified by the CNIL include:\n- The breach is **\"de nature à créer un préjudice moral et matériel\"** [likely to cause non-material and material harm] for the individuals concerned, exposing them to **data resale, identity theft, and phishing** [§ 49](cite:21).\n- The **unauthorised disclosure of health data** can have serious consequences, such as **damage to reputation, integrity, or discrimination** in employment, housing, or insurance [§ 49](cite:22).\n- The CNIL admits that it is **\"pas possible de déterminer avec certitude\"** [not possible to determine with certainty] that the frauds reported by complainants stem from this breach [§ 50](cite:23).\n\nThe hospital had **no prior penalties or formal notices** cited in the decision.\n\n## Where\nThe territory is **France**. The decision does not mention European cooperation or a one-stop-shop mechanism.\n\n## When\n- **Period of the breach**: **26 June to 1 July 2025** [§ 12](cite:24).\n- **Discovery of the incident**: **1 July 2025**, following an alert from a self-employed doctor unable to connect to the DPI [§ 10](cite:25).\n- **Notification to the CNIL (Art. 33)**: **4 July 2025** [§ 13](cite:26).\n- **Information of individuals (Art. 34)**: The hospital informed its **patients** via a **press release on its website**, **126,000 personalised emails**, **210,000 SMS**, and **88,000 postal letters** between **July and August 2025** [§ 135](cite:27). The **202,246 trusted third parties** were **not informed** [§ 137](cite:28).\n- **On-site inspection**: **29 July 2025** [§ 15](cite:29).\n- **Report notified to the hospital**: **1 August 2025** [§ 15](cite:30).\n- **Rapporteur appointed**: **19 February 2026** [§ 17](cite:31).\n- **Sanction report served**: **5 March 2026** [§ 18](cite:32).\n- **Hospital’s written observations**: **3 April 2026** [§ 19](cite:33).\n- **Closure of investigation**: **18 May 2026** [§ 20](cite:34).\n- **Hearing**: **18 June 2026** [§ 22](cite:35).\n- **Decision date**: **21 July 2026** [header](cite:36).\n\n---\n---\n# 2. Procedure\n\nThe procedure was **ordinary** (not simplified). The case began with the hospital’s **breach notification** on **4 July 2025** and the CNIL’s receipt of **nine complaints** [§ 14](cite:37). The CNIL conducted an **on-site inspection** on **29 July 2025** [§ 15](cite:38). The hospital provided **additional elements** on **4 August 2025** [§ 16](cite:39).\n\nThe president of the CNIL appointed a *rapporteure* on **19 February 2026** [§ 17](cite:40). The *rapporteure* served a **sanction report** on **5 March 2026**, proposing a fine, an injunction with a *astreinte* (periodic penalty), and **publication with anonymisation after two years** [§ 18](cite:41). The hospital submitted **written observations** on **3 April 2026** [§ 19](cite:42). The investigation closed on **18 May 2026**, and the hospital was informed of the hearing date [§ 20](cite:43). The *formation restreinte* heard **oral observations** on **18 June 2026** [§ 22](cite:44).\n\nThe decision does not mention any **procedural objections** raised by the company. It cites **CNIL precedents** (SAN-2021-020, SAN-2020-014, SAN-2019-005, SAN-2018-011) and **CJEU case law** (C-340/21, C-687/21, C-807/21, C-383/23) [§ 37, 38, 146, 147](cite:45).\n\n---\n---\n# 3. Legal basis\n\nThe *formation restreinte* establishes the following breaches:\n- **Article 32 GDPR (security of processing)**: multiple failures in technical and organisational measures, including:\n  - **Absence of multi-factor authentication (MFA) or VPN for remote access** by external users (self-employed practitioners, their secretaries, and the software editor’s staff) [§ 61](cite:46).\n  - **Inadequate access rights policy**: no **compartmentalisation of patient files** by care team, allowing access to **all patient records** regardless of involvement in care [§ 77](cite:47).\n  - **Insufficient traceability measures**: no **automated real-time analysis of application logs** to detect abnormal activity [§ 94](cite:48).\n  - **Non-compliance with password secrecy** during the **post-breach reset procedure**: a **single temporary password** was shared with all external users via an intermediary [§ 107](cite:49).\n  - **Uncontrolled access by the software editor**: the editor had **permanent, unsupervised remote access** to the DPI and patient data [§ 116](cite:50).\n\n- **Article 34 GDPR (communication of a personal data breach)**: failure to **directly inform the 202,246 designated trusted third parties** whose data was also exfiltrated [§ 131](cite:51).\n\nNo breaches were **rejected** by the *formation restreinte*.\n\n---\n---\n# 4. Arguments\n\nThe company argues that its **password policy complied with CNIL and ANSSI recommendations** and that it had **planned and engaged** a trajectory to secure remote access via a multi-factor authentication platform (**[…]**) before the breach, with deployment completed in **September 2025** [§ 62](cite:52). It also highlights its **efforts to modernise its IT system**, including participation in the **HospiConnect** and **Care** programmes [§ 63](cite:53).\n\nThe company further argues that the **temporary password reset procedure** was justified by **urgency** to stop the ongoing breach without disrupting care continuity, as the software did not allow **individualised automated resets** [§ 108](cite:54). It claims this was the **only available technical solution** [§ 108](cite:55).\n\nRegarding **access by the software editor**, the hospital argues that **permanent access** was necessary for **rapid and effective support** under a **third-party maintenance agreement**. It states that permanent access was only for **maintenance**, while advanced technical administration required connection via a **bastion server** where all activity is logged [§ 117](cite:56).\n\nFor the **Article 34 breach**, the hospital argues that the **data of trusted third parties was partial** (limited to name, first name, phone number, relationship) and **not structured**, reducing its exploitability. It claims its **risk assessment** concluded that the breach did not present a **high risk** to these individuals, so **no communication was required** [§ 134–135](cite:57).\n\nThe company also argues that the **proposed fine is disproportionate** given its **financial situation** and that of the **RAMSAY SANTE group**. It cites **mitigating circumstances**, including **cooperation with the CNIL**, **measures taken to mitigate harm**, the **non-deliberate nature** of the breaches (linked to technical and organisational constraints of legacy software), and the **absence of direct harm** reported to the CNIL [§ 150](cite:58).\n\nThe *formation restreinte* **rejects** these arguments:\n- The **absence of MFA or VPN** for external users **did not meet the security requirements** of the **health sector’s electronic identification framework**, which mandates **two-factor authentication for remote access** [§ 65](cite:59).\n- The **lack of compartmentalisation** of patient files **violated the care team principle** under **Articles L. 1110-4 and L. 1110-12 of the Public Health Code**, which restricts access to patient data to those **directly involved in care** [§ 82–85](cite:60).\n- The **insufficient traceability** measures **failed to detect the attacker’s abnormal activity** over **five days**, during which **524,867 files were exfiltrated** [§ 97](cite:61).\n- The **temporary password reset procedure** **violated password secrecy** by using a **single shared password** transmitted via an intermediary [§ 110](cite:62).\n- The **permanent, uncontrolled access** by the software editor **exceeded the necessities of its mission** and **compromised data confidentiality** [§ 121](cite:63).\n- The **failure to inform trusted third parties** was **unjustified**, as their data (name, first name, phone number, relationship) **posed a high risk** of **phishing and identity theft**, especially when combined with patient data [§ 139](cite:64).\n\n**Remaining weak points**:\n- The CNIL **admits uncertainty** about whether the **frauds reported by complainants** stem from this breach: it is **\"pas possible de déterminer avec certitude\"** [not possible to determine with certainty] [§ 50](cite:65).\n- The hospital’s **AIPD (2021)** had identified the **lack of compartmentalisation** as a **major threat** but judged its **likelihood as limited** [§ 84](cite:66).\n\n---\n---\n# 5. Decision\n\n## Fine\nThe *formation restreinte* imposes a **fine of €500,000** for breaches of **Articles 32 and 34 GDPR** [operative part, 1st indent](cite:67). The fine is **not split by breach** in the operative part.\n\nThe **factors** used to set the fine (Art. 83 GDPR) include:\n- **Gravity**: the breaches affected **524,867 patients and 202,246 trusted third parties**, involved **special-category data (health data)**, and **facilitated a large-scale breach** [§ 154](cite:68).\n- **Negligence**: the hospital **failed to implement basic security measures** (MFA, VPN, compartmentalisation, log analysis) despite **knowing the risks** (AIPD 2021) [§ 161](cite:69).\n- **Categories of data**: the DPI contained **health data (Art. 9 GDPR)** and **copies of identity documents**, requiring **enhanced protection** [§ 167](cite:70).\n- **Financial capacity**: the fine is calculated based on the **RAMSAY SANTE group’s turnover** (as a single economic unit under EU competition law) to ensure it is **effective, proportionate, and dissuasive** [§ 172](cite:71).\n\n## Injunction and *astreinte*\nThe *formation restreinte* orders the hospital to:\n1. **Implement a system for proactive real-time or short-term analysis of application logs** to detect abnormal user behaviour and trigger alerts, within **3 months**, under a **periodic penalty (*astreinte*) of €1,000 per day of delay** [operative part, 2nd indent, 1st bullet](cite:72).\n2. **Update its access rights policy** to comply with **Articles L. 1110-4 and L. 1110-12 of the Public Health Code** (care team principle), including a **break-glass mechanism** for emergencies, within **15 months**, under a **periodic penalty of €1,000 per day of delay** [operative part, 2nd indent, 2nd bullet](cite:73).\n3. **Implement technical measures** to ensure the software editor’s access to the DPI is **only granted with prior hospital authorisation**, within **3 months**, under a **periodic penalty of €1,000 per day of delay** [operative part, 2nd indent, 3rd bullet](cite:74).\n\n## Publication\nThe decision will be **published on the CNIL’s website and Légifrance** and will **no longer identify the hospital by name after two years** [operative part, 3rd indent](cite:75).\n\n---\n---\n# 6. Appeal\n\nThe decision is **susceptible to appeal before the Conseil d’État**. The **deadline to appeal is to be checked by the tool** [end of decision](cite:76). The decision **does not state whether an appeal has been lodged**.",
+  "citations": [
     {
-      "text": "The French data protection authority CNIL sanctioned Hôpital Privé de la Loire for a personal data breach.",
-      "quote": "Délibération de la formation restreinte n°SAN-2026-009 du 21 juillet 2026 concernant la société HOPITAL PRIVE DE LA LOIRE",
+      "id": 1,
+      "label": "header",
+      "cited_label": "header",
       "page": 1,
-      "quote_verified": true
+      "fragment": "Délibération SAN-2026-009 du 21 juillet 2026",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "An attacker accessed the hospital’s electronic patient records system on 26 June 2025 using a liberal practitioner’s credentials and exfiltrated data.",
-      "quote": "l’attaquant est parvenu à se connecter au dossier patient informatisé de l’hôpital le 26 juin 2025, en utilisant les identifiants du compte d’un médecin libéral",
+      "id": 2,
+      "label": "operative part, 1st indent",
+      "cited_label": "operative part, 1st indent",
+      "page": 24,
+      "fragment": "prononcer à l’encontre de la société HOPITAL PRIVE DE LA LOIRE une amende",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 3,
+      "label": "§ 1",
+      "cited_label": "§ 1",
+      "page": 2,
+      "fragment": "La société HOPITAL PRIVE DE LA LOIRE",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 4,
+      "label": "§ 2",
+      "cited_label": "§ 2",
+      "page": 2,
+      "fragment": "Issu du regroupement de quatre cliniques",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 5,
+      "label": "§ 3",
+      "cited_label": "§ 3",
+      "page": 2,
+      "fragment": "Entre les mois de juillet 2023 et juin 2024,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 6,
+      "label": "§ 3",
+      "cited_label": "§ 3",
+      "page": 2,
+      "fragment": "Le groupe RAMSAY a quant à lui",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 7,
+      "label": "§ 4",
+      "cited_label": "§ 4",
+      "page": 2,
+      "fragment": "Il emploie 566 salariés en équivalent",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 8,
+      "label": "§ 13",
+      "cited_label": "§ 13",
       "page": 3,
-      "quote_verified": true
+      "fragment": "L’HOPITAL PRIVE DE LA LOIRE a procédé à la notification",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "The breach affected 524,867 patient files, including civil status, social security numbers, postal and email addresses, and permanent patient identifiers.",
-      "quote": "il a ensuite procédé à l’exfiltration de 524 867 fiches patients contenant des informations telles que l’état civil, le numéro de sécurité sociale, les coordonnées postales et électroniques et le numéro d’identifiant permanent",
+      "id": 9,
+      "label": "§ 14",
+      "cited_label": "§ 14",
       "page": 3,
-      "quote_verified": true
+      "fragment": "En parallèle, la CNIL a reçu neuf plaintes",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "The CNIL found the hospital failed to secure remote access to the patient records system, violating Article 32 of the GDPR.",
-      "quote": "l’absence d’authentification multifacteur lors de la connexion de ces utilisateurs au DPI de l’hôpital ne permettait pas d’assurer la sécurité du système",
-      "page": 9,
-      "quote_verified": true
+      "id": 10,
+      "label": "§ 7",
+      "cited_label": "§ 7",
+      "page": 2,
+      "fragment": "En 2025, le DPI de l’hôpital comportait les données",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "The CNIL also found the hospital’s access rights policy was inadequate, as it did not restrict access to patient files to only those involved in their care, violating Article 32 of the GDPR.",
-      "quote": "la politique d’habilitations au DPI de l’hôpital est inadéquate dès lors qu’elle",
-      "page": 11,
-      "quote_verified": true,
-      "quote_fixed": "trimmed"
+      "id": 11,
+      "label": "§ 12",
+      "cited_label": "§ 12",
+      "page": 3,
+      "fragment": "202 246 fiches comportaient des données relatives à la personne de confiance",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "The hospital failed to implement automated analysis of application logs to detect suspicious activity, violating Article 32 of the GDPR.",
-      "quote": "pris aucune mesure d’analyse automatisée des traces applicatives du",
-      "page": 13,
-      "quote_verified": true,
-      "quote_fixed": "trimmed"
-    },
-    {
-      "text": "The hospital informed its patients of the breach but did not notify the 202,246 designated trusted third parties whose data was also compromised, violating Article 34 of the GDPR.",
-      "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance par des patients de l’hôpital",
+      "id": 12,
+      "label": "§ 137",
+      "cited_label": "§ 131",
       "page": 18,
-      "quote_verified": true
+      "fragment": "202 246 personnes désignées comme tiers de confiance",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 131; the passage is in § 137."
     },
     {
-      "text": "The CNIL imposed a fine of €500,000 on Hôpital Privé de la Loire for the breaches of Articles 32 and 34 of the GDPR.",
-      "quote": "prononcer à l’encontre de la société HOPITAL PRIVE DE LA LOIRE une amende administrative d’un montant de cinq cent mille euros (500 000 €)",
-      "page": 23,
-      "quote_verified": true
+      "id": 13,
+      "label": "§ 137",
+      "cited_label": "§ 137",
+      "page": 18,
+      "fragment": "aucune information n’a été délivrée aux 202 246 personnes",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 14,
+      "label": "§ 5",
+      "cited_label": "§ 5–6",
+      "page": 2,
+      "fragment": "L’ensemble des données des patients",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 5–6; the passage is in § 5."
+    },
+    {
+      "id": 15,
+      "label": "§ 7",
+      "cited_label": "§ 7",
+      "page": 2,
+      "fragment": "des données de nature administrative",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 16,
+      "label": "§ 7",
+      "cited_label": "§ 7",
+      "page": 2,
+      "fragment": "des données de nature biométrique",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 17,
+      "label": "§ 7",
+      "cited_label": "§ 7",
+      "page": 2,
+      "fragment": "des données concernant la santé",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 18,
+      "label": "§ 12",
+      "cited_label": "§ 12",
+      "page": 3,
+      "fragment": "46 185 fiches comportaient également le recto de la carte nationale d’identité",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 19,
+      "label": "§ 12",
+      "cited_label": "§ 12",
+      "page": 3,
+      "fragment": "43 fiches comportaient des données de santé,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 20,
+      "label": "§ 12",
+      "cited_label": "§ 12",
+      "page": 3,
+      "fragment": "202 246 fiches comportaient des données relatives à la personne de confiance",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 21,
+      "label": "§ 49",
+      "cited_label": "§ 49",
+      "page": 7,
+      "fragment": "de nature à créer un préjudice moral et matériel",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 22,
+      "label": "§ 49",
+      "cited_label": "§ 49",
+      "page": 7,
+      "fragment": "La divulgation non autorisée de données de santé",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 23,
+      "label": "§ 50",
+      "cited_label": "§ 50",
+      "page": 7,
+      "fragment": "le degré de probabilité que les risques",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 24,
+      "label": "§ 12",
+      "cited_label": "§ 11–12",
+      "page": 3,
+      "fragment": "Entre le 26 juin et le 1er juillet 2025,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 11–12; the passage is in § 12."
+    },
+    {
+      "id": 25,
+      "label": "§ 10",
+      "cited_label": "§ 10",
+      "page": 3,
+      "fragment": "Le 1er juillet 2025, l’HOPITAL PRIVE DE LA LOIRE a été contacté",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 26,
+      "label": "§ 13",
+      "cited_label": "§ 13",
+      "page": 3,
+      "fragment": "L’HOPITAL PRIVE DE LA LOIRE a procédé à la notification",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 27,
+      "label": "§ 135",
+      "cited_label": "§ 133",
+      "page": 18,
+      "fragment": "il a estimé que la violation des données des personnes de confiance",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 133; the passage is in § 135."
+    },
+    {
+      "id": 28,
+      "label": "§ 137",
+      "cited_label": "§ 137",
+      "page": 18,
+      "fragment": "aucune information n’a été délivrée",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 29,
+      "label": "§ 15",
+      "cited_label": "§ 15",
+      "page": 3,
+      "fragment": "Le 29 juillet 2025, une délégation de la Commission",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 30,
+      "label": "§ 15",
+      "cited_label": "§ 15",
+      "page": 3,
+      "fragment": "Le procès-verbal dressé à l’issue a été notifié",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 31,
+      "label": "§ 17",
+      "cited_label": "§ 17",
+      "page": 3,
+      "fragment": "la présidente de la Commission a, le 19 février 2026,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 32,
+      "label": "§ 18",
+      "cited_label": "§ 18",
+      "page": 3,
+      "fragment": "Le 5 mars 2026, à l’issue de son instruction,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 33,
+      "label": "§ 19",
+      "cited_label": "§ 19",
+      "page": 4,
+      "fragment": "Le 3 avril 2026, l’HOPITAL PRIVE DE LA LOIRE a produit",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 34,
+      "label": "§ 20",
+      "cited_label": "§ 20",
+      "page": 4,
+      "fragment": "Le 18 mai 2026, la rapporteure a,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 35,
+      "label": "§ 22",
+      "cited_label": "§ 22",
+      "page": 4,
+      "fragment": "La rapporteure et l’hôpital ont présenté des observations orales",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 36,
+      "label": "header",
+      "cited_label": "header",
+      "page": 1,
+      "fragment": "Délibération SAN-2026-009 du 21 juillet 2026",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 37,
+      "label": "§ 14",
+      "cited_label": "§ 13–14",
+      "page": 3,
+      "fragment": "En parallèle, la CNIL a reçu neuf plaintes",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 13–14; the passage is in § 14."
+    },
+    {
+      "id": 38,
+      "label": "§ 15",
+      "cited_label": "§ 15",
+      "page": 3,
+      "fragment": "Le 29 juillet 2025, une délégation de la Commission",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 39,
+      "label": "§ 16",
+      "cited_label": "§ 16",
+      "page": 3,
+      "fragment": "L’hôpital a communiqué des éléments complémentaires",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 40,
+      "label": "§ 17",
+      "cited_label": "§ 17",
+      "page": 3,
+      "fragment": "la présidente de la Commission a, le 19 février 2026,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 41,
+      "label": "§ 18",
+      "cited_label": "§ 18",
+      "page": 3,
+      "fragment": "Le 5 mars 2026, à l’issue de son instruction,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 42,
+      "label": "§ 19",
+      "cited_label": "§ 19",
+      "page": 4,
+      "fragment": "Le 3 avril 2026, l’HOPITAL PRIVE DE LA LOIRE a produit",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 43,
+      "label": "§ 20",
+      "cited_label": "§ 20–21",
+      "page": 4,
+      "fragment": "Le 18 mai 2026, la rapporteure a,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 20–21; the passage is in § 20."
+    },
+    {
+      "id": 44,
+      "label": "§ 22",
+      "cited_label": "§ 22",
+      "page": 4,
+      "fragment": "La rapporteure et l’hôpital ont présenté des observations orales",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 45,
+      "label": "§ 37, 38, 146, 147",
+      "cited_label": "§ 37, 38, 146, 147",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 46,
+      "label": "§ 61",
+      "cited_label": "§ 61–68",
+      "page": 9,
+      "fragment": "la rapporteure reproche à l’hôpital",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 61–68; the passage is in § 61."
+    },
+    {
+      "id": 47,
+      "label": "§ 77",
+      "cited_label": "§ 70–87",
+      "page": 11,
+      "fragment": "la politique d’habilitations au DPI de l’hôpital",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 70–87; the passage is in § 77."
+    },
+    {
+      "id": 48,
+      "label": "§ 94",
+      "cited_label": "§ 88–103",
+      "page": 13,
+      "fragment": "la rapporteure reproche à l’hôpital de n’avoir pris aucune mesure",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 88–103; the passage is in § 94."
+    },
+    {
+      "id": 49,
+      "label": "§ 107",
+      "cited_label": "§ 104–112",
+      "page": 15,
+      "fragment": "La rapporteure considère que la procédure",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 104–112; the passage is in § 107."
+    },
+    {
+      "id": 50,
+      "label": "§ 116",
+      "cited_label": "§ 113–123",
+      "page": 16,
+      "fragment": "La rapporteure reproche à l’hôpital d’avoir laissé",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 113–123; the passage is in § 116."
+    },
+    {
+      "id": 51,
+      "label": "§ 131",
+      "cited_label": "§ 124–141",
+      "page": 18,
+      "fragment": "La rapporteure considère que l’hôpital a commis",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 124–141; the passage is in § 131."
+    },
+    {
+      "id": 52,
+      "label": "§ 62",
+      "cited_label": "§ 62",
+      "page": 9,
+      "fragment": "l’hôpital ne conteste pas que l’accès à distance",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 53,
+      "label": "§ 63",
+      "cited_label": "§ 63",
+      "page": 9,
+      "fragment": "L’hôpital fait par ailleurs valoir ses efforts",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 54,
+      "label": "§ 108",
+      "cited_label": "§ 108",
+      "page": 15,
+      "fragment": "l’hôpital reconnait avoir attribué le même mot de passe",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 55,
+      "label": "§ 108",
+      "cited_label": "§ 109",
+      "page": 15,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 109; the passage is in § 108."
+    },
+    {
+      "id": 56,
+      "label": "§ 117",
+      "cited_label": "§ 117",
+      "page": 16,
+      "fragment": "l’hôpital considère que l’accès permanent de l’éditeur",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 57,
+      "label": "§ 134–135",
+      "cited_label": "§ 134–135",
+      "page": null,
+      "fragment": "il indique que ces données seraient parcellaires",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 58,
+      "label": "§ 150",
+      "cited_label": "§ 150",
+      "page": 20,
+      "fragment": "l’hôpital estime le montant de l’amende",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 59,
+      "label": "§ 65",
+      "cited_label": "§ 65–66",
+      "page": 9,
+      "fragment": "La formation restreinte constate ainsi",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 65–66; the passage is in § 65."
+    },
+    {
+      "id": 60,
+      "label": "§ 82–85",
+      "cited_label": "§ 82–85",
+      "page": null,
+      "fragment": "La formation restreinte considère qu’un tel accès",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 61,
+      "label": "§ 97",
+      "cited_label": "§ 98–102",
+      "page": 13,
+      "fragment": "La formation restreinte relève qu’au moment",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 98–102; the passage is in § 97."
+    },
+    {
+      "id": 62,
+      "label": "§ 110",
+      "cited_label": "§ 110–111",
+      "page": 15,
+      "fragment": "La formation restreinte observe qu’en prévoyant",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 110–111; the passage is in § 110."
+    },
+    {
+      "id": 63,
+      "label": "§ 121",
+      "cited_label": "§ 121–122",
+      "page": 16,
+      "fragment": "La formation restreinte considère qu’une telle prérogative",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 121–122; the passage is in § 121."
+    },
+    {
+      "id": 64,
+      "label": "§ 139",
+      "cited_label": "§ 139–141",
+      "page": 18,
+      "fragment": "Or, la formation restreinte considère que la violation",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 139–141; the passage is in § 139."
+    },
+    {
+      "id": 65,
+      "label": "§ 50",
+      "cited_label": "§ 50",
+      "page": 7,
+      "fragment": "le degré de probabilité que les risques",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 66,
+      "label": "§ 84",
+      "cited_label": "§ 84",
+      "page": 12,
+      "fragment": "l’analyse d’impact sur la protection des données",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 67,
+      "label": "operative part, 1st indent",
+      "cited_label": "operative part, 1st indent",
+      "page": 24,
+      "fragment": "prononcer à l’encontre de la société HOPITAL PRIVE DE LA LOIRE une amende",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 68,
+      "label": "§ 154",
+      "cited_label": "§ 154–159",
+      "page": 21,
+      "fragment": "S’agissant des manquements relatifs à la sécurité",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 154–159; the passage is in § 154."
+    },
+    {
+      "id": 69,
+      "label": "§ 161",
+      "cited_label": "§ 161–165",
+      "page": 21,
+      "fragment": "La formation restreinte relève que les mesures",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 161–165; the passage is in § 161."
+    },
+    {
+      "id": 70,
+      "label": "§ 167",
+      "cited_label": "§ 167",
+      "page": 22,
+      "fragment": "La formation restreinte relève que le DPI",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 71,
+      "label": "§ 172",
+      "cited_label": "§ 172–175",
+      "page": 22,
+      "fragment": "La formation restreinte relève que dans son arrêt",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 172–175; the passage is in § 172."
+    },
+    {
+      "id": 72,
+      "label": "operative part, 2nd indent, 1st bullet",
+      "cited_label": "operative part, 2nd indent, 1st bullet",
+      "page": 24,
+      "fragment": "mettre en place un système de journalisation",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 73,
+      "label": "operative part, 2nd indent, 2nd bullet",
+      "cited_label": "operative part, 2nd indent, 2nd bullet",
+      "page": 24,
+      "fragment": "mettre à jour de sa politique d’habilitations,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 74,
+      "label": "operative part, 2nd indent, 3rd bullet",
+      "cited_label": "operative part, 2nd indent, 3rd bullet",
+      "page": 24,
+      "fragment": "mettre en place de mesures techniques",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 75,
+      "label": "operative part, 3rd indent",
+      "cited_label": "operative part, 3rd indent",
+      "page": 24,
+      "fragment": "rendre publique, sur le site web de la CNIL",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 76,
+      "label": "end of decision",
+      "cited_label": "end of decision",
+      "page": 24,
+      "fragment": "Cette décision est susceptible de faire l’objet",
+      "quote": null,
+      "verified": true,
+      "note": null
     }
   ]
 }

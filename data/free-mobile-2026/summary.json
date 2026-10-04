@@ -1,55 +1,715 @@
 {
-  "sentences": [
+  "markdown": "# 0. Identification\n\nThe decision is **SAN-2026-001** of **8 January 2026** by the *formation restreinte* of the **CNIL** (Commission Nationale de l’Informatique et des Libertés) [header](cite:1). It is a **penalty decision** imposing a fine, an injunction with a periodic penalty (*astreinte*), and publication [operative part](cite:2). The organisation is **Free Mobile**, a mobile operator owned by the **Iliad group**; its name is **not redacted** [§ 1](cite:3). The decision is **public with redactions** for personal data and legally protected secrets [header](cite:4). Appeal is possible; deadline **to be checked by the tool** [operative part](cite:5).\n\nOne-sentence summary: the CNIL fines **Free Mobile €27,000,000** for breaching **GDPR Articles 5-1-e) (excessive retention), 32 (security) and 34 (notification to data subjects)** after a **data breach affecting 24,633,469 contracts** [operative part](cite:6).\n\n---\n\n# 1. Facts\n\n## Who\nThe sanctioned organisation is **Free Mobile**, a **mobile operator** belonging to the **Iliad group**; Iliad is the parent company and holds **100 %** of Free Mobile [§ 1](cite:7). The **Iliad group** had **more than 50.2 million subscribers** in 2024; **Free Mobile** alone had **about 15.5 million mobile subscribers** as of **31 December 2024** [§ 1](cite:8). Iliad’s **2024 revenue** was **€10.024 billion** with a **net profit of €367 million** [§ 1](cite:9). The case originated from a **data breach notification** by Free Mobile [§ 3](cite:10). The **CNIL had received 2,614 complaints** from affected individuals by the date the sanction report was notified [§ 4](cite:11).\n\n## What\nThe processing at issue is the **management of subscriber contracts** via the **MOBO customer management tool** [§ 19](cite:12). The **data concerned** include **identity data, contact data, contractual data, and, for \"convergent\" customers (mobile and fixed-line), IBANs** [§ 20](cite:13). The **attacker accessed data on 24,633,469 contracts**, of which **19,460,891 were mobile (Free Mobile) and 5,172,577 were fixed-line (Free)**: \"l'attaquant a pu prendre connaissance des données concernant 24 633 469 contrats\" [§ 21](cite:14). The breach lasted from **28 September to 22 October 2024** [§ 2](cite:15).\n\nThe *formation restreinte* holds that the disclosure **\"est de nature à créer un préjudice moral et matériel\"** [is likely to cause non-material and material harm], citing **identity theft, phishing and fraudulent payments with a stolen IBAN** [§ 82](cite:16). However, the CNIL admits it is **\"pas possible de déterminer avec certitude\"** [not possible to determine with certainty] that the frauds reported by complainants come from this breach [§ 84](cite:17). The decision does not state any earlier penalties or formal notices against Free Mobile.\n\n## Where\nThe territory is **France**. The CNIL acted as the **lead authority**; no one-stop-shop cooperation is mentioned [header](cite:18).\n\n## When\nThe **breach period** was **28 September to 22 October 2024** [§ 2](cite:19). Free Mobile **discovered the incident on 21 October 2024** via an alert from the attacker [§ 2](cite:20). It **notified the CNIL on 23 October 2024** and **completed the notification on 5 November 2024** [§ 3](cite:21). It **informed data subjects by email between 24 and 29 October 2024** [§ 3](cite:22). The **on-site inspection** took place on **8 November 2024** [§ 6](cite:23). The **rapporteur was appointed on 17 February 2025** [§ 7](cite:24). The **sanction report was notified on 25 July 2025** [§ 9](cite:25). The **hearing before the restricted committee** was held on **15 December 2025** [§ 15](cite:26). The **decision was adopted on 8 January 2026** [header](cite:27).\n\n---\n---\n# 2. Procedure\n\nThe case began with Free Mobile’s **data breach notification** to the CNIL on **23 October 2024** [§ 3](cite:28). The **CNIL President ordered an on-site inspection** on **6 November 2024** [§ 5](cite:29). The **inspection took place on 8 November 2024** at Free Mobile and Free’s premises [§ 6](cite:30). The **CNIL President decided on 24 July 2025 to split the sanction procedure** initially targeting both Free Mobile and Free into two separate procedures [§ 8](cite:31). The **rapporteur notified the sanction report to Free Mobile on 25 July 2025**, alleging breaches of **Articles 5-1-e), 32 and 34 GDPR** and proposing a fine, an injunction with a periodic penalty, and publication [§ 9](cite:32). Free Mobile **submitted written observations on 15 September 2025 and 17 November 2025** [§ 10, 12](cite:33). The **rapporteur replied on 15 October 2025** [§ 11](cite:34). The **instruction was closed on 18 November 2025** [§ 13](cite:35). Free Mobile **requested a postponement of the hearing**, which was granted; the hearing was rescheduled to **15 December 2025** [§ 15](cite:36). Free Mobile **requested a closed session (*huis-clos*)**, which was **refused on 3 December 2025** [§ 16](cite:37). **Oral observations** were presented during the hearing [§ 17](cite:38). Free Mobile **submitted a note in deliberation on 19 December 2025** [§ 17](cite:39).\n\nThe decision **does not mention any parallel criminal or other administrative proceedings**.\n\n---\n---\n# 3. Legal basis\n\nThe *formation restreinte* establishes **three breaches**:\n- **Article 5-1-e) GDPR** (excessive retention of personal data) [§ 52](cite:40).\n- **Article 32 GDPR** (failure to implement appropriate technical and organisational security measures) [§ 151](cite:41).\n- **Article 34 GDPR** (failure to communicate the personal data breach to data subjects in a complete manner) [§ 199](cite:42).\n\nThe decision **does not reject any breach** as unfounded.\n\n---\n---\n# 4. Arguments\n\nThe company argues that **the rapporteur wrongly attributes the same breaches to both Free Mobile and Free** without considering their respective responsibilities [§ 24](cite:43). The *formation restreinte* holds that **each company is responsible for its own processing** and that the **procedures were split**, so the argument is **rejected** [§ 26](cite:44).\n\nThe company argues that **Article 32 GDPR is an obligation of means, not result**, and that the **occurrence of a data breach alone does not establish a breach** [§ 56](cite:45). The *formation restreinte* **accepts this legal qualification** but holds that **the breach is established because the security measures were insufficient** and facilitated the attack [§ 58](cite:46).\n\nThe company argues that **the principle of legality (*légalité des délits et des peines*) is violated** because Article 32 GDPR and CNIL/ANSSI recommendations are not prescriptive [§ 57](cite:47). The *formation restreinte* **rejects this argument**, citing **CJEU case law** and **French administrative law**, and holds that **recommendations clarify obligations** and that the **elements of the breach are defined precisely** [§ 65](cite:48).\n\nThe company argues that **the treatment does not present a high risk** because it does not process **special-category data (Article 9 GDPR)** [§ 74](cite:49). The *formation restreinte* holds that **the risk is high** due to the **massive volume of data (24,633,469 contracts)**, the **sensitive nature of certain data (IBANs)**, and the **potential for identity theft, phishing, and fraudulent payments** [§ 73](cite:50).\n\nThe company argues that **IBAN alone cannot enable fraudulent direct debits** and that **banks have safeguards** [§ 75](cite:51). The *formation restreinte* holds that **IBANs can be used for fraudulent payments** on websites that validate SEPA mandates via a simple checkbox, and that **the risk of phishing and identity theft is high** [§ 82](cite:52).\n\nThe company argues that **it could not anticipate all future forms of exploitation** of the breach and that **its notification email was sufficient** [§ 174](cite:53). The *formation restreinte* holds that **the email lacked essential information** (description of remediation measures, probable consequences, and measures data subjects should take) and that **a two-tier communication (email + helpline) does not replace the obligation to include essential information in the first-tier notification** [§ 188-199](cite:54).\n\nThe company argues that **the fine is disproportionate** and that **publication would harm its security** [§ 239](cite:55). The *formation restreinte* **rejects these arguments**, citing the **gravity of the breaches, the number of affected individuals, and the need for deterrence** [§ 240](cite:56).\n\nThe company argues that **the principle *non bis in idem* is violated** because the same facts are sanctioned twice (for Free Mobile and Free) [§ 209](cite:57). The *formation restreinte* holds that **the procedures are distinct, the companies are separate legal entities, and the breaches are different**, so the principle is **not violated** [§ 213](cite:58).\n\n**Remaining weak points.** The CNIL **admits uncertainty** about whether the **excessive retention (Article 5-1-e)) aggravated the security breach (Article 32)**: \"les éléments du dossier portés à sa connaissance ne lui permettent pas de se prononcer sur le point de savoir si l’absence d’implémentation de la politique de durée de conservation des données a ou non permis à l’attaquant d’accéder à une profondeur historique de données plus importante,\" [the elements of the file do not allow it to determine whether the failure to implement the data retention policy allowed the attacker to access a greater historical depth of data] [§ 214](cite:59). The CNIL also **cannot confirm with certainty** that the frauds reported by complainants stem from this breach [§ 84](cite:60).\n\n---\n---\n# 5. Decision\n\nThe *formation restreinte* imposes a **fine of €27,000,000** for the breaches of **Articles 5-1-e), 32 and 34 GDPR** [operative part](cite:61). The fine is calculated based on the **Iliad group’s 2024 revenue (€10.024 billion)**, as Free Mobile and Iliad form a **single economic unit** under EU competition law [§ 244](cite:62). The **criteria under Article 83 GDPR** considered include:\n- **Gravity**: the breaches affected **24,633,469 contracts** and **15 million former subscribers’ data were retained excessively**; the **security failures facilitated the breach**; the **notification to data subjects was incomplete** [§ 222](cite:63).\n- **Negligence**: Free Mobile **failed to implement retention policies and security measures** despite having the **resources to do so** [§ 228](cite:64).\n- **Number of affected individuals**: **24,633,469 contracts** were affected by the breach; **only 58,239 individuals called the helpline** [§ 224](cite:65).\n- **Mitigating factors**: Free Mobile **took remediation measures during the procedure**, but **not all were completed by the hearing date** [§ 233](cite:66).\n\nThe *formation restreinte* **does not impose an injunction for Article 34 GDPR** but **orders Free Mobile to comply with Articles 5-1-e) and 32 GDPR** within:\n- **6 months** for **Article 5-1-e)**: implement the **data retention policy** by **purging data from contracts terminated for over 10 years** and **retaining only data strictly necessary for accounting purposes for 10 years** [operative part, 2nd indent](cite:67).\n- **3 months** for **Article 32 GDPR**: implement **appropriate technical and organisational security measures** [operative part, 2nd indent](cite:68).\n\nThe injunction is **assorted with a periodic penalty (*astreinte*) of €50,000 per day of delay**, payable after the **6-month and 3-month deadlines** respectively [operative part, 3rd indent](cite:69).\n\nThe decision **will be published on the CNIL’s website and Légifrance** and **will be anonymised after 2 years** [operative part, 4th indent](cite:70).\n\n---\n---\n# 6. Appeal\n\nThe decision **can be appealed before the Conseil d'État** [operative part](cite:71). The **deadline is to be checked by the tool**. The decision **does not mention whether an appeal has been lodged**.",
+  "citations": [
     {
-      "text": "The French data protection authority CNIL sanctioned Free Mobile for a personal data breach.",
-      "quote": "Délibération de la formation restreinte n° SAN-2026-001 du 8 janvier 2026 prononçant une sanction pécuniaire à l'encontre de la société FREE MOBILE",
+      "id": 1,
+      "label": "header",
+      "cited_label": "header",
       "page": 1,
-      "quote_verified": true
+      "fragment": "Délibération SAN-2026-001",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "An attacker accessed Free Mobile’s system between 28 September and 22 October 2024, compromising the confidentiality of subscriber data.",
-      "quote": "Celle-ci a duré du 28 septembre au 22 octobre 2024.",
-      "page": 2,
-      "quote_verified": true,
-      "quote_fixed": "trimmed"
-    },
-    {
-      "text": "The breach exposed data from 24,633,469 contracts, including identity, contact, contractual data, and IBANs for convergent customers.",
-      "quote": "dont 19 460 891 contrats mobiles (FREE MOBILE) et 5 172 577 contrats fixes",
-      "page": 3,
-      "quote_verified": true,
-      "quote_fixed": "trimmed"
-    },
-    {
-      "text": "The CNIL found Free Mobile breached Article 5-1-e) of the GDPR by retaining data for longer than necessary.",
-      "quote": "la formation restreinte considère qu’en conservant des données pendant des durées excessives la société a commis un manquement à l’article 5-1-e) du RGPD",
-      "page": 6,
-      "quote_verified": true
-    },
-    {
-      "text": "The CNIL found Free Mobile breached Article 32 of the GDPR by failing to implement appropriate security measures.",
-      "quote": "la formation restreinte considère, qu’au jour du contrôle, la société n’avait pas déployé les moyens suffisants pour être en mesure de détecter les activités suspectes sur son VPN, son réseau interne et son outil de gestion de ses abonnés, ce qui constitue un manquement à l’article 32 du RGPD",
-      "page": 15,
-      "quote_verified": true
-    },
-    {
-      "text": "The CNIL found Free Mobile breached Article 34 of the GDPR by not properly informing affected individuals about the breach.",
-      "quote": "la formation restreinte considère que la société a commis un manquement à l’article 34 du RGPD en ne communiquant pas aux personnes concernées par la violation de données les informations nécessaires dès le premier niveau d’information",
-      "page": 21,
-      "quote_verified": true,
-      "quote_fixed": "page_corrected"
-    },
-    {
-      "text": "Free Mobile notified affected individuals by email between 24 and 29 October 2024 to avoid overloading mail servers.",
-      "quote": "elle a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024 afin de ne pas saturer les serveurs de messagerie",
-      "page": 2,
-      "quote_verified": true
-    },
-    {
-      "text": "The CNIL imposed a fine of 27 million euros on Free Mobile for the breaches.",
-      "quote": "prononcer à l’encontre de la société FREE MOBILE, une amende administrative d’un montant de 27 000 000 (vingt-sept millions) d’euros au regard des manquements constitués aux articles 5-1-e), 32 et 34 du RGPD",
+      "id": 2,
+      "label": "operative part",
+      "cited_label": "operative part",
       "page": 28,
-      "quote_verified": true
+      "fragment": "prononcer à l’encontre",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 3,
+      "label": "§ 1",
+      "cited_label": "§ 1",
+      "page": 2,
+      "fragment": "la société FREE MOBILE",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 4,
+      "label": "header",
+      "cited_label": "header",
+      "page": 1,
+      "fragment": "comportant des données",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 5,
+      "label": "operative part",
+      "cited_label": "end",
+      "page": 28,
+      "fragment": "dans un délai de deux",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited end; the passage is in operative part."
+    },
+    {
+      "id": 6,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": 28,
+      "fragment": "prononcer à l’encontre",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 7,
+      "label": "§ 1",
+      "cited_label": "§ 1",
+      "page": 2,
+      "fragment": "La société française",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 8,
+      "label": "§ 1",
+      "cited_label": "§ 1",
+      "page": 2,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 9,
+      "label": "§ 1",
+      "cited_label": "§ 1",
+      "page": 2,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 10,
+      "label": "§ 3",
+      "cited_label": "§ 2",
+      "page": 2,
+      "fragment": "a notifié cette violation",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 2; the passage is in § 3."
+    },
+    {
+      "id": 11,
+      "label": "§ 4",
+      "cited_label": "§ 4",
+      "page": 2,
+      "fragment": "2 614 plaintes",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 12,
+      "label": "§ 19",
+      "cited_label": "§ 19",
+      "page": 3,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 13,
+      "label": "§ 20",
+      "cited_label": "§ 20",
+      "page": null,
+      "fragment": "données d’identité, données de contact",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 14,
+      "label": "§ 21",
+      "cited_label": "§ 21",
+      "page": 3,
+      "fragment": "prendre connaissance, des données",
+      "quote": "l'attaquant a pu prendre connaissance des données concernant 24 633 469 contrats",
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 15,
+      "label": "§ 2",
+      "cited_label": "§ 2",
+      "page": 2,
+      "fragment": "a duré du 28 septembre",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 16,
+      "label": "§ 82",
+      "cited_label": "§ 82",
+      "page": 11,
+      "fragment": "préjudice moral et matériel",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 17,
+      "label": "§ 84",
+      "cited_label": "§ 84",
+      "page": 11,
+      "fragment": "pas possible de déterminer",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 18,
+      "label": "header",
+      "cited_label": "header",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 19,
+      "label": "§ 2",
+      "cited_label": "§ 2",
+      "page": 2,
+      "fragment": "a duré du 28 septembre",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 20,
+      "label": "§ 2",
+      "cited_label": "§ 2",
+      "page": 2,
+      "fragment": "alertée le 21 octobre",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 21,
+      "label": "§ 3",
+      "cited_label": "§ 3",
+      "page": 2,
+      "fragment": "a notifié cette violation",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 22,
+      "label": "§ 3",
+      "cited_label": "§ 3",
+      "page": 2,
+      "fragment": "entre le 24 et le 29 octobre",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 23,
+      "label": "§ 6",
+      "cited_label": "§ 6",
+      "page": 2,
+      "fragment": "le 8 novembre 2024,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 24,
+      "label": "§ 7",
+      "cited_label": "§ 7",
+      "page": 2,
+      "fragment": "le 17 février 2025,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 25,
+      "label": "§ 9",
+      "cited_label": "§ 9",
+      "page": 3,
+      "fragment": "le 25 juillet 2025",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 26,
+      "label": "§ 15",
+      "cited_label": "§ 17",
+      "page": 3,
+      "fragment": "la séance du 15 décembre",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 17; the passage is in § 15."
+    },
+    {
+      "id": 27,
+      "label": "header",
+      "cited_label": "header",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 28,
+      "label": "§ 3",
+      "cited_label": "§ 3",
+      "page": 2,
+      "fragment": "a notifié cette violation",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 29,
+      "label": "§ 5",
+      "cited_label": "§ 5",
+      "page": null,
+      "fragment": "le 6 novembre 2024",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 30,
+      "label": "§ 6",
+      "cited_label": "§ 6",
+      "page": 2,
+      "fragment": "le 8 novembre 2024,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 31,
+      "label": "§ 8",
+      "cited_label": "§ 8",
+      "page": 2,
+      "fragment": "disjoindre la procédure",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 32,
+      "label": "§ 9",
+      "cited_label": "§ 9",
+      "page": 3,
+      "fragment": "un rapport détaillant les manquements",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 33,
+      "label": "§ 10, 12",
+      "cited_label": "§ 10, 12",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 34,
+      "label": "§ 11",
+      "cited_label": "§ 11",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 35,
+      "label": "§ 13",
+      "cited_label": "§ 13",
+      "page": 3,
+      "fragment": "l’instruction était close.",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 36,
+      "label": "§ 15",
+      "cited_label": "§ 15",
+      "page": 3,
+      "fragment": "report de la séance",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 37,
+      "label": "§ 16",
+      "cited_label": "§ 16",
+      "page": 3,
+      "fragment": "a refusé la demande",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 38,
+      "label": "§ 17",
+      "cited_label": "§ 17",
+      "page": 3,
+      "fragment": "observations orales",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 39,
+      "label": "§ 17",
+      "cited_label": "§ 17",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 40,
+      "label": "§ 52",
+      "cited_label": "§ 52",
+      "page": 7,
+      "fragment": "a commis un manquement à l’article",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 41,
+      "label": "§ 151",
+      "cited_label": "§ 151",
+      "page": 16,
+      "fragment": "constitue un manquement à l’article",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 42,
+      "label": "§ 199",
+      "cited_label": "§ 199",
+      "page": 21,
+      "fragment": "a commis un manquement à l’article",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 43,
+      "label": "§ 24",
+      "cited_label": "§ 24",
+      "page": 4,
+      "fragment": "reproche cependant au rapporteur",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 44,
+      "label": "§ 26",
+      "cited_label": "§ 26-27",
+      "page": 4,
+      "fragment": "la formation restreinte partage",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 26-27; the passage is in § 26."
+    },
+    {
+      "id": 45,
+      "label": "§ 56",
+      "cited_label": "§ 56",
+      "page": 7,
+      "fragment": "l’obligation de sécurité prévue",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 46,
+      "label": "§ 58",
+      "cited_label": "§ 58-62",
+      "page": 8,
+      "fragment": "la formation restreinte rappelle",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 58-62; the passage is in § 58."
+    },
+    {
+      "id": 47,
+      "label": "§ 57",
+      "cited_label": "§ 57",
+      "page": 7,
+      "fragment": "compte tenu de l’absence",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 48,
+      "label": "§ 65",
+      "cited_label": "§ 65-71",
+      "page": 9,
+      "fragment": "la formation restreinte relève",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 65-71; the passage is in § 65."
+    },
+    {
+      "id": 49,
+      "label": "§ 74",
+      "cited_label": "§ 74",
+      "page": 10,
+      "fragment": "ne présente pas de risque",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 50,
+      "label": "§ 73",
+      "cited_label": "§ 73, 82",
+      "page": 10,
+      "fragment": "caractère massif du traitement",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 73, 82; the passage is in § 73."
+    },
+    {
+      "id": 51,
+      "label": "§ 75",
+      "cited_label": "§ 75",
+      "page": 10,
+      "fragment": "la compromission des IBAN",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 52,
+      "label": "§ 82",
+      "cited_label": "§ 82-83",
+      "page": 11,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 82-83; the passage is in § 82."
+    },
+    {
+      "id": 53,
+      "label": "§ 174",
+      "cited_label": "§ 174",
+      "page": 18,
+      "fragment": "ne pouvait pas anticiper",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 54,
+      "label": "§ 188-199",
+      "cited_label": "§ 188-199",
+      "page": null,
+      "fragment": "il n’en démure",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 55,
+      "label": "§ 239",
+      "cited_label": "§ 239, 252",
+      "page": 26,
+      "fragment": "le montant de l’amende",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 239, 252; the passage is in § 239."
+    },
+    {
+      "id": 56,
+      "label": "§ 240",
+      "cited_label": "§ 240-245",
+      "page": 26,
+      "fragment": "La formation restreinte relève",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 240-245; the passage is in § 240."
+    },
+    {
+      "id": 57,
+      "label": "§ 209",
+      "cited_label": "§ 209",
+      "page": 23,
+      "fragment": "reproche au rapporteur",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 58,
+      "label": "§ 213",
+      "cited_label": "§ 213-216",
+      "page": 23,
+      "fragment": "la formation restreinte rappelle",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 213-216; the passage is in § 213."
+    },
+    {
+      "id": 59,
+      "label": "§ 214",
+      "cited_label": "§ 214",
+      "page": 23,
+      "fragment": "ne lui permettent pas de se prononcer",
+      "quote": "les éléments du dossier portés à sa connaissance ne lui permettent pas de se prononcer sur le point de savoir si l’absence d’implémentation de la politique de durée de conservation des données a ou non permis à l’attaquant d’accéder à une profondeur historique de données plus importante,",
+      "verified": true,
+      "note": "Quotation replaced with the decision's exact wording."
+    },
+    {
+      "id": 60,
+      "label": "§ 84",
+      "cited_label": "§ 84",
+      "page": 11,
+      "fragment": "pas possible de déterminer",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 61,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": null,
+      "fragment": "prononcer à l’encontre une amende",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 62,
+      "label": "§ 244",
+      "cited_label": "§ 241-244",
+      "page": 27,
+      "fragment": "la formation restreinte considère",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 241-244; the passage is in § 244."
+    },
+    {
+      "id": 63,
+      "label": "§ 222",
+      "cited_label": "§ 222-226",
+      "page": 24,
+      "fragment": "les manquements commis ont concerné",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 222-226; the passage is in § 222."
+    },
+    {
+      "id": 64,
+      "label": "§ 228",
+      "cited_label": "§ 227-231",
+      "page": 25,
+      "fragment": "La formation restreinte considère",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 227-231; the passage is in § 228."
+    },
+    {
+      "id": 65,
+      "label": "§ 224",
+      "cited_label": "§ 224",
+      "page": 25,
+      "fragment": "58 239 personnes ont appelé",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 66,
+      "label": "§ 233",
+      "cited_label": "§ 233",
+      "page": 25,
+      "fragment": "la société ne démontre pas",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 67,
+      "label": "operative part, 2nd indent",
+      "cited_label": "operative part, 2nd indent",
+      "page": 28,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 68,
+      "label": "operative part, 2nd indent",
+      "cited_label": "operative part, 2nd indent",
+      "page": 28,
+      "fragment": "mettre en œuvre les mesures",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 69,
+      "label": "operative part, 3rd indent",
+      "cited_label": "operative part, 3rd indent",
+      "page": 28,
+      "fragment": "assortir l’injonction d’une astreinte",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 70,
+      "label": "operative part, 4th indent",
+      "cited_label": "operative part, 4th indent",
+      "page": null,
+      "fragment": "rendre publique sa délibération",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 71,
+      "label": "operative part",
+      "cited_label": "end",
+      "page": 28,
+      "fragment": "peut faire l’objet",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited end; the passage is in operative part."
     }
   ]
 }

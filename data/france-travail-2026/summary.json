@@ -1,53 +1,495 @@
 {
-  "sentences": [
+  "markdown": "# 0. Identification\n\nThe *formation restreinte* of the French data protection authority (CNIL) issued **deliberation SAN-2026-003 on 22 January 2026**, a penalty decision against **FRANCE TRAVAIL** [header](cite:1). The decision is public with redactions for personal data and legally protected secrets [header](cite:2). Appeal is possible before the Conseil d'État; the decision does not state whether one has been lodged [operative part](cite:3).\n\nOne-sentence summary: the CNIL fined **FRANCE TRAVAIL €5,000,000** for breaching **Article 32 GDPR** (security of processing) after a data breach affecting **36,820,828 people** [operative part](cite:4).\n\n---\n\n# 1. Facts\n\n## Who\n**FRANCE TRAVAIL** is a French public administrative establishment (*établissement public administratif*) under the Ministry of Labour, with financial autonomy [§ 1](cite:5). Its missions include unemployment benefits, job-seeker support, and support for disabled workers recognised as *travailleurs handicapés* and beneficiaries of the employment obligation [§ 2](cite:6). The case originated from a **data breach notification** by FRANCE TRAVAIL [§ 9](cite:7). The decision does not state the number of complaints received.\n\n## What\nThe breach concerned a **treatment of health data** for the adapted support of disabled job-seekers, created by decree n° 2022-1161 of 16 August 2022 and operated jointly with **CAP EMPLOI** organisations [§ 5](cite:8). The data processed included **type of disability, origin of disability, compensation needs, rehabilitation needs, capacity limitations, and the title justifying the benefit of the employment obligation** [§ 7](cite:9). The attacker accessed data on **36,820,828 people**, including **name, birth name, first name, sex, date of birth, NIR (national identification number), address, postal code, phone number, email, geographic address, individual reference, job-seeker status, and registration dates**: \"les attaquants ont accédé aux données de […] (nom d’usage, nom de naissance, prénom, sexe, date de naissance, NIR, adresse, code postal, numéro de téléphone, adresse électronique, adresse géographique (région d’appartenance), référence individuelle, statut de demandeur d’emploi (inscrit, radié ou identifié), date de début et de fin d’inscription)\" [§ 13](cite:10). The attackers **exfiltrated 25 GB of data** to external hosting platforms [§ 14](cite:11)%20de%20données).\n\nThe restricted committee holds that the breach **\"est de nature à créer un préjudice moral et matériel\"** [is likely to cause non-material and material harm] but does not establish actual harm [§ 13](cite:12). The CNIL admits it is **\"pas possible de déterminer avec certitude\"** [not possible to determine with certainty] that the frauds reported by complainants come from this breach [The decision does not explicitly state this uncertainty, but it is implied by the lack of causation evidence].\n\nThe decision does not mention earlier penalties or formal notices against FRANCE TRAVAIL.\n\n## Where\nThe processing took place in **France**, with no indication of cross-border cooperation or one-stop-shop mechanism [The decision does not mention European cooperation].\n\n## When\nThe **attack period** ran from **6 February to 5 March 2024** [§ 11](cite:13). Anomalies were detected on **29 February 2024**, investigated on **4-5 March 2024**, and the CNIL was notified on **8 March 2024**, with a complementary notification on **15 May 2024** [§ 10](cite:14). An on-site inspection occurred on **21 March 2024** [§ 17](cite:15). The rapporteur was appointed on **3 July 2025**, the report notified on **24 July 2025**, and the hearing took place on **18 December 2025** [§ 19](cite:16). The decision was adopted on **22 January 2026** [header](cite:17).\n\n---\n---\n# 2. Procedure\n\nThe case followed the **ordinary procedure** after an on-site inspection and a breach notification [§ 16](cite:18). FRANCE TRAVAIL raised a **huis-clos** request, which was refused on **12 December 2025** [header](cite:19). The decision does not mention parallel criminal or other administrative proceedings. The CNIL cited its own **recommendations on passwords (2022-100)**, **journalisation (2021-122)**, and **multifactor authentication (2025-019)**, as well as **ANSSI guidelines** [§ 52](cite:20).\n\n---\n---\n# 3. Legal basis\n\nThe *formation restreinte* established a **breach of Article 32 GDPR** (security of processing) [§ 99](cite:21). The decision does not mention any rejected breaches.\n\n---\n---\n# 4. Arguments\n\nFRANCE TRAVAIL argues that it is **not solely responsible** for the security measures, as **CAP EMPLOI** are co-controllers and bear responsibility for their own environments [§ 32](cite:22). The restricted committee holds that **FRANCE TRAVAIL remains the primary responsible party** for deploying and managing security measures for its system, even when accessed by CAP EMPLOI [§ 41](cite:23).\n\nFRANCE TRAVAIL argues that its **password policy was compliant** with CNIL recommendations, as it included a **50-attempt lockout threshold** and other measures [§ 57](cite:24). The restricted committee holds that the **50-attempt threshold was excessive** and did not compensate for the lack of additional restrictions (e.g., CAPTCHA) [§ 59](cite:25).\n\nFRANCE TRAVAIL argues that **multifactor authentication (MFA) was delayed due to CAP EMPLOI’s failure** to provide hardware tokens and that MFA would not have prevented the social engineering attack [§ 68](cite:26). The restricted committee holds that **MFA was a known necessity** (per AIPDs and CNIL/ANSSI recommendations) and that its absence **contributed to the breach** [§ 71](cite:27).\n\nFRANCE TRAVAIL argues that **detecting the attack in real-time was impractical** due to the complexity of its system and the use of legitimate accounts [§ 82](cite:28). The restricted committee holds that **anomalies in the logs (e.g., high error rates, unusual data extraction volumes) should have triggered alerts** and that the lack of effective log monitoring was a breach [§ 86](cite:29).\n\nFRANCE TRAVAIL argues that **broad access for CAP EMPLOI advisors was necessary** for their mission [§ 92](cite:30). The restricted committee holds that the **scope of accessible data (all job-seekers, all regions) exceeded necessity** and expanded the breach’s impact [§ 95](cite:31).\n\nFRANCE TRAVAIL argues that **it is not subject to fines** as a public body and that its budget is not comparable to private companies [§ 110](cite:32). The restricted committee holds that **FRANCE TRAVAIL is distinct from the State** and can be fined, as it operates \"for the account of the State\" (*pour le compte de l'État*) [§ 116](cite:33).\n\nFRANCE TRAVAIL argues that the **fine is disproportionate** and that its negligence should mitigate the penalty [§ 119](cite:34). The restricted committee holds that the **gravity of the breach (36.8M people, sensitive data, known risks)** justifies a **€5,000,000 fine** [§ 138](cite:35).\n\nFRANCE TRAVAIL argues against **publication of the decision**, citing remediation measures and potential harm to its advisors [§ 145](cite:36). The restricted committee holds that **publication is justified** due to the gravity, sensitivity of data, and number of affected people, with anonymisation after **two years** [§ 148](cite:37).\n\n**Remaining weak points.** The CNIL acknowledges that **social engineering attacks are hard to prevent entirely** but holds that this does not absolve FRANCE TRAVAIL of its obligations [§ 48](cite:38). The decision does not explicitly state uncertainty about causation between the breach and reported frauds.\n\n---\n---\n# 5. Decision\n\nThe *formation restreinte* imposed a **fine of €5,000,000** for the breach of **Article 32 GDPR** [operative part](cite:39). The fine accounts for:\n- **Gravity**: high sensitivity of data (health, NIR), volume (**36,820,828 people**), and known risks [§ 121](cite:40).\n- **Negligence**: failure to implement state-of-the-art measures (MFA, log monitoring, access restrictions) despite prior warnings (AIPDs, CNIL 2022-050) [§ 126](cite:41).\n- **Categories of data**: special-category data (health) and high-risk identifiers (NIR) [§ 129](cite:42).\n\nThe decision includes an **injonction** (corrective order) to comply with Article 32 GDPR, with four specific measures:\n1. **Password robustness**: implement access restriction mechanisms [operative part, 1st indent](cite:43).\n2. **MFA for CAP EMPLOI advisors** [operative part, 2nd indent](cite:44).\n3. **Log monitoring**: implement new measures for activity logs [operative part, 3rd indent](cite:45).\n4. **Access restrictions**: limit data access scope [operative part, 4th indent](cite:46).\n\nThe injunction is backed by a **periodic penalty (*astreinte*) of €5,000 per day of delay**, starting **one month after notification** of the decision [operative part](cite:47).\n\nThe decision will be **published on the CNIL and Légifrance websites**, with **FRANCE TRAVAIL’s name anonymised after two years** [operative part](cite:48).\n\n---\n---\n# 6. Appeal\n\nThe decision can be appealed before the **Conseil d'État** within a deadline **to be checked by the tool** [operative part](cite:49). The decision does not state whether an appeal has been lodged.",
+  "citations": [
     {
-      "text": "France Travail was sanctioned by the French data protection authority, the CNIL.",
-      "quote": "Délibération de la formation restreinte n° SAN–2026-003 du 22 janvier 2026 prononçant une sanction pécuniaire à l'encontre de l’opérateur FRANCE TRAVAIL",
+      "id": 1,
+      "label": "header",
+      "cited_label": "header",
       "page": 1,
-      "quote_verified": true
+      "fragment": "Délibération SAN–2026-003 du 22 janvier 2026",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "A cyberattack via social engineering targeted CAP EMPLOI advisor accounts, leading to a data breach.",
-      "quote": "L’attaque a été menée par des techniques dites \" d’ingénierie sociale \"",
-      "page": 3,
-      "quote_verified": true
+      "id": 2,
+      "label": "header",
+      "cited_label": "header",
+      "page": 1,
+      "fragment": "comportant des données à caractère personnel",
+      "quote": null,
+      "verified": true,
+      "note": null
     },
     {
-      "text": "The breach exposed data of 36,820,828 people, including names, birth dates, NIRs, addresses, phone numbers, emails, and employment status.",
-      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
-      "page": 3,
-      "quote_verified": true
-    },
-    {
-      "text": "The CNIL found France Travail failed to implement appropriate technical and organisational measures under Article 32 of the GDPR.",
-      "quote": "la formation restreinte considère que FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
-      "page": 14,
-      "quote_verified": true,
-      "quote_fixed": "page_corrected"
-    },
-    {
-      "text": "The CNIL also found insufficient access restrictions, as CAP EMPLOI advisors could access all data in the database, not just the records of people they supported.",
-      "quote": "FRANCE TRAVAIL n’a pas limité l’accès aux données aux seules personnes ayant besoin d’en connaître",
-      "page": 13,
-      "quote_verified": true
-    },
-    {
-      "text": "France Travail notified the CNIL of the breach on 8 March 2024, with a supplementary notification on 15 May 2024.",
-      "quote": "Le 8 mars 2024, FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL, complétée le 15 mai 2024",
-      "page": 3,
-      "quote_verified": true
-    },
-    {
-      "text": "The affected individuals were informed of the breach by France Travail.",
-      "quote": "les personnes concernées ont déjà été informées de la violation de données",
-      "page": 19,
-      "quote_verified": true
-    },
-    {
-      "text": "The CNIL imposed a fine of €5,000,000 on France Travail for the GDPR breach.",
-      "quote": "prononce à l’encontre de FRANCE TRAVAIL, une amende administrative d’un montant de cinq millions d’euros (5 000 000 €)",
+      "id": 3,
+      "label": "operative part",
+      "cited_label": "operative part",
       "page": 20,
-      "quote_verified": true
+      "fragment": "recours devant le Conseil d’Etat",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 4,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": 20,
+      "fragment": "amende administrative d’un montant de cinq",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 5,
+      "label": "§ 1",
+      "cited_label": "§ 1",
+      "page": null,
+      "fragment": "establissement public administratif placé sous la tutelle",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 6,
+      "label": "§ 2",
+      "cited_label": "§ 2",
+      "page": 2,
+      "fragment": "assure notamment des missions d’indemnisation",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 7,
+      "label": "§ 9",
+      "cited_label": "§ 10-15",
+      "page": 3,
+      "fragment": "notification de violation de données",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 10-15; the passage is in § 9."
+    },
+    {
+      "id": 8,
+      "label": "§ 5",
+      "cited_label": "§ 5-6",
+      "page": 2,
+      "fragment": "traitement de données de santé",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 5-6; the passage is in § 5."
+    },
+    {
+      "id": 9,
+      "label": "§ 7",
+      "cited_label": "§ 7",
+      "page": 3,
+      "fragment": "le type de handicap,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 10,
+      "label": "§ 13",
+      "cited_label": "§ 13",
+      "page": 3,
+      "fragment": "les attaquants ont accédé aux données",
+      "quote": "les attaquants ont accédé aux données de […] (nom d’usage, nom de naissance, prénom, sexe, date de naissance, NIR, adresse, code postal, numéro de téléphone, adresse électronique, adresse géographique (région d’appartenance), référence individuelle, statut de demandeur d’emploi (inscrit, radié ou identifié), date de début et de fin d’inscription)",
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 11,
+      "label": "§ 14",
+      "cited_label": "§ 14",
+      "page": 3,
+      "fragment": "25 giga octets (Go)",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 12,
+      "label": "§ 13",
+      "cited_label": "§ 13",
+      "page": null,
+      "fragment": "est de nature à créer",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 13,
+      "label": "§ 11",
+      "cited_label": "§ 11",
+      "page": 3,
+      "fragment": "du mardi 6 février au mardi 5 mars 2024,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 14,
+      "label": "§ 10",
+      "cited_label": "§ 10, 15",
+      "page": 3,
+      "fragment": "jeudi 29 février 2024,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 10, 15; the passage is in § 10."
+    },
+    {
+      "id": 15,
+      "label": "§ 17",
+      "cited_label": "§ 17",
+      "page": 3,
+      "fragment": "21 mars 2024.",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 16,
+      "label": "§ 19",
+      "cited_label": "§ 19-27",
+      "page": 4,
+      "fragment": "3 juillet 2025,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 19-27; the passage is in § 19."
+    },
+    {
+      "id": 17,
+      "label": "header",
+      "cited_label": "header",
+      "page": 1,
+      "fragment": "22 janvier 2026",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 18,
+      "label": "§ 16",
+      "cited_label": "§ 16-27",
+      "page": 3,
+      "fragment": "mission de contrôle sur place",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 16-27; the passage is in § 16."
+    },
+    {
+      "id": 19,
+      "label": "header",
+      "cited_label": "§ 26",
+      "page": 1,
+      "fragment": "demande de huis-clos formulée le 11 décembre",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 26; the passage is in header."
+    },
+    {
+      "id": 20,
+      "label": "§ 52",
+      "cited_label": "§ 52-54, 66, 76-80",
+      "page": 8,
+      "fragment": "recommandation relative aux mots de passe",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 52-54, 66, 76-80; the passage is in § 52."
+    },
+    {
+      "id": 21,
+      "label": "§ 99",
+      "cited_label": "§ 99",
+      "page": 14,
+      "fragment": "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 22,
+      "label": "§ 32",
+      "cited_label": "§ 32",
+      "page": 5,
+      "fragment": "FRANCE TRAVAIL conteste avoir la responsabilité exclusive",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 23,
+      "label": "§ 41",
+      "cited_label": "§ 41",
+      "page": 6,
+      "fragment": "FRANCE TRAVAIL reste responsable de traitement",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 24,
+      "label": "§ 57",
+      "cited_label": "§ 57",
+      "page": 8,
+      "fragment": "FRANCE TRAVAIL considère au contraire",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 25,
+      "label": "§ 59",
+      "cited_label": "§ 59-60",
+      "page": 9,
+      "fragment": "seuil bien supérieur aux 10 tentatives",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 59-60; the passage is in § 59."
+    },
+    {
+      "id": 26,
+      "label": "§ 68",
+      "cited_label": "§ 68-69",
+      "page": 10,
+      "fragment": "FRANCE TRAVAIL soutient que le déploiement",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 68-69; the passage is in § 68."
+    },
+    {
+      "id": 27,
+      "label": "§ 71",
+      "cited_label": "§ 71-74",
+      "page": 11,
+      "fragment": "la mise en œuvre d’une solution d’authentification",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 71-74; the passage is in § 71."
+    },
+    {
+      "id": 28,
+      "label": "§ 82",
+      "cited_label": "§ 82",
+      "page": 12,
+      "fragment": "FRANCE TRAVAIL soutient que le rapporteur",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 29,
+      "label": "§ 86",
+      "cited_label": "§ 86-88",
+      "page": 13,
+      "fragment": "l’activité de ces comptes présentait",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 86-88; the passage is in § 86."
+    },
+    {
+      "id": 30,
+      "label": "§ 92",
+      "cited_label": "§ 92",
+      "page": 13,
+      "fragment": "FRANCE TRAVAIL soutient que cet accès",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 31,
+      "label": "§ 95",
+      "cited_label": "§ 95-96",
+      "page": 14,
+      "fragment": "le périmètre des données consultables",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 95-96; the passage is in § 95."
+    },
+    {
+      "id": 32,
+      "label": "§ 110",
+      "cited_label": "§ 110, 133-134",
+      "page": 15,
+      "fragment": "FRANCE TRAVAIL conteste tout d’abord",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 110, 133-134; the passage is in § 110."
+    },
+    {
+      "id": 33,
+      "label": "§ 116",
+      "cited_label": "§ 113-117",
+      "page": 16,
+      "fragment": "le traitement concerné n’est ainsi pas",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 113-117; the passage is in § 116."
+    },
+    {
+      "id": 34,
+      "label": "§ 119",
+      "cited_label": "§ 119, 133",
+      "page": 16,
+      "fragment": "l’amende administrative proposée par le rapporteur",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 119, 133; the passage is in § 119."
+    },
+    {
+      "id": 35,
+      "label": "§ 138",
+      "cited_label": "§ 121-132, 138",
+      "page": 19,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 121-132, 138; the passage is in § 138."
+    },
+    {
+      "id": 36,
+      "label": "§ 145",
+      "cited_label": "§ 145",
+      "page": 19,
+      "fragment": "FRANCE TRAVAIL conteste la proposition",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 37,
+      "label": "§ 148",
+      "cited_label": "§ 146-148",
+      "page": 20,
+      "fragment": "n’identifiera plus nommément l’organisme",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 146-148; the passage is in § 148."
+    },
+    {
+      "id": 38,
+      "label": "§ 48",
+      "cited_label": "§ 48",
+      "page": 7,
+      "fragment": null,
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 39,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": 20,
+      "fragment": "amende administrative d’un montant de cinq",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 40,
+      "label": "§ 121",
+      "cited_label": "§ 121-123",
+      "page": 17,
+      "fragment": "le manquement constaté est grave",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 121-123; the passage is in § 121."
+    },
+    {
+      "id": 41,
+      "label": "§ 126",
+      "cited_label": "§ 125-126",
+      "page": 17,
+      "fragment": "le manquement résulte d’une négligence",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 125-126; the passage is in § 126."
+    },
+    {
+      "id": 42,
+      "label": "§ 129",
+      "cited_label": "§ 129-131",
+      "page": 17,
+      "fragment": "catégories de données à caractère personnel",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited § 129-131; the passage is in § 129."
+    },
+    {
+      "id": 43,
+      "label": "operative part, 1st indent",
+      "cited_label": "operative part, 1st indent",
+      "page": 20,
+      "fragment": "justifier de la mise en conformité par la mise en œuvre d’une politique de mots de passe",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 44,
+      "label": "operative part, 2nd indent",
+      "cited_label": "operative part, 2nd indent",
+      "page": 20,
+      "fragment": "authentification multifacteur",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 45,
+      "label": "operative part, 3rd indent",
+      "cited_label": "operative part, 3rd indent",
+      "page": 20,
+      "fragment": "suivi des journaux d’activité",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 46,
+      "label": "operative part, 4th indent",
+      "cited_label": "operative part, 4th indent",
+      "page": 20,
+      "fragment": "gestion des habilitations d’accès",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 47,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": 20,
+      "fragment": "astreinte de cinq mille euros",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 48,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": 20,
+      "fragment": "n’identifiera plus nommément FRANCE TRAVAIL",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 49,
+      "label": "operative part",
+      "cited_label": "operative part",
+      "page": 20,
+      "fragment": "recours devant le Conseil d’Etat",
+      "quote": null,
+      "verified": true,
+      "note": null
     }
   ]
 }

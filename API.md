@@ -376,7 +376,7 @@ Structured summary of the decision (legal team's prompt): Markdown, sections 0�
 }
 ```
 
-- Links point to the official Légifrance page and scroll to the cited words (`#:~:text=`) once `decision_url` is set in `config/decisions.json`. Until then they open the local PDF at the right page: `/decisions/<id>.pdf#page=N` (served by the API).
+- Each citation link opens **our decision viewer** (`viewer_url`, `GET /cases/:id/decision?c=<citation id>`): the full decision, scrolled to the cited paragraph with the cited words highlighted, plus a button to the official Légifrance page (`decision_url`). Légifrance itself can't be used for highlighting: it loads its text with JavaScript, so `#:~:text=` links land at the top of the page.
 - Every citation was checked by code: its words must be in the cited paragraph. Wrong § numbers are corrected (`cited_label` = what the model wrote, `label` = where the words actually are).
 - `verified: false` → the link text ends with ` ⚠`; show a warning. `note` explains why.
 
@@ -589,6 +589,13 @@ Query (all optional): `status=candidate|candidate_public|filtered`, `priority=hi
 ## `POST /radar/scan`
 
 Fetches the CNIL list and re-triages (~1 s, no model call). If the CNIL site is unreachable, uses the last saved copy (`from_cache: true`). Returns `{ scanned_at, from_cache, total, new, new_items }`.
+
+## `GET /cases/:id/decision`
+
+HTML page (open in a browser tab or iframe): the full decision, paragraph by paragraph (§ anchors), with a button to the official Légifrance text.
+
+- `?c=<summary citation id>` → scrolls to the cited paragraph and highlights the cited words (with a ⚠ banner if the citation could not be verified).
+- `?q=<exact words>&para=<§ N>` → same for any quote (e.g. chatbot citations).
 
 ## `GET /cases/:id/pages/:n`
 

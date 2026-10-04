@@ -1,6 +1,6 @@
 {
   "source": "https://www.cnil.fr/fr/les-sanctions-prononcees-par-la-cnil",
-  "scanned_at": "2026-10-04T12:35:25.630Z",
+  "scanned_at": "2026-10-04T13:48:45.267Z",
   "from_cache": false,
   "items": [
     {
@@ -296,8 +296,8 @@
         "Fine: €27,000,000"
       ],
       "case_id": "free-mobile-2026",
-      "first_seen_at": "2026-10-04T12:35:25.339Z",
-      "is_new": false
+      "first_seen_at": "2026-10-04T13:48:45.267Z",
+      "is_new": true
     },
     {
       "id": "2026-01-08_CNILTEXT000053352643",

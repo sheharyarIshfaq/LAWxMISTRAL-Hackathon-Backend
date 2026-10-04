@@ -1,0 +1,16 @@
+[
+  {
+    "kind": "radar_alert",
+    "to": "alerts@association.example",
+    "to_name": "Association (set your name in config/associations.json)",
+    "subject": "1 new CNIL decision with collective-action potential",
+    "body": "The CNIL published new sanctions that may open a collective action (action de groupe):\n\n- **OPÉRATEUR DE TÉLÉPHONIE MOBILE** · CNIL 2026-01-08 · fine €27.0M · high priority\n  Data breach: the CNIL lists \"Défaut de sécurité des données\"; Victims not properly informed (art. 34) is among the breaches; Fine: €27,000,000\n  Decision: https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594\n\nReview them and start a case: http://localhost:3000/desk",
+    "related": {
+      "radar_ids": [
+        "2026-01-08_CNILTEXT000053352594"
+      ]
+    },
+    "id": "5aae4b20",
+    "sent_at": "2026-10-04T13:48:45.273Z"
+  }
+]

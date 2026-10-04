@@ -2,7 +2,7 @@
 
 Base URL: `http://localhost:3001` · JSON everywhere · CORS open.
 
-> **Mock data:** `mock-free-2026` is hand-written sample data (`"mock": true`) kept as a stable fixture. Real cases (`free-mobile-2026`, `france-travail-2026`, `hopital-prive-loire-2026`) appear in `GET /cases` as the pipeline produces them; same shapes. Show a "mock" badge when `mock` is true.
+> All data is real (no mock case, no demo funders). Processed case: `free-mobile-2026`.
 
 ## Conventions
 
@@ -507,6 +507,26 @@ Query (all optional): `status=candidate|candidate_public|filtered`, `priority=hi
 ## `POST /radar/scan`
 
 Fetches the CNIL list and re-triages (~1 s, no model call). If the CNIL site is unreachable, uses the last saved copy (`from_cache: true`). Returns `{ scanned_at, from_cache, total, new, new_items }`.
+
+## Workflow: monitoring → workspace → finalize → send
+
+**Monitoring (background).** The server scans the CNIL list on start-up and every `MONITOR_INTERVAL_HOURS` (default 6; `MONITOR=off` disables it). New candidate decisions trigger an email to the associations in `config/associations.json`. Emails go to an **outbox** (nothing leaves the machine).
+- `GET /monitor` → `{ interval_hours, last_run, next_run, last_result: { total, new, new_candidates, emails, from_cache }, error }`
+- `POST /monitor/run` → run now (operator/demo use; not for associations)
+- `GET /outbox?kind=radar_alert|brief_to_funder` → `[{ id, kind, to, to_name, subject, body (markdown), related, sent_at }]`
+
+**Workspace (association's cases).**
+- `GET /workspace` → `[{ radar_id, case_id | null, organisation_type, date, fine_eur, legifrance_url, status: "ready" | "analysis_requested", started_at }]`
+- `POST /workspace { radar_id }` → "Work on this case" from the Decisions tab. `ready` when the brief exists (`case_id`), else `analysis_requested`.
+
+**Finalize and send.**
+- `POST /cases/:id/finalize` / `POST /cases/:id/reopen` → `{ brief }` with `brief.finalized_at`. While finalized, `PATCH /brief` returns 400.
+- `POST /cases/:id/send { funder_ids: [...], message? }` → `{ sent, deliveries }`. 400 if not finalized. One delivery + one outbox email per funder; already-sent funders are skipped.
+- `GET /cases/:id/deliveries` → `[{ id, case_id, funder_id, funder_name, message, sent_at }]`
+
+**Funder side** (no login: the app picks the funder).
+- `GET /funders/:id/pitches` → pitches received: delivery + `{ defendant, action_name, association, decision, victims, victims_unit, claim_low_eur, claim_base_eur, claim_high_eur, harm_category, solvency, funding_sought_eur }`
+- `GET /funders/:id/dashboard` → `{ funder, pitches_received, total_claim_base_eur, total_victims, by_category: [{label,n}], by_solvency: [{label,n}], latest }`
 
 ## `GET /cases/:id/pages/:n`
 

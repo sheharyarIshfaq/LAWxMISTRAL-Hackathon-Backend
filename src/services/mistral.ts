@@ -40,13 +40,23 @@ export async function ocrPdf(source: string): Promise<Page[]> {
 
 export type Message = { role: "system" | "user" | "assistant"; content: string };
 
-async function complete(messages: Message[], opts: { temperature: number; json?: boolean }): Promise<string> {
-  const res = await mistral().chat.complete({
-    model: CHAT_MODEL,
-    temperature: opts.temperature,
-    messages,
-    ...(opts.json ? { responseFormat: { type: "json_object" as const } } : {}),
-  });
+type CallOptions = { temperature: number; json?: boolean; timeoutMs?: number; maxRetryMs?: number };
+
+async function complete(messages: Message[], opts: CallOptions): Promise<string> {
+  const res = await mistral().chat.complete(
+    {
+      model: CHAT_MODEL,
+      temperature: opts.temperature,
+      messages,
+      ...(opts.json ? { responseFormat: { type: "json_object" as const } } : {}),
+    },
+    {
+      ...(opts.timeoutMs ? { timeoutMs: opts.timeoutMs } : {}),
+      ...(opts.maxRetryMs
+        ? { retries: { strategy: "backoff" as const, backoff: { initialInterval: 1000, maxInterval: 5000, exponent: 1.5, maxElapsedTime: opts.maxRetryMs }, retryConnectionErrors: true } }
+        : {}),
+    }
+  );
   const content = res.choices?.[0]?.message?.content;
   if (typeof content === "string") return content;
   if (Array.isArray(content)) return content.map((c: any) => c.text ?? "").join("");
@@ -54,8 +64,9 @@ async function complete(messages: Message[], opts: { temperature: number; json?:
 }
 
 // Multi-turn conversation (chatbot): system prompt + previous turns + new question.
+// Live in the demo, so it must never hang: 45 s per attempt, retries on rate limits for 20 s at most.
 export async function askChat(messages: Message[], temperature = 0.1): Promise<string> {
-  return complete(messages, { temperature });
+  return complete(messages, { temperature, timeoutMs: 45000, maxRetryMs: 20000 });
 }
 
 export async function askText(system: string, user: string, temperature = 0.2): Promise<string> {

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Shell } from "@/components/shell";
-import { Providers } from "@/lib/store";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,9 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className="h-full antialiased"
     >
       <body className="min-h-full">
-        <Providers>
-          <Shell>{children}</Shell>
-        </Providers>
+        <Shell>{children}</Shell>
       </body>
     </html>
   );

@@ -6,6 +6,8 @@ import healthRoutes from "./routes/health.routes.ts";
 import casesRoutes from "./routes/cases.routes.ts";
 import fundersRoutes from "./routes/funders.routes.ts";
 import radarRoutes from "./routes/radar.routes.ts";
+import workspaceRoutes from "./routes/workspace.routes.ts";
+import { startMonitor } from "./services/monitor.ts";
 
 const app = express();
 app.use(express.json({ limit: "5mb" }));
@@ -15,6 +17,7 @@ app.use("/health", healthRoutes);
 app.use("/cases", casesRoutes);
 app.use("/funders", fundersRoutes);
 app.use("/radar", radarRoutes);
+app.use("/", workspaceRoutes);
 // Decision PDFs, so summary citations can open /decisions/<id>.pdf#page=N when no Légifrance URL is set.
 app.use("/decisions", express.static("decisions"));
 
@@ -26,4 +29,7 @@ process.on("unhandledRejection", (err) => console.error("Unhandled rejection:", 
 process.on("uncaughtException", (err) => console.error("Uncaught exception:", err));
 
 const PORT = Number(process.env.PORT) || 3001;
-app.listen(PORT, () => console.log(`API on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`API on http://localhost:${PORT}`);
+  if (process.env.MONITOR !== "off") startMonitor();
+});

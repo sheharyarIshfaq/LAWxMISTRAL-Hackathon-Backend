@@ -1,21 +1,45 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { normalize } from "./quoteCheck.ts";
 
-export type Assumptions = {
-  opt_in_rate: { low: number; mid: number; high: number };
-  compensation_per_person_eur: Record<string, number>;
-  multiple_data_types_rule: "highest" | "sum";
-  count_contracts_as_persons: boolean;
-  funder_share: number;
+// One row of the legal team's opt-in table (percentages as written in the table, e.g. 1.4 = 1.4%).
+export type OptInRow = {
+  category: string;
+  low_pct: number | null;
+  base_pct: number | null;
+  high_pct: number | null;
+  expected_pct: number | null;
+  std_dev_pts: number | null;
+  sources: { low: number[]; base: number[]; high: number[] };
 };
 
-export type Scenario = { name: "low" | "mid" | "high"; opt_in_rate: number; gross_eur: number; funder_eur: number; victims_eur: number };
+export type Assumptions = {
+  opt_in_table: OptInRow[];
+  compensation_per_victim_eur: number;
+  count_contracts_as_persons: boolean;
+  funder_share: number;
+  competent_court_by_legal_form: Record<string, string>;
+  benchmarks_note: string;
+};
+
+export type Scenario = {
+  name: "low" | "base" | "high";
+  opt_in_rate: number; // fraction, 0.04 = 4%
+  opt_ins: number;
+  compensation_per_victim_eur: number;
+  total_eur: number;
+  funder_eur: number;
+  victims_eur: number;
+  sources: number[];
+};
 
 export type Recovery = {
   people_affected: number;
   people_affected_unit: string;
-  compensation_per_person_eur: number;
-  compensation_basis: string[];
+  category: string;
+  compensation_per_victim_eur: number;
+  expected_pct: number | null;
+  std_dev_pts: number | null;
   funder_share: number;
   scenarios: Scenario[];
 };
@@ -24,52 +48,49 @@ export async function loadAssumptions(): Promise<Assumptions> {
   return JSON.parse(await fs.readFile(path.resolve("config/assumptions.json"), "utf8"));
 }
 
-// All arithmetic happens here, never in the model.
-export function computeRecovery(caseJson: any, a: Assumptions): Recovery | null {
-  const people = caseJson.breach?.people_affected;
-  if (typeof people !== "number" || people <= 0) return null;
+export function findRow(a: Assumptions, category: string | null | undefined): OptInRow | null {
+  if (!category) return null;
+  const c = normalize(category);
+  return a.opt_in_table.find((r) => normalize(r.category) === c) ?? null;
+}
 
-  const rated = (caseJson.breach?.data_types ?? []).filter((t: string) => t in a.compensation_per_person_eur);
-  const rates = rated.map((t: string) => a.compensation_per_person_eur[t]);
-  if (!rates.length) return null;
-  const perPerson = a.multiple_data_types_rule === "sum" ? rates.reduce((s: number, r: number) => s + r, 0) : Math.max(...rates);
-  const basis = a.multiple_data_types_rule === "sum" ? rated : rated.filter((t: string) => a.compensation_per_person_eur[t] === perPerson);
-
-  const scenarios = (["low", "mid", "high"] as const).map((name) => {
-    const gross = Math.round(people * a.opt_in_rate[name] * perPerson);
-    const funder = Math.round(gross * a.funder_share);
-    return { name, opt_in_rate: a.opt_in_rate[name], gross_eur: gross, funder_eur: funder, victims_eur: gross - funder };
+// All arithmetic happens here, never in the model: people × opt-in rate × € per victim.
+export function computeRecovery(people: number | null | undefined, unit: string | null | undefined, category: string | null | undefined, a: Assumptions): Recovery | null {
+  const row = findRow(a, category);
+  if (typeof people !== "number" || people <= 0 || !row || row.low_pct === null || row.base_pct === null || row.high_pct === null) return null;
+  const perVictim = a.compensation_per_victim_eur;
+  const scenarios = (["low", "base", "high"] as const).map((name) => {
+    const rate = (row[`${name}_pct`] as number) / 100;
+    const optIns = Math.round(people * rate);
+    const total = optIns * perVictim;
+    const funder = Math.round(total * a.funder_share);
+    return { name, opt_in_rate: rate, opt_ins: optIns, compensation_per_victim_eur: perVictim, total_eur: total, funder_eur: funder, victims_eur: total - funder, sources: row.sources[name] };
   });
-
   return {
     people_affected: people,
-    people_affected_unit: caseJson.breach.people_affected_unit,
-    compensation_per_person_eur: perPerson,
-    compensation_basis: basis,
+    people_affected_unit: unit ?? "persons",
+    category: row.category,
+    compensation_per_victim_eur: perVictim,
+    expected_pct: row.expected_pct,
+    std_dev_pts: row.std_dev_pts,
     funder_share: a.funder_share,
     scenarios,
   };
 }
 
 const eur = (n: number) => "€" + n.toLocaleString("en-US");
-const pct = (n: number) => `${+(n * 100).toFixed(2)}%`;
+const pct = (n: number) => `${+(n * 100).toFixed(3)}%`;
 
+// Markdown table for the text pitch.
 export function recoveryTable(r: Recovery, a: Assumptions): string {
-  const unit = r.people_affected_unit === "persons" ? "persons" : `${r.people_affected_unit}`;
   const rows = r.scenarios.map(
-    (s) => `| ${s.name[0].toUpperCase() + s.name.slice(1)} | ${r.people_affected.toLocaleString("en-US")} | ${pct(s.opt_in_rate)} | ${eur(r.compensation_per_person_eur)} | **${eur(s.gross_eur)}** | ${eur(s.funder_eur)} | ${eur(s.victims_eur)} |`
+    (s) => `| ${s.name[0].toUpperCase() + s.name.slice(1)} | ${r.people_affected.toLocaleString("en-US")} | ${pct(s.opt_in_rate)} | ${s.opt_ins.toLocaleString("en-US")} | ${eur(s.compensation_per_victim_eur)} | **${eur(s.total_eur)}** |`
   );
   const notes = [
-    `*Assumption:* opt-in rates and compensation per person (${eur(r.compensation_per_person_eur)}, based on leaked data type: ${r.compensation_basis.join(", ")}) are placeholders set by the association's lawyers, not figures from the decision.`,
+    `*Assumption:* opt-in rates for "${r.category}" from the legal team's table of past cases${r.expected_pct !== null ? ` (expected ${r.expected_pct}% ± ${r.std_dev_pts} pts)` : ""}; ${eur(r.compensation_per_victim_eur)} per victim.`,
     `*Assumption:* funder share of ${pct(r.funder_share)} of gross recovery.`,
   ];
-  if (unit !== "persons" && a.count_contracts_as_persons)
-    notes.push(`*Assumption:* the CNIL counts ${unit}, not persons; each one is treated as one person here.`);
-  return [
-    `| Scenario | People affected | Opt-in rate | Per person | Gross recovery | Funder share | To victims |`,
-    `| --- | ---: | ---: | ---: | ---: | ---: | ---: |`,
-    ...rows,
-    "",
-    ...notes.map((n) => `- ${n}`),
-  ].join("\n");
+  if (r.people_affected_unit !== "persons" && a.count_contracts_as_persons)
+    notes.push(`*Assumption:* the CNIL counts ${r.people_affected_unit}, not persons; each one is treated as one person here.`);
+  return [`| Scenario | People affected | Opt-in rate | Opt-ins | Per victim | Total |`, `| --- | ---: | ---: | ---: | ---: | ---: |`, ...rows, "", ...notes.map((n) => `- ${n}`)].join("\n");
 }

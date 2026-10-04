@@ -1,17 +1,217 @@
 {
-  "_status": "PLACEHOLDERS from the build kit, not legal figures. To be confirmed by the legal team.",
-  "opt_in_rate": {
-    "low": 0.005,
-    "mid": 0.02,
-    "high": 0.05
-  },
-  "compensation_per_person_eur": {
-    "identity": 50,
-    "contact": 50,
-    "iban": 150,
-    "health": 500
-  },
-  "multiple_data_types_rule": "highest",
+  "_status": "Opt-in table and €150 per victim from the legal team (person who opt-in). Funder share, competent court and benchmarks are still placeholders.",
+  "_sources_note": "Numbers in 'sources' are the footnote references from the legal team table (source list to be provided).",
+  "opt_in_table": [
+    {
+      "category": "Violation de données par défaut de sécurité, victimes identifiées",
+      "low_pct": 1.4,
+      "base_pct": 4,
+      "high_pct": 15,
+      "expected_pct": 6.8,
+      "std_dev_pts": 2.95,
+      "sources": {
+        "low": [
+          1
+        ],
+        "base": [
+          2,
+          3
+        ],
+        "high": [
+          4
+        ]
+      }
+    },
+    {
+      "category": "Violation de données sensibles (santé, banque)",
+      "low_pct": 4,
+      "base_pct": 9,
+      "high_pct": 16,
+      "expected_pct": 9.7,
+      "std_dev_pts": 2.46,
+      "sources": {
+        "low": [
+          2
+        ],
+        "base": [
+          2,
+          5
+        ],
+        "high": [
+          6
+        ]
+      }
+    },
+    {
+      "category": "Violation de données non communiquée aux victimes",
+      "low_pct": 0.83,
+      "base_pct": 2.8,
+      "high_pct": 4,
+      "expected_pct": 2.5,
+      "std_dev_pts": 0.65,
+      "sources": {
+        "low": [],
+        "base": [
+          7
+        ],
+        "high": [
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "category": "Cookies et traceurs sans consentement",
+      "low_pct": 0.023,
+      "base_pct": 0.83,
+      "high_pct": 3.61,
+      "expected_pct": 1.5,
+      "std_dev_pts": 0.77,
+      "sources": {
+        "low": [
+          10
+        ],
+        "base": [
+          11
+        ],
+        "high": [
+          12
+        ]
+      }
+    },
+    {
+      "category": "Prospection commerciale sans consentement",
+      "low_pct": 2,
+      "base_pct": 3,
+      "high_pct": 6,
+      "expected_pct": 3.7,
+      "std_dev_pts": 0.85,
+      "sources": {
+        "low": [
+          2,
+          13,
+          14
+        ],
+        "base": [
+          13,
+          14
+        ],
+        "high": [
+          15
+        ]
+      }
+    },
+    {
+      "category": "Transmission à des tiers ou courtiers sans base légale",
+      "low_pct": 0.83,
+      "base_pct": 2.8,
+      "high_pct": 4.45,
+      "expected_pct": 2.7,
+      "std_dev_pts": 0.74,
+      "sources": {
+        "low": [
+          16
+        ],
+        "base": [
+          9,
+          17
+        ],
+        "high": [
+          18,
+          19
+        ]
+      }
+    },
+    {
+      "category": "Traitement illicite ou déloyal auprès d'utilisateurs ayant un compte",
+      "low_pct": 2,
+      "base_pct": 4,
+      "high_pct": 22,
+      "expected_pct": 9.3,
+      "std_dev_pts": 4.5,
+      "sources": {
+        "low": [
+          2,
+          13,
+          14,
+          20
+        ],
+        "base": [
+          21,
+          22
+        ],
+        "high": [
+          23
+        ]
+      }
+    },
+    {
+      "category": "Non-respect des droits (accès, effacement, opposition)",
+      "low_pct": 4.45,
+      "base_pct": 10,
+      "high_pct": 16,
+      "expected_pct": 10.2,
+      "std_dev_pts": 2.36,
+      "sources": {
+        "low": [
+          19
+        ],
+        "base": [
+          24
+        ],
+        "high": [
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "category": "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+      "low_pct": 0.023,
+      "base_pct": 1.4,
+      "high_pct": 2.8,
+      "expected_pct": 1.4,
+      "std_dev_pts": 0.57,
+      "sources": {
+        "low": [
+          10
+        ],
+        "base": [
+          1
+        ],
+        "high": [
+          9
+        ]
+      }
+    },
+    {
+      "category": "Sous-traitance, registre, analyse d'impact, protection dès la conception",
+      "low_pct": null,
+      "base_pct": null,
+      "high_pct": null,
+      "expected_pct": null,
+      "std_dev_pts": null,
+      "sources": {
+        "low": [],
+        "base": [],
+        "high": []
+      }
+    },
+    {
+      "category": "Défaut de coopération ou absence de réponse à une injonction",
+      "low_pct": null,
+      "base_pct": null,
+      "high_pct": null,
+      "expected_pct": null,
+      "std_dev_pts": null,
+      "sources": {
+        "low": [],
+        "base": [],
+        "high": []
+      }
+    }
+  ],
+  "compensation_per_victim_eur": 150,
   "count_contracts_as_persons": true,
   "funder_share": 0.3,
   "competent_court_by_legal_form": {

@@ -9,7 +9,9 @@
     "typecheck": "tsc --noEmit",
     "pages": "tsx scripts/extract-pages.ts",
     "extract": "tsx scripts/extract.ts",
-    "pitch": "tsx scripts/pitch.ts"
+    "pitch": "tsx scripts/pitch.ts",
+    "summary": "tsx scripts/summary.ts",
+    "report": "tsx scripts/report.ts"
   },
   "keywords": [],
   "author": "",

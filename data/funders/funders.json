@@ -1,0 +1,375 @@
+[
+  {
+    "id": "demo-a01",
+    "name": "Demo Fund A (fictional)",
+    "origin": "platform",
+    "demo": true,
+    "website": null,
+    "description": "Fictional demo profile: funds consumer and data protection collective actions in France and Belgium.",
+    "jurisdictions": [
+      "FR",
+      "BE"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "data_protection",
+      "consumer"
+    ],
+    "min_claim_eur": 20000000,
+    "max_investment_eur": 15000000,
+    "accepts_public_defendants": false,
+    "contact": "demo-a@example.org",
+    "sources": [],
+    "created_at": "2026-10-04T00:00:00.000Z"
+  },
+  {
+    "id": "demo-b02",
+    "name": "Demo Capital B (fictional)",
+    "origin": "platform",
+    "demo": true,
+    "website": null,
+    "description": "Fictional demo profile: large-ticket funder of competition and securities claims across Europe.",
+    "jurisdictions": [
+      "FR",
+      "DE",
+      "NL"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "securities"
+    ],
+    "min_claim_eur": 500000000,
+    "max_investment_eur": 50000000,
+    "accepts_public_defendants": false,
+    "contact": "demo-b@example.org",
+    "sources": [],
+    "created_at": "2026-10-04T00:00:00.000Z"
+  },
+  {
+    "id": "demo-c03",
+    "name": "Demo Partners C (fictional)",
+    "origin": "platform",
+    "demo": true,
+    "website": null,
+    "description": "Fictional demo profile: funds collective actions in France, including claims against public bodies.",
+    "jurisdictions": [
+      "FR"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "data_protection",
+      "employment",
+      "consumer"
+    ],
+    "min_claim_eur": 5000000,
+    "max_investment_eur": null,
+    "accepts_public_defendants": true,
+    "contact": "demo-c@example.org",
+    "sources": [],
+    "created_at": "2026-10-04T00:00:00.000Z"
+  },
+  {
+    "id": "0d21d433",
+    "name": "Burford Capital",
+    "origin": "discovered",
+    "website": "https://www.burfordcapital.com/",
+    "description": "Funds commercial litigation, arbitration, and collective actions, including competition and data protection follow-on claims.",
+    "jurisdictions": [
+      "FR",
+      "EU"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "data_protection",
+      "securities",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.burfordcapital.com/loc/france-litigation-funding/",
+        "title": "Litigation Funding In France| Burford Capital"
+      },
+      {
+        "url": "https://www.burfordcapital.com/",
+        "title": "Burford Capital | The Gold Standard In Legal Finance"
+      },
+      {
+        "url": "https://www.burfordcapital.com/what-we-do/disputes-we-finance/antitrust-competition/",
+        "title": "Antitrust & Competition Litigation Finance | Burford Capital"
+      },
+      {
+        "url": "https://www.burfordcapital.com/what-we-do/where-we-are/europe/",
+        "title": "Litigation Funding In Europe | Burford Capital"
+      },
+      {
+        "url": "https://www.burfordcapital.com/insights-news-events/insights-research/follow-on-claims-and-litigation-finance-burford-s-view/",
+        "title": "Follow-on claims and litigation finance: Burford’s view | Burford Capital"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "5147f131",
+    "name": "Fortress Investment Group",
+    "origin": "discovered",
+    "website": "https://www.fortress.com/",
+    "description": "Funds class actions, mass torts, and commercial litigation.",
+    "jurisdictions": [
+      "FR",
+      "EU"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "securities",
+      "consumer",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.fortress.com/what-we-do/asset-based-finance/legal-assets",
+        "title": "Legal Assets | Fortress"
+      },
+      {
+        "url": "https://chambers.com/department/fortress-investment-group-llc-litigation-funding-litigation-support-58:2816:80:1:79018",
+        "title": "Fortress Investment Group, LLC, Litigation Funding | Chambers Litigation Support Profile"
+      },
+      {
+        "url": "https://news.bloomberglaw.com/business-and-practice/fortress-billions-quietly-power-americas-biggest-legal-fights",
+        "title": "Fortress’ Billions Quietly Power America’s Biggest Legal Fights"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "f4b93d3a",
+    "name": "Deminor",
+    "origin": "discovered",
+    "website": "https://www.deminor.com/",
+    "description": "Explicitly funds collective actions, including consumer and data protection claims.",
+    "jurisdictions": [
+      "FR",
+      "BE",
+      "LU",
+      "DE",
+      "ES",
+      "IT",
+      "NL",
+      "SE",
+      "GB",
+      "US"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "consumer",
+      "competition",
+      "securities",
+      "data_protection",
+      "environment",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.deminor.com/en/litigation-funding/global-landscape/france/",
+        "title": "Litigation Funding Overview - France"
+      },
+      {
+        "url": "https://www.deminor.com/en/collective-consumer-claims/",
+        "title": "Collective Consumer Claims | Deminor Litigation Funding"
+      },
+      {
+        "url": "https://www.deminor.com/en/collective-actions/",
+        "title": "Litigation Funding for Collective Actions"
+      },
+      {
+        "url": "https://chambers.com/law-firm/deminor-litigation-support-58:22924116",
+        "title": "Deminor, Litigation Support 2026 | Chambers Profiles"
+      },
+      {
+        "url": "https://chambers.com/department/deminor-litigation-funding-litigation-support-58:2816:80:1:22924116",
+        "title": "Deminor, Litigation Funding | Chambers Litigation Support Profile"
+      },
+      {
+        "url": "https://parisarbitrationweek.com/partner/deminor-litigation-funding/",
+        "title": "Deminor Litigation Funding"
+      },
+      {
+        "url": "https://www.deminor.com/en/news-insights/litigation-funding-in-continental-europe",
+        "title": "Litigation Funding in Continental Europe"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "a62c7d8a",
+    "name": "Nivalion",
+    "origin": "discovered",
+    "website": "https://www.nivalion.com/",
+    "description": "Funds collective actions and mass consumer claims.",
+    "jurisdictions": [
+      "CH",
+      "DE",
+      "AT",
+      "FR"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "consumer",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      },
+      {
+        "url": "https://www.linkedin.com/company/nivalion-ag",
+        "title": "Nivalion AG | LinkedIn"
+      },
+      {
+        "url": "https://www.businesseurope.eu/wp-content/uploads/2025/02/2024-09-02_commission_study_third_party_litigation_funding-8ea-1.pdf",
+        "title": "INTRODUCTION Third Party Litigation Funding"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "959c78ce",
+    "name": "Ivo Capital",
+    "origin": "discovered",
+    "website": "https://www.ivocapital.com/",
+    "description": "Explicitly funds collective actions, including competition and data protection claims.",
+    "jurisdictions": [
+      "FR",
+      "DE",
+      "ES",
+      "NL",
+      "PT"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "data_protection",
+      "consumer"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.wealthbriefing.com/html/article.php/investment-returns-from-lawsuits--ivo-capital-partners-launches-new-vehicle",
+        "title": "Investment Returns From Lawsuits – IVO Capital Partners Launches New Vehicle"
+      },
+      {
+        "url": "https://www.ivocapital.com/en/2025/11/04/ivo-capital-partners-confirms-its-status-as-a-specialist-in-european-litigation-financing-with-the-launch-of-ivo-legal-strategies-fund-iv/",
+        "title": "IVO Capital Partners confirms its status as a specialist in European litigation financing with the launch of IVO Legal Strategies Fund IV - IVO Capital Partners"
+      },
+      {
+        "url": "https://parisarbitrationweek.com/partner/ivo-capital-partners/",
+        "title": "IVO Capital Partners"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "3820a216",
+    "name": "Profile Investment",
+    "origin": "discovered",
+    "website": null,
+    "description": "Active in France for litigation funding, including collective actions.",
+    "jurisdictions": [
+      "FR",
+      "EU"
+    ],
+    "funds_collective_actions": true,
+    "case_types": null,
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.deminor.com/en/litigation-funding/global-landscape/france/",
+        "title": "Litigation Funding Overview - France"
+      },
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "1e061ff2",
+    "name": "Omni Bridgeway",
+    "origin": "discovered",
+    "website": "https://www.omnibridgeway.com/",
+    "description": "Funds group claims and collective actions.",
+    "jurisdictions": [
+      "FR",
+      "EU"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "consumer",
+      "data_protection"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=0671c253-c7df-4b44-8d90-72e0e9e5e6a3",
+        "title": "A general introduction to class actions in France - Lexology"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  },
+  {
+    "id": "130471fc",
+    "name": "Woodsford",
+    "origin": "discovered",
+    "website": "https://www.woodsford.com/",
+    "description": "Funds collective actions and group claims.",
+    "jurisdictions": [
+      "GB",
+      "FR"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "consumer",
+      "data_protection"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.businesseurope.eu/wp-content/uploads/2025/02/2024-09-02_commission_study_third_party_litigation_funding-8ea-1.pdf",
+        "title": "INTRODUCTION Third Party Litigation Funding"
+      }
+    ],
+    "created_at": "2026-10-04T12:26:26.179Z"
+  }
+]

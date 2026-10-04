@@ -9,8 +9,9 @@ import { CaseFile } from "@/components/case-file";
 import { CasePicker } from "@/components/case-picker";
 import { FunderMatches } from "@/components/funder-matches";
 import { RadarFeed } from "@/components/radar-feed";
+import { WorkspaceList } from "@/components/workspace-list";
 import { SidebarWithTabs, useTabs, type NavItem } from "@/components/sidebar-with-tabs";
-import { ApiError, day, eur, getDeliveries, getPitch, listWorkspace, sendToFunders, type WorkItem } from "@/lib/api";
+import { ApiError, day, getDeliveries, getPitch, listCases, listWorkspace, sendToFunders, type WorkItem } from "@/lib/api";
 
 // Association side: monitoring alerts → Decisions → Cases (brief + own details) → Funders (send) → Agent (questions).
 const navItems: NavItem[] = [
@@ -40,14 +41,18 @@ export function NgoDashboard({ entryNav, matterId: entryCase }: { entryNav?: str
   const [caseId, setCaseId] = useState(entryCase ?? "");
   const [work, setWork] = useState<WorkItem[]>([]);
   const go = useRef<(navId: string) => void>(() => {});
+  const [names, setNames] = useState<Record<string, string>>({});
   const reloadWork = useCallback(() => listWorkspace().then(setWork).catch(() => null), []);
 
   useEffect(() => {
     reloadWork();
+    listCases()
+      .then((cs) => setNames(Object.fromEntries(cs.map((c) => [c.id, c.defendant ?? c.id]))))
+      .catch(() => null);
   }, [reloadWork]);
 
   const ready = work.filter((w) => w.case_id);
-  const pickerOptions = ready.map((w) => ({ id: w.case_id!, label: caseLabel(w) }));
+  const pickerOptions = ready.map((w) => ({ id: w.case_id!, label: names[w.case_id!] ? `${names[w.case_id!]} · ${day(w.date)}` : caseLabel(w) }));
   const current = caseId || ready[0]?.case_id || "";
 
   return (
@@ -56,7 +61,7 @@ export function NgoDashboard({ entryNav, matterId: entryCase }: { entryNav?: str
       storageKey="bina-association-tabs-v3"
       navItems={navItems}
       mapNavId={ngoNav}
-      entryNav={entryNav ? ngoNav(entryNav) : entryCase ? "cases" : undefined}
+      entryNav={entryCase ? "cases" : entryNav ? ngoNav(entryNav) : undefined}
       defaultNavId="decisions"
       renderContent={(navId) => (
         <>
@@ -99,46 +104,6 @@ export function NgoDashboard({ entryNav, matterId: entryCase }: { entryNav?: str
         </div>
       }
     />
-  );
-}
-
-function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[]; onOpen: (caseId: string) => void; onDecisions: () => void }) {
-  return (
-    <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-      <PageHeader eyebrow="Your workspace" title="Cases" description="The decisions you chose to work on. Open one to complete, finalize and send the funding brief." />
-      {!work.length ? (
-        <div className="mt-6 card p-5 text-sm text-muted">
-          No case yet.{" "}
-          <button type="button" onClick={onDecisions} className="cursor-pointer font-medium text-gold">
-            Pick a decision to work on
-          </button>
-          .
-        </div>
-      ) : null}
-      <ul className="mt-5 space-y-3">
-        {work.map((w) => (
-          <li key={w.radar_id}>
-            {w.case_id ? (
-              <button type="button" onClick={() => onOpen(w.case_id!)} className="w-full cursor-pointer card p-4 text-left hover:bg-elevated">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h2 className="font-serif text-xl capitalize text-paper">{w.organisation_type.toLowerCase()}</h2>
-                  <span className="text-[13px] text-faint">CNIL · {day(w.date)}</span>
-                </div>
-                <p className="mt-1 text-sm text-muted">Fine {eur(w.fine_eur)} · brief ready</p>
-              </button>
-            ) : (
-              <div className="card p-4 opacity-80">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h2 className="font-serif text-xl capitalize text-paper">{w.organisation_type.toLowerCase()}</h2>
-                  <span className="text-[13px] text-faint">CNIL · {day(w.date)}</span>
-                </div>
-                <p className="mt-1 text-sm text-muted">Analysis requested: you will be emailed when the funding brief is ready.</p>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 

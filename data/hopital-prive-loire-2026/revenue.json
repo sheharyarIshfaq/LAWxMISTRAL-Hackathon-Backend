@@ -1,5 +1,6 @@
 {
   "amount_eur": 93415311,
+  "net_income_eur": -5292341,
   "year": 2025,
   "entity": "HOPITAL PRIVE DE LA LOIRE",
   "source": {
@@ -7,5 +8,5 @@
     "title": "Société HOPITAL PRIVE DE LA LOIRE à SAINT-ETIENNE - SIREN : 704501006"
   },
   "origin": "web",
-  "found_at": "2026-10-04T14:02:48.174Z"
+  "found_at": "2026-10-04T14:14:08.938Z"
 }

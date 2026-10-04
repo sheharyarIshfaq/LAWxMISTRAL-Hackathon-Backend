@@ -17,6 +17,7 @@
       "quote": "l’hôpital a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique",
       "page": 18,
       "quote_verified": true,
+      "quote_fixed": "page_corrected",
       "paragraph": "§ 136",
       "url": null
     },
@@ -24,20 +25,22 @@
       {
         "group": "524,867 patients",
         "level": "yes",
-        "evidence": "Hospital holds their data and individually notified them via email, SMS, or postal mail",
-        "quote": "l’hôpital a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique",
+        "evidence": "Patients were individually notified via email, SMS, or postal mail",
+        "quote": "126 000 courriels personnalisés en fonction de la nature des données compromises, de 210 000 SMS adressés aux patients dont l’adresse électronique était inconnue, et de 88 000 courriers postaux",
         "page": 18,
         "quote_verified": true,
-        "paragraph": "§ 136",
+        "quote_fixed": "page_corrected",
+        "paragraph": "§ 133",
         "url": null
       },
       {
         "group": "202,246 designated relatives",
         "level": "no",
-        "evidence": "Hospital did not notify them despite holding their data",
+        "evidence": "No individual notification was sent to designated relatives",
         "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
         "page": 18,
         "quote_verified": true,
+        "quote_fixed": "page_corrected",
         "paragraph": "§ 137",
         "url": null
       }
@@ -45,10 +48,10 @@
     "weakening": [
       {
         "wording": "third parties",
-        "explanation": "Refers to the 200,000 designated third parties (relatives) whose data was also compromised",
+        "explanation": "Designated relatives are referred to as third parties, weakening their direct relationship with the hospital",
         "sources": [
           {
-            "quote": "outre celles d’environ 200 000 personnes désignées par ces derniers comme tiers de confiance",
+            "quote": "200 000 personnes désignées par ces derniers comme tiers de confiance",
             "page": 7,
             "quote_verified": true,
             "paragraph": "§ 48",
@@ -58,7 +61,7 @@
       },
       {
         "wording": "insufficient communication",
-        "explanation": "CNIL found the hospital's communication to designated relatives insufficient under Article 34 RGPD",
+        "explanation": "The authority found the hospital's communication to designated relatives insufficient under Article 34",
         "sources": [
           {
             "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
@@ -69,11 +72,15 @@
           }
         ]
       }
-    ]
+    ],
+    "proof_type": "individual_notification",
+    "notified_count": 524867,
+    "group_count": 727113,
+    "other_proof": "indirect"
   },
   "harm": {
     "level": "to_be_proven",
-    "justification": "The decision does not fix or quantify the harm; it only states that the data breach is 'de nature à créer un préjudice moral et matériel' (likely to cause moral and material harm) for the individuals concerned, which falls under Rule 1 (potential harm). Additionally, GDPR infringements alone do not establish harm without individual proof (Rule 3).",
+    "justification": "The decision concerns a GDPR data breach, and under CJEU case law, each victim must prove their own damage. The decision does not provide quantified harm figures for individuals.",
     "quotes": [
       {
         "quote": "de nature à créer un préjudice moral et matériel pour les personnes concernées",
@@ -85,5 +92,5 @@
     ],
     "subgroups": []
   },
-  "assessed_at": "2026-10-04T14:02:51.124Z"
+  "assessed_at": "2026-10-04T14:16:35.542Z"
 }

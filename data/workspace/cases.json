@@ -1,25 +1,5 @@
 [
   {
-    "radar_id": "2025-09-18_CNILTEXT000052266505",
-    "case_id": null,
-    "organisation_type": "SOCIETE EXPLOITANT UN GRAND MAGASIN",
-    "date": "2025-09-18",
-    "fine_eur": 100000,
-    "legifrance_url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000052266505",
-    "status": "analysis_requested",
-    "started_at": "2026-10-04T14:03:02.958Z"
-  },
-  {
-    "radar_id": "2026-01-22_CNILTEXT000053408671",
-    "case_id": "france-travail-2026",
-    "organisation_type": "ÉTABLISSEMENT PUBLIC ADMINISTRATIF",
-    "date": "2026-01-22",
-    "fine_eur": 5000000,
-    "legifrance_url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671",
-    "status": "ready",
-    "started_at": "2026-10-04T14:01:43.182Z"
-  },
-  {
     "radar_id": "2026-01-08_CNILTEXT000053352594",
     "case_id": "free-mobile-2026",
     "organisation_type": "OPÉRATEUR DE TÉLÉPHONIE MOBILE",
@@ -27,6 +7,16 @@
     "fine_eur": 27000000,
     "legifrance_url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594",
     "status": "ready",
-    "started_at": "2026-10-04T14:00:43.201Z"
+    "started_at": "2026-10-04T14:15:45.334Z"
+  },
+  {
+    "radar_id": "2026-07-21_hopital-prive-loire-2026",
+    "case_id": "hopital-prive-loire-2026",
+    "organisation_type": "HOPITAL PRIVE DE LA LOIRE",
+    "date": "2026-07-21",
+    "fine_eur": 500000,
+    "legifrance_url": null,
+    "status": "ready",
+    "started_at": "2026-10-04T14:11:53.260Z"
   }
 ]

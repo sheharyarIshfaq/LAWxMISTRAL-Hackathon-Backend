@@ -1,15 +1,15 @@
 {
   "identifiability": {
     "level": "yes",
-    "statement": "Subscribers notified by email between 24 and 29 October 2024 and Free Mobile holds a list of 24,633,469 contracts including 19,460,891 mobile contracts",
+    "statement": "Subscribers notified by email between 24 and 29 October 2024 and Free Mobile holds a list of 24,633,469 contracts",
     "list_holder": {
       "answer": "yes",
-      "evidence": "Free Mobile holds a list of 24,633,469 contracts, including 19,460,891 mobile contracts",
-      "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats, dont 19 460 891 contrats mobiles",
+      "evidence": "Free Mobile holds a list of 24,633,469 contracts (19,460,891 mobile and 5,172,577 fixed) in its database",
+      "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats, dont 19 460 891 contrats mobiles (FREE MOBILE) et 5 172 577 contrats fixes (FREE)",
       "page": 3,
       "quote_verified": true,
       "paragraph": "§ 21",
-      "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=21.%20Au%20total%2C%20l%E2%80%99attaquant%20a%20pu%20prendre%20connaissance%2C,460%20891%20contrats%20mobiles"
+      "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=21.%20Au%20total%2C%20l%E2%80%99attaquant%20a%20pu%20prendre%20connaissance%2C,577%20contrats%20fixes%20(FREE)"
     },
     "proof": {
       "answer": "yes",
@@ -34,11 +34,11 @@
             "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=34.%20Le%20rapporteur%20rel%C3%A8ve%2C%20qu%E2%80%99au%20jour%20du%20contr%C3%B4le%2C,pendant%20une%20dur%C3%A9e%20excessive"
           },
           {
-            "quote": "à l’expiration du contrat, les données à caractère personnel de ses anciens abonnés pendant cinq ans",
-            "page": 5,
+            "quote": "la société soutient conserver les données à caractère personnel de ses anciens abonnés pendant cinq ans",
+            "page": 25,
             "quote_verified": true,
-            "paragraph": "§ 37",
-            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=37.%20Par%20ailleurs%2C%20la%20soci%C3%A9t%C3%A9%20reconna%C3%AEt%20avoir%20commis,abonn%C3%A9s%20pendant%20cinq%20ans"
+            "paragraph": "§ 228",
+            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=228.%20La%20formation%20restreinte%20consid%C3%A8re%20que%20la%20soci%C3%A9t%C3%A9,abonn%C3%A9s%20pendant%20cinq%20ans"
           }
         ]
       },
@@ -63,19 +63,23 @@
         ]
       },
       {
-        "wording": "communication insufficient",
-        "explanation": "The authority found the notification to the people concerned insufficient under Article 34",
+        "wording": "communication insuffisante",
+        "explanation": "The authority found the notification to the data subjects insufficient under Article 34",
         "sources": [
           {
-            "quote": "le courriel d’information initial n’a pas constitué une communication appropriée",
-            "page": 21,
+            "quote": "le courriel d’information adressé par la société aux personnes concernées par la violation de données ne permet de les éclairer ni quant aux mesures de remédiation",
+            "page": 17,
             "quote_verified": true,
-            "paragraph": "§ 198",
-            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=198.%20Il%20r%C3%A9sulte%20de%20ce%20qui%20pr%C3%A9c%C3%A8de%20que%2C,constitu%C3%A9%20une%20communication%20appropri%C3%A9e"
+            "paragraph": "§ 170",
+            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594#:~:text=170.%20Le%20rapporteur%20consid%C3%A8re%20que%20la%20soci%C3%A9t%C3%A9%20a,aux%20mesures%20de%20rem%C3%A9diation"
           }
         ]
       }
-    ]
+    ],
+    "proof_type": "individual_notification",
+    "notified_count": null,
+    "group_count": null,
+    "other_proof": null
   },
   "harm": {
     "level": "to_be_proven",
@@ -98,5 +102,5 @@
     ],
     "subgroups": []
   },
-  "assessed_at": "2026-10-04T13:17:38.311Z"
+  "assessed_at": "2026-10-04T14:16:26.312Z"
 }

@@ -403,7 +403,7 @@ Downloads the funding brief as a PDF (page 1: brief in the card layout, page 2+:
 
 ## `GET /cases/:id/matches`
 
-Funders matched to the case, strong → weak. Matching is plain code (no model, no score, no probability): each criterion compares a fact of the case with a fact of the funder's profile.
+Funders matched to the case, strong → weak, then legal-team list first. `?limit=N` returns the N best (default: all, ~280). Response also has `total` and `counts: { strong, partial, weak }`. Matching is plain code (no model, no score, no probability): each criterion compares a fact of the case with a fact of the funder's profile.
 
 ```json
 {
@@ -428,12 +428,12 @@ Funders matched to the case, strong → weak. Matching is plain code (no model, 
 ```
 
 - `fit`: `strong` = every criterion met; `partial` = nothing failed but something is unknown or one soft criterion failed; `weak` = a hard criterion failed (jurisdiction, collective actions, defendant type) or two criteria failed.
-- `criterion`: `jurisdiction`, `collective_actions`, `case_type`, `claim_size` (base claim vs the funder's minimum), `defendant_type` (public defendants).
+- `criterion`: `funder_type` (litigation funder or investment fund; law firms are not funders), `jurisdiction`, `collective_actions`, `case_type`, `claim_size` (base claim vs the funder's minimum), `defendant_type` (public defendants).
 - `status`: `met` | `not_met` | `unknown` (unknown is never assumed either way).
 
 ## `GET /funders`
 
-All funder profiles: `origin: "platform"` (registered; `demo: true` = fictional demo profile) or `origin: "discovered"` (real funders found by the AI web-search agent, shown under their real names, each with the `sources` the facts come from; unknown facts are `null`).
+All funder profiles: `origin: "curated"` (the legal team's list, from the European Commission study: `funder_type`, France yes/unknown, collective actions yes/unknown, `website` or `lookup_url`; `web_facts` lists fields completed from the web search, with `sources`), `origin: "platform"` (registered; `demo: true` = fictional demo profile) or `origin: "discovered"` (real funders found by the AI web-search agent, shown under their real names, each with the `sources` the facts come from; unknown facts are `null`).
 
 ## `POST /funders`
 
@@ -458,7 +458,7 @@ Only `name` is required. `case_types` from: `data_protection`, `consumer`, `comp
 
 ## `POST /funders/discover`
 
-Runs the AI agent (Mistral with web search) to find real funders active in French collective actions. ~35 s. Replaces previously discovered funders, keeps registered ones. Only URLs returned by the web search are kept as sources; a funder with no source is dropped. The raw search answer is saved in `data/funders/last-search.md` for audit.
+Runs the AI agent (Mistral with web search) to find real funders active in French collective actions. ~35 s. Results are saved in `data/funders/discovered.json`; funders already on the legal team's list are merged into their entry (the list's facts win), the others are added as `discovered`. Only URLs returned by the web search are kept as sources; a funder with no source is dropped. The raw search answer is saved in `data/funders/last-search.md` for audit.
 
 ## `GET /radar`
 

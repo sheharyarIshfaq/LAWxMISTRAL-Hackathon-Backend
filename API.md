@@ -341,7 +341,7 @@ Plain-language summary of the decision, 6–8 sentences, each with the supportin
 
 ## `GET /cases/:id/brief.pdf`
 
-Downloads the funding brief as a PDF (page 1: brief in the card layout, then the summary and a verification appendix listing every quote with its page and check). Includes the association's edits. Takes ~2 s.
+Downloads the funding brief as a PDF (page 1: brief in the card layout, page 2: summary of the decision with quotes). Includes the association's edits. Takes ~2 s.
 
 ## `GET /cases/:id/scorecard`
 

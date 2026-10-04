@@ -1,4 +1,4 @@
-// Builds the review pack PDF (funding brief + decision summary + verification appendix) from saved files.
+// Builds the PDF (funding brief + decision summary) from saved files.
 // No model call. Usage: npm run report -- <id> [<id> ...]   → reports/<id>-funding-brief.pdf
 import { readJson, readJsonOr } from "../src/services/storage.ts";
 import { applyEdits, type Brief } from "../src/services/brief.ts";
@@ -15,7 +15,7 @@ for (const id of ids) {
     const brief = await readJson<Brief>(id, "brief.json");
     const edits = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
     const summary = await readJsonOr(id, "summary.json", null);
-    const html = await renderReportHtml(applyEdits(brief, edits), summary, { decisionFile: `decisions/${id}.pdf` });
+    const html = await renderReportHtml(applyEdits(brief, edits), summary);
     const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
     console.log(`✓ ${id} → ${pdfPath}`);
   } catch (err: any) {

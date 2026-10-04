@@ -114,10 +114,10 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
       contact: missing(),
     },
     framework: {
-      no_funder_influence: field(false, "association", { note: "Confirmed by the association" }),
-      funding_publicly_disclosed: field(false, "association", { note: "Confirmed by the association" }),
-      conflict_of_interest_policy: field(false, "association", { note: "Confirmed by the association" }),
-      funder_has_no_ties_to_defendant: field(false, "association", { note: "Confirmed by the association" }),
+      no_funder_influence: field(false, "association", { note: "To be confirmed by the association" }),
+      funding_publicly_disclosed: field(false, "association", { note: "To be confirmed by the association" }),
+      conflict_of_interest_policy: field(false, "association", { note: "To be confirmed by the association" }),
+      funder_has_no_ties_to_defendant: field(false, "association", { note: "To be confirmed by the association" }),
     },
   };
 }

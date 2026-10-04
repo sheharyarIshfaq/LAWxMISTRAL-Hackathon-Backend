@@ -4,7 +4,6 @@ import path from "node:path";
 import { promisify } from "node:util";
 import type { Brief, Field } from "./brief.ts";
 import type { SummarySentence } from "./summary.ts";
-import { loadAssumptions } from "./recovery.ts";
 
 const CHROME = process.env.CHROME_PATH ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
@@ -53,8 +52,7 @@ function card(title: string, icon: string, cls: string, body: string) {
   return `<section class="card ${cls}"><h2>${esc(title)}<span class="icon">${icon}</span></h2><div class="body">${body}</div></section>`;
 }
 
-export async function renderReportHtml(brief: Brief, summary: { sentences: SummarySentence[] } | null, opts: { decisionFile: string }) {
-  const a = await loadAssumptions();
+export async function renderReportHtml(brief: Brief, summary: { sentences: SummarySentence[] } | null) {
   const b = brief;
   const people = b.victims.number.value as number | null;
   const unit = b.victims.number.note;
@@ -159,35 +157,8 @@ export async function renderReportHtml(brief: Brief, summary: { sentences: Summa
       <ol class="summary">${summary.sentences.map((s) => `<li><p>${esc(s.text)}</p>${cite(s)}</li>`).join("")}</ol></section>`
     : "";
 
-  // Verification appendix: every value with its source, and every quote with its check.
-  const rows: string[] = [];
-  const walk = (o: any, p: string) => {
-    for (const [k, v] of Object.entries<any>(o)) {
-      if (!v || typeof v !== "object") continue;
-      if ("source" in v) {
-        const val = Array.isArray(v.value)
-          ? v.value.map((x: any) => (typeof x === "object" ? x.article ?? x.name ?? JSON.stringify(x) : x)).join(", ")
-          : v.value && typeof v.value === "object" ? Object.values(v.value).filter((x) => x != null).join(" · ") : v.value;
-        rows.push(`<tr><td class="mono">${esc(p + k)}</td><td>${val === null || val === "" ? `<span class="blank">${esc(v.note ?? "—")}</span>` : esc(typeof val === "number" ? num(val) : val)}</td><td>${tag(v)}</td><td>${v.quote ? `« ${esc(v.quote)} »` : ""}</td><td>${v.page ?? ""}</td><td>${v.quote ? check(v) : ""}</td></tr>`);
-        if (Array.isArray(v.value)) for (const x of v.value) if (x?.quote) rows.push(`<tr class="sub"><td class="mono">↳ ${esc(x.article ?? "")}</td><td>${esc(x.label ?? "")}</td><td></td><td>« ${esc(x.quote)} »</td><td>${x.page ?? ""}</td><td>${check(x)}</td></tr>`);
-      } else walk(v, `${p}${k}.`);
-    }
-  };
-  walk({ header: b.header, harm: b.harm, victims: b.victims, defendant: b.defendant, value: b.value, timeline: b.timeline, association: b.association, framework: b.framework }, "");
-  const { _status, ...assumptionValues } = a as any;
-  const appendix = `
-  <section class="page-break doc"><h2 class="doc-h">Verification appendix</h2>
-    <p>How to check: open <span class="mono">${esc(opts.decisionFile)}</span> (the Légifrance PDF) at the page shown and find the quoted passage.
-      "✓ verbatim" means the code found the exact words on that page or the next one. It does <b>not</b> mean the quote supports the value: that is what this review is for.
-      "trimmed/repaired by code" means the model's wording was replaced with the decision's own text, so please check it still supports the value.</p>
-    <table class="audit"><thead><tr><th>Field</th><th>Value</th><th>Source</th><th>Quote</th><th>Page</th><th>Check</th></tr></thead><tbody>${rows.join("")}</tbody></table>
-    <h3>Assumptions to confirm (config/assumptions.json)</h3>
-    <p class="muted">${esc(_status)}</p>
-    <table class="audit"><tbody>${Object.entries(assumptionValues).map(([k, v]) => `<tr><td class="mono">${esc(k)}</td><td>${esc(typeof v === "object" ? JSON.stringify(v) : v)}</td></tr>`).join("")}</tbody></table>
-  </section>`;
-
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(b.header.action_name.value)} – funding brief</title><style>${CSS}</style></head>
-  <body>${header}<main><div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${summaryPage}${appendix}</body></html>`;
+  <body>${header}<main><div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${summaryPage}</body></html>`;
 }
 
 export async function printPdf(html: string, outPdf: string) {
@@ -250,7 +221,6 @@ main { padding: 8px 0 0; }
 .page-break { break-before: page; }
 .doc { background: #fff; border-radius: 8px; padding: 18px 22px; }
 .doc-h { font-size: 18px; margin: 0 0 6px; color: #172238; } .doc h3 { color: #172238; margin: 16px 0 6px; }
-.summary li { margin-bottom: 8px; } .summary p { margin: 0 0 2px; font-size: 11px; }
-.audit { width: 100%; border-collapse: collapse; font-size: 8.5px; } .audit th { text-align: left; background: #172238; color: #fff; padding: 4px; }
-.audit td:first-child { width: 17%; word-break: break-all; } .audit td { padding: 4px; border-bottom: 1px solid #eaecf0; vertical-align: top; } .audit tr { break-inside: avoid; } .audit .sub td { background: #fafbfc; }
+.summary li { margin-bottom: 12px; } .summary p { margin: 0 0 3px; font-size: 13px; } .summary .cite { font-size: 10px; }
+.doc > .muted { font-size: 10.5px; }
 `;

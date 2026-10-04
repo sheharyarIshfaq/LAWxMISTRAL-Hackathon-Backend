@@ -71,7 +71,7 @@ export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   const brief = await loadBrief(id);
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   const summary = await readJsonOr(id, "summary.json", null);
-  const html = await renderReportHtml(brief, summary, { decisionFile: `decisions/${id}.pdf` });
+  const html = await renderReportHtml(brief, summary);
   const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
   res.download(pdfPath, `${id}-funding-brief.pdf`);
 }

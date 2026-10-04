@@ -473,6 +473,65 @@ The same check, shown on the brief itself so investors see it immediately. **Loc
 }
 ```
 
+## `GET /cases/:id/matches`
+
+Funders matched to the case, strong → weak. Matching is plain code (no model, no score, no probability): each criterion compares a fact of the case with a fact of the funder's profile.
+
+```json
+{
+  "case_id": "free-mobile-2026",
+  "claim_base_eur": 147800850,
+  "matches": [
+    {
+      "fit": "partial",
+      "met": 4, "not_met": 0, "unknown": 1,
+      "criteria": [
+        { "criterion": "jurisdiction", "status": "met", "detail": "Funds cases in France" },
+        { "criterion": "collective_actions", "status": "met", "detail": "Funds collective actions" },
+        { "criterion": "case_type", "status": "met", "detail": "Funds data protection / consumer claims" },
+        { "criterion": "claim_size", "status": "unknown", "detail": "Minimum claim size not stated" },
+        { "criterion": "defendant_type", "status": "met", "detail": "Private defendant" }
+      ],
+      "note": "Found by the platform's AI agent from public web sources (see sources). Facts not confirmed by the funder; not contacted.",
+      "funder": { "id": "…", "name": "Deminor", "origin": "discovered", "website": "https://www.deminor.com/", "sources": [{ "url": "https://www.deminor.com/en/collective-actions/", "title": "…" }], "...": "see GET /funders" }
+    }
+  ]
+}
+```
+
+- `fit`: `strong` = every criterion met; `partial` = nothing failed but something is unknown or one soft criterion failed; `weak` = a hard criterion failed (jurisdiction, collective actions, defendant type) or two criteria failed.
+- `criterion`: `jurisdiction`, `collective_actions`, `case_type`, `claim_size` (base claim vs the funder's minimum), `defendant_type` (public defendants).
+- `status`: `met` | `not_met` | `unknown` (unknown is never assumed either way).
+
+## `GET /funders`
+
+All funder profiles: `origin: "platform"` (registered; `demo: true` = fictional demo profile) or `origin: "discovered"` (real funders found by the AI web-search agent, shown under their real names, each with the `sources` the facts come from; unknown facts are `null`).
+
+## `POST /funders`
+
+A funder registers on the platform. Returns the profile (`201`). `400` with a message on invalid input.
+
+```json
+{
+  "name": "Funder name",
+  "website": "https://…",
+  "description": "…",
+  "jurisdictions": ["FR", "BE"],
+  "funds_collective_actions": true,
+  "case_types": ["data_protection", "consumer"],
+  "min_claim_eur": 20000000,
+  "max_investment_eur": 15000000,
+  "accepts_public_defendants": false,
+  "contact": "name@example.org"
+}
+```
+
+Only `name` is required. `case_types` from: `data_protection`, `consumer`, `competition`, `securities`, `employment`, `environment`, `other`.
+
+## `POST /funders/discover`
+
+Runs the AI agent (Mistral with web search) to find real funders active in French collective actions. ~35 s. Replaces previously discovered funders, keeps registered ones. Only URLs returned by the web search are kept as sources; a funder with no source is dropped. The raw search answer is saved in `data/funders/last-search.md` for audit.
+
 ## `GET /cases/:id/pages/:n`
 
 One page of the decision text, for showing a citation in context.

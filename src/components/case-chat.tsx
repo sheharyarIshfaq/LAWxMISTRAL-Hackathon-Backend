@@ -8,6 +8,24 @@ import { proseClass, renderMarkdown } from "@/lib/markdown";
 
 type Message = ChatTurn & { citations?: ChatCitation[]; error?: boolean };
 
+const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+
+// Each quoted passage ends with "(p. N)"; the backend returns one citation per passage, in order.
+// The marker becomes an inline § chip linking to the passage on Légifrance, and the quote is set in the decision's voice.
+function withCitationChips(html: string, citations: ChatCitation[] = []) {
+  let i = 0;
+  return html.replace(/(?:(&quot;|"|“|«)([^<]{8,}?)(&quot;|"|”|»)\s*)?\(p\.\s*(\d+)([^)]*)\)/g, (_m, _o, quote: string | undefined, _c, page: string) => {
+    const c = citations[i++];
+    const warn = c ? !c.verified : false;
+    const label = `${warn ? "⚠ " : ""}${c?.paragraph ?? `p. ${page}`}`;
+    const title = warn ? "Could not be verified against the decision" : c?.url ? "Open the passage on Légifrance" : `Page ${page} of the decision`;
+    const chip = c?.url
+      ? `<a class="cite${warn ? " cite-warn" : ""}" href="${esc(c.url)}" target="_blank" rel="noopener" title="${title}">${label}</a>`
+      : `<span class="cite${warn ? " cite-warn" : ""}" title="${title}">${label}</span>`;
+    return `${quote ? `<span class="dq">“${quote}”</span>` : ""}${chip}`;
+  });
+}
+
 const SUGGESTIONS = [
   { icon: Users, text: "Combien de personnes sont concernées et quelles données ont fuité ?" },
   { icon: ShieldCheck, text: "Were the victims informed, and how?" },
@@ -91,20 +109,12 @@ export function CaseChat({ caseId }: { caseId: string; defendant?: string }) {
                       m.error ? "border-[#fecdca] bg-[#fef3f2] text-sm text-[#b42318]" : "border-line bg-panel"
                     }`}
                   >
-                    {m.error ? m.content : <div className={proseClass} dangerouslySetInnerHTML={{ __html: renderMarkdown(m.content) }} />}
+                    {m.error ? m.content : <div className={proseClass} dangerouslySetInnerHTML={{ __html: withCitationChips(renderMarkdown(m.content), m.citations) }} />}
                     {m.citations?.length ? (
-                      <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-line pt-3">
-                        <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.12em] text-faint">Sources</span>
-                        {m.citations.map((c, k) => (
-                          <span
-                            key={k}
-                            title={c.quote}
-                            className={`rounded-full px-2 py-0.5 font-mono text-[11px] ${c.verified ? "bg-[#ecfdf3] text-[#067647]" : "bg-[#fffaeb] text-[#b54708]"}`}
-                          >
-                            {c.verified ? "✓" : "⚠"} {c.paragraph ?? `p. ${c.page}`}
-                          </span>
-                        ))}
-                      </div>
+                      <p className="mt-3 flex items-center gap-1.5 border-t border-line pt-2.5 text-[12px] text-faint">
+                        <ShieldCheck className="size-3.5 text-[#067647]" />
+                        {m.citations.filter((c) => c.verified).length} of {m.citations.length} quote{m.citations.length > 1 ? "s" : ""} checked word for word against the decision
+                      </p>
                     ) : null}
                   </div>
                 </div>

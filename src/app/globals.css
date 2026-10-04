@@ -309,3 +309,18 @@ input[type="range"] {
     backdrop-filter: none;
   }
 }
+
+/* Inline citation chip: a paragraph of the decision, linking to Légifrance. Amber when the quote could not be verified. */
+a.cite, span.cite {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin: 0 2px; padding: 1px 6px; border-radius: 6px;
+  vertical-align: 1px; white-space: nowrap;
+  background: rgba(211, 228, 245, 0.7); color: var(--fill-2);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500; line-height: 1.5;
+  text-decoration: none; transition: background 0.15s, color 0.15s;
+}
+a.cite:hover { background: var(--fill); color: #fff; }
+.cite.cite-warn { background: #fffaeb; color: #b54708; }
+a.cite.cite-warn:hover { background: #b54708; color: #fff; }
+/* The decision's own words, set apart from the answer. */
+.dq { font-family: var(--font-serif); font-style: italic; color: var(--paper); }

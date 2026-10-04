@@ -1,0 +1,13 @@
+{
+  "category": "Violation de données par défaut de sécurité, victimes identifiées",
+  "other_categories": [
+    "Violation de données sensibles (santé, banque)",
+    "Violation de données non communiquée aux victimes",
+    "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude"
+  ],
+  "reason": "The decision clearly identifies a data breach caused by security failures, affecting identified victims (24+ million contracts), with confirmed access to personal data including IBANs.",
+  "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats,",
+  "page": 3,
+  "quote_verified": true,
+  "quote_fixed": "repaired"
+}

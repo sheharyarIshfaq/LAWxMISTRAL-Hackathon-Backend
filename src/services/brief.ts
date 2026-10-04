@@ -196,7 +196,6 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
   for (const [p, value] of Object.entries(edits)) {
     if (p === "_edited_at") continue;
     const parts = p.split(".");
-    if (parts[0] === "platform_assessment") throw new EditRejected(`${p} is the platform's independent assessment and cannot be edited`);
     let target: any = brief;
     for (const k of parts) target = target?.[k];
     if (!target || typeof target !== "object" || !("source" in target)) throw new EditRejected(`Unknown field: ${p}`);

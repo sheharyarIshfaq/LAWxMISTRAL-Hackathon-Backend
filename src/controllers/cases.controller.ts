@@ -4,7 +4,6 @@ import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
 import { findRow, loadAssumptions } from "../services/recovery.ts";
 import { chat as chatWithDecision } from "../services/chat.ts";
 import { matchesForCase } from "../services/matching.ts";
-import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
 import { legifranceLink } from "../services/legifrance.ts";
@@ -47,16 +46,8 @@ export async function getCase(req: Request<CaseParams>, res: Response) {
   res.json(await readJson(req.params.id, "case.json"));
 }
 
-// The brief plus the platform's locked assessment (from scorecard.json), marked stale if the brief changed since.
-async function briefWithAssessment(id: string) {
-  const brief = await loadBrief(id);
-  if (!brief) return null;
-  const sc = await readJsonOr<Scorecard | null>(id, "scorecard.json", null);
-  return { ...brief, platform_assessment: sc && "counts" in sc ? platformAssessment(sc, brief) : null };
-}
-
 export async function getPitch(req: Request<CaseParams>, res: Response) {
-  const [markdown, brief] = await Promise.all([readText(req.params.id, "pitch.md"), briefWithAssessment(req.params.id)]);
+  const [markdown, brief] = await Promise.all([readText(req.params.id, "pitch.md"), loadBrief(req.params.id)]);
   res.json({ brief, markdown });
 }
 
@@ -80,7 +71,7 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   }
   const saved = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
   await writeJson(id, "brief-edits.json", { ...saved, ...edits, _edited_at: new Date().toISOString() });
-  res.json({ brief: await briefWithAssessment(id) });
+  res.json({ brief: await loadBrief(id) });
 }
 
 // Citation id → Légifrance link that highlights the passage (null when the decision URL is unknown → plain "(§ N)").
@@ -119,21 +110,6 @@ export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   const html = await renderReportHtml(brief, summary ? renderCitations(summary, { link: await citationLinker(id) }) : null);
   const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
   res.download(pdfPath, `${id}-funding-brief.pdf`);
-}
-
-export async function getScorecard(req: Request<CaseParams>, res: Response) {
-  const { id } = req.params;
-  const sc = await readJson(id, "scorecard.json");
-  const brief = await loadBrief(id);
-  const { claims, scores, red_flags, summary, counts = null, ratings = null, checked_at = null, mock } = sc;
-  const stale = brief && "brief_edited_at" in sc ? (sc.brief_edited_at ?? null) !== (brief.edited_at ?? null) : false;
-  res.json({ claims, scores, red_flags, summary, counts, ratings, checked_at, stale, mock: Boolean(mock) });
-}
-
-// Re-runs the funder check (one model call, ~15-30 s), e.g. after the association edited the brief.
-export async function checkCase(req: Request<CaseParams>, res: Response) {
-  const sc = await runCheck(req.params.id);
-  res.json({ ...sc, stale: false });
 }
 
 export async function getPage(req: Request<PageParams>, res: Response) {

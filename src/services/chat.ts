@@ -4,10 +4,25 @@ import { askChat, type Message } from "./mistral.ts";
 import { quoteOk, repairQuote } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { buildParagraphs, locate } from "./paragraphs.ts";
-import { stripProbability } from "./scorecard.ts";
 import { readJson, type Page } from "./storage.ts";
 
 const HISTORY_TURNS = 6;
+
+// Belt and braces: drop any sentence that states a probability or chance of success.
+const PROBABILITY = /(\d+\s?%[^.]*\b(chance|probabilit|likel|succe|win))|\b(probabilit(y|é)|chance[s]? (of|de) (success|winning|succès|gagner)|likelihood of (success|winning)|likely to (win|succeed))/i;
+// Refusals ("I cannot estimate the chance of winning") are kept: they are exactly what we want the model to say.
+const REFUSAL = /\b(cannot|can't|can not|never|not|no|unable|impossible|won't|do not|does not|ne\b|n'|pas|aucun|jamais|impossible)\b/i;
+export function stripProbability(text: string): string {
+  return text
+    .split(/(?<=[.!?])\s+/)
+    .filter((s) => {
+      if (!PROBABILITY.test(s) || REFUSAL.test(s)) return true;
+      console.warn(`  removed probability statement: "${s}"`);
+      return false;
+    })
+    .join(" ");
+}
+
 
 // Formatting notes only; the rules stay in prompts/chat.txt.
 const CHAT_FORMAT = `

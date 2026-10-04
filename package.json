@@ -12,7 +12,6 @@
     "pitch": "tsx scripts/pitch.ts",
     "summary": "tsx scripts/summary.ts",
     "report": "tsx scripts/report.ts",
-    "check": "tsx scripts/check.ts",
     "category": "tsx scripts/category.ts",
     "discover": "tsx scripts/discover-funders.ts",
     "radar": "tsx scripts/radar.ts",

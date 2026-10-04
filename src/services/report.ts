@@ -3,18 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import type { Brief, Field } from "./brief.ts";
-import type { platformAssessment } from "./scorecard.ts";
 
-type Assessment = ReturnType<typeof platformAssessment>;
-const CRITERION_LABEL: Record<string, string> = {
-  fault_established: "Fault established",
-  data_sensitivity: "Data sensitivity",
-  group_size: "Group size",
-  harm_evidence: "Harm evidence",
-  victim_notification_failure: "Victim notification failure",
-  defendant: "Defendant",
-  recoverability: "Recoverability",
-};
 import { marked } from "marked";
 
 const CHROME = process.env.CHROME_PATH ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
@@ -65,8 +54,7 @@ function card(title: string, icon: string, cls: string, body: string) {
   return `<section class="card ${cls}"><h2>${esc(title)}<span class="icon">${icon}</span></h2><div class="body">${body}</div></section>`;
 }
 
-export async function renderReportHtml(brief: Brief & { platform_assessment?: Assessment }, summaryMarkdown: string | null) {
-  const pa = brief.platform_assessment ?? null;
+export async function renderReportHtml(brief: Brief, summaryMarkdown: string | null) {
   const b = brief;
   const people = b.victims.number.value as number | null;
   const unit = b.victims.number.note;
@@ -95,7 +83,6 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
       <span class="pill">Legal basis: ${legal.map((l) => esc(l.article)).join(", ") || "—"}</span>
       <span class="pill">Status: ${b.header.status.value ? esc(b.header.status.value) : "appeal status not stated in the decision"}</span>
     </div>
-    ${pa ? `<div class="pa-strip"><b>Platform assessment</b> · ${pa.ratings.strong} strong · ${pa.ratings.medium} medium · ${pa.ratings.weak} weak · ${pa.red_flags.length} red flags · ${pa.counts.supported + pa.counts.to_check + pa.counts.overstated + pa.counts.unsupported} claims checked against the decision: ${pa.counts.supported} supported, ${pa.counts.to_check} to check, ${pa.counts.overstated} overstated, ${pa.counts.unsupported} unsupported${pa.stale ? " · <b>outdated: brief edited since the check</b>" : ""} · details on page 2</div>` : ""}
     <div class="draft">DRAFT FOR LEGAL REVIEW · generated from the CNIL decision · every quote is checked word for word against the decision · values in [brackets] are to be provided</div>
   </header>`;
 
@@ -174,19 +161,6 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
       <div>Contact: ${esc(b.association.contact.value) || "[name, role, email]"}</div></div>
   </section>`;
 
-  const assessment = pa
-    ? `<section class="page-break doc pa"><h2 class="doc-h">Platform assessment</h2>
-      <p class="muted">${esc(pa.note)} Checked ${day(pa.checked_at.slice(0, 10))}.${pa.stale ? " <b>The brief was edited after this check: re-run it before sending.</b>" : ""}</p>
-      <p class="pa-summary">${esc(pa.summary)}</p>
-      <table class="pa-table"><tbody>${pa.scores.map((s) => `<tr><td class="crit">${esc(CRITERION_LABEL[s.criterion] ?? s.criterion)}</td><td><span class="rating r-${s.rating ?? "none"}">${esc(s.rating ?? "not assessed")}</span></td><td>${esc(s.reason)}${cite(s)}</td></tr>`).join("")}</tbody></table>
-      <div class="pa-bottom">
-        <div><h3>Red flags to check before committing</h3><ul>${pa.red_flags.map((f) => `<li>🚩 ${esc(f)}</li>`).join("")}</ul></div>
-        <div><h3>Claims in this brief checked against the decision</h3>
-          <div class="counts"><span class="cnt c-sup">${pa.counts.supported} supported</span><span class="cnt c-chk">${pa.counts.to_check} to check</span><span class="cnt c-over">${pa.counts.overstated} overstated</span><span class="cnt c-uns">${pa.counts.unsupported} unsupported</span><span class="cnt c-ass">${pa.counts.assumption} assumptions</span></div>
-          <p class="muted">The full list of claims with quotes is in the investor view.</p></div>
-      </div></section>`
-    : "";
-
   const summaryPage = summaryMarkdown
     ? `<section class="page-break doc md"><h2 class="doc-h">Summary of the decision</h2>
       <p class="muted">${esc((b.header.source_decision.value as any)?.reference)}. Every fact cites the paragraph (§) of the decision; each citation was checked against the decision text by code (⚠ = could not be verified).</p>
@@ -194,7 +168,7 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
     : "";
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(b.header.action_name.value)} – funding brief</title><style>${CSS}</style></head>
-  <body>${header}<main><div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${assessment}${summaryPage}</body></html>`;
+  <body>${header}<main><div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${summaryPage}</body></html>`;
 }
 
 export async function printPdf(html: string, outPdf: string) {
@@ -260,15 +234,6 @@ main { padding: 8px 0 0; }
 .page-break { break-before: page; }
 .md { font-size: 11px; line-height: 1.5; } .md h1, .md h2:not(.doc-h) { font-size: 14px; color: #172238; margin: 14px 0 4px; border-bottom: 1px solid #eaecf0; padding-bottom: 2px; }
 .md h3, .md h4 { font-size: 12px; color: #172238; margin: 10px 0 2px; } .md p { margin: 0 0 7px; } .md a { color: #2350a8; text-decoration: none; font-weight: 600; }
-.pa-strip { margin-top: 8px; background: #f0c05a; color: #172238; border-radius: 6px; padding: 5px 10px; font-size: 10px; }
-.pa .pa-summary { font-size: 12px; margin: 6px 0 10px; }
-.pa-table { width: 100%; border-collapse: collapse; font-size: 10.5px; } .pa-table td { padding: 6px 6px; border-bottom: 1px solid #eaecf0; vertical-align: top; }
-.pa-table .crit { width: 24%; font-weight: 700; } .pa-table .cite { font-size: 8.5px; }
-.rating { display: inline-block; min-width: 58px; text-align: center; border-radius: 99px; padding: 2px 8px; font-weight: 700; font-size: 9.5px; text-transform: uppercase; }
-.r-strong { background: #dcfae6; color: #085d3a; } .r-medium { background: #fef0c7; color: #93370d; } .r-weak { background: #fee4e2; color: #b42318; } .r-none { background: #f2f4f7; color: #667085; }
-.pa-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; } .pa-bottom ul { padding-left: 0; list-style: none; font-size: 10.5px; } .pa-bottom li { margin-bottom: 5px; }
-.counts { display: flex; flex-wrap: wrap; gap: 6px; } .cnt { border-radius: 6px; padding: 6px 10px; font-weight: 700; font-size: 11px; }
-.c-sup { background: #dcfae6; color: #085d3a; } .c-over { background: #fef0c7; color: #93370d; } .c-uns { background: #fee4e2; color: #b42318; } .c-ass { background: #f2f4f7; color: #475467; } .c-chk { background: #e0eaff; color: #2d31a6; }
 .doc { background: #fff; border-radius: 8px; padding: 18px 22px; }
 .doc-h { font-size: 18px; margin: 0 0 6px; color: #172238; } .doc h3 { color: #172238; margin: 16px 0 6px; }
 .summary li { margin-bottom: 12px; } .summary p { margin: 0 0 3px; font-size: 13px; } .summary .cite { font-size: 10px; }

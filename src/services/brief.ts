@@ -49,6 +49,7 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
     case_id: c.case_id,
     generated_at: new Date().toISOString(),
     edited_at: null as string | null,
+    finalized_at: null as string | null, // set when the association finalizes the brief (required before sending)
     header: {
       action_name: field(`${c.defendant?.name ?? "Data breach"} data breach action`, "computed"),
       defendant: field(c.defendant?.name, "decision"),
@@ -222,7 +223,7 @@ export class EditRejected extends Error {}
 // Facts from the decision and computed figures are locked; everything else can be changed and is tagged "association".
 export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief {
   for (const [p, value] of Object.entries(edits)) {
-    if (p === "_edited_at") continue;
+    if (p.startsWith("_")) continue; // _edited_at, _finalized_at
     const parts = p.split(".");
     let target: any = brief;
     for (const k of parts) target = target?.[k];
@@ -256,6 +257,7 @@ export async function loadBrief(id: string): Promise<Brief | null> {
   (brief as any).value = valueSection(cat, a);
   (brief.defendant as any).current_revenue = revenueField(revenue);
   if (Object.keys(edits).length) applyEdits(brief, edits);
+  brief.finalized_at = typeof edits._finalized_at === "string" ? edits._finalized_at : null;
   computeValue(brief, a);
   computeSolvency(brief);
   return brief;

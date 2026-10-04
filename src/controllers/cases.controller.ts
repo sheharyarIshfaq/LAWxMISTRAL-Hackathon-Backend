@@ -4,6 +4,7 @@ import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
 import { findRow, loadAssumptions } from "../services/recovery.ts";
 import { chat as chatWithDecision } from "../services/chat.ts";
 import { matchesForCase } from "../services/matching.ts";
+import { listDeliveries, sendBrief, WorkflowError } from "../services/workspace.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
 import { legifranceLink } from "../services/legifrance.ts";
@@ -63,6 +64,7 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   }
   const brief = await loadBrief(id);
   if (!brief) throw new NotFound(`${id} has no brief yet`);
+  if (brief.finalized_at) return res.status(400).json({ error: "The brief is finalized. Reopen it to edit." });
   try {
     applyEdits(brief, edits); // validates every path before anything is saved
   } catch (err) {
@@ -143,4 +145,37 @@ export function createCase(_req: Request, res: Response) {
 export async function getMatches(req: Request<CaseParams>, res: Response) {
   const limit = Number(req.query.limit);
   res.json(await matchesForCase(req.params.id, Number.isFinite(limit) && limit > 0 ? limit : undefined));
+}
+
+// Finalize (required before sending to funders) or reopen the brief for editing.
+async function setFinalized(id: string, value: string | null) {
+  const edits = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
+  if (value) edits._finalized_at = value;
+  else delete edits._finalized_at;
+  await writeJson(id, "brief-edits.json", edits);
+  return loadBrief(id);
+}
+export async function finalizeBrief(req: Request<CaseParams>, res: Response) {
+  if (!(await loadBrief(req.params.id))) throw new NotFound(`${req.params.id} has no brief yet`);
+  res.json({ brief: await setFinalized(req.params.id, new Date().toISOString()) });
+}
+export async function reopenBrief(req: Request<CaseParams>, res: Response) {
+  res.json({ brief: await setFinalized(req.params.id, null) });
+}
+
+// Body: { funder_ids: string[], message?: string }. Sends the finalized brief (outbox email + delivery per funder).
+export async function sendToFunders(req: Request<CaseParams>, res: Response) {
+  const { funder_ids, message } = req.body ?? {};
+  if (!Array.isArray(funder_ids)) return res.status(400).json({ error: "Body must be { funder_ids: [...], message? }" });
+  try {
+    const sent = await sendBrief(req.params.id, funder_ids.map(String), typeof message === "string" && message.trim() ? message.trim() : null);
+    res.json({ sent, deliveries: await listDeliveries({ case_id: req.params.id }) });
+  } catch (err) {
+    if (err instanceof WorkflowError) return res.status(400).json({ error: err.message });
+    throw err;
+  }
+}
+
+export async function getDeliveries(req: Request<CaseParams>, res: Response) {
+  res.json(await listDeliveries({ case_id: req.params.id }));
 }

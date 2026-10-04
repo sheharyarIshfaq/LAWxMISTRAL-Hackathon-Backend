@@ -1,0 +1,54 @@
+{
+  "sentences": [
+    {
+      "text": "The French data protection authority CNIL sanctioned Hôpital Privé de la Loire for a personal data breach.",
+      "quote": "Délibération de la formation restreinte n°SAN-2026-009 du 21 juillet 2026 concernant la société HOPITAL PRIVE DE LA LOIRE",
+      "page": 1,
+      "quote_verified": true
+    },
+    {
+      "text": "An attacker accessed the hospital’s electronic patient records system on 26 June 2025 using a liberal practitioner’s credentials and exfiltrated data.",
+      "quote": "l’attaquant est parvenu à se connecter au dossier patient informatisé de l’hôpital le 26 juin 2025, en utilisant les identifiants du compte d’un médecin libéral",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "text": "The breach affected 524,867 patient files, including civil status, social security numbers, postal and email addresses, and permanent patient identifiers.",
+      "quote": "il a ensuite procédé à l’exfiltration de 524 867 fiches patients contenant des informations telles que l’état civil, le numéro de sécurité sociale, les coordonnées postales et électroniques et le numéro d’identifiant permanent",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL found the hospital failed to secure remote access to the patient records system, violating Article 32 of the GDPR.",
+      "quote": "l’absence d’authentification multifacteur lors de la connexion de ces utilisateurs au DPI de l’hôpital ne permettait pas d’assurer la sécurité du système",
+      "page": 9,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL also found the hospital’s access rights policy was inadequate, as it did not restrict access to patient files to only those involved in their care, violating Article 32 of the GDPR.",
+      "quote": "la politique d’habilitations au DPI de l’hôpital est inadéquate dès lors qu’elle",
+      "page": 11,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "text": "The hospital failed to implement automated analysis of application logs to detect suspicious activity, violating Article 32 of the GDPR.",
+      "quote": "pris aucune mesure d’analyse automatisée des traces applicatives du",
+      "page": 13,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "text": "The hospital informed its patients of the breach but did not notify the 202,246 designated trusted third parties whose data was also compromised, violating Article 34 of the GDPR.",
+      "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance par des patients de l’hôpital",
+      "page": 18,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL imposed a fine of €500,000 on Hôpital Privé de la Loire for the breaches of Articles 32 and 34 of the GDPR.",
+      "quote": "prononcer à l’encontre de la société HOPITAL PRIVE DE LA LOIRE une amende administrative d’un montant de cinq cent mille euros (500 000 €)",
+      "page": 23,
+      "quote_verified": true
+    }
+  ]
+}

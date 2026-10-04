@@ -1,0 +1,53 @@
+{
+  "sentences": [
+    {
+      "text": "France Travail was sanctioned by the French data protection authority, the CNIL.",
+      "quote": "Délibération de la formation restreinte n° SAN–2026-003 du 22 janvier 2026 prononçant une sanction pécuniaire à l'encontre de l’opérateur FRANCE TRAVAIL",
+      "page": 1,
+      "quote_verified": true
+    },
+    {
+      "text": "A cyberattack via social engineering targeted CAP EMPLOI advisor accounts, leading to a data breach.",
+      "quote": "L’attaque a été menée par des techniques dites \" d’ingénierie sociale \"",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "text": "The breach exposed data of 36,820,828 people, including names, birth dates, NIRs, addresses, phone numbers, emails, and employment status.",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL found France Travail failed to implement appropriate technical and organisational measures under Article 32 of the GDPR.",
+      "quote": "la formation restreinte considère que FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
+      "page": 14,
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "text": "The CNIL also found insufficient access restrictions, as CAP EMPLOI advisors could access all data in the database, not just the records of people they supported.",
+      "quote": "FRANCE TRAVAIL n’a pas limité l’accès aux données aux seules personnes ayant besoin d’en connaître",
+      "page": 13,
+      "quote_verified": true
+    },
+    {
+      "text": "France Travail notified the CNIL of the breach on 8 March 2024, with a supplementary notification on 15 May 2024.",
+      "quote": "Le 8 mars 2024, FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL, complétée le 15 mai 2024",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "text": "The affected individuals were informed of the breach by France Travail.",
+      "quote": "les personnes concernées ont déjà été informées de la violation de données",
+      "page": 19,
+      "quote_verified": true
+    },
+    {
+      "text": "The CNIL imposed a fine of €5,000,000 on France Travail for the GDPR breach.",
+      "quote": "prononce à l’encontre de FRANCE TRAVAIL, une amende administrative d’un montant de cinq millions d’euros (5 000 000 €)",
+      "page": 20,
+      "quote_verified": true
+    }
+  ]
+}

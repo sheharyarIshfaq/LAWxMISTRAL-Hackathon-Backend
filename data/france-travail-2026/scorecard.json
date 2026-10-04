@@ -1,0 +1,295 @@
+{
+  "claims": [
+    {
+      "claim": "Defendant: FRANCE TRAVAIL",
+      "status": "supported",
+      "quote": "l’opérateur FRANCE TRAVAIL",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of GDPR art. 32 (security of processing)",
+      "status": "supported",
+      "quote": "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
+      "page": 14,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "claim": "Is the harm quantified: to_be_proven",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Nature of the harm: financial, non_material",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Harm: Risk of fraud (e.g., with leaked NIR) and non-material harm such as distress or fear of misuse of personal data, including sensitive health-related data.",
+      "status": "overstated",
+      "quote": "les données traitées dans ce cadre concernent : le type de handicap, l’origine du handicap",
+      "page": 3,
+      "note": "The decision confirms health-related data was processed but does not explicitly state that health data was exposed in the breach.",
+      "quote_verified": false
+    },
+    {
+      "claim": "Number of victims (persons): 36820828",
+      "status": "supported",
+      "quote": "25 giga octets (Go) de données concernant 36 820 828 personnes",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Victims are identifiable: yes",
+      "status": "supported",
+      "quote": "les attaquants ont accédé aux données de […]",
+      "page": 3,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "Victim category: consumers, other",
+      "status": "unsupported",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Proof of class membership: Notification of the personal data breach by FRANCE TRAVAIL",
+      "status": "supported",
+      "quote": "FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Victim subgroups: Persons inscribed with FRANCE TRAVAIL over the last 20 years, Persons not inscribed as job seekers but with a candidate account on 'francetravail.fr'",
+      "status": "supported",
+      "quote": "des personnes inscrites auprès de FRANCE TRAVAIL au cours des 20 dernières années, mais également de celles non inscrites sur la liste des demandeurs d’emploi mais possédant un espace candidat sur le site web \"",
+      "page": 3,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "claim": "Defendant nature: public_body",
+      "status": "supported",
+      "quote": "est un établissement public administratif placé sous la tutelle du Ministère chargé de l’emploi",
+      "page": 2,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Competent court: administrative (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario low: 184104 opt-ins (0.5%) x €50 = €9205207 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario mid: 736417 opt-ins (2%) x €50 = €36820828 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario high: 1841041 opt-ins (5%) x €50 = €92052070 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Funder share: 0.3 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Breach period: 2024-02-06 · 2024-03-05",
+      "status": "supported",
+      "quote": "L’attaque, qui s’est étendue du mardi 6 février au mardi 5 mars 2024",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "France Travail was sanctioned by the French data protection authority, the CNIL.",
+      "status": "supported",
+      "quote": "prononce à l’encontre de FRANCE TRAVAIL, une amende administrative d’un montant de cinq millions d’euros",
+      "page": 20,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "A cyberattack via social engineering targeted CAP EMPLOI advisor accounts, leading to a data breach.",
+      "status": "supported",
+      "quote": "L’attaque a été menée par des techniques dites",
+      "page": 3,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "The breach exposed data of 36,820,828 people, including names, birth dates, NIRs, addresses, phone numbers, emails, and employment status.",
+      "status": "supported",
+      "quote": "les attaquants ont accédé aux données de […]",
+      "page": 3,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "The CNIL found France Travail failed to implement appropriate technical and organisational measures under Article 32 of the GDPR.",
+      "status": "supported",
+      "quote": "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
+      "page": 14,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "claim": "The CNIL also found insufficient access restrictions, as CAP EMPLOI advisors could access all data in the database, not just the records of people they supported.",
+      "status": "supported",
+      "quote": "les employés des CAP EMPLOI ont accès en consultation à toutes les données présentes dans […]",
+      "page": 14,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "France Travail notified the CNIL of the breach on 8 March 2024, with a supplementary notification on 15 May 2024.",
+      "status": "supported",
+      "quote": "Le 8 mars 2024, FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL, complétée le 15 mai 2024",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The affected individuals were informed of the breach by France Travail.",
+      "status": "unsupported",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "The CNIL imposed a fine of €5,000,000 on France Travail for the GDPR breach.",
+      "status": "supported",
+      "quote": "prononce à l’encontre de FRANCE TRAVAIL, une amende administrative d’un montant de cinq millions d’euros",
+      "page": 20,
+      "note": "",
+      "quote_verified": true
+    }
+  ],
+  "scores": [
+    {
+      "criterion": "fault_established",
+      "rating": "strong",
+      "reason": "CNIL explicitly found a breach of GDPR Article 32 (security of processing) with detailed findings on technical and organisational measures.",
+      "quote": "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
+      "page": 14,
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "criterion": "data_sensitivity",
+      "rating": "strong",
+      "reason": "Breach exposed NIRs, names, birth dates, addresses, and other sensitive identifiers, with health-related data processed in the system.",
+      "quote": "les attaquants ont accédé aux données de […]",
+      "page": 3,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "criterion": "group_size",
+      "rating": "strong",
+      "reason": "36,820,828 individuals were affected by the breach, a very large group.",
+      "quote": "25 giga octets (Go) de données concernant 36 820 828 personnes",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "criterion": "harm_evidence",
+      "rating": "medium",
+      "reason": "Risk of fraud (e.g., with NIR) is supported, but no evidence of actual fraud or misuse is provided in the decision.",
+      "quote": "les données ont été extraites 25 Go de données",
+      "page": 3,
+      "quote_verified": false
+    },
+    {
+      "criterion": "victim_notification_failure",
+      "rating": "weak",
+      "reason": "The decision does not state whether or how victims were notified, only that CNIL was notified.",
+      "quote": null,
+      "page": null,
+      "quote_verified": false
+    },
+    {
+      "criterion": "defendant",
+      "rating": "weak",
+      "reason": "Defendant is a public body (FRANCE TRAVAIL), which limits recoverability and requires administrative court route.",
+      "quote": "est un établissement public administratif",
+      "page": 2,
+      "quote_verified": true
+    },
+    {
+      "criterion": "recoverability",
+      "rating": "weak",
+      "reason": "Recovery scenarios are assumptions with aggressive opt-in rates (0.5% to 5%) and no evidence of actual harm or opt-ins.",
+      "quote": null,
+      "page": null,
+      "quote_verified": false
+    }
+  ],
+  "red_flags": [
+    "Appeal status: The decision can be appealed before the Conseil d'État within two months of notification.",
+    "Limitation period: Verify the applicable limitation period for GDPR claims in France.",
+    "Standing of the association: Confirm the association has legal standing to represent the victims under French law.",
+    "Victim notification: The decision does not confirm whether or how victims were notified; this may affect class membership proof.",
+    "Public body defendant: FRANCE TRAVAIL is a public body, which may limit damages and require administrative court proceedings.",
+    "Health data exposure: The decision confirms health-related data was processed but does not explicitly state it was exposed in the breach.",
+    "Actual harm: No evidence of actual fraud or misuse of data is provided in the decision."
+  ],
+  "summary": "The CNIL decision confirms a GDPR Article 32 breach by FRANCE TRAVAIL affecting 36.8 million individuals with sensitive data exposed. However, the defendant is a public body, and the pitch relies on unverified assumptions for harm and recoverability.",
+  "counts": {
+    "supported": 15,
+    "overstated": 1,
+    "unsupported": 2,
+    "assumption": 7,
+    "to_check": 0
+  },
+  "ratings": {
+    "strong": 3,
+    "medium": 1,
+    "weak": 3
+  },
+  "checked_at": "2026-10-04T11:39:31.013Z",
+  "brief_edited_at": null
+}

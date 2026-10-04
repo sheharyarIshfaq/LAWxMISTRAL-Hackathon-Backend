@@ -1,0 +1,332 @@
+{
+  "claims": [
+    {
+      "claim": "Defendant: HOPITAL PRIVE DE LA LOIRE",
+      "status": "supported",
+      "quote": "la société HOPITAL PRIVE DE LA LOIRE",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Source decision: CNIL · Délibération SAN-2026-009 du 21 juillet 2026 · 2026-07-21",
+      "status": "supported",
+      "quote": "Délibération SAN-2026-009 du 21 juillet 2026",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of GDPR art. 32 (security of processing)",
+      "status": "supported",
+      "quote": "manquements aux articles 32 et 34 du RGPD",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of GDPR art. 34 (communication of a personal data breach to the data subject)",
+      "status": "supported",
+      "quote": "manquements aux articles 32 et 34 du RGPD",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Is the harm quantified: to_be_proven",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Nature of the harm: financial, non_material",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Harm: The breach exposed victims to risks of identity theft, phishing, and reputational or discriminatory harm due to the unauthorized disclosure of sensitive personal and health data.",
+      "status": "supported",
+      "quote": "exposées à des risques liés à la revente de leurs données à des personnes malveillantes, à une usurpation de leur identité ou à des tentatives d’hameçonnage",
+      "page": 7,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Number of victims (persons): 524867",
+      "status": "supported",
+      "quote": "524 867 fiches patients",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Victims are identifiable: yes",
+      "status": "supported",
+      "quote": "données permettant d’identifier très précisément les patients",
+      "page": 7,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "claim": "Victim category: consumers, other",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Proof of class membership: The breach notification sent by the hospital (courriels, SMS, courriers postaux, or communiqué de presse)",
+      "status": "supported",
+      "quote": "126 000 courriels personnalisés, 210 000 SMS, 88 000 courriers postaux",
+      "page": 18,
+      "note": "Quote not found word for word in the decision: check manually.",
+      "quote_verified": false
+    },
+    {
+      "claim": "Victim subgroups: Patients whose data was exfiltrated (524,867), Patients whose national ID card recto was exposed (46,185), Patients whose health data was exposed (43), Persons designated as trusted third parties by patients (202,246)",
+      "status": "supported",
+      "quote": "202 246 fiches comportaient des données relatives à la personne de confiance",
+      "page": 3,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "Defendant nature: private_company",
+      "status": "supported",
+      "quote": "société HOPITAL PRIVE DE LA LOIRE",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Defendant solvency: strong",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Defendant revenue: 93400000 · HOPITAL PRIVE DE LA LOIRE · 2025",
+      "status": "supported",
+      "quote": "un chiffre d’affaires d’environ 93,4 millions d’euros",
+      "page": 2,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Defendant group: RAMSAY SANTE",
+      "status": "supported",
+      "quote": "l’hôpital a intégré en 2008 le groupe RAMSAY SANTE",
+      "page": 2,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Competent court: civil (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario low: 2624 opt-ins (0.5%) x €500 = €1312168 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario mid: 10497 opt-ins (2%) x €500 = €5248670 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario high: 26243 opt-ins (5%) x €500 = €13121675 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Funder share: 0.3 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Breach period: 2025-06-26 · 2025-07-01",
+      "status": "supported",
+      "quote": "entre le 26 juin et le 1er juillet 2025",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The French data protection authority CNIL sanctioned Hôpital Privé de la Loire for a personal data breach.",
+      "status": "supported",
+      "quote": "prononcer à l’encontre de la société HOPITAL PRIVE DE LA LOIRE une amende administrative",
+      "page": 23,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "An attacker accessed the hospital’s electronic patient records system on 26 June 2025 using a liberal practitioner’s credentials and exfiltrated data.",
+      "status": "supported",
+      "quote": "l’attaquant est parvenu à se connecter au dossier patient informatisé de l’hôpital le 26 juin 2025, en utilisant les identifiants du compte d’un médecin libéral",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The breach affected 524,867 patient files, including civil status, social security numbers, postal and email addresses, and permanent patient identifiers.",
+      "status": "supported",
+      "quote": "524 867 fiches patients contenant des informations telles que l’état civil, le numéro de sécurité sociale, les coordonnées postales et électroniques et le numéro d’identifiant permanent",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found the hospital failed to secure remote access to the patient records system, violating Article 32 of the GDPR.",
+      "status": "supported",
+      "quote": "l’absence d’authentification multifacteur lors de la connexion de ces utilisateurs au DPI de l’hôpital ne permettait pas d’assurer la sécurité",
+      "page": 9,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL also found the hospital’s access rights policy was inadequate, as it did not restrict access to patient files to only those involved in their care, violating Article 32 of the GDPR.",
+      "status": "supported",
+      "quote": "la politique d’habilitations au DPI de l’hôpital est inadéquate dès lors qu’elle",
+      "page": 11,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "The hospital failed to implement automated analysis of application logs to detect suspicious activity, violating Article 32 of the GDPR.",
+      "status": "supported",
+      "quote": "l’hôpital de n’avoir pris aucune mesure d’analyse automatisée des traces applicatives du DPI",
+      "page": 13,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The hospital informed its patients of the breach but did not notify the 202,246 designated trusted third parties whose data was also compromised, violating Article 34 of the GDPR.",
+      "status": "supported",
+      "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
+      "page": 18,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL imposed a fine of €500,000 on Hôpital Privé de la Loire for the breaches of Articles 32 and 34 of the GDPR.",
+      "status": "supported",
+      "quote": "prononcer à l’encontre de la société HOPITAL PRIVE DE LA LOIRE une amende administrative d’un montant de cinq cent mille euros",
+      "page": 23,
+      "note": "",
+      "quote_verified": true
+    }
+  ],
+  "scores": [
+    {
+      "criterion": "fault_established",
+      "rating": "strong",
+      "reason": "CNIL found multiple breaches of GDPR Articles 32 and 34, with detailed findings on security failures and notification omissions.",
+      "quote": "manquements aux articles 32 et 34 du RGPD",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "criterion": "data_sensitivity",
+      "rating": "strong",
+      "reason": "Breach involved health data, national ID card copies, and other sensitive personal data.",
+      "quote": "copies de rectos de cartes d’identité",
+      "page": 22,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "criterion": "group_size",
+      "rating": "strong",
+      "reason": "524,867 patients and 202,246 trusted third parties were affected.",
+      "quote": "202 246 fiches comportaient des données relatives à la personne de confiance",
+      "page": 3,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "criterion": "harm_evidence",
+      "rating": "medium",
+      "reason": "CNIL identified risks of identity theft, phishing, and discrimination, but no direct evidence of actual harm was cited.",
+      "quote": "à une usurpation de leur identité ou à des tentatives d’hameçonnage",
+      "page": 7,
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "criterion": "victim_notification_failure",
+      "rating": "strong",
+      "reason": "CNIL explicitly found a breach of Article 34 for failing to notify 202,246 trusted third parties.",
+      "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
+      "page": 18,
+      "quote_verified": true
+    },
+    {
+      "criterion": "defendant",
+      "rating": "strong",
+      "reason": "Hôpital Privé de la Loire is a private company with strong solvency, part of the Ramsay Santé group.",
+      "quote": "société HOPITAL PRIVE DE LA LOIRE, groupe RAMSAY SANTE",
+      "page": 2,
+      "quote_verified": false
+    },
+    {
+      "criterion": "recoverability",
+      "rating": "medium",
+      "reason": "Recovery scenarios are assumptions; opt-in rates and damages per claim are speculative.",
+      "quote": null,
+      "page": null,
+      "quote_verified": false
+    }
+  ],
+  "red_flags": [
+    "Appeal status: Decision is susceptible to appeal before the Conseil d'État within two months of notification.",
+    "Limitation period: Verify the applicable limitation period for GDPR-based claims in France.",
+    "Standing of the association: Confirm the association’s legal standing to bring a representative action under French law.",
+    "Proof of harm: Harm is assumed but not quantified; actual evidence of financial or non-material harm must be established.",
+    "Opt-in rates: Recovery scenarios rely on speculative opt-in rates (0.5%, 2%, 5%) with no empirical basis.",
+    "Defendant solvency: While revenue is confirmed, solvency assumptions should be verified independently.",
+    "Competent court: The assumption that the civil court is competent must be confirmed under French procedural law."
+  ],
+  "summary": "The CNIL decision confirms multiple GDPR breaches, including security failures and notification omissions, affecting a large group with sensitive data. However, harm remains unquantified and recovery scenarios are speculative.",
+  "counts": {
+    "supported": 20,
+    "overstated": 0,
+    "unsupported": 0,
+    "assumption": 9,
+    "to_check": 1
+  },
+  "ratings": {
+    "strong": 5,
+    "medium": 2,
+    "weak": 0
+  },
+  "checked_at": "2026-10-04T11:40:19.670Z",
+  "brief_edited_at": null
+}

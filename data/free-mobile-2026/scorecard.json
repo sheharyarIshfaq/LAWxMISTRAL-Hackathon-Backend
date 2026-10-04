@@ -1,0 +1,341 @@
+{
+  "claims": [
+    {
+      "claim": "Defendant: FREE MOBILE",
+      "status": "supported",
+      "quote": "prononçant une sanction pécuniaire à l'encontre de la société FREE MOBILE",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Source decision: CNIL · Délibération SAN-2026-001 du 8 janvier 2026 · 2026-01-08",
+      "status": "supported",
+      "quote": "Délibération SAN-2026-001 du 8 janvier 2026",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of GDPR art. 5-1-e (storage limitation)",
+      "status": "supported",
+      "quote": "manquements aux articles 5-1-e), 32 et 34 du RGPD",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of GDPR art. 32 (security of processing)",
+      "status": "supported",
+      "quote": "manquements aux articles 5-1-e), 32 et 34 du RGPD",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of GDPR art. 34 (communication of a personal data breach to the data subject)",
+      "status": "supported",
+      "quote": "manquements aux articles 5-1-e), 32 et 34 du RGPD",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Is the harm quantified: to_be_proven",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Nature of the harm: financial, non_material",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Harm: The decision recognises a risk of financial harm (e.g., fraudulent payments using exposed IBANs) and non-material harm (e.g., distress, fear of identity theft, phishing attempts) for the affected individuals due to the data breach.",
+      "status": "overstated",
+      "quote": "exposées à des risques liés à la revente de leurs données à des personnes malveillantes, une usurpation de leur identité, des tentatives d’hameçonnage",
+      "page": 11,
+      "note": "The decision acknowledges risks but does not explicitly state that financial harm or non-material harm occurred.",
+      "quote_verified": true
+    },
+    {
+      "claim": "Number of victims (contracts): 24633469",
+      "status": "supported",
+      "quote": "24 633 469 contrats",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Victims are identifiable: yes",
+      "status": "supported",
+      "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Victim category: consumers",
+      "status": "supported",
+      "quote": "abonnés mobiles de la société FREE MOBILE,",
+      "page": 3,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "claim": "Proof of class membership: the breach notification email sent between 24 and 29 October 2024",
+      "status": "supported",
+      "quote": "les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
+      "page": 2,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "claim": "Victim subgroups: customers whose IBAN was exposed (convergent customers), customers whose identity, contact, and contractual data were exposed",
+      "status": "supported",
+      "quote": "leurs données d’identité, leurs données de contact, leurs données contractuelles et, pour les clients dits convergents, leur IBAN",
+      "page": 3,
+      "note": "Quote not found word for word in the decision: check manually.",
+      "quote_verified": false
+    },
+    {
+      "claim": "Defendant nature: private_company",
+      "status": "supported",
+      "quote": "la société FREE MOBILE",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Defendant solvency: strong",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Defendant revenue: 10024000000 · ILIAD · 2024",
+      "status": "supported",
+      "quote": "le chiffre d’affaires de la société ILIAD était de 10,024 milliards d’euros",
+      "page": 2,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Defendant group: ILIAD",
+      "status": "supported",
+      "quote": "Le groupe ILIAD, spécialisé dans les télécommunications en Europe",
+      "page": 2,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "Competent court: civil (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario low: 123167 opt-ins (0.5%) x €150 = €18475102 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario mid: 492669 opt-ins (2%) x €150 = €73900407 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Recovery scenario high: 1231673 opt-ins (5%) x €150 = €184751018 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Funder share: 0.3 (assumption)",
+      "status": "assumption",
+      "quote": null,
+      "page": null,
+      "note": "",
+      "quote_verified": false
+    },
+    {
+      "claim": "Breach period: 2024-09-28 · 2024-10-22",
+      "status": "supported",
+      "quote": "Celle-ci a duré du 28 septembre au 22 octobre 2024",
+      "page": 2,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The French data protection authority CNIL sanctioned Free Mobile for a personal data breach.",
+      "status": "supported",
+      "quote": "prononçant une sanction pécuniaire à l'encontre de la société FREE MOBILE",
+      "page": 1,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "An attacker accessed Free Mobile’s system between 28 September and 22 October 2024, compromising the confidentiality of subscriber data.",
+      "status": "supported",
+      "quote": "de la compromission de la confidentialité des données de ses abonnés",
+      "page": 2,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "trimmed"
+    },
+    {
+      "claim": "The breach exposed data from 24,633,469 contracts, including identity, contact, contractual data, and IBANs for convergent customers.",
+      "status": "supported",
+      "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats, dont [...] leurs données d’identité, leurs données de contact, leurs données contractuelles et, pour les clients dits convergents, leur IBAN",
+      "page": 3,
+      "note": "Quote not found word for word in the decision: check manually.",
+      "quote_verified": false
+    },
+    {
+      "claim": "The CNIL found Free Mobile breached Article 5-1-e) of the GDPR by retaining data for longer than necessary.",
+      "status": "supported",
+      "quote": "la société a conservé des données pendant des durées excessives",
+      "page": 6,
+      "note": "Quote not found word for word in the decision: check manually.",
+      "quote_verified": false
+    },
+    {
+      "claim": "The CNIL found Free Mobile breached Article 32 of the GDPR by failing to implement appropriate security measures.",
+      "status": "supported",
+      "quote": "la société n’avait pas déployé les moyens suffisants pour être en mesure de détecter les activités suspectes",
+      "page": 15,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found Free Mobile breached Article 34 of the GDPR by not properly informing affected individuals about the breach.",
+      "status": "supported",
+      "quote": "la société a commis un manquement à l’article 34 du RGPD en ne communiquant pas aux personnes concernées par la violation de données les informations nécessaires",
+      "page": 21,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "claim": "Free Mobile notified affected individuals by email between 24 and 29 October 2024 to avoid overloading mail servers.",
+      "status": "supported",
+      "quote": "les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024 afin de ne pas saturer les serveurs de messagerie.",
+      "page": 2,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "claim": "The CNIL imposed a fine of 27 million euros on Free Mobile for the breaches.",
+      "status": "supported",
+      "quote": "de prononcer à l’encontre de la société FREE MOBILE une amende administrative d’un montant de 27 000 000",
+      "page": 27,
+      "note": "",
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    }
+  ],
+  "scores": [
+    {
+      "criterion": "fault_established",
+      "rating": "strong",
+      "reason": "The CNIL explicitly found breaches of GDPR Articles 5-1-e, 32, and 34.",
+      "quote": "manquements aux articles 5-1-e), 32 et 34 du RGPD",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "criterion": "data_sensitivity",
+      "rating": "strong",
+      "reason": "The breach exposed IBANs, identity, contact, and contractual data, which are highly sensitive.",
+      "quote": "leurs données d’identité, leurs données de contact, leurs données contractuelles et, pour les clients dits convergents, leur IBAN",
+      "page": 3,
+      "quote_verified": false
+    },
+    {
+      "criterion": "group_size",
+      "rating": "strong",
+      "reason": "The breach affected 24,633,469 contracts, a very large group.",
+      "quote": "24 633 469 contrats",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "criterion": "harm_evidence",
+      "rating": "medium",
+      "reason": "The decision acknowledges risks of fraud, identity theft, and phishing, but does not confirm actual harm occurred.",
+      "quote": "exposées à des risques liés à la revente de leurs données à des personnes malveillantes, une usurpation de leur identité, des tentatives d’hameçonnage",
+      "page": 11,
+      "quote_verified": true
+    },
+    {
+      "criterion": "victim_notification_failure",
+      "rating": "strong",
+      "reason": "The CNIL found Free Mobile failed to properly inform affected individuals under Article 34.",
+      "quote": "la société a commis un manquement à l’article 34 du RGPD en ne communiquant pas aux personnes concernées par la violation de données les informations nécessaires",
+      "page": 21,
+      "quote_verified": true,
+      "quote_fixed": "page_corrected"
+    },
+    {
+      "criterion": "defendant",
+      "rating": "strong",
+      "reason": "Free Mobile is a private company with strong solvency, part of the ILIAD group.",
+      "quote": "la société FREE MOBILE",
+      "page": 1,
+      "quote_verified": true
+    },
+    {
+      "criterion": "recoverability",
+      "rating": "medium",
+      "reason": "Recovery scenarios are assumptions; opt-in rates and damages per claim are speculative.",
+      "quote": null,
+      "page": null,
+      "quote_verified": false
+    }
+  ],
+  "red_flags": [
+    "Appeal status: The decision can be appealed before the Conseil d'État within two months of notification.",
+    "Limitation period: Verify the applicable limitation period for GDPR-based claims in France.",
+    "Standing of the association: Confirm the association has legal standing to represent the victims under French law.",
+    "Actual harm: The decision does not confirm actual financial or non-material harm occurred; this must be proven in court.",
+    "Opt-in rates: The recovery scenarios assume opt-in rates (0.5%, 2%, 5%) which are speculative and may not reflect reality.",
+    "Damages per claim: The assumed €150 per claim is not verified in the decision and may be challenged.",
+    "Jurisdiction: Confirm the competent civil court for collective actions in France."
+  ],
+  "summary": "The CNIL decision confirms multiple GDPR breaches by Free Mobile, including data retention, security, and notification failures, affecting a very large group with sensitive data. However, actual harm and recoverability remain speculative and must be proven in court.",
+  "counts": {
+    "supported": 19,
+    "overstated": 1,
+    "unsupported": 0,
+    "assumption": 8,
+    "to_check": 3
+  },
+  "ratings": {
+    "strong": 5,
+    "medium": 2,
+    "weak": 0
+  },
+  "checked_at": "2026-10-04T11:37:58.038Z",
+  "brief_edited_at": null
+}

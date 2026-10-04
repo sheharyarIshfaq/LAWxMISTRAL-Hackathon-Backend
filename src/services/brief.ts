@@ -4,7 +4,7 @@ import { askJson } from "./mistral.ts";
 import { addQuoteFlags, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { computeRecovery, loadAssumptions } from "./recovery.ts";
-import type { Page } from "./storage.ts";
+import { readJsonOr, type Page } from "./storage.ts";
 
 // Where each value in the brief comes from. The frontend styles fields by source.
 export type Source = "decision" | "assessment" | "computed" | "assumption" | "association" | "missing";
@@ -132,6 +132,7 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
   for (const [p, value] of Object.entries(edits)) {
     if (p === "_edited_at") continue;
     const parts = p.split(".");
+    if (parts[0] === "platform_assessment") throw new EditRejected(`${p} is the platform's independent assessment and cannot be edited`);
     let target: any = brief;
     for (const k of parts) target = target?.[k];
     if (!target || typeof target !== "object" || !("source" in target)) throw new EditRejected(`Unknown field: ${p}`);
@@ -146,4 +147,12 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
   }
   brief.edited_at = typeof edits._edited_at === "string" ? edits._edited_at : brief.edited_at;
   return brief;
+}
+
+// The generated brief with the association's edits (stored separately in brief-edits.json) applied on top.
+export async function loadBrief(id: string): Promise<Brief | null> {
+  const brief = await readJsonOr<Brief | null>(id, "brief.json", null);
+  if (!brief) return null;
+  const edits = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
+  return Object.keys(edits).length ? applyEdits(brief, edits) : brief;
 }

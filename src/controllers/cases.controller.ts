@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type Page } from "../services/storage.ts";
-import { applyEdits, EditRejected, type Brief } from "../services/brief.ts";
+import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
+import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 
 type CaseParams = { id: string };
@@ -29,16 +30,16 @@ export async function getCase(req: Request<CaseParams>, res: Response) {
   res.json(await readJson(req.params.id, "case.json"));
 }
 
-// The generated brief with the association's edits (stored separately in brief-edits.json) applied on top.
-async function loadBrief(id: string): Promise<Brief | null> {
-  const brief = await readJsonOr<Brief | null>(id, "brief.json", null);
+// The brief plus the platform's locked assessment (from scorecard.json), marked stale if the brief changed since.
+async function briefWithAssessment(id: string) {
+  const brief = await loadBrief(id);
   if (!brief) return null;
-  const edits = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
-  return Object.keys(edits).length ? applyEdits(brief, edits) : brief;
+  const sc = await readJsonOr<Scorecard | null>(id, "scorecard.json", null);
+  return { ...brief, platform_assessment: sc && "counts" in sc ? platformAssessment(sc, brief) : null };
 }
 
 export async function getPitch(req: Request<CaseParams>, res: Response) {
-  const [markdown, brief] = await Promise.all([readText(req.params.id, "pitch.md"), loadBrief(req.params.id)]);
+  const [markdown, brief] = await Promise.all([readText(req.params.id, "pitch.md"), briefWithAssessment(req.params.id)]);
   res.json({ brief, markdown });
 }
 
@@ -57,7 +58,7 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   }
   const saved = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
   await writeJson(id, "brief-edits.json", { ...saved, ...edits, _edited_at: new Date().toISOString() });
-  res.json({ brief: await loadBrief(id) });
+  res.json({ brief: await briefWithAssessment(id) });
 }
 
 export async function getSummary(req: Request<CaseParams>, res: Response) {
@@ -68,7 +69,7 @@ export async function getSummary(req: Request<CaseParams>, res: Response) {
 // The funding brief as a PDF (brief + summary + verification appendix), with the association's edits.
 export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   const { id } = req.params;
-  const brief = await loadBrief(id);
+  const brief = await briefWithAssessment(id);
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   const summary = await readJsonOr(id, "summary.json", null);
   const html = await renderReportHtml(brief, summary);
@@ -77,8 +78,18 @@ export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
 }
 
 export async function getScorecard(req: Request<CaseParams>, res: Response) {
-  const { claims, scores, red_flags, summary, mock } = await readJson(req.params.id, "scorecard.json");
-  res.json({ claims, scores, red_flags, summary, mock: Boolean(mock) });
+  const { id } = req.params;
+  const sc = await readJson(id, "scorecard.json");
+  const brief = await loadBrief(id);
+  const { claims, scores, red_flags, summary, counts = null, ratings = null, checked_at = null, mock } = sc;
+  const stale = brief && "brief_edited_at" in sc ? (sc.brief_edited_at ?? null) !== (brief.edited_at ?? null) : false;
+  res.json({ claims, scores, red_flags, summary, counts, ratings, checked_at, stale, mock: Boolean(mock) });
+}
+
+// Re-runs the funder check (one model call, ~15-30 s), e.g. after the association edited the brief.
+export async function checkCase(req: Request<CaseParams>, res: Response) {
+  const sc = await runCheck(req.params.id);
+  res.json({ ...sc, stale: false });
 }
 
 export async function getPage(req: Request<PageParams>, res: Response) {

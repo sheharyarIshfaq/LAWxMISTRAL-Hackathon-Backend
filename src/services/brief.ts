@@ -5,8 +5,9 @@ import { addQuoteFlags, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { computeRecovery, findRow, loadAssumptions, type Assumptions } from "./recovery.ts";
 import type { HarmCategory } from "./category.ts";
-import { rateSolvency, SOLVENCY_RULE, type Revenue } from "./solvency.ts";
+import type { Revenue } from "./solvency.ts";
 import { refs } from "./assess.ts";
+import { defendantScore, harmScore, timelineScore, valueScore, victimsScore, type Score } from "./scores.ts";
 import { readJsonOr, type Page } from "./storage.ts";
 
 // Where each value in the brief comes from. The frontend styles fields by source.
@@ -168,25 +169,57 @@ function revenueField(r: Revenue | null): Field<any> {
     : field(v, "decision", { note: "Revenue stated in the CNIL decision (no more recent figure found on the web)" });
 }
 
-// Legal team's rule: exposure (victims × € per victim × base opt-in) ÷ revenue. Computed, never judged by the model.
-function computeSolvency(brief: Brief) {
+// Defendant: legal team's score on base-scenario damages ÷ latest net income of the same entity (Low / Medium / Strong).
+function computeSolvency(brief: Brief, revenue: Revenue | null) {
   const d = brief.defendant as any;
   const base = ((brief.value as any).scenarios.value as any[] | null)?.find((s) => s.name === "base");
-  const rv = d.current_revenue.value ?? d.revenue.value;
-  const revenueEur = typeof rv === "number" ? rv : rv?.amount_eur;
-  if (!base || typeof revenueEur !== "number" || revenueEur <= 0) {
-    d.solvency = missing(!base ? "Needs the claim value (category of harm)" : "Needs the defendant's revenue");
+  const net = revenue?.net_income_eur ?? null;
+  const sc = defendantScore(base?.total_eur ?? null, net, revenue?.entity ?? null);
+  const isPublic = ((d.nature?.value as string[] | null) ?? []).includes("public_body");
+  const publicNote = isPublic ? " Public body: claims against it follow the administrative route." : "";
+  if (sc.score === null) {
+    d.solvency = missing(`${sc.reason}.${publicNote}`);
     return;
   }
-  const { ratio, rating } = rateSolvency(base.total_eur, revenueEur);
-  const who = typeof rv === "object" && rv ? `${rv.entity ?? ""}${rv.year ? `, ${rv.year}` : ""}` : "";
-  const isPublic = ((d.nature?.value as string[] | null) ?? []).includes("public_body");
-  d.solvency = field(rating, "computed", {
-    note: `Exposure €${(base.total_eur / 1e6).toFixed(1)}M ÷ revenue €${(revenueEur / 1e9).toFixed(2)}bn${who ? ` (${who})` : ""} = ${(ratio * 100).toFixed(1)}% → ${rating}. Rule: ${SOLVENCY_RULE}.${
-      isPublic ? " Public body: the figure is a budget, not commercial revenue, and claims against a public body follow the administrative route." : ""
-    }`,
-    calc: { exposure_eur: base.total_eur, revenue_eur: revenueEur, ratio: Number(ratio.toFixed(4)), rule: SOLVENCY_RULE },
+  d.solvency = field(sc.label!.toLowerCase(), "computed", {
+    note: `${sc.explanation} Score ${sc.score}/100.${publicNote}`,
+    calc: { score: sc.score, exposure_eur: base.total_eur, net_income_eur: net, ratio: Number(((base.total_eur / (net as number)) * 100).toFixed(2)), entity: revenue?.entity ?? null, year: revenue?.year ?? null },
   });
+}
+
+// The legal team's five scores (0-100), computed in code from the brief. A missing input gives null with the reason.
+function computeScores(brief: Brief, assessments: any, revenue: Revenue | null) {
+  const b = brief as any;
+  const base = (b.value.scenarios.value as any[] | null)?.find((s: any) => s.name === "base")?.total_eur ?? null;
+  const i = assessments?.identifiability;
+  const share = i?.notified_count && i?.group_count && i.notified_count < i.group_count ? i.notified_count / i.group_count : null;
+  const cats = (b.victims.categories.value as string[] | null) ?? [];
+  const category = (["consumers", "employees", "retail_investors", "businesses"] as const).find((c) => cats.includes(c)) ?? null;
+  const victims = victimsScore({
+    identifiable: (b.victims.identifiable.value as any) ?? null,
+    proof: i?.proof_type ?? null,
+    notified_share: share,
+    other_proof: i?.other_proof ?? null,
+    category,
+    victims: share && i?.group_count ? i.group_count : (b.victims.number.value as number | null),
+  });
+  const h = assessments?.harm;
+  const explicit = (h?.quotes ?? []).find((q: any) => q.quote_verified && q.paragraph);
+  const harm = harmScore({
+    quantification: (b.harm.quantified.value as any) ?? null,
+    natures: ((b.harm.nature.value as string[] | null) ?? []).filter((n) => ["overcharge", "financial", "non_material", "loss_of_chance"].includes(n)) as any,
+    recognition: explicit ? "explicit" : b.harm.description.value ? "general" : "none",
+    paragraph: explicit?.paragraph ?? null,
+  });
+  const dur = b.timeline.expected_duration_years.value;
+  const scores: Record<string, Score> = {
+    value: valueScore(base),
+    victims,
+    defendant: defendantScore(base, revenue?.net_income_eur ?? null, revenue?.entity ?? null),
+    harm,
+    timeline: timelineScore(b.timeline.limitation_ends.value as string | null, typeof dur === "number" ? dur : dur != null && dur !== "" ? Number(dur) : null),
+  };
+  b.scores = scores;
 }
 
 // Fill in the computed scenarios from the (possibly association-edited) category, € per victim and funder share.
@@ -262,6 +295,7 @@ export async function loadBrief(id: string): Promise<Brief | null> {
   if (Object.keys(edits).length) applyEdits(brief, edits);
   brief.finalized_at = typeof edits._finalized_at === "string" ? edits._finalized_at : null;
   computeValue(brief, a);
-  computeSolvency(brief);
+  computeSolvency(brief, revenue);
+  computeScores(brief, assessments, revenue);
   return brief;
 }

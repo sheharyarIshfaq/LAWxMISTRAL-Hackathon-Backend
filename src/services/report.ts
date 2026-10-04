@@ -78,7 +78,7 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
   const hq = (b.harm.quantified as any).detail ?? null;
   const revenue = b.defendant.revenue.value as { amount_eur: number; entity: string; year: number } | null;
   const current = (b.defendant as any).current_revenue?.value as { amount_eur: number; entity: string; year: number | null } | null;
-  const solv = b.defendant.solvency.calc as { ratio: number; exposure_eur: number; revenue_eur: number } | undefined;
+  const solv = b.defendant.solvency.calc as { score: number; ratio: number; exposure_eur: number; net_income_eur: number; entity: string | null; year: number | null } | undefined;
   const today = new Date().toISOString().slice(0, 10);
 
   const header = `
@@ -95,6 +95,18 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
     </div>
     <div class="draft">DRAFT FOR LEGAL REVIEW · generated from the CNIL decision · every quote is checked word for word against the decision · values in [brackets] are to be provided</div>
   </header>`;
+
+  // Legal team's five scores (0-100), computed in code; "—" with the reason when an input is missing.
+  const SCORE_LABELS: [string, string][] = [["value", "Value of the claim"], ["victims", "Victims"], ["defendant", "Defendant"], ["harm", "Type of harm"], ["timeline", "Timeline"]];
+  const scoreTiles = (b as any).scores
+    ? `<section class="scores">${SCORE_LABELS.map(([k, label]) => {
+        const sc = (b as any).scores[k];
+        const v = sc?.score;
+        const tone = v == null ? "s-none" : v >= 70 ? "s-good" : v >= 40 ? "s-mid" : "s-low";
+        const why = v == null ? sc?.reason ?? "" : sc.explanation;
+        return `<div class="score ${tone}" title="${esc(why)}"><div class="s-top"><span class="s-label">${esc(label)}</span><span class="s-val">${v == null ? "—" : v}${sc?.label ? ` <small>${esc(sc.label)}</small>` : ""}</span></div><div class="s-bar"><div style="width:${v ?? 0}%"></div></div><div class="s-why">${esc(why)}</div></div>`;
+      }).join("")}</section>`
+    : "";
 
   const harm = card("Type of harm", "🛡", "c-harm", `
     <div class="label">Is the harm quantified? ${tag(b.harm.quantified)}</div>
@@ -122,7 +134,7 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
     ${chips([["private_company", "Private company"], ["listed_group", "Listed group"], ["public_body", "Public body"], ["association_or_union", "Association or union"]], b.defendant.nature.value as string[], "soft")}
     <div class="label">Solvency ${tag(b.defendant.solvency)}</div>
     ${chips([["low", "Low"], ["medium", "Medium"], ["strong", "Strong"]], b.defendant.solvency.value as string, "wide")}
-    ${solv ? `<div class="solv"><b>${(solv.ratio * 100).toFixed(1)}%</b> = exposure ${eurM(solv.exposure_eur)} ÷ revenue ${eurM(solv.revenue_eur)}<div class="muted">Strong &lt; 10% · medium 10–50% · low &gt; 50% (exposure = base scenario)</div></div>` : `<p class="muted">${esc(b.defendant.solvency.note ?? "")}</p>`}
+    ${solv ? `<div class="solv"><b>${solv.ratio.toFixed(1)}%</b> = damages ${eurM(solv.exposure_eur)} ÷ net income ${eurM(solv.net_income_eur)}${solv.entity ? ` (${esc(solv.entity)}${solv.year ? `, ${solv.year}` : ""})` : ""} · score ${solv.score}/100<div class="muted">0–39 Low · 40–69 Medium · 70–100 Strong (damages = base scenario)</div></div>` : `<p class="muted">${esc(b.defendant.solvency.note ?? "")}</p>`}
     <p><b>Indicators:</b> revenue ${current ? `${eurM(current.amount_eur)} (${esc(current.entity)}${current.year ? `, ${current.year}` : ""}${b.defendant.current_revenue.source_url ? `, <a href="${esc(b.defendant.current_revenue.source_url)}">source</a>` : ""})` : blank()}${revenue && (!current || revenue.entity !== current.entity) ? `; group ${esc(revenue.entity)} ${eurM(revenue.amount_eur)} (${revenue.year}, decision)` : `, group ${esc(b.defendant.group.value) || blank()}`},
       insurance ${blank()}, competent court ${esc(b.defendant.competent_court.value) || blank("civil / administrative")} ${tag(b.defendant.competent_court)}</p>
     ${cite(b.defendant.revenue)}`);
@@ -179,7 +191,7 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
     : "";
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(b.header.action_name.value)} – funding brief</title>${opts.embed ? '<base target="_blank"><style>html { zoom: 1 } body { background: #fff; padding: 12px; }</style>' : ""}<style>${CSS}</style></head>
-  <body>${header}<main><div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${summaryPage}</body></html>`;
+  <body>${header}<main>${scoreTiles}<div class="grid">${harm}${victims}${defendant}${value}</div>${timeline}${footer}</main>${summaryPage}</body></html>`;
 }
 
 export async function printPdf(html: string, outPdf: string) {
@@ -192,7 +204,7 @@ export async function printPdf(html: string, outPdf: string) {
 
 const CSS = `
 @page { size: A4; margin: 10mm; }
-html { zoom: 0.9; }
+html { zoom: 0.85; }
 * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body { margin: 0; font: 9.5px/1.4 -apple-system, "Helvetica Neue", Arial, sans-serif; color: #1c2333; background: #fff; }
 .mono, .eyebrow, .label, .scen th, .scen td, .step .mono { font-family: "SF Mono", Menlo, Consolas, monospace; }
@@ -245,6 +257,14 @@ main { padding: 8px 0 0; }
 .footer { background: #172238; color: #fff; border-radius: 8px; padding: 10px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; break-inside: avoid; }
 .footer .eyebrow { color: #f0c05a; display: block; } .footer div { margin: 2px 0; } .footer .muted { color: #c9d1e3; }
 .page-break { break-before: page; }
+.scores { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 8px; }
+.score { background: #fff; border: 1px solid #e3e6ec; border-radius: 8px; padding: 6px 8px; }
+.s-top { display: flex; justify-content: space-between; align-items: baseline; gap: 4px; }
+.s-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #475467; }
+.s-val { font-size: 16px; font-weight: 800; color: #172238; } .s-val small { font-size: 8px; font-weight: 600; }
+.s-bar { height: 4px; background: #eef0f4; border-radius: 2px; margin: 3px 0; } .s-bar div { height: 4px; border-radius: 2px; }
+.s-good .s-bar div { background: #12b76a; } .s-mid .s-bar div { background: #f79009; } .s-low .s-bar div { background: #f04438; } .s-none .s-val { color: #98a2b3; }
+.s-why { font-size: 7px; line-height: 1.3; color: #667085; }
 .md { font-size: 11px; line-height: 1.5; } .md h1, .md h2:not(.doc-h) { font-size: 14px; color: #172238; margin: 14px 0 4px; border-bottom: 1px solid #eaecf0; padding-bottom: 2px; }
 .md h3, .md h4 { font-size: 12px; color: #172238; margin: 10px 0 2px; } .md p { margin: 0 0 7px; } .md a { color: #2350a8; text-decoration: none; font-weight: 600; }
 .doc { background: #fff; border-radius: 8px; padding: 18px 22px; }

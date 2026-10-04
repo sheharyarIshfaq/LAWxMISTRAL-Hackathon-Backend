@@ -7,6 +7,7 @@ import { proseClass, renderMarkdown } from "@/lib/markdown";
 
 const FILTERS = [
   { id: "all", label: "All", test: () => true },
+  { id: "qualified", label: "Qualified", test: (i: RadarItem) => Boolean(i.case_id) },
   { id: "candidate", label: "Candidates", test: (i: RadarItem) => i.status === "candidate" },
   { id: "public", label: "Public bodies", test: (i: RadarItem) => i.status === "candidate_public" },
   { id: "breach", label: "All data breaches", test: (i: RadarItem) => i.data_breach },
@@ -112,6 +113,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
               className={`h-8 cursor-pointer rounded-full px-3 text-[13px] font-medium ${active ? "bg-paper text-white" : "text-muted hover:bg-elevated"}`}
             >
               {f.label}
+              {f.id === "qualified" && feed ? ` (${feed.items.filter((i) => i.case_id).length})` : ""}
             </button>
           );
         })}
@@ -125,6 +127,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
           <li key={item.id} className="py-5">
             <div className="flex flex-wrap items-center gap-2">
               {item.is_new ? <span className="rounded-full bg-gold px-2 py-0.5 text-[11px] font-semibold text-white">NEW</span> : null}
+              {item.case_id ? <span className="rounded-full bg-[#e0eaff] px-2 py-0.5 text-[11px] font-semibold text-[#2d31a6]">QUALIFIED · brief ready</span> : null}
               {item.priority ? (
                 <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase ${PRIORITY_STYLE[item.priority]}`}>{item.priority} priority</span>
               ) : null}
@@ -145,7 +148,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
               ))}
             </ul>
             <div className="mt-4 flex flex-wrap gap-2">
-              {item.legifrance_url || item.case_id ? (
+              {item.case_id ? (
                 <button
                   type="button"
                   disabled={starting === item.id}
@@ -154,7 +157,9 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
                 >
                   {starting === item.id ? "Opening…" : "Work on this case"}
                 </button>
-              ) : null}
+              ) : (
+                <span className="inline-flex h-10 items-center rounded-xl bg-elevated px-3 text-sm text-faint">Not qualified for processing</span>
+              )}
               {item.legifrance_url ? (
                 <a
                   href={item.legifrance_url}

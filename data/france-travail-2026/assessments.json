@@ -1,0 +1,78 @@
+{
+  "identifiability": {
+    "level": "yes",
+    "statement": "FRANCE TRAVAIL holds a list of 36,820,828 persons (registered job seekers and candidates with an account) and can individually notify them as it did for the data breach.",
+    "list_holder": {
+      "answer": "yes",
+      "evidence": "FRANCE TRAVAIL holds a database of 36,820,828 persons, including registered job seekers and candidates with an account on francetravail.fr.",
+      "quote": "25 giga octets (Go) de données concernant 36 820 828 personnes",
+      "page": 3,
+      "quote_verified": true,
+      "paragraph": "§ 14",
+      "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=14.%20FRANCE%20TRAVAIL%20a%20pr%C3%A9cis%C3%A9%20que%20les%20attaquants,36%20820%20828%20personnes"
+    },
+    "proof": {
+      "answer": "yes",
+      "evidence": "FRANCE TRAVAIL notified the CNIL of the data breach and can individually identify and notify the affected persons.",
+      "quote": "FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL",
+      "page": 3,
+      "quote_verified": true,
+      "paragraph": "§ 15",
+      "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=15.%20Le%208%20mars%202024%2C%20FRANCE%20TRAVAIL%20a,aupr%C3%A8s%20de%20la%20CNIL"
+    },
+    "subgroups": [],
+    "weakening": [
+      {
+        "wording": "third parties",
+        "explanation": "CAP EMPLOI are independent third-party organizations with access to FRANCE TRAVAIL's system.",
+        "sources": [
+          {
+            "quote": "les structures CAP EMPLOI sont autonomes et généralement créées sous forme associative, indépendantes de FRANCE TRAVAIL",
+            "page": 2,
+            "quote_verified": true,
+            "paragraph": "§ 3",
+            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=3.%20FRANCE%20TRAVAIL%20assure%20cette%20derni%C3%A8re%20mission%20en,ind%C3%A9pendantes%20de%20FRANCE%20TRAVAIL"
+          },
+          {
+            "quote": "les conseillers CAP EMPLOI se connectent à distance, […], à l’applicatif métier",
+            "page": 5,
+            "quote_verified": true,
+            "paragraph": "§ 35",
+            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=35.%20En%20l%E2%80%99esp%C3%A8ce%2C%20la%20formation%20restreinte%20rappelle%20que,%5B%E2%80%A6%5D%2C%20%C3%A0%20l%E2%80%99applicatif%20m%C3%A9tier"
+          },
+          {
+            "quote": "l’accès aux CAP EMPLOI pour l’accompagnement des demandeurs d’emploi",
+            "page": 5,
+            "quote_verified": true,
+            "paragraph": "§ 40",
+            "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=40.%20La%20formation%20restreinte%20souscrit%20%C3%A0%20l%E2%80%99argument%20de,l%E2%80%99accompagnement%20des%20demandeurs%20d%E2%80%99emploi"
+          }
+        ]
+      }
+    ]
+  },
+  "harm": {
+    "level": "to_be_proven",
+    "justification": "The decision concerns a GDPR infringement (Article 32) where the harm to data subjects (e.g., loss of control over personal data, potential misuse of exfiltrated data) is not quantified or quantifiable. Under CJEU case law, each victim must prove their individual damage, and the decision does not provide figures or objective methods to calculate harm.",
+    "quotes": [
+      {
+        "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
+        "page": 3,
+        "quote_verified": true,
+        "quote_fixed": "repaired",
+        "paragraph": "§ 14",
+        "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=14.%20FRANCE%20TRAVAIL%20a%20pr%C3%A9cis%C3%A9%20que%20les%20attaquants,36%20820%20828%20personnes"
+      },
+      {
+        "quote": "la violation de données a concerné les personnes inscrites au cours des 20 dernières années",
+        "page": 17,
+        "quote_verified": true,
+        "quote_fixed": "repaired",
+        "paragraph": "§ 123",
+        "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671#:~:text=123.%20La%20formation%20restreinte%20rappelle%20en%20outre%20que,des%2020%20derni%C3%A8res%20ann%C3%A9es"
+      }
+    ],
+    "subgroups": []
+  },
+  "assessed_at": "2026-10-04T14:02:57.922Z"
+}

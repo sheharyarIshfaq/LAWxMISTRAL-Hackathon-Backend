@@ -1,0 +1,52 @@
+{
+  "category": "Violation de données non communiquée aux victimes",
+  "rule": "If the decision supports a data-breach row (\"Violation de données…\"), choose among those only; then the most conservative one (lowest base opt-in rate) whose quote is verified",
+  "matches": [
+    {
+      "category": "Violation de données par défaut de sécurité, victimes identifiées",
+      "reason": "The decision explicitly states that 524,867 patient files were exfiltrated, and the hospital identified and contacted its patients individually.",
+      "quote": "524 867 fiches patients contenant des informations telles que l’état civil",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "category": "Violation de données sensibles (santé, banque)",
+      "reason": "The decision confirms that health data and copies of national ID cards (a sensitive document) were among the exfiltrated data.",
+      "quote": "43 fiches comportaient des données de santé, et 202 246 fiches comportaient des données relatives à la personne de confiance",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "category": "Violation de données non communiquée aux victimes",
+      "reason": "The decision states that 202,246 designated third-party contacts were not informed of the data breach despite their data being exfiltrated.",
+      "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
+      "page": 18,
+      "quote_verified": true
+    },
+    {
+      "category": "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+      "reason": "The decision highlights that the hospital's access policy allowed unrestricted access to patient files, violating the principle of data minimization.",
+      "quote": "les praticiens médicaux et paramédicaux peuvent librement accéder aux fiches de l’ensemble des patients",
+      "page": 11,
+      "quote_verified": true
+    },
+    {
+      "category": "Sous-traitance, registre, analyse d'impact, protection dès la conception",
+      "reason": "The decision notes that the hospital's AIPD identified the lack of patient file compartmentalization as a major threat, and the hospital failed to implement adequate security measures.",
+      "quote": "l’analyse d’impact sur la protection des données réalisée par l’HOPITAL PRIVE DE LA LOIRE en 2021 avait d’ores et déjà identifié ce défaut",
+      "page": 12,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    }
+  ],
+  "reason": "The decision states that 202,246 designated third-party contacts were not informed of the data breach despite their data being exfiltrated.",
+  "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
+  "page": 18,
+  "quote_verified": true,
+  "other_categories": [
+    "Violation de données par défaut de sécurité, victimes identifiées",
+    "Violation de données sensibles (santé, banque)",
+    "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+    "Sous-traitance, registre, analyse d'impact, protection dès la conception"
+  ]
+}

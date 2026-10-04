@@ -1,0 +1,89 @@
+{
+  "identifiability": {
+    "level": "partly",
+    "statement": "524,867 patients known to the hospital and individually notified; 202,246 designated relatives never informed",
+    "list_holder": {
+      "answer": "yes",
+      "evidence": "Hospital holds the DPI with data of approximately 530,000 patients and 200,000 designated third parties",
+      "quote": "le DPI de l’HOPITAL PRIVE DE LA LOIRE comportait les données d’environ 530 000 patients, outre celles d’environ 200 000 personnes désignées par ces derniers comme tiers de confiance",
+      "page": 7,
+      "quote_verified": true,
+      "paragraph": "§ 48",
+      "url": null
+    },
+    "proof": {
+      "answer": "partly",
+      "evidence": "Patients were individually notified via email, SMS, or postal mail; designated relatives were not notified",
+      "quote": "l’hôpital a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique",
+      "page": 18,
+      "quote_verified": true,
+      "paragraph": "§ 136",
+      "url": null
+    },
+    "subgroups": [
+      {
+        "group": "524,867 patients",
+        "level": "yes",
+        "evidence": "Hospital holds their data and individually notified them via email, SMS, or postal mail",
+        "quote": "l’hôpital a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique",
+        "page": 18,
+        "quote_verified": true,
+        "paragraph": "§ 136",
+        "url": null
+      },
+      {
+        "group": "202,246 designated relatives",
+        "level": "no",
+        "evidence": "Hospital did not notify them despite holding their data",
+        "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
+        "page": 18,
+        "quote_verified": true,
+        "paragraph": "§ 137",
+        "url": null
+      }
+    ],
+    "weakening": [
+      {
+        "wording": "third parties",
+        "explanation": "Refers to the 200,000 designated third parties (relatives) whose data was also compromised",
+        "sources": [
+          {
+            "quote": "outre celles d’environ 200 000 personnes désignées par ces derniers comme tiers de confiance",
+            "page": 7,
+            "quote_verified": true,
+            "paragraph": "§ 48",
+            "url": null
+          }
+        ]
+      },
+      {
+        "wording": "insufficient communication",
+        "explanation": "CNIL found the hospital's communication to designated relatives insufficient under Article 34 RGPD",
+        "sources": [
+          {
+            "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance",
+            "page": 18,
+            "quote_verified": true,
+            "paragraph": "§ 137",
+            "url": null
+          }
+        ]
+      }
+    ]
+  },
+  "harm": {
+    "level": "to_be_proven",
+    "justification": "The decision does not fix or quantify the harm; it only states that the data breach is 'de nature à créer un préjudice moral et matériel' (likely to cause moral and material harm) for the individuals concerned, which falls under Rule 1 (potential harm). Additionally, GDPR infringements alone do not establish harm without individual proof (Rule 3).",
+    "quotes": [
+      {
+        "quote": "de nature à créer un préjudice moral et matériel pour les personnes concernées",
+        "page": 7,
+        "quote_verified": true,
+        "paragraph": "§ 49",
+        "url": null
+      }
+    ],
+    "subgroups": []
+  },
+  "assessed_at": "2026-10-04T14:02:51.124Z"
+}

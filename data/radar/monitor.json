@@ -1,9 +1,9 @@
 {
   "interval_hours": 6,
-  "last_run": "2026-10-04T13:52:38.338Z",
-  "next_run": "2026-10-04T19:52:38.338Z",
+  "last_run": "2026-10-04T14:04:08.894Z",
+  "next_run": "2026-10-04T20:04:08.894Z",
   "last_result": {
-    "total": 394,
+    "total": 395,
     "new": 0,
     "new_candidates": 0,
     "emails": 0,

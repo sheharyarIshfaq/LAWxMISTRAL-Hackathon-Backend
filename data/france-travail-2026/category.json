@@ -1,0 +1,54 @@
+{
+  "category": "Violation de données non communiquée aux victimes",
+  "rule": "If the decision supports a data-breach row (\"Violation de données…\"), choose among those only; then the most conservative one (lowest base opt-in rate) whose quote is verified",
+  "matches": [
+    {
+      "category": "Violation de données par défaut de sécurité, victimes identifiées",
+      "reason": "The decision confirms a data breach due to security failures, and the victims are identified as the 36,820,828 individuals whose data was exfiltrated.",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
+      "page": 3,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "category": "Violation de données sensibles (santé, banque)",
+      "reason": "The decision explicitly states that the treatment includes health data (handicap-related) and that such data was at risk due to the breach.",
+      "quote": "le traitement comporte de nombreuses données à caractère personnel, dont des catégories particulières au sens de l’article 9,",
+      "page": 6,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "category": "Violation de données non communiquée aux victimes",
+      "reason": "The decision does not state that victims were informed of the breach; it only mentions that FRANCE TRAVAIL notified the CNIL.",
+      "quote": "FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "category": "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+      "reason": "The decision highlights excessive access to data (beyond what was necessary) and lack of minimization in the treatment.",
+      "quote": "l’accès par les conseillers CAP EMPLOI à un nombre important de données de tous les demandeurs d’emploi",
+      "page": 13,
+      "quote_verified": true
+    },
+    {
+      "category": "Sous-traitance, registre, analyse d'impact, protection dès la conception",
+      "reason": "The decision mentions AIPDs (Analyse d'Impact) and the lack of implementation of their recommendations, such as multi-factor authentication.",
+      "quote": "AIPD prévoyaient la mise en œuvre d’une solution d’authentification à deux facteurs pour 2023,",
+      "page": 11,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    }
+  ],
+  "reason": "The decision does not state that victims were informed of the breach; it only mentions that FRANCE TRAVAIL notified the CNIL.",
+  "quote": "FRANCE TRAVAIL a procédé à une notification de violation de données auprès de la CNIL",
+  "page": 3,
+  "quote_verified": true,
+  "other_categories": [
+    "Violation de données par défaut de sécurité, victimes identifiées",
+    "Violation de données sensibles (santé, banque)",
+    "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+    "Sous-traitance, registre, analyse d'impact, protection dès la conception"
+  ]
+}

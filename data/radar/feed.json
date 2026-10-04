@@ -1,10 +1,31 @@
 {
   "source": "https://www.cnil.fr/fr/les-sanctions-prononcees-par-la-cnil",
-  "scanned_at": "2026-10-04T13:52:38.554Z",
+  "scanned_at": "2026-10-04T14:04:08.956Z",
   "from_cache": false,
   "items": [
     {
-      "id": "2026-04-02_U09DScOJVM",
+      "id": "2026-07-21_hopital-prive-loire-2026",
+      "date": "2026-07-21",
+      "organisation_type": "HOPITAL PRIVE DE LA LOIRE",
+      "themes": "security of processing · communication of a personal data breach to the data subject (art. 32, art. 34) · not yet on the CNIL list",
+      "decision": "Délibération SAN-2026-009 du 21 juillet 2026 · amende de 500 000 euros",
+      "fine_eur": 500000,
+      "legifrance_url": null,
+      "data_breach": true,
+      "public_body": false,
+      "status": "candidate",
+      "priority": "medium",
+      "reasons": [
+        "Data breach: the CNIL found breaches of art. 32, art. 34",
+        "Fine: €500,000",
+        "Decision published on Légifrance; not yet on the CNIL's sanctions list"
+      ],
+      "case_id": "hopital-prive-loire-2026",
+      "first_seen_at": "2026-10-04T14:04:06.459Z",
+      "is_new": false
+    },
+    {
+      "id": "2026-04-02_38eb427d61",
       "date": "2026-04-02",
       "organisation_type": "SOCIÉTÉ EXPLOITANT DES BOUTIQUES TOILETTES (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Minimisation des données (vidéosurveillance) Encadrement des relations entre le responsable de traitement et le sous-traitant Obligation de réaliser une analyse d'impact",
@@ -23,7 +44,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-26_U09DScOJVM",
+      "id": "2026-03-26_4c8474765f",
       "date": "2026-03-26",
       "organisation_type": "SOCIÉTÉ ORGANISANT DES ÉVÈNEMENTS PAR LA PROMOTION ET LA VENTE DE BILLETS (procédure simplifiée)",
       "themes": "Durée de conservation Obligation de traiter les données de façon licite Information des personnes Non respect du droit à l'effacement Consentement des personnes ( cookies ) Information des personnes ( cookies )",
@@ -42,7 +63,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-26_U09DScOJVM",
+      "id": "2026-03-26_f718f0fdef",
       "date": "2026-03-26",
       "organisation_type": "SOCIÉTÉ EXERÇANT UNE ACTIVITÉ D'ARTS DU SPECTACLE VIVANT (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction",
@@ -61,7 +82,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-26_U09DScOJVM",
+      "id": "2026-03-26_aa2a626d28",
       "date": "2026-03-26",
       "organisation_type": "SOCIÉTÉ AYANT POUR ACTIVITÉ L'HÉBERGEMENT DE TOURISME (procédure simplifiée)",
       "themes": "Minimisation des données Durée de conservation Encadrement des relations entre le responsable de traitement et le sous-traitant",
@@ -80,7 +101,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-12_TUlOSVNUw4",
+      "id": "2026-03-12_490ccba81b",
       "date": "2026-03-12",
       "organisation_type": "MINISTÈRE",
       "themes": "Obligation de traiter les données de façon licite Durée de conservation Défaut de sécurité des données",
@@ -101,7 +122,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-12_U09DScOJVM",
+      "id": "2026-03-12_2e3fee3857",
       "date": "2026-03-12",
       "organisation_type": "SOCIÉTÉ EXERÇANT UNE ACTIVITÉ DE VENTE À DISTANCE SUR CATALOGUE SPECIALISÉE (procédure simplifiée)",
       "themes": "Information des personnes (exercice des droits) Non respect du droit d'accès",
@@ -120,7 +141,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-05_QVNTT0NJQV",
+      "id": "2026-03-05_8a1899c456",
       "date": "2026-03-05",
       "organisation_type": "ASSOCIATION AYANT POUR OBJET DE PROMOUVOIR L'ACCÈS AUX SOINS DENTAIRES DES PERSONNES DÉMUNIES (procédure simplifiée)",
       "themes": "Information des personnes Défaut de sécurité des données",
@@ -141,7 +162,7 @@
       "is_new": false
     },
     {
-      "id": "2026-03-05_QVNTT0NJQV",
+      "id": "2026-03-05_ef29ee4f0b",
       "date": "2026-03-05",
       "organisation_type": "ASSOCIATION DE DÉFENSE DE DROITS FONDAMENTAUX(procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction",
@@ -160,7 +181,7 @@
       "is_new": false
     },
     {
-      "id": "2026-02-05_TcOJREVDSU",
+      "id": "2026-02-05_f6f19c1d35",
       "date": "2026-02-05",
       "organisation_type": "MÉDECIN (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction",
@@ -179,7 +200,7 @@
       "is_new": false
     },
     {
-      "id": "2026-02-05_QVZPQ0FUIC",
+      "id": "2026-02-05_122161b931",
       "date": "2026-02-05",
       "organisation_type": "AVOCAT (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction",
@@ -198,7 +219,7 @@
       "is_new": false
     },
     {
-      "id": "2026-01-29_w4lUQUJMSV",
+      "id": "2026-01-29_1cff12cb0d",
       "date": "2026-01-29",
       "organisation_type": "ÉTABLISSEMENT PUBLIC EXERÇANT UNE ACTIVITÉ DE TRANSPORT URBAIN (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Information des personnes Défaut de sécurité des données",
@@ -220,7 +241,7 @@
       "is_new": false
     },
     {
-      "id": "2026-01-29_QVNTT0NJQV",
+      "id": "2026-01-29_4cbf2df9da",
       "date": "2026-01-29",
       "organisation_type": "ASSOCIATION RELIGIEUSE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Information des personnes (vidéoprotection)",
@@ -260,7 +281,7 @@
       "is_new": false
     },
     {
-      "id": "2026-01-15_Q0FORElEQV",
+      "id": "2026-01-15_610518583f",
       "date": "2026-01-15",
       "organisation_type": "CANDIDATS AUX ÉLECTIONS LÉGISLATIVES (procédure simplifiée)",
       "themes": "Information des personnes (exercice des droits) Non respect du droit d'accès",
@@ -321,7 +342,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-31_VU5JVkVSU0",
+      "id": "2025-12-31_8a38f2c013",
       "date": "2025-12-31",
       "organisation_type": "UNIVERSITE (procédure simplifiée)",
       "themes": "Limitation des finalités",
@@ -340,7 +361,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-30_U09DSUVURS",
+      "id": "2025-12-30_08836a963c",
       "date": "2025-12-30",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE L'ACQUISITION ET LA GESTION D'HOTELS/RESIDENCES HOTELIERES (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Information des personnes (vidéosurveillance)",
@@ -359,7 +380,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-30_U09DSUVURS",
+      "id": "2025-12-30_f4c3cfa1d8",
       "date": "2025-12-30",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE FRET AEROPORTUAIRE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Durée de conservation Défaut de sécurité des données",
@@ -380,7 +401,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-30_Q0hJUlVSR0",
+      "id": "2025-12-30_c8db299312",
       "date": "2025-12-30",
       "organisation_type": "CHIRURGIEN DENTISTE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -419,7 +440,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-29_U09DSUVURS",
+      "id": "2025-12-29_7e169c076b",
       "date": "2025-12-29",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'EDITION DE JOURNAUX (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -438,7 +459,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-29_U09DSUVURS",
+      "id": "2025-12-29_52f093208f",
       "date": "2025-12-29",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'EDITION DE JOURNAUX (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -457,7 +478,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-29_U09DSUVURS",
+      "id": "2025-12-29_b61c12bd15",
       "date": "2025-12-29",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE COMMERCE DE GRANDE DISTRIBUTION (procédure simplifiée)",
       "themes": "Minimisation des données (vidéosurveillance) Défaut de coopération avec la CNIL",
@@ -476,7 +497,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-29_U09DSUVURS",
+      "id": "2025-12-29_3eec56d2fb",
       "date": "2025-12-29",
       "organisation_type": "SOCIETE EDITANT UNE APPLICATION MOBILE",
       "themes": "Défaut de sécurité des données Consentement des personnes (données sensibles) Consentement des personnes (cookies)",
@@ -517,7 +538,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-18_U09DSUVURS",
+      "id": "2025-12-18_e22ac59d42",
       "date": "2025-12-18",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE COLLECTE DE DONNEES PROVENANT DE JEUX CONCOURS, DE PROSPECTION COMMERCIALE ET DE TRANSMISSION DE DONNEES A SES CLIENTS (procédure simplifiée)",
       "themes": "Consentement des personnes (prospection commerciale par voie électronique - L. 34-5 CPCE) Durée de conservation Défaut de sécurité des données",
@@ -538,7 +559,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-18_U09DSUVURS",
+      "id": "2025-12-18_35ae003133",
       "date": "2025-12-18",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE PROGRAMMATION INFORMATIQUE (GESTIONS LOCATIVE ET DE COPROPRIETE) (procédure simplifiée)",
       "themes": "Défaut de base légale (prospection commerciale) Information des personnes (prospection commerciale) Défaut de sécurité des données",
@@ -559,7 +580,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-18_U09DSUVURS",
+      "id": "2025-12-18_868b8ca354",
       "date": "2025-12-18",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE REALISATION D'OPERATIONS DE PROSPECTION COMMERCIALE PAR VOIE ELECTRONIQUE POUR LE COMPTE D'AGENCES DE PUBLICITE (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Non respect du droit d'opposition",
@@ -579,7 +600,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-18_U09DSUVURS",
+      "id": "2025-12-18_986f37b8c4",
       "date": "2025-12-18",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE L'AMENAGEMENT PAYSAGER, L'INSTALLATION DE JARDINS ET DE TERRAINS DE SPORT (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -598,7 +619,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-18_U09DSUVURS",
+      "id": "2025-12-18_4437b27953",
       "date": "2025-12-18",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'AGENCE DE VOYAGE (procédure simplifiée)",
       "themes": "Information des personnes (cookies) Consentement des personnes (cookies)",
@@ -617,7 +638,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-15_U09DSUVURS",
+      "id": "2025-12-15_86e314cc81",
       "date": "2025-12-15",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'EDITION DE LOGICIELS, NOTAMMENT DE PAIE (procédure simplifiée)",
       "themes": "Défaut de sécurité des données",
@@ -638,7 +659,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-15_U09DSUVURS",
+      "id": "2025-12-15_54783e149a",
       "date": "2025-12-15",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE COMMERCE D'ALIMENTATION GENERALE SPECIALISEE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite Minimisation des données (vidéosurveillance/vidéoprotection) Durée de conservation",
@@ -657,7 +678,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_Q0FORElEQV",
+      "id": "2025-12-11_5eb33e2542",
       "date": "2025-12-11",
       "organisation_type": "CANDIDAT AUX ELECTIONS LEGISLATIVES DE 2024 (procédure simplifiée)",
       "themes": "Détournement de finalités Information des personnes Non respect du droit d'opposition Encadrement des relations entre le responsable de traitement et le sous-traitant",
@@ -676,7 +697,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_Q0FORElEQV",
+      "id": "2025-12-11_13995b8deb",
       "date": "2025-12-11",
       "organisation_type": "CANDIDAT AUX ELECTIONS LEGISLATIVES DE 2024 (procédure simplifiée)",
       "themes": "Information des personnes",
@@ -695,7 +716,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_Q0FORElEQV",
+      "id": "2025-12-11_656582a14d",
       "date": "2025-12-11",
       "organisation_type": "CANDIDAT AUX ELECTIONS LEGISLATIVES DE 2024 (procédure simplifiée)",
       "themes": "Obligation de pouvoir justifier de la licéité du traitement (prospection politique) Information des personnes Non respect du droit d'opposition Défaut de sécurité des données",
@@ -716,7 +737,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_Q0FORElEQV",
+      "id": "2025-12-11_2a536e19fc",
       "date": "2025-12-11",
       "organisation_type": "CANDIDAT AUX ELECTIONS LEGISLATIVES DE 2024 (procédure simplifiée)",
       "themes": "Obligation de pouvoir justifier de la licéité du traitement (prospection politique) Information des personnes",
@@ -735,7 +756,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_U09DSUVURS",
+      "id": "2025-12-11_da5c2d6284",
       "date": "2025-12-11",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'ARTS DU SPECTACLE VIVANT (procédure simplifiée)",
       "themes": "Information des personnes (cookies) Consentement des personnes (cookies)",
@@ -754,7 +775,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_U09DSUVURS",
+      "id": "2025-12-11_30e4cc1476",
       "date": "2025-12-11",
       "organisation_type": "SOCIETE DE COURTAGE EN TRAVAUX, CONSULTING EN BATIMENT ET TRAVAUX PUBLICS, ACHAT ET REVENTE DE MATERIEL, TRANSACTION IMMOBILIERE ET MAITRISE D'ŒUVRE (procédure simplifiée)",
       "themes": "Non-conformité (procédure d'injonction)",
@@ -793,7 +814,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_U09DSUVURS",
+      "id": "2025-12-11_7372a4b03c",
       "date": "2025-12-11",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE L'ACCOMPAGNEMENT, L'ORIENTATION ET L'EDUCATION DE VICTIMES D'INCESTES (procédure simplifiée)",
       "themes": "Consentement des personnes (prospection commerciale par voie électronique - L. 34-5 CPCE) Information des personnes Non respect du droit d'accès",
@@ -812,7 +833,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-11_RVRBQkxJU1",
+      "id": "2025-12-11_3642b45dcc",
       "date": "2025-12-11",
       "organisation_type": "ETABLISSEMENT PUBLIC EXERCANT UNE ACTIVITE DE GESTION LOCATIVE DE LOGEMENTS (procédure simplifiée)",
       "themes": "Limitation des finalités Minimisation des données Information des personnes Non respect du droit d'opposition Défaut de sécurité des données",
@@ -834,7 +855,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-08_U09DSUVURS",
+      "id": "2025-12-08_9ffa41d884",
       "date": "2025-12-08",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE COMMERCE DE DETAIL (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite Minimisation des données (vidéoprotection et vidéosurveillance) Durée de conservation Information des personnes Encadrement des relations entre le responsable de traitement et le sous-traitant Défaut de sécurité des données Obligation de réaliser une analyse d'impact",
@@ -855,7 +876,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-04_UEFSVEkgUE",
+      "id": "2025-12-04_3a1715d14c",
       "date": "2025-12-04",
       "organisation_type": "PARTI POLITIQUE (procédure simplifiée)",
       "themes": "Durée de conservation Non respect du droit d'accès Défaut de sécurité des données",
@@ -876,7 +897,7 @@
       "is_new": false
     },
     {
-      "id": "2025-12-04_U09DSUVURS",
+      "id": "2025-12-04_c22883099b",
       "date": "2025-12-04",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'HOTELLERIE ET D'HEBERGEMENT (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -914,7 +935,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-27_U09DSUVURS",
+      "id": "2025-11-27_26edb00f3e",
       "date": "2025-11-27",
       "organisation_type": "SOCIETE DE VENTE A DISTANCE",
       "themes": "Consentement des personnes (cookies) Information des personnes (cookies)",
@@ -933,7 +954,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-27_U09DSUVURS",
+      "id": "2025-11-27_5edf41b38a",
       "date": "2025-11-27",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA CREATION DE SITES INTERNET ET APPLICATIONS MOBILES POUR DES SOCIETES DE DIVERS SECTEURS (procédure simplifiée)",
       "themes": "Défaut de sécurité des données Obligation de réaliser une analyse d'impact",
@@ -953,7 +974,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-27_Q0FORElEQV",
+      "id": "2025-11-27_3f46a003fb",
       "date": "2025-11-27",
       "organisation_type": "CANDIDAT AUX ELECTIONS AU PARLEMENT EUROPEEN DE 2024 (procédure simplifiée)",
       "themes": "Obligation de pouvoir justifier de la licéité du traitement (prospection politique) Non respect du droit d'effacement",
@@ -972,7 +993,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-27_U09DSUVURS",
+      "id": "2025-11-27_c5e62a853d",
       "date": "2025-11-27",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE CONSEIL ET D'ACCOMPAGNEMENT EN MATIERE DE SOINS",
       "themes": "Obligation de réaliser une analyse d'impact Registre des activités de traitement",
@@ -991,7 +1012,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-20_U09DSUVURS",
+      "id": "2025-11-20_5dafaa519e",
       "date": "2025-11-20",
       "organisation_type": "SOCIETE EXERCANT DES ACTIVITES DE SOCIETES DE HOLDING ET DEVELOPPANT DES SOLUTIONS EN RESSOURCES HUMAINES (procédure simplifiée)",
       "themes": "Absence de réponse à une demande d'exercice des droits Défaut de coopération avec la CNIL",
@@ -1030,7 +1051,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-13_U09DSUVURS",
+      "id": "2025-11-13_9dd1ef0592",
       "date": "2025-11-13",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE COMMERCE DE DETAIL CHAUSSURES (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies) Information des personnes (cookies)",
@@ -1049,7 +1070,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-13_R1JPVVBFTU",
+      "id": "2025-11-13_09372bd3e2",
       "date": "2025-11-13",
       "organisation_type": "GROUPEMENT D'INTERET ECONOMIQUE (GIE) EXERCANT UNE ACTIVITE D'ORGANISATION, DE DEVELOPPEMENT ET DE PROMOTION DE CENTRES COMMERCIAUX (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Minimisation des données (vidéosurveillance) Information des personnes Encadrement des relations entre le responsable de traitement et le sous-traitant Registre des activités de traitement Défaut de sécurité des données Obligation de réaliser une analyse d'impact",
@@ -1070,7 +1091,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-13_U09DSUVURS",
+      "id": "2025-11-13_4137c31020",
       "date": "2025-11-13",
       "organisation_type": "SOCIETE EXPLOITANT UN FONDS DE COMMERCE DE DISTRIBUTION A DOMINANTE ALIMENTAIRE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Minimisation des données (vidéosurveillance) Durée de conservation Encadrement des relations entre le responsable de traitement et le sous-traitant Registre des activités de traitement Défaut de sécurité des données Obligation de réaliser une analyse d'impact",
@@ -1091,7 +1112,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-13_U09DSUVURS",
+      "id": "2025-11-13_e29aa6962b",
       "date": "2025-11-13",
       "organisation_type": "SOCIETE EXERCANT L'ACTIVITE DE \"PORTAILS INTERNET\" PERMETTANT D'ACCEDER AUX INFORMATIONS LEGALES ET FINANCIERES DES ENTREPRISES (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies) Information des personnes (cookies)",
@@ -1110,7 +1131,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-05_Q0FCSU5FVC",
+      "id": "2025-11-05_d935b97191",
       "date": "2025-11-05",
       "organisation_type": "CABINET D'AVOCATS (procédure simplifiée)",
       "themes": "Non respect du droit d'effacement Défaut de coopération avec la CNIL",
@@ -1129,7 +1150,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-04_Q09MTEVDVE",
+      "id": "2025-11-04_33b9520522",
       "date": "2025-11-04",
       "organisation_type": "COLLECTIVITE TERRITORIALE (procédure simplifiée)",
       "themes": "Information des personnes (cookies)",
@@ -1148,7 +1169,7 @@
       "is_new": false
     },
     {
-      "id": "2025-11-04_U09DSUVURS",
+      "id": "2025-11-04_9b5d5ec129",
       "date": "2025-11-04",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE CONSEIL ET AIDE A LA GESTION AUPRES DE CLUBS DE SPORTS SUBAQUATIQUES (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies) Information des personnes (cookies)",
@@ -1167,7 +1188,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-16_U1VQRVJNQV",
+      "id": "2025-10-16_5c5d690bc6",
       "date": "2025-10-16",
       "organisation_type": "SUPERMARCHE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Minimisation des données (vidéosurveillance) Information des personnes",
@@ -1186,7 +1207,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-16_U09DSUVURS",
+      "id": "2025-10-16_d726dbe654",
       "date": "2025-10-16",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE VENTE A DISTANCE SUR CATALOGUE SPECIALISE (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -1205,7 +1226,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-16_U09DSUVURS",
+      "id": "2025-10-16_8529466bed",
       "date": "2025-10-16",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE D'EDITION DE REVUES ET PERIODIQUES (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies) Information des personnes (cookies)",
@@ -1224,7 +1245,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-16_U09DSUVURS",
+      "id": "2025-10-16_b85f88ff55",
       "date": "2025-10-16",
       "organisation_type": "SOCIETE DE CENTRES D'APPELS",
       "themes": "Minimisation des données Durée de conservation Défaut de sécurité des données",
@@ -1245,7 +1266,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-16_U09DSUVURS",
+      "id": "2025-10-16_c57170796c",
       "date": "2025-10-16",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE GESTION DE CENTRES DE SPORTS ET DE LOISIRS (procédure simplifiée)",
       "themes": "Défaut de sécurité des données Information des personnes Consentement des personnes (cookies)",
@@ -1266,7 +1287,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-09_U09DSUVURS",
+      "id": "2025-10-09_421855b32b",
       "date": "2025-10-09",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE VENTE A DISTANCE SUR CATALOGUE GENERAL (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies) Information des personnes (cookies)",
@@ -1285,7 +1306,7 @@
       "is_new": false
     },
     {
-      "id": "2025-10-02_VU5JVkVSU0",
+      "id": "2025-10-02_94aac508b6",
       "date": "2025-10-02",
       "organisation_type": "UNIVERSITE (procédure simplifiée)",
       "themes": "Limitation des finalités",
@@ -1324,7 +1345,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-11_U09DSUVURS",
+      "id": "2025-09-11_a64a447c71",
       "date": "2025-09-11",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE BANQUE ET ASSURANCE (procédure simplifiée)",
       "themes": "Information des personnes (exercice des droits) Non respect du droit d'accès",
@@ -1343,7 +1364,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-11_U09DSUVURS",
+      "id": "2025-09-11_1dd8d796fa",
       "date": "2025-09-11",
       "organisation_type": "SOCIETE DE VENTE A DISTANCE SUR CATALOGUE SPECIALISE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1362,7 +1383,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-11_QVNTT0NJQV",
+      "id": "2025-09-11_d17f729d1d",
       "date": "2025-09-11",
       "organisation_type": "ASSOCIATION GERANT UN LYCEE ET UN INTERNAT POUR LES JEUNES EN SITUATION DE DECROCHAGE SCOLAIRE (procédure simplifiée)",
       "themes": "Minimisation des données (vidéosurveillance et vidéoprotection) Durée de conservation des données Défaut de sécurité des données",
@@ -1383,7 +1404,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-11_Q09NTVVORS",
+      "id": "2025-09-11_d62819a977",
       "date": "2025-09-11",
       "organisation_type": "COMMUNE (procédure simplifiée)",
       "themes": "Durée de conservation des données (catégorie particulière de données) Défaut de sécurité des données Registre des activités de traitement",
@@ -1405,7 +1426,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-11_TUVERUNJTi",
+      "id": "2025-09-11_23da2b6f98",
       "date": "2025-09-11",
       "organisation_type": "MEDECIN GENERALISTE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1424,7 +1445,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-04_U09DSUVURS",
+      "id": "2025-09-04_2dadd53435",
       "date": "2025-09-04",
       "organisation_type": "SOCIETE DEVELOPPANT ET COMMERCIALISANT UN LOGICIEL D'AIDE AU RECRUTEMENT (procédure simplifiée)",
       "themes": "Encadrement des relations entre le responsable de traitement et le sous-traitant Registre des activités de traitement Défaut de sécurité des données Obligation de documenter une violation de données",
@@ -1445,7 +1466,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-04_U09DSUVURS",
+      "id": "2025-09-04_07650b83ec",
       "date": "2025-09-04",
       "organisation_type": "SOCIETE COLLECTANT DES DONNEES DE PROSPECTS A PARTIR DE PLUSIEURS SOURCES, NOTAMMENT DES FORMULAIRES DE PARTICIPATION A DES JEUX CONCOURS EN LIGNE (procédure simplifiée)",
       "themes": "Durée de conservation des données Défaut de base légale Information des personnes Consentement des personnes (prospection commerciale par voie électronique - L. 34-5 CPCE) Registre des activités de traitement",
@@ -1464,7 +1485,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-04_U09DSUVURS",
+      "id": "2025-09-04_1faf945932",
       "date": "2025-09-04",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE GRANDE DISTRIBUTION",
       "themes": "Obligation de traiter les données de façon licite et transparente (vidéoprotection) Minimisation des données (vidéosurveillance et vidéoprotection) Information des personnes (vidéosurveillance et vidéoprotection) Obligation de réaliser une analyse d'impact",
@@ -1483,7 +1504,7 @@
       "is_new": false
     },
     {
-      "id": "2025-09-03_U09DSUVURS",
+      "id": "2025-09-03_a81edb0432",
       "date": "2025-09-03",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA PROMOTION IMMOBILIERE DE LOGEMENTS (procédure simplifiée)",
       "themes": "Non respect du droit d'accès",
@@ -1540,7 +1561,7 @@
       "is_new": false
     },
     {
-      "id": "2025-08-25_QVNTT0NJQV",
+      "id": "2025-08-25_af90a4564a",
       "date": "2025-08-25",
       "organisation_type": "ASSOCIATION DE DEFENSE DE DROITS FONDAMENTAUX (procédure simplifiée)",
       "themes": "Non respect du droit d'effacement Défaut de coopération avec la CNIL",
@@ -1559,7 +1580,7 @@
       "is_new": false
     },
     {
-      "id": "2025-07-17_QVZPQ0FUIC",
+      "id": "2025-07-17_9593e792f0",
       "date": "2025-07-17",
       "organisation_type": "AVOCAT (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -1578,7 +1599,7 @@
       "is_new": false
     },
     {
-      "id": "2025-07-03_U09DSUVURS",
+      "id": "2025-07-03_ee6a0cb893",
       "date": "2025-07-03",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA VENTE A DISTANCE DE MOBILIER, DECORATION ET D'EQUIPEMENTS DOMESTIQUES",
       "themes": "Durée de conservation Information des personnes Information et consentement (cookies) Consentement des personnes (prospection commerciale par voie électronique - L. 34-5 CPCE)",
@@ -1597,7 +1618,7 @@
       "is_new": false
     },
     {
-      "id": "2025-07-03_TUVERUNJTi",
+      "id": "2025-07-03_45ca653722",
       "date": "2025-07-03",
       "organisation_type": "MEDECIN (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1616,7 +1637,7 @@
       "is_new": false
     },
     {
-      "id": "2025-06-18_U09DSUVURS",
+      "id": "2025-06-18_280ef7e809",
       "date": "2025-06-18",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA VENTE A DISTANCE SUR CATALOGUE GENERAL (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -1635,7 +1656,7 @@
       "is_new": false
     },
     {
-      "id": "2025-06-05_U09DSUVURS",
+      "id": "2025-06-05_b12a48fd62",
       "date": "2025-06-05",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA FABRICATION ET LE COMMERCE DE PRODUITS PHARMACEUTIQUES DESTINES AU SECTEUR ALIMENTAIRE (procédure simplifiée)",
       "themes": "Minimisation des données (vidéosurveillance)",
@@ -1654,7 +1675,7 @@
       "is_new": false
     },
     {
-      "id": "2025-06-05_U09DSUVURS",
+      "id": "2025-06-05_4c8741a083",
       "date": "2025-06-05",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE HOSPITALIERE A BUT LUCRATIF EN MEDECINE-CHIRURGIE-OBSTETRIQUE (procédure simplifiée)",
       "themes": "Limitation des finalités (vidéoprotection) Minimisation des données Information des personnes Obligation de réaliser une analyse d'impact",
@@ -1673,7 +1694,7 @@
       "is_new": false
     },
     {
-      "id": "2025-06-05_U09DSUVURS",
+      "id": "2025-06-05_275e943c93",
       "date": "2025-06-05",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE PRINCIPALE L'EDITION (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1692,7 +1713,7 @@
       "is_new": false
     },
     {
-      "id": "2025-05-15_U09DSUVURS",
+      "id": "2025-05-15_b2c0263dca",
       "date": "2025-05-15",
       "organisation_type": "SOCIETE OFFRANT DES PRESTATIONS DE SECURITE PRIVEE (procédure simplifiée)",
       "themes": "Non-conformité (procédure d'injonction)",
@@ -1749,7 +1770,7 @@
       "is_new": false
     },
     {
-      "id": "2025-04-30_U09DSUVURS",
+      "id": "2025-04-30_7f86277bd4",
       "date": "2025-04-30",
       "organisation_type": "SOCIETE EDITANT UN SITE WEB DE RENCONTRES DESTINE AUX PERSONNES PARTAGEANT DES CONVICTIONS POLITIQUES SIMILAIRES (procédure simplifiée)",
       "themes": "Durée de conservation Consentement des personnes (données sensibles) Information des personnes Encadrement des relations entre le responsable de traitement et le sous-traitant Défaut de sécurité des données Obligation de notifier une violation de données à l'autorité de contrôle Obligation de communiquer une violation de données à la personne concernée",
@@ -1771,7 +1792,7 @@
       "is_new": false
     },
     {
-      "id": "2025-04-10_U09DSUVURS",
+      "id": "2025-04-10_6645eb39c4",
       "date": "2025-04-10",
       "organisation_type": "SOCIETE DE COMMERCE DE DETAIL D'ARTICLES DE SPORT EN MAGASIN SPECIALISE (procédure simplifiée)",
       "themes": "Minimisation des données (vidéosurveillance) Durée de conservation (vidéosurveillance) Information des personnes ( vidéoprotection et vidéosurveillance) Registre des activités de traitement Défaut de sécurité des données",
@@ -1792,7 +1813,7 @@
       "is_new": false
     },
     {
-      "id": "2025-04-10_U09DSUVURS",
+      "id": "2025-04-10_d55cbf1622",
       "date": "2025-04-10",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE RESTAURATION (procédure simplifiée)",
       "themes": "Minimisation des données (vidéosurveillance) Information des personnes (vidéoprotection et vidéosurveillance) Registre des activités de traitement Obligation de réaliser une analyse d'impact",
@@ -1811,7 +1832,7 @@
       "is_new": false
     },
     {
-      "id": "2025-04-03_U09DSUVURS",
+      "id": "2025-04-03_c873f9f6e3",
       "date": "2025-04-03",
       "organisation_type": "SOCIETE SPECIALISEE DANS LE SECTEUR D'ACTIVITE DES SUPERETTES (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1830,7 +1851,7 @@
       "is_new": false
     },
     {
-      "id": "2025-04-03_U09DSUVURS",
+      "id": "2025-04-03_46162add3f",
       "date": "2025-04-03",
       "organisation_type": "SOCIETE DE COURTAGE EN TRAVAUX, CONSULTING EN BATIMENT ET TRAVAUX PUBLICS, ACHAT ET REVENTE DE MATERIEL, TRANSACTION IMMOBILIERE ET MAITRISE D'ŒUVRE (procédure simplifiée)",
       "themes": "Information des personnes (exercice des droits) Défaut de coopération avec la CNIL",
@@ -1850,7 +1871,7 @@
       "is_new": false
     },
     {
-      "id": "2025-03-27_U09DSUVURS",
+      "id": "2025-03-27_edb4e08cd3",
       "date": "2025-03-27",
       "organisation_type": "SOCIETE DE CONSEILS POUR LES AFFAIRES ET AUTRES CONSEILS DE GESTION (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Minimisation des données (vidéosurveillance) Information des personnes",
@@ -1869,7 +1890,7 @@
       "is_new": false
     },
     {
-      "id": "2025-01-30_U09DSUVURS",
+      "id": "2025-01-30_b3979621f1",
       "date": "2025-01-30",
       "organisation_type": "SOCIETE DE COURTAGE EN ENERGIE (procédure simplifiée)",
       "themes": "Non réponse à l'injonction",
@@ -1888,7 +1909,7 @@
       "is_new": false
     },
     {
-      "id": "2025-01-23_U09DSUVURS",
+      "id": "2025-01-23_7e030ec1c2",
       "date": "2025-01-23",
       "organisation_type": "SOCIETE DE TRANSPORT ROUTIER DE MARCHANDISES (procédure simplifiée)",
       "themes": "Minimisation des données (géolocalisation) Durée de conservation (géolocalisation) Information des personnes (géolocalisation) Obligation de réaliser une analyse d'impact",
@@ -1907,7 +1928,7 @@
       "is_new": false
     },
     {
-      "id": "2025-01-16_Q0VOVFJFIE",
+      "id": "2025-01-16_4b41a7f81e",
       "date": "2025-01-16",
       "organisation_type": "CENTRE DE FORMATION A DISTANCE D'APPRENTIS (procédure simplifiée)",
       "themes": "Minimisation des données ( vidéosurveillance , enregistrements téléphoniques) Durée de conservation Non respect du droit d'opposition Information des personnes (enregistrements téléphoniques, exercice des droits, vidéosurveillance)",
@@ -1926,7 +1947,7 @@
       "is_new": false
     },
     {
-      "id": "2025-01-09_U09DSUVURS",
+      "id": "2025-01-09_d95174ee69",
       "date": "2025-01-09",
       "organisation_type": "SOCIETE REALISANT DES TRAVAUX D'ISOLATION, DE RENOVATION ENERGETIQUE ET DE CHAUFFAGE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (prospection commerciale) Minimisation des données Obligation de traiter des données exactes",
@@ -1945,7 +1966,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-31_U09DSUVURS",
+      "id": "2024-12-31_f6144b525b",
       "date": "2024-12-31",
       "organisation_type": "SOCIETE DE TRANSPORT AMBULANCIER (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1964,7 +1985,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-31_UEFSVElDVU",
+      "id": "2024-12-31_9011d4c20a",
       "date": "2024-12-31",
       "organisation_type": "PARTICULIERS (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -1983,7 +2004,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-31_U09DSUVURS",
+      "id": "2024-12-31_4aa2b2e63d",
       "date": "2024-12-31",
       "organisation_type": "SOCIETE GERANT UN ROBOT CONVERSATIONNEL UTILISANT L'INTELLIGENCE ARTIFICELLE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -2002,7 +2023,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-26_U09DSUVURS",
+      "id": "2024-12-26_0f8594729a",
       "date": "2024-12-26",
       "organisation_type": "SOCIETE EXPLOITANT DES SUPERMARCHES (procédure simplifiée)",
       "themes": "Minimisation des données Registre des activités de traitement Obligation de réaliser une analyse d'impact",
@@ -2021,7 +2042,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_RVRBQkxJU1",
+      "id": "2024-12-19_28b1cc13d4",
       "date": "2024-12-19",
       "organisation_type": "ETABLISSEMENT PUBLIC ADMINISTRATIF (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -2041,7 +2062,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_Q0VOVFJFIE",
+      "id": "2024-12-19_35319bb767",
       "date": "2024-12-19",
       "organisation_type": "CENTRE D'APPEL (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite et transparente Défaut de sécurité des données Défaut de coopération avec la CNIL",
@@ -2062,7 +2083,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_U09DSUVURS",
+      "id": "2024-12-19_96bb8f6f59",
       "date": "2024-12-19",
       "organisation_type": "SOCIETE ASSURANT DES ACTIVITES DE SECURITE PRIVE, PROTECTION RAPPROCHEE, HOTESSARIAT ET GESTION LOGISTIQUE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -2081,7 +2102,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_U1RPTUFUT0",
+      "id": "2024-12-19_1861df9ab8",
       "date": "2024-12-19",
       "organisation_type": "STOMATOLOGUE (procédure simplifiée)",
       "themes": "Non respect du droit d'accès (dossier médical) Défaut de coopération avec la CNIL",
@@ -2100,7 +2121,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_U09DSUVURS",
+      "id": "2024-12-19_c75995773d",
       "date": "2024-12-19",
       "organisation_type": "SOCIETE EDITANT UN SITE DE JEUX DEMATERIALISES (procédure simplifiée)",
       "themes": "Non respect du droit d'accès",
@@ -2119,7 +2140,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_U09DSUVURS",
+      "id": "2024-12-19_847fbf6c01",
       "date": "2024-12-19",
       "organisation_type": "SOCIETE GERANT UNE SALLE DE SPORT (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -2138,7 +2159,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_U09DSUVURS",
+      "id": "2024-12-19_b5f749d7a6",
       "date": "2024-12-19",
       "organisation_type": "SOCIETE SPECIALISEE DANS LE SECTEUR D'ACTIVITE DES PORTAILS INTERNET (procédure simplifiée)",
       "themes": "Non respect du droit d'opposition Défaut de coopération avec la CNIL",
@@ -2157,7 +2178,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_U09DSUVURS",
+      "id": "2024-12-19_de25bdf714",
       "date": "2024-12-19",
       "organisation_type": "SOCIETE DE CONSEIL EN SYSTEMES ET LOGICIELS INFORMATIQUES (procédure simplifiée)",
       "themes": "Non respect du droit d'accès",
@@ -2196,7 +2217,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_QUNDRVMgQV",
+      "id": "2024-12-19_cb509c5c73",
       "date": "2024-12-19",
       "organisation_type": "ACCES AUX SOINS (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -2215,7 +2236,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_R1JPVVBFTU",
+      "id": "2024-12-19_6281b3c583",
       "date": "2024-12-19",
       "organisation_type": "GROUPEMENT REGIONAL D'APPUI AU DEVELOPPEMENT DE LA E-SANTE (procédure simplifiée)",
       "themes": "Obligations en matière de traitements de données dans le domaine de la santé Encadrement des relations entre le responsable de traitement et le sous-traitant",
@@ -2234,7 +2255,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-19_TUVERUNJTi",
+      "id": "2024-12-19_2102984782",
       "date": "2024-12-19",
       "organisation_type": "MEDECIN GENERALISTE (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction (procédure d'injonction)",
@@ -2253,7 +2274,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_QUdFTkNFIE",
+      "id": "2024-12-12_73f6f1f03d",
       "date": "2024-12-12",
       "organisation_type": "AGENCE DE COMMUNICATION ET DE PRODUCTION AUDIOVISUELLE (procédure simplifiée)",
       "themes": "Transparence et information (exercice des droits) Non respect du droit d'accès",
@@ -2272,7 +2293,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_5b815368a4",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE DE VENTE AU DETAIL (procédure simplifiée)",
       "themes": "Non respect du droit d'accès",
@@ -2291,7 +2312,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_81e4afd3d8",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE COMPARATEUR D'AUTO-ECOLES (procédure simplifiée)",
       "themes": "Transparence et information (exercice des droits) Non respect du droit d'accès",
@@ -2310,7 +2331,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_REVVWCBTT0",
+      "id": "2024-12-12_29eb6490a4",
       "date": "2024-12-12",
       "organisation_type": "DEUX SOCIETES EXERCANT DES ACTIVITES D'AGENCES DE PRESSE (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2329,7 +2350,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_f172cab378",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE DE COMMERCE DE DETAIL D'HABILLEMENT (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2348,7 +2369,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_6446564a36",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE DE COMMERCE DE DETAIL D'HABILLEMENT (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2367,7 +2388,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_1dd1e63b5a",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE DE COMMERCE DE DETAIL D'HABILLEMENT (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2386,7 +2407,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_aa8b591348",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE DE COMMERCE DE DETAIL D'HABILLEMENT (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2405,7 +2426,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_54dbcf7032",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE EDITANT DES LOGICIELS OUTILS DE DEVELOPPEMENT ET DE LANGAGES (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2424,7 +2445,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-12_U09DSUVURS",
+      "id": "2024-12-12_5e0fe85a52",
       "date": "2024-12-12",
       "organisation_type": "SOCIETE EXPLOITANT DES PORTAILS INTERNET (procédure simplifiée)",
       "themes": "Consentement des personnes (cookies)",
@@ -2443,7 +2464,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-05_U09DSUVURS",
+      "id": "2024-12-05_1c733a3d26",
       "date": "2024-12-05",
       "organisation_type": "SOCIETE OFFRANT DES PRESTATIONS DE SECURITE PRIVE (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence Registre des activités de traitement",
@@ -2462,7 +2483,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-05_U09DSUVURS",
+      "id": "2024-12-05_3454f16a80",
       "date": "2024-12-05",
       "organisation_type": "SOCIETE SPECIALISEE DANS L'ELABORATION ET ORGANISATION DE CAMPAGNES PUBLICITAIRES (procédure simplifiée)",
       "themes": "Prospection commerciale (article L. 34-5 CPCE) Durée de conservation Information des personnes et transparence",
@@ -2482,7 +2503,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-05_U09DSUVURS",
+      "id": "2024-12-05_7127fbce36",
       "date": "2024-12-05",
       "organisation_type": "SOCIETE VENDANT DES PRODUITS COSMETIQUES (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite (vidéoprotection) Limitation des finalités (vidéoprotection) Minimisation des données (vidéosurveillance) Information des personnes",
@@ -2501,7 +2522,7 @@
       "is_new": false
     },
     {
-      "id": "2024-12-05_Q0xJTklRVU",
+      "id": "2024-12-05_cdc9cdd3d1",
       "date": "2024-12-05",
       "organisation_type": "CLINIQUE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -2539,7 +2560,7 @@
       "is_new": false
     },
     {
-      "id": "2024-11-26_U09DSUVURS",
+      "id": "2024-11-26_a301db04ad",
       "date": "2024-11-26",
       "organisation_type": "SOCIETE DE GESTION D'INSTALLATIONS INFORMATIQUES (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -2558,7 +2579,7 @@
       "is_new": false
     },
     {
-      "id": "2024-11-26_QVNTT0NJQV",
+      "id": "2024-11-26_b7989f2269",
       "date": "2024-11-26",
       "organisation_type": "ASSOCIATION AYANT POUR ACTIVITE L'ACTION SOCIALE SANS HEBERGEMENT ET LA GESTION D'ETABLISSEMENTS MEDICO-SOCIAUX ET SANITAIRES (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -2596,7 +2617,7 @@
       "is_new": false
     },
     {
-      "id": "2024-10-23_QVNTT0NJQV",
+      "id": "2024-10-23_4c374026e1",
       "date": "2024-10-23",
       "organisation_type": "ASSOCIATION PARTICIPANT AUX ACTIVITES DES ORGANISATIONS POLITIQUES (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction et non conformité (procédure d'injonction)",
@@ -2634,7 +2655,7 @@
       "is_new": false
     },
     {
-      "id": "2024-10-17_CNILTEXT000050449791",
+      "id": "2024-10-17_CNILTEXT000050449791-2",
       "date": "2024-10-17",
       "organisation_type": "MINISTERE",
       "themes": "Obligation de traiter des données exactes Information des personnes Non respect du droit d'accès Non respect du droit de rectification Non respect du droit d'effacement",
@@ -2653,7 +2674,7 @@
       "is_new": false
     },
     {
-      "id": "2024-10-17_U09DSUVURS",
+      "id": "2024-10-17_961fcbeaec",
       "date": "2024-10-17",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA FOURNITURE DE PRESTATIONS DE SERVICE (GESTION APPELS TELEPHONIQUES) (procédure simplifiée)",
       "themes": "Information des personnes ( vidéosurveillance et enregistrements téléphoniques) Non respect du droit d'opposition Défaut de sécurité des données",
@@ -2674,7 +2695,7 @@
       "is_new": false
     },
     {
-      "id": "2024-10-17_Q0hJUlVSR0",
+      "id": "2024-10-17_34e67aca23",
       "date": "2024-10-17",
       "organisation_type": "CHIRURGIEN DENTISTE (procédure simplifiée)",
       "themes": "Non respect du droit d'accès (dossier médical) Défaut de coopération avec la CNIL",
@@ -2693,7 +2714,7 @@
       "is_new": false
     },
     {
-      "id": "2024-10-11_T1JUSE9QSE",
+      "id": "2024-10-11_f94008497b",
       "date": "2024-10-11",
       "organisation_type": "ORTHOPHONISTE (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction et non conformité (procédure d'injonction)",
@@ -2712,7 +2733,7 @@
       "is_new": false
     },
     {
-      "id": "2024-10-10_U09DSUVURS",
+      "id": "2024-10-10_7e3514ead4",
       "date": "2024-10-10",
       "organisation_type": "SOCIETE COMMERCIALISANT DES PORTEFEUILLES DE CRYPTOMONNAIE",
       "themes": "Défaut de sécurité des données Durée de conservation",
@@ -2733,7 +2754,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-30_QVNTT0NJQV",
+      "id": "2024-09-30_2434c3c2fd",
       "date": "2024-09-30",
       "organisation_type": "ASSOCIATION AYANT POUR OBJET LA CREATION D'UN RESEAU DE SANTE PSYCHIATRIQUE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL Non respect du droit d'accès",
@@ -2752,7 +2773,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-26_U09DSUVURS",
+      "id": "2024-09-26_498c50e6dc",
       "date": "2024-09-26",
       "organisation_type": "SOCIETE PROPOSANT DES SERVICES DE CONSEIL EN SYSTÈMES ET LOGICIELS INFORMATIQUES, L'EDITION ET LA REALISATION DE LOGICIELS (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL Non respect du droit d'effacement",
@@ -2771,7 +2792,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-26_T1JHQU5JU0",
+      "id": "2024-09-26_b1f5a2512c",
       "date": "2024-09-26",
       "organisation_type": "ORGANISME DE FORMATION DESTINE AUX PROFESSIONNELS DE SANTE (procédure simplifiée)",
       "themes": "Information des personnes et consentement (cookies) Non respect du droit d'effacement Encadrement des relations entre le responsable de traitement et le sous-traitant Défaut de sécurité des données",
@@ -2830,7 +2851,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-26_U09DSUVURS",
+      "id": "2024-09-26_653004cb29",
       "date": "2024-09-26",
       "organisation_type": "SOCIETE DE MARKETING (procédure simplifiée)",
       "themes": "Absence de réponse à l'injonction et non-conformité (procédure d'injonction)",
@@ -2849,7 +2870,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-19_QVJNVVJFUk",
+      "id": "2024-09-19_c8b2ab4862",
       "date": "2024-09-19",
       "organisation_type": "ARMURERIE VENDANT SES ARTICLES EN LIGNE ET EN MAGASIN (procédure simplifiée)",
       "themes": "Durée de conservation Information des personnes et transparence Non respect du droit d'effacement Défaut de sécurité des données Obligation de documenter une violation de données",
@@ -2870,7 +2891,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-13_Q09NTVVORS",
+      "id": "2024-09-13_54054f337e",
       "date": "2024-09-13",
       "organisation_type": "COMMUNE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite Durée de conservation Registre des activités de traitement Obligation de désigner un délégué à la protection des données Défaut de coopération avec la CNIL",
@@ -2890,7 +2911,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-12_U09DSUVURS",
+      "id": "2024-09-12_52952ac5cb",
       "date": "2024-09-12",
       "organisation_type": "SOCIETE EXPLOITANT UN CASINO ET UN HOTEL (procédure simplifiée)",
       "themes": "Information des personnes et transparence (vidéosurveillance) Non respect du droit d'accès",
@@ -2909,7 +2930,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-05_U09DSUVURS",
+      "id": "2024-09-05_63c96c420d",
       "date": "2024-09-05",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LE COMMERCE DE DETAIL D'HABILLEMENT (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite Minimisation des données Information des personnes et transparence (vidéosurveillance) Défaut de coopération avec la CNIL",
@@ -2928,7 +2949,7 @@
       "is_new": false
     },
     {
-      "id": "2024-09-05_U09DSUVURS",
+      "id": "2024-09-05_d354e38372",
       "date": "2024-09-05",
       "organisation_type": "SOCIETE SPECIALISEE DANS LAFABRICATION ET POSE DE CLOTURES (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -2966,7 +2987,7 @@
       "is_new": false
     },
     {
-      "id": "2024-08-29_RURJVEVVUi",
+      "id": "2024-08-29_326822d05a",
       "date": "2024-08-29",
       "organisation_type": "EDITEUR DE SITE WEB DANS LE DOMAINE DES TRANSPORTS",
       "themes": "Obligation de réaliser une analyse d'impact Information des personnes et consentement Obligation de traiter les données de façon licite",
@@ -2985,7 +3006,7 @@
       "is_new": false
     },
     {
-      "id": "2024-08-28_U09DSUVURS",
+      "id": "2024-08-28_cfce037ca7",
       "date": "2024-08-28",
       "organisation_type": "SOCIETE SPECIALISEE DANS LA REALISATION D'ETUDES STATISTIQUES EN MATIERE DE DONNEES DE SANTE",
       "themes": "Absence de demande d'autorisation auprès de la CNIL (entrepôts de données de santé)",
@@ -3004,7 +3025,7 @@
       "is_new": false
     },
     {
-      "id": "2024-08-28_U09DSUVURS",
+      "id": "2024-08-28_850aa6e8a0",
       "date": "2024-08-28",
       "organisation_type": "SOCIETE SPECIALISEE DANS LA GESTION DES FLUX DE DONNEES DE SANTE",
       "themes": "Absence de demande d'autorisation auprès de la CNIL (entrepôts de données de santé)",
@@ -3023,7 +3044,7 @@
       "is_new": false
     },
     {
-      "id": "2024-08-20_SEVCRVJHRV",
+      "id": "2024-08-20_f9cd9ddd15",
       "date": "2024-08-20",
       "organisation_type": "HEBERGEUR DE SITE WEB (procédure simplifiée)",
       "themes": "Non respect du droit à l'effacement Défaut de coopération avec la CNIL",
@@ -3042,7 +3063,7 @@
       "is_new": false
     },
     {
-      "id": "2024-08-08_U09DSUVURS",
+      "id": "2024-08-08_469083a517",
       "date": "2024-08-08",
       "organisation_type": "SOCIETE DE COURTAGE EN ENERGIE (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence (prospection commerciale) Registre des activités de traitement",
@@ -3061,7 +3082,7 @@
       "is_new": false
     },
     {
-      "id": "2024-07-25_RVRBQkxJU1",
+      "id": "2024-07-25_0ae1fc4706",
       "date": "2024-07-25",
       "organisation_type": "ETABLISSEMENT D'ENSEIGNEMENT SUPERIEUR PRIVE (procédure simplifiée)",
       "themes": "Minimisation des données Durée de conservation Défaut de sécurité des données",
@@ -3102,7 +3123,7 @@
       "is_new": false
     },
     {
-      "id": "2024-07-09_TUlOSVNURV",
+      "id": "2024-07-09_115a1486e7",
       "date": "2024-07-09",
       "organisation_type": "MINISTERE",
       "themes": "Durée de conservation Obligation de traiter les données de façon licite",
@@ -3121,7 +3142,7 @@
       "is_new": false
     },
     {
-      "id": "2024-06-27_U09DSUVURS",
+      "id": "2024-06-27_5ef2146ace",
       "date": "2024-06-27",
       "organisation_type": "SOCIETE SPECIALISEE EN GESTION IMMOBILIERE ET EN EXPLOITATION COMMERCIALE SOCIETE DIFFUSANT DES CONTENUS JOURNALISTIQUES (procédure simplifiée)",
       "themes": "Information des personnes et consentement (cookies)",
@@ -3140,7 +3161,7 @@
       "is_new": false
     },
     {
-      "id": "2024-06-10_Qk9VTEFOR0",
+      "id": "2024-06-10_635db2d4fa",
       "date": "2024-06-10",
       "organisation_type": "BOULANGERIE (procédure simplifiée)",
       "themes": "Information des personnes Obligation de traiter les données de façon licite (vidéosurveillance) Minimisation des données (vidéosurveillance)",
@@ -3159,7 +3180,7 @@
       "is_new": false
     },
     {
-      "id": "2024-06-10_U09DSUVURS",
+      "id": "2024-06-10_172a32dc6f",
       "date": "2024-06-10",
       "organisation_type": "SOCIETE DIFFUSANT DES CONTENUS JOURNALISTIQUES (procédure simplifiée)",
       "themes": "Information des personnes et consentement (cookies)",
@@ -3178,7 +3199,7 @@
       "is_new": false
     },
     {
-      "id": "2024-06-10_TUVERUNJTi",
+      "id": "2024-06-10_91fc6d9f53",
       "date": "2024-06-10",
       "organisation_type": "MEDECIN GENERALISTE (procédure simplifiée)",
       "themes": "Non respect du droit d'accès (dossier médical) Défaut de coopération avec la CNIL",
@@ -3197,7 +3218,7 @@
       "is_new": false
     },
     {
-      "id": "2024-05-23_RVRBQkxJU1",
+      "id": "2024-05-23_cd15534511",
       "date": "2024-05-23",
       "organisation_type": "ETABLISSEMENT PUBLIC NATIONAL (ENSEIGNEMENT) (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence",
@@ -3217,7 +3238,7 @@
       "is_new": false
     },
     {
-      "id": "2024-05-23_U09DSUVURS",
+      "id": "2024-05-23_10e20ba2af",
       "date": "2024-05-23",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LE COMMERCE DE DETAIL OPTIQUE (procédure simplifiée)",
       "themes": "Réponse tardive à une mise en demeure (procédure d'injonction)",
@@ -3236,7 +3257,7 @@
       "is_new": false
     },
     {
-      "id": "2024-05-23_U09DSUVURS",
+      "id": "2024-05-23_9d183c5140",
       "date": "2024-05-23",
       "organisation_type": "SOCIETE GERANT UNE PLATEFORME D'APPELS POUR LE SECRETARIAT DE PROFESSIONNELS (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence Défaut de sécurité des données",
@@ -3257,7 +3278,7 @@
       "is_new": false
     },
     {
-      "id": "2024-05-23_U09DSUVURS",
+      "id": "2024-05-23_0802af8558",
       "date": "2024-05-23",
       "organisation_type": "SOCIETE GERANT UNE PLATEFORME D'APPELS POUR LE SECRETARIAT DE PROFESSIONNELS (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence Défaut de sécurité des données",
@@ -3278,7 +3299,7 @@
       "is_new": false
     },
     {
-      "id": "2024-04-25_U09DSUVURS",
+      "id": "2024-04-25_c0cce546c9",
       "date": "2024-04-25",
       "organisation_type": "SOCIETE EXPLOITANT DES MAGASINS DE CHAUSSURES ET D'HABILLEMENT DE SPORT (procédure simplifiée)",
       "themes": "Information des personnes et consentement (cookies)",
@@ -3297,7 +3318,7 @@
       "is_new": false
     },
     {
-      "id": "2024-04-25_QVNTT0NJQV",
+      "id": "2024-04-25_8f88b6ffa9",
       "date": "2024-04-25",
       "organisation_type": "ASSOCIATION PARTICIPANT AUX ACTIVITES DES ORGANISATIONS POLITIQUES (procédure simplifiée)",
       "themes": "Défaut de base légale",
@@ -3316,7 +3337,7 @@
       "is_new": false
     },
     {
-      "id": "2024-04-25_UkVWVUUgTE",
+      "id": "2024-04-25_cc887b790c",
       "date": "2024-04-25",
       "organisation_type": "REVUE LITTERAIRE FRANCAISE (procédure simplifiée)",
       "themes": "Conformité tardive en matière de demande d'effacement (procédure d'injonction)",
@@ -3354,7 +3375,7 @@
       "is_new": false
     },
     {
-      "id": "2024-04-04_U09DSUVURS",
+      "id": "2024-04-04_7e73e0ad4f",
       "date": "2024-04-04",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA PROSPECTION COMMERCIALE PAR COURRIEL POUR LE COMPTE D'ANNONCEURS",
       "themes": "Absence de réponse à l'injonction",
@@ -3373,7 +3394,7 @@
       "is_new": false
     },
     {
-      "id": "2024-02-29_U09DSUVURS",
+      "id": "2024-02-29_3a26889131",
       "date": "2024-02-29",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LA RECHERCHE ET LE DEVELOPPEMENT SCIENTIFIQUE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite",
@@ -3392,7 +3413,7 @@
       "is_new": false
     },
     {
-      "id": "2024-02-29_Q0hJUlVSR0",
+      "id": "2024-02-29_377c95b2fa",
       "date": "2024-02-29",
       "organisation_type": "CHIRURGIEN DENTISTE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL Non respect du droit d'accès (données de santé)",
@@ -3431,7 +3452,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-31_UEFSVElDVU",
+      "id": "2024-01-31_972ce4cce6",
       "date": "2024-01-31",
       "organisation_type": "PARTICULIER (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -3450,7 +3471,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-31_Q0hJUlVSR0",
+      "id": "2024-01-31_e4fc826943",
       "date": "2024-01-31",
       "organisation_type": "CHIRURGIEN DENTISTE (procédure simplifiée)",
       "themes": "Défaut de sécurité des données Non respect du droit d'accès (données de santé)",
@@ -3471,7 +3492,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-31_RURJVEVVUi",
+      "id": "2024-01-31_f76d5c9cde",
       "date": "2024-01-31",
       "organisation_type": "EDITEUR DE SITE WEB - ACTUALITES DANS LE DOMAINE DES NOUVELLES TECHNOLOGIES (procédure simplifiée)",
       "themes": "Défaut de sécurité des données",
@@ -3511,7 +3532,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-31_U09DSUVURS",
+      "id": "2024-01-31_1ad480c34c",
       "date": "2024-01-31",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LE SOUTIEN AUX ENTREPRISES (procédure simplifiée)",
       "themes": "Défaut de sécurité des données",
@@ -3532,7 +3553,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-25_QVNTT0NJQV",
+      "id": "2024-01-25_57ea7cac5b",
       "date": "2024-01-25",
       "organisation_type": "ASSOCIATION A CARACTERE POLITIQUE (procédure simplifiée)",
       "themes": "Information des personnes et transparence (prospection politique)",
@@ -3551,7 +3572,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-24_QUNUSVZJVE",
+      "id": "2024-01-24_f58d2a2cb8",
       "date": "2024-01-24",
       "organisation_type": "ACTIVITE DE COMMERCE DE GROS PHARMACEUTIQUES (procédure simplifiée)",
       "themes": "Défaut de sécurité des données Défaut de coopération avec la CNIL Registre des activités de traitement Obligation de recourir à des sous-traitants présentant des garanties suffisantes recrutés après autorisation du responsable de traitement",
@@ -3572,7 +3593,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-22_QVZPQ0FUIC",
+      "id": "2024-01-22_9b0663d4d4",
       "date": "2024-01-22",
       "organisation_type": "AVOCAT (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -3591,7 +3612,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-15_QVZPQ0FUIC",
+      "id": "2024-01-15_db7fe5a5ca",
       "date": "2024-01-15",
       "organisation_type": "AVOCAT (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL Non respect du droit à l'effacement",
@@ -3610,7 +3631,7 @@
       "is_new": false
     },
     {
-      "id": "2024-01-09_RURJVEVVUi",
+      "id": "2024-01-09_b05c79cfef",
       "date": "2024-01-09",
       "organisation_type": "EDITEUR DE SITE WEB - ANNUAIRE INVERSE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL Non respect du droit d'accès Non respect du droit d'opposition",
@@ -3629,7 +3650,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-29_U09DSUVURS",
+      "id": "2023-12-29_4b80dcaaef",
       "date": "2023-12-29",
       "organisation_type": "SOCIETE DE CONSEIL EN SYSTEMES ET LOGICIELS INFORMATIQUES",
       "themes": "Interdiction pour le sous-traitant de recruter un autre sous-traitant sans l'autorisation du responsable de traitement Défaut de sécurité des données",
@@ -3708,7 +3729,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-27_QVNTT0NJQV",
+      "id": "2023-12-27_4928bd6c24",
       "date": "2023-12-27",
       "organisation_type": "ASSOCIATION PROMOUVANT DES ACTIONS AU SEIN D'UNE COMMUNE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -3728,7 +3749,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-27_TUVERUNJTi",
+      "id": "2023-12-27_84acf66471",
       "date": "2023-12-27",
       "organisation_type": "MEDECIN PEDIATRE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -3747,7 +3768,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-27_Q09NSVRFIF",
+      "id": "2023-12-27_0b08777546",
       "date": "2023-12-27",
       "organisation_type": "COMITE SOCIAL ECONOMIQUE D'ENTREPRISES (procédure simplifiée)",
       "themes": "Obligation d'associer le délégué à la protection des données aux questions relatives à la protection des données Obligation d'aider le délégué à la protection des données à exercer ses missions Obligation de permettre aux personnes concernées de prendre contact avec le délégué à la protection des données",
@@ -3786,7 +3807,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-12_Q09NTVVORU",
+      "id": "2023-12-12_8bdd586f67",
       "date": "2023-12-12",
       "organisation_type": "COMMUNE",
       "themes": "Obligation de désigner un délégué à la protection des données Défaut de coopération avec la CNIL",
@@ -3806,7 +3827,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-11_UEVSU09OTk",
+      "id": "2023-12-11_ee08cfd692",
       "date": "2023-12-11",
       "organisation_type": "PERSONNALITE POLITIQUE (procédure simplifiée)",
       "themes": "Non respect du droit d'opposition",
@@ -3825,7 +3846,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-11_TUlOSVNURV",
+      "id": "2023-12-11_1ec1f4001b",
       "date": "2023-12-11",
       "organisation_type": "MINISTERE",
       "themes": "Obligation de traiter les données de façon licite Obligation de traiter des données exactes Défaut de sécurité des données",
@@ -3845,7 +3866,7 @@
       "is_new": false
     },
     {
-      "id": "2023-12-11_TUlOSVNURV",
+      "id": "2023-12-11_1ec1f4001b-2",
       "date": "2023-12-11",
       "organisation_type": "MINISTERE",
       "themes": "Obligation de traiter les données de façon licite Obligation de traiter des données exactes Défaut de sécurité des données",
@@ -3865,7 +3886,7 @@
       "is_new": false
     },
     {
-      "id": "2023-11-22_T1JUSE9QSE",
+      "id": "2023-11-22_08176967c1",
       "date": "2023-11-22",
       "organisation_type": "ORTHOPHONISTE (procédure simplifiée)",
       "themes": "Défaut de coopération Droit d'accès pour les données de santé",
@@ -3884,7 +3905,7 @@
       "is_new": false
     },
     {
-      "id": "2023-11-16_U09DSUVURS",
+      "id": "2023-11-16_38784d2a0f",
       "date": "2023-11-16",
       "organisation_type": "SOCIETE AYANT UNE ACTIVITE DE SOUTIEN AUX ENTREPRISES, NOTAMMENT POUR LES EVENEMENTS TELEVISES (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite Détournement des finalités Défaut de sécurité des données",
@@ -3905,7 +3926,7 @@
       "is_new": false
     },
     {
-      "id": "2023-11-15_Q09NTVVORS",
+      "id": "2023-11-15_7db717abc1",
       "date": "2023-11-15",
       "organisation_type": "COMMUNE (procédure simplifiée)",
       "themes": "Obligation de traiter les données de façon licite Durée de conservation Défaut de sécurité des données",
@@ -3946,7 +3967,7 @@
       "is_new": false
     },
     {
-      "id": "2023-11-09_CNILTEXT000048388493",
+      "id": "2023-11-09_CNILTEXT000048388493-2",
       "date": "2023-11-09",
       "organisation_type": "MINISTERE",
       "themes": "Détournement des finalités",
@@ -3965,7 +3986,7 @@
       "is_new": false
     },
     {
-      "id": "2023-11-08_U09DSUVURS",
+      "id": "2023-11-08_8ea0d8089d",
       "date": "2023-11-08",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE LE DEVELOPPEMENT ET LA MISE EN OEUVRE DE LOGICIELS DE SURVEILLANCE DES EMPLOYES (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -3984,7 +4005,7 @@
       "is_new": false
     },
     {
-      "id": "2023-10-26_U09DSUVURS",
+      "id": "2023-10-26_b07385c5b4",
       "date": "2023-10-26",
       "organisation_type": "SOCIETE AYANT POUR ACTIVITE PRINCIPALE L'EVENEMENTIEL (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence Registre des activités de traitement Défaut de sécurité des données",
@@ -4005,7 +4026,7 @@
       "is_new": false
     },
     {
-      "id": "2023-10-23_RURJVEVVUi",
+      "id": "2023-10-23_49c71fb8ac",
       "date": "2023-10-23",
       "organisation_type": "EDITEUR DE SITE WEB DEDIE A LA PRESSE (procédure simplifiée)",
       "themes": "Droit d'opposition Défaut de coopération avec la CNIL",
@@ -4024,7 +4045,7 @@
       "is_new": false
     },
     {
-      "id": "2023-10-23_RURJVEVVUi",
+      "id": "2023-10-23_208a252724",
       "date": "2023-10-23",
       "organisation_type": "EDITEUR DE BLOG EN LIGNE DEDIE A LA LUTTE CONTRE LA PEDOCRIMINALITE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -4063,7 +4084,7 @@
       "is_new": false
     },
     {
-      "id": "2023-10-06_U09DSUVURS",
+      "id": "2023-10-06_e1735387a3",
       "date": "2023-10-06",
       "organisation_type": "SOCIETE DE CONSEILS EN SYSTEMES ET LOGICIELS INFORMATIQUES (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -4082,7 +4103,7 @@
       "is_new": false
     },
     {
-      "id": "2023-09-28_UkVWVUUgTE",
+      "id": "2023-09-28_38f2e5203d",
       "date": "2023-09-28",
       "organisation_type": "REVUE LITTERAIRE FRANCAISE (procédure simplifiée)",
       "themes": "Information des personnes et transparence Défaut de coopération avec la CNIL",
@@ -4101,7 +4122,7 @@
       "is_new": false
     },
     {
-      "id": "2023-09-28_U09DSUVURS",
+      "id": "2023-09-28_1e3f068424",
       "date": "2023-09-28",
       "organisation_type": "SOCIETE DE FABRICATION DE PRODUITS DE CONSOMMATION COURANTE EN MATIERES PLASTIQUES (procédure simplifiée)",
       "themes": "Minimisation des données Information des personnes et transparence Défaut de sécurité des données",
@@ -4122,7 +4143,7 @@
       "is_new": false
     },
     {
-      "id": "2023-09-28_Q09NTUVSQ0",
+      "id": "2023-09-28_90b56b2a41",
       "date": "2023-09-28",
       "organisation_type": "COMMERCE INTERENTREPRISES DE PRODUITS SURGELES (procédure simplifiée)",
       "themes": "Minimisation des données Durée de conservation Collecter ou traitement de données relatives aux infractions, aux condamnations et aux mesures de sûreté Information des personnes et transparence Registre des activités de traitement Défaut de sécurité des données",
@@ -4143,7 +4164,7 @@
       "is_new": false
     },
     {
-      "id": "2023-09-28_U09DSUVURS",
+      "id": "2023-09-28_6dc62d5781",
       "date": "2023-09-28",
       "organisation_type": "SOCIETE AYANT UNE ACTIVITE DE COMMERCE DE DETAIL OPTIQUE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -4221,7 +4242,7 @@
       "is_new": false
     },
     {
-      "id": "2023-05-12_Q0hJUlVSR0",
+      "id": "2023-05-12_3588c90e9a",
       "date": "2023-05-12",
       "organisation_type": "CHIRURGIEN DENTISTE (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -4260,7 +4281,7 @@
       "is_new": false
     },
     {
-      "id": "2023-04-17_U09DSUVURS",
+      "id": "2023-04-17_790718151e",
       "date": "2023-04-17",
       "organisation_type": "SOCIETE D'AIDE A DOMICILE POUR LES PERSONNES AGEES ET HANDICAPEES",
       "themes": "Conformité tardive en matière d'anonymisation des données (procédure d'injonction)",
@@ -4298,7 +4319,7 @@
       "is_new": false
     },
     {
-      "id": "2023-03-28_U09DSUVURS",
+      "id": "2023-03-28_8f290f8a06",
       "date": "2023-03-28",
       "organisation_type": "SOCIETE DE PROGRAMMATION INFORMATIQUE (procédure simplifiée)",
       "themes": "Encadrement des relations entre le responsable de traitement et le sous-traitant Défaut de sécurité des données",
@@ -4319,7 +4340,7 @@
       "is_new": false
     },
     {
-      "id": "2023-03-28_U09DSUVURS",
+      "id": "2023-03-28_64190cdb5b",
       "date": "2023-03-28",
       "organisation_type": "SOCIETE DE MARKETING (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -4357,7 +4378,7 @@
       "is_new": false
     },
     {
-      "id": "2023-03-03_U09DSUVURS",
+      "id": "2023-03-03_9b59a62ceb",
       "date": "2023-03-03",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE SECURITE PRIVEE (procédure simplifiée)",
       "themes": "Non respect du principe de minimisation des données Information des personnes Registre des activités de traitement",
@@ -4376,7 +4397,7 @@
       "is_new": false
     },
     {
-      "id": "2023-02-08_Q09NTVVORS",
+      "id": "2023-02-08_c8346cc0e3",
       "date": "2023-02-08",
       "organisation_type": "COMMUNE (procédure simplifiée)",
       "themes": "Obligation de désigner un délégué à la protection des données Défaut de coopération avec la CNIL",
@@ -4396,7 +4417,7 @@
       "is_new": false
     },
     {
-      "id": "2023-02-08_TUVERUNJTi",
+      "id": "2023-02-08_b01ca7f496",
       "date": "2023-02-08",
       "organisation_type": "MEDECIN GENERALISTE (procédure simplifiée)",
       "themes": "Non respect du droit d'accès Défaut de coopération avec la CNIL",
@@ -4415,7 +4436,7 @@
       "is_new": false
     },
     {
-      "id": "2023-02-08_U09DSUVURS",
+      "id": "2023-02-08_4dfd88abb1",
       "date": "2023-02-08",
       "organisation_type": "SOCIETE EXERCANT UNE ACTIVITE DE DETAIL D'HABILLEMENT EN MAGASIN SPECIALISE (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL",
@@ -4434,7 +4455,7 @@
       "is_new": false
     },
     {
-      "id": "2023-01-23_U09DSUVURS",
+      "id": "2023-01-23_071810d577",
       "date": "2023-01-23",
       "organisation_type": "SOCIETE DE CONSEIL EN SYSTEMES ET LOGICIELS INFORMATIQUES (procédure simplifiée)",
       "themes": "Défaut de coopération avec la CNIL Consentement des personnes (cookies) Information des personnes Non respect du droit à l'effacement Registre des activités de traitement Défaut de sécurité des données",
@@ -4475,7 +4496,7 @@
       "is_new": false
     },
     {
-      "id": "2022-12-29_TUVERUNJTi",
+      "id": "2022-12-29_f104080b7d",
       "date": "2022-12-29",
       "organisation_type": "MEDECIN (procédure simplifiée)",
       "themes": "Non respect du droit d’accès Défaut de coopération avec la CNIL",
@@ -4494,7 +4515,7 @@
       "is_new": false
     },
     {
-      "id": "2022-12-29_TUVERUNJTi",
+      "id": "2022-12-29_f104080b7d-2",
       "date": "2022-12-29",
       "organisation_type": "MEDECIN (procédure simplifiée)",
       "themes": "Non respect du droit d’accès Défaut de coopération avec la CNIL",
@@ -4513,7 +4534,7 @@
       "is_new": false
     },
     {
-      "id": "2022-12-29_VU5JVkVSU0",
+      "id": "2022-12-29_ee2c05e328",
       "date": "2022-12-29",
       "organisation_type": "UNIVERSITE (procédure simplifiée)",
       "themes": "Non respect du principe de limitation des finalités",
@@ -4532,7 +4553,7 @@
       "is_new": false
     },
     {
-      "id": "2022-12-29_U09DSUVURS",
+      "id": "2022-12-29_cad878b930",
       "date": "2022-12-29",
       "organisation_type": "SOCIETE DEVELOPPANT DES LOGICIELS DE GESTION ET LA COMMERCIALISATION DE LOGICIELS A DESTINATION DES COLLECTIVITES TERRITORIALES (procédure simplifiée)",
       "themes": "Non respect du principe de minimisation des données Durée de conservation Défaut d'information Défaut de sécurité des données",
@@ -4786,7 +4807,7 @@
       "is_new": false
     },
     {
-      "id": "2022-06-13_U09DSUVURS",
+      "id": "2022-06-13_d7b69e3c1d",
       "date": "2022-06-13",
       "organisation_type": "SOCIETE D'ENTRETIEN ET REPARATION DE VEHICULES",
       "themes": "Absence de conformité suite à l'injonction prononcée",
@@ -4825,7 +4846,7 @@
       "is_new": false
     },
     {
-      "id": "2022-03-24_Tk9UQUlSRU",
+      "id": "2022-03-24_9944946673",
       "date": "2022-03-24",
       "organisation_type": "NOTAIRE",
       "themes": "Conformité partielle à l'injonction prononcée",
@@ -4844,7 +4865,7 @@
       "is_new": false
     },
     {
-      "id": "2022-03-21_UkVTVEFVUk",
+      "id": "2022-03-21_b223b98116",
       "date": "2022-03-21",
       "organisation_type": "RESTAURANT",
       "themes": "Non respect du principe de minimisation des données Durée de conservation Information des personnes Registre des activités de traitement Coopération avec les services de la CNIL Défaut de sécurité des données",
@@ -4865,7 +4886,7 @@
       "is_new": false
     },
     {
-      "id": "2022-01-22_U09DSUVURS",
+      "id": "2022-01-22_270458c294",
       "date": "2022-01-22",
       "organisation_type": "SOCIETE D'ENTRETIEN ET DE REPARATION DE VEHICULES AUTOMOBILES",
       "themes": "Défaut de coopération avec la CNIL",
@@ -4922,7 +4943,7 @@
       "is_new": false
     },
     {
-      "id": "2021-12-30_VkVOVEUgRE",
+      "id": "2021-12-30_0563baaa3e",
       "date": "2021-12-30",
       "organisation_type": "VENTE DE MOBILIER SUR INTERNET ET EN MAGASIN",
       "themes": "Durée de conservation Défaut d'information des personnes Non respect des demandes d'effacement Obligation d’encadrer les relations avec les sous-traitants Défaut de sécurité des données",
@@ -5000,7 +5021,7 @@
       "is_new": false
     },
     {
-      "id": "2021-10-28_T1JHQU5JU0",
+      "id": "2021-10-28_4fea9c79c9",
       "date": "2021-10-28",
       "organisation_type": "ORGANISME PRIVÉ",
       "themes": "Absence de conformité à la suite de l'injonction prononcée",
@@ -5019,7 +5040,7 @@
       "is_new": false
     },
     {
-      "id": "2021-10-21_Tk9UQUlSRU",
+      "id": "2021-10-21_81d2ce1b58",
       "date": "2021-10-21",
       "organisation_type": "NOTAIRE",
       "themes": "Coopération avec les services de la CNIL",
@@ -5154,7 +5175,7 @@
       "is_new": false
     },
     {
-      "id": "2021-06-03_U09DScOJVM",
+      "id": "2021-06-03_1f8ee76239",
       "date": "2021-06-03",
       "organisation_type": "SOCIÉTÉ D'ÉDITION DE LOGICIELS APPLICATIFS",
       "themes": "Manquement à l'obligation de traiter des données de manière licite",
@@ -5193,7 +5214,7 @@
       "is_new": false
     },
     {
-      "id": "2021-01-11_U09DScOJVM",
+      "id": "2021-01-11_c35ef29aec",
       "date": "2021-01-11",
       "organisation_type": "SOCIÉTÉ DE DÉVELOPPEMENT DE SOLUTIONS INFORMATIQUES",
       "themes": "Défaut de sécurité des données",
@@ -5213,7 +5234,7 @@
       "is_new": false
     },
     {
-      "id": "2021-01-06_Q09NTUVSQ0",
+      "id": "2021-01-06_9f6b31f699",
       "date": "2021-01-06",
       "organisation_type": "COMMERCE DE DÉTAIL D'OPTIQUE",
       "themes": "Non-respect de l'exercice des droits des personnes Défaut de sécurité des données",
@@ -5233,7 +5254,7 @@
       "is_new": false
     },
     {
-      "id": "2020-12-08_U09DScOJVM",
+      "id": "2020-12-08_56ba07dfdf",
       "date": "2020-12-08",
       "organisation_type": "SOCIÉTÉ DE PRESTATIONS DE GARDE D'ENFANTS À DOMICILE",
       "themes": "Manquement au principe de minimisation des données ; manquement relatif à la durée de conservation ; manquement à l’obligation d’assurer la sécurité des données",
@@ -5367,7 +5388,7 @@
       "is_new": false
     },
     {
-      "id": "2020-12-03_U09DScOJVM",
+      "id": "2020-12-03_8ff0f1409c",
       "date": "2020-12-03",
       "organisation_type": "SOCIÉTÉ DE TRANSPORT DE VOYAGEURS PAR TAXI",
       "themes": "Défaut de coopération avec les services de la CNIL",
@@ -5424,7 +5445,7 @@
       "is_new": false
     },
     {
-      "id": "2020-11-18_Q09PUMOJUk",
+      "id": "2020-11-18_3eb8e3e467",
       "date": "2020-11-18",
       "organisation_type": "COOPÉRATIVE DE COMMERCANTS DÉTAILLANTS",
       "themes": "Manquement relatif à l'obligation d'assurer la sécurité des données",
@@ -5444,7 +5465,7 @@
       "is_new": false
     },
     {
-      "id": "2020-09-03_QVNTT0NJQV",
+      "id": "2020-09-03_68d9f020dd",
       "date": "2020-09-03",
       "organisation_type": "ASSOCIATION POLITIQUE",
       "themes": "Défaut de coopération avec les services de la CNIL",
@@ -5520,7 +5541,7 @@
       "is_new": false
     },
     {
-      "id": "2019-12-30_U09DSUVURS",
+      "id": "2019-12-30_ae7795a628",
       "date": "2019-12-30",
       "organisation_type": "SOCIETE D'AIDE A DOMICILE DES PERSONNES AGEES ET HANDICAPEES",
       "themes": "Manquement au principe de limitation de la durée de conservation, défaut d'information des personnes, manquement à l'obligation d'assurer la sécurité des données traitées par un sous-traitant",
@@ -5559,7 +5580,7 @@
       "is_new": false
     },
     {
-      "id": "2019-10-10_U09DScOJVM",
+      "id": "2019-10-10_6c64be7add",
       "date": "2019-10-10",
       "organisation_type": "SOCIÉTÉ DE PHOTOGRAPHIES LIÉES À LA PETITE ENFANCE",
       "themes": "Non-respect du droit d'accès, non-respect du droit à l'effacement, défaut de sécurité et de confidentialité des données",
@@ -5635,7 +5656,7 @@
       "is_new": false
     },
     {
-      "id": "2019-01-31_TU9URVVSIE",
+      "id": "2019-01-31_daa1dfc780",
       "date": "2019-01-31",
       "organisation_type": "MOTEUR DE RECHERCHE",
       "themes": "Déréférencement",
@@ -5654,7 +5675,7 @@
       "is_new": false
     },
     {
-      "id": "2019-01-31_U09DScOJVM",
+      "id": "2019-01-31_d178519a1a",
       "date": "2019-01-31",
       "organisation_type": "SOCIÉTÉ DE GESTION IMMOBILIÈRE",
       "themes": "Sécurité et durées de conservation des données personnelles",
@@ -5673,7 +5694,7 @@
       "is_new": false
     },
     {
-      "id": "2019-01-31_w4lUQUJMSV",
+      "id": "2019-01-31_6f1efc2cd4",
       "date": "2019-01-31",
       "organisation_type": "ÉTABLISSEMENT PUBLIC NATIONAL A CARACTÈRE ADMINISTRATIF",
       "themes": "Défaut de sécurité des données personnelles",
@@ -5789,7 +5810,7 @@
       "is_new": false
     },
     {
-      "id": "2018-07-24_R1JPVVBFIE",
+      "id": "2018-07-24_cf908b4207",
       "date": "2018-07-24",
       "organisation_type": "GROUPE DE PRESSE",
       "themes": "Défaut de sécurité des données Site internet",
@@ -5847,7 +5868,7 @@
       "is_new": false
     },
     {
-      "id": "2018-07-24_U09DSUVURS",
+      "id": "2018-07-24_26171b96bd",
       "date": "2018-07-24",
       "organisation_type": "SOCIETE DE TRAITEMENT ET DE REVÊTEMENT DE METAUX",
       "themes": "Défaut de réponse à une mise en demeure de la CNIL",
@@ -5866,7 +5887,7 @@
       "is_new": false
     },
     {
-      "id": "2018-06-26_VFJBTlNQT1",
+      "id": "2018-06-26_7bb4e504ed",
       "date": "2018-06-26",
       "organisation_type": "TRANSPORT ROUTIER DE FRET DE PROXIMITE",
       "themes": "Non réponse et droit d'accès à un dossier d'un salarié (notamment aux données d'un chronotachygraphe)",
@@ -5942,7 +5963,7 @@
       "is_new": false
     },
     {
-      "id": "2017-12-21_TUlOSVNURV",
+      "id": "2017-12-21_abdc9b5083",
       "date": "2017-12-21",
       "organisation_type": "MINISTERE",
       "themes": "Fichier de l'Etat",
@@ -5961,7 +5982,7 @@
       "is_new": false
     },
     {
-      "id": "2017-12-21_U09DSUVURS",
+      "id": "2017-12-21_699f02b698",
       "date": "2017-12-21",
       "organisation_type": "SOCIETE D'ELECTRONIQUE ET DE TELECOMMUNICATION",
       "themes": "Défaut de sécurité des données",
@@ -5981,7 +6002,7 @@
       "is_new": false
     },
     {
-      "id": "2017-11-16_U0VSVklDRS",
+      "id": "2017-11-16_0b7da0a2eb",
       "date": "2017-11-16",
       "organisation_type": "SERVICE EN LIGNE DE DEMARCHES ADMINISTRATIVES",
       "themes": "Défaut de sécurité des données",
@@ -6001,7 +6022,7 @@
       "is_new": false
     },
     {
-      "id": "2017-07-18_TE9DQVRJT0",
+      "id": "2017-07-18_7e3302ce98",
       "date": "2017-07-18",
       "organisation_type": "LOCATION DE VEHICULES",
       "themes": "Défaut de sécurité des données",
@@ -6021,7 +6042,7 @@
       "is_new": false
     },
     {
-      "id": "2017-06-15_Q09OU1RSVU",
+      "id": "2017-06-15_d9f014dd69",
       "date": "2017-06-15",
       "organisation_type": "CONSTRUCTION",
       "themes": "Vidéosurveillance de salariés",
@@ -6040,7 +6061,7 @@
       "is_new": false
     },
     {
-      "id": "2017-05-18_UFJFU1NFQ2",
+      "id": "2017-05-18_10b9d21e06",
       "date": "2017-05-18",
       "organisation_type": "PRESSE",
       "themes": "Cookies sur site de presse en ligne",
@@ -6059,7 +6080,7 @@
       "is_new": false
     },
     {
-      "id": "2017-05-18_Q0FCSU5FVC",
+      "id": "2017-05-18_b5d67d5566",
       "date": "2017-05-18",
       "organisation_type": "CABINET MEDICAL",
       "themes": "Dossier médical d'un patient",
@@ -6078,7 +6099,7 @@
       "is_new": false
     },
     {
-      "id": "2017-04-27_UkVTRUFVIF",
+      "id": "2017-04-27_ece910ff8b",
       "date": "2017-04-27",
       "organisation_type": "RESEAU SOCIAL",
       "themes": "Données des membres et des non membres du service",
@@ -6097,7 +6118,7 @@
       "is_new": false
     },
     {
-      "id": "2017-04-13_U1RBVElPTi",
+      "id": "2017-04-13_72c9acc93f",
       "date": "2017-04-13",
       "organisation_type": "STATION RADIOPHONIQUE",
       "themes": "Commentaires excessifs sur les auditeurs d'une radio",
@@ -6116,7 +6137,7 @@
       "is_new": false
     },
     {
-      "id": "2017-04-13_U09DSUVURS",
+      "id": "2017-04-13_956fa8c9c7",
       "date": "2017-04-13",
       "organisation_type": "SOCIETE DE TAXIS",
       "themes": "Données bancaires des clients",
@@ -6135,7 +6156,7 @@
       "is_new": false
     },
     {
-      "id": "2017-04-13_QVNTT0NJQV",
+      "id": "2017-04-13_4c3c6518f9",
       "date": "2017-04-13",
       "organisation_type": "ASSOCIATION POLITIQUE",
       "themes": "Violation de données des adhérents d'un parti politique",
@@ -6155,7 +6176,7 @@
       "is_new": false
     },
     {
-      "id": "2017-04-13_QUdFTkNFIE",
+      "id": "2017-04-13_bde02bb006",
       "date": "2017-04-13",
       "organisation_type": "AGENCE IMMOBILIERE",
       "themes": "Données des locataires et des bailleurs",
@@ -6174,7 +6195,7 @@
       "is_new": false
     },
     {
-      "id": "2017-01-26_QkFOUVVFRm",
+      "id": "2017-01-26_effae388c4",
       "date": "2017-01-26",
       "organisation_type": "BANQUE",
       "themes": "Fichage banque de France",
@@ -6193,7 +6214,7 @@
       "is_new": false
     },
     {
-      "id": "2016-12-15_QVNTT0NJQV",
+      "id": "2016-12-15_5eaf8ad4a4",
       "date": "2016-12-15",
       "organisation_type": "ASSOCIATION",
       "themes": "Prospection",
@@ -6212,7 +6233,7 @@
       "is_new": false
     },
     {
-      "id": "2016-12-15_U0lURSBERS",
+      "id": "2016-12-15_fce4566c13",
       "date": "2016-12-15",
       "organisation_type": "SITE DE RENCONTRES",
       "themes": "Données sensibles",
@@ -6231,7 +6252,7 @@
       "is_new": false
     },
     {
-      "id": "2016-12-15_U0lURSBERS",
+      "id": "2016-12-15_fce4566c13-2",
       "date": "2016-12-15",
       "organisation_type": "SITE DE RENCONTRES",
       "themes": "Données sensibles",
@@ -6250,7 +6271,7 @@
       "is_new": false
     },
     {
-      "id": "2016-11-03_U09DSUVURS",
+      "id": "2016-11-03_31d676f787",
       "date": "2016-11-03",
       "organisation_type": "SOCIETE DE VENTE À DISTANCE",
       "themes": "Faille de sécurité",
@@ -6269,7 +6290,7 @@
       "is_new": false
     },
     {
-      "id": "2016-10-13_UEFSVEkgUE",
+      "id": "2016-10-13_e3bc783f56",
       "date": "2016-10-13",
       "organisation_type": "PARTI POLITIQUE",
       "themes": "Faille de sécurité",
@@ -6288,7 +6309,7 @@
       "is_new": false
     },
     {
-      "id": "2016-09-20_Q09NTUVSQ0",
+      "id": "2016-09-20_72d027eb1f",
       "date": "2016-09-20",
       "organisation_type": "COMMERCE",
       "themes": "Faille de sécurité",
@@ -6307,7 +6328,7 @@
       "is_new": false
     },
     {
-      "id": "2016-09-13_U09DSUVURS",
+      "id": "2016-09-13_4f0c2e67b6",
       "date": "2016-09-13",
       "organisation_type": "SOCIETE DE COURTAGE EN ASSURANCE",
       "themes": "Faille de sécurité",
@@ -6326,7 +6347,7 @@
       "is_new": false
     },
     {
-      "id": "2016-07-07_QVNTT0NJQV",
+      "id": "2016-07-07_ad7ee71388",
       "date": "2016-07-07",
       "organisation_type": "ASSOCIATION",
       "themes": "Faille de sécurité",
@@ -6345,7 +6366,7 @@
       "is_new": false
     },
     {
-      "id": "2016-07-07_U09DSUVURS",
+      "id": "2016-07-07_1015859e27",
       "date": "2016-07-07",
       "organisation_type": "SOCIETE DE TELECOMMUNICATIONS",
       "themes": "Défaillances techniques",
@@ -6364,7 +6385,7 @@
       "is_new": false
     },
     {
-      "id": "2016-07-07_Q09NTUVSQ0",
+      "id": "2016-07-07_dd7e9fe61d",
       "date": "2016-07-07",
       "organisation_type": "COMMERCE",
       "themes": "Prévention de la fraude à la carte bancaire",
@@ -6383,7 +6404,7 @@
       "is_new": false
     },
     {
-      "id": "2016-04-21_U09DSUVURS",
+      "id": "2016-04-21_651a942bd5",
       "date": "2016-04-21",
       "organisation_type": "SOCIETE DE PRODUCTION ET DE VENTE DE SPIRITUEUX",
       "themes": "Faille de sécurité",
@@ -6402,7 +6423,7 @@
       "is_new": false
     },
     {
-      "id": "2016-03-10_TU9URVVSIE",
+      "id": "2016-03-10_165febbaad",
       "date": "2016-03-10",
       "organisation_type": "MOTEUR DE RECHERCHE",
       "themes": "Déréférencement",
@@ -6421,7 +6442,7 @@
       "is_new": false
     },
     {
-      "id": "2016-03-01_Rk9VUk5JU1",
+      "id": "2016-03-01_f26acc2ea0",
       "date": "2016-03-01",
       "organisation_type": "FOURNISSEUR D'ACCES INTERNET",
       "themes": "Obligations fournisseurs d'accès à internet",
@@ -6440,7 +6461,7 @@
       "is_new": false
     },
     {
-      "id": "2015-12-10_QkFOUVVFR2",
+      "id": "2015-12-10_ac3dfaa827",
       "date": "2015-12-10",
       "organisation_type": "BANQUE",
       "themes": "Gestion des mots de passe des clients pour la consultation des comptes en ligne",
@@ -6459,7 +6480,7 @@
       "is_new": false
     },
     {
-      "id": "2015-11-05_U09DSUVURS",
+      "id": "2015-11-05_f4550fee07",
       "date": "2015-11-05",
       "organisation_type": "SOCIETE DE DISTRIBUTION DE PRODUITS OPTIQUES",
       "themes": "Gestion des données des clients et des prospects",
@@ -6478,7 +6499,7 @@
       "is_new": false
     },
     {
-      "id": "2015-06-18_U09DSUVURS",
+      "id": "2015-06-18_ffed21edea",
       "date": "2015-06-18",
       "organisation_type": "SOCIETE VENTE D'ABONNEMENTS EN LIGNE",
       "themes": "Faille de sécurité impactant les données des clients et des prospects",
@@ -6497,7 +6518,7 @@
       "is_new": false
     },
     {
-      "id": "2015-06-01_U09DSUVURS",
+      "id": "2015-06-01_a1fb50bc6e",
       "date": "2015-06-01",
       "organisation_type": "SOCIETE DE PRESSE",
       "themes": "Prospection",
@@ -6516,7 +6537,7 @@
       "is_new": false
     },
     {
-      "id": "2015-05-18_U09DSUVURS",
+      "id": "2015-05-18_ea4e5c9e86",
       "date": "2015-05-18",
       "organisation_type": "SOCIETE D'ANALYSE DES COMMANDES DES CONSOMMATEURS SUR SITE E-COMMERCE",
       "themes": "Lutte contre la fraude à la carte bancaire",
@@ -6535,7 +6556,7 @@
       "is_new": false
     },
     {
-      "id": "2015-04-09_Q09NTVVORU",
+      "id": "2015-04-09_0860d1c9ae",
       "date": "2015-04-09",
       "organisation_type": "COMMUNE",
       "themes": "Gestion des inscriptions scolaires",
@@ -6555,7 +6576,7 @@
       "is_new": false
     },
     {
-      "id": "2015-02-12_UEVSU09OTk",
+      "id": "2015-02-12_b4bbd00b4f",
       "date": "2015-02-12",
       "organisation_type": "PERSONNE PHYSIQUE",
       "themes": "Prospection politique",
@@ -6574,7 +6595,7 @@
       "is_new": false
     },
     {
-      "id": "2015-02-12_UEVSU09OTk",
+      "id": "2015-02-12_b4bbd00b4f-2",
       "date": "2015-02-12",
       "organisation_type": "PERSONNE PHYSIQUE",
       "themes": "Prospection politique",
@@ -6593,7 +6614,7 @@
       "is_new": false
     },
     {
-      "id": "2015-02-12_VEhFQVRSRS",
+      "id": "2015-02-12_601e5b3688",
       "date": "2015-02-12",
       "organisation_type": "THEATRE*",
       "themes": "Prospection politique",
@@ -6612,7 +6633,7 @@
       "is_new": false
     },
     {
-      "id": "2014-11-27_U09DSUVURU",
+      "id": "2014-11-27_7ae104cd75",
       "date": "2014-11-27",
       "organisation_type": "SOCIETE",
       "themes": "Droit d'opposition",
@@ -6631,7 +6652,7 @@
       "is_new": false
     },
     {
-      "id": "2014-11-27_U0lURSBJTl",
+      "id": "2014-11-27_733f40e9da",
       "date": "2014-11-27",
       "organisation_type": "SITE INTERNET D'INFORMATION",
       "themes": "Fuite de données",
@@ -6650,7 +6671,7 @@
       "is_new": false
     },
     {
-      "id": "2014-11-20_U09DSUVURS",
+      "id": "2014-11-20_7cfe7f8405",
       "date": "2014-11-20",
       "organisation_type": "SOCIETE DU SECTEUR DE l'AUDIOVISUEL",
       "themes": "Droit d'opposition",
@@ -6669,7 +6690,7 @@
       "is_new": false
     },
     {
-      "id": "2014-09-25_RVRBQkxJU1",
+      "id": "2014-09-25_fd3f81efe6",
       "date": "2014-09-25",
       "organisation_type": "ETABLISSEMENT PUBLIC",
       "themes": "Gestion des usagers",
@@ -6689,7 +6710,7 @@
       "is_new": false
     },
     {
-      "id": "2014-08-07_U09DSUVURS",
+      "id": "2014-08-07_22880f2cd7",
       "date": "2014-08-07",
       "organisation_type": "SOCIETE DE CREDIT A LA CONSOMMATION",
       "themes": "Inscriptions illicites et maintien d’inscription au FICP malgré la régularisation de la situation - confidentialité",
@@ -6708,7 +6729,7 @@
       "is_new": false
     },
     {
-      "id": "2014-08-07_U09DSUVURS",
+      "id": "2014-08-07_920106f38b",
       "date": "2014-08-07",
       "organisation_type": "SOCIETE DE TELECOMMUNICATION",
       "themes": "Géolocalisation",
@@ -6727,7 +6748,7 @@
       "is_new": false
     },
     {
-      "id": "2014-07-22_U09DSUVURS",
+      "id": "2014-07-22_f87d877291",
       "date": "2014-07-22",
       "organisation_type": "SOCIETE DE LOCATION DE VEHICULES DE LUXE",
       "themes": "Géolocalisation",
@@ -6746,7 +6767,7 @@
       "is_new": false
     },
     {
-      "id": "2014-07-17_U09DSUVURS",
+      "id": "2014-07-17_6670b572e7",
       "date": "2014-07-17",
       "organisation_type": "SOCIETE DE COMMERCE ET DE DISTRIBUTION DE FRUITS ET LEGUMES",
       "themes": "Vidéosurveillance",
@@ -6765,7 +6786,7 @@
       "is_new": false
     },
     {
-      "id": "2014-07-17_QVNTT0NJQV",
+      "id": "2014-07-17_89149e15f6",
       "date": "2014-07-17",
       "organisation_type": "ASSOCIATION D’UTILITE PUBLIQUE",
       "themes": "Publication des résultats des compétitions sur le site internet de la fédération",
@@ -6784,7 +6805,7 @@
       "is_new": false
     },
     {
-      "id": "2014-07-17_QkFOUVVFTW",
+      "id": "2014-07-17_0b64b5cf61",
       "date": "2014-07-17",
       "organisation_type": "BANQUE",
       "themes": "Maintien d’inscription au FICP",
@@ -6803,7 +6824,7 @@
       "is_new": false
     },
     {
-      "id": "2014-07-17_U09DSUVURS",
+      "id": "2014-07-17_2c9fc36186",
       "date": "2014-07-17",
       "organisation_type": "SOCIETE DE RESTAURATION",
       "themes": "Vidéosurveillance",
@@ -6822,7 +6843,7 @@
       "is_new": false
     },
     {
-      "id": "2014-06-26_U09DSUVURS",
+      "id": "2014-06-26_7d37a5cba8",
       "date": "2014-06-26",
       "organisation_type": "SOCIETE DE TRAITEMENT DE DONNEES",
       "themes": "Collecte de données via un site internet d’accompagnement de régime",
@@ -6841,7 +6862,7 @@
       "is_new": false
     },
     {
-      "id": "2014-06-12_U09DSUVURS",
+      "id": "2014-06-12_579626526f",
       "date": "2014-06-12",
       "organisation_type": "SOCIETE DE TRANSPORT ET DE LOGISTIQUE",
       "themes": "Fuite de données",
@@ -6860,7 +6881,7 @@
       "is_new": false
     },
     {
-      "id": "2014-01-29_QVNTT0NJQV",
+      "id": "2014-01-29_3b7d087ad8",
       "date": "2014-01-29",
       "organisation_type": "ASSOCIATION (CONSEILS JURIDIQUES)",
       "themes": "droit d’opposition des personnes à ce que les données professionnelles soient mises en ligne sur le site de l'association",
@@ -6879,7 +6900,7 @@
       "is_new": false
     },
     {
-      "id": "2014-01-29_QVNTT0NJQV",
+      "id": "2014-01-29_d28c353219",
       "date": "2014-01-29",
       "organisation_type": "ASSOCIATION (ORGANISATION PROFESSIONNELLE)",
       "themes": "droit d’opposition d'une personne à ce que son CV soit retiré du site de l'association",
@@ -6898,7 +6919,7 @@
       "is_new": false
     },
     {
-      "id": "2014-01-29_Q09NTUVSQ0",
+      "id": "2014-01-29_e1a4f039d0",
       "date": "2014-01-29",
       "organisation_type": "COMMERCE",
       "themes": "Fichier client - NIR",
@@ -6917,7 +6938,7 @@
       "is_new": false
     },
     {
-      "id": "2014-01-29_U09DSUVURS",
+      "id": "2014-01-29_2a52aa355f",
       "date": "2014-01-29",
       "organisation_type": "SOCIETE DE TRANSPORT",
       "themes": "Vidéosurveillance",
@@ -6936,7 +6957,7 @@
       "is_new": false
     },
     {
-      "id": "2014-01-03_TU9URVVSIE",
+      "id": "2014-01-03_b8149e0908",
       "date": "2014-01-03",
       "organisation_type": "MOTEUR DE RECHERCHE",
       "themes": "Moteur de recherche/internet",
@@ -6955,7 +6976,7 @@
       "is_new": false
     },
     {
-      "id": "2013-12-12_QU1CVUxBTk",
+      "id": "2013-12-12_50c75eef2d",
       "date": "2013-12-12",
       "organisation_type": "AMBULANCIERS",
       "themes": "Vidéosurveillance",
@@ -6974,7 +6995,7 @@
       "is_new": false
     },
     {
-      "id": "2013-11-23_U09DSUVURS",
+      "id": "2013-11-23_a1a6be9a15",
       "date": "2013-11-23",
       "organisation_type": "SOCIETE DE COMMERCE DE GROS (FOURNITURES ET EQUIPEMENTS INDUSTRIELS)",
       "themes": "Géolocalisation",
@@ -6993,7 +7014,7 @@
       "is_new": false
     },
     {
-      "id": "2013-10-24_U09DSUVURU",
+      "id": "2013-10-24_9abd7c239c",
       "date": "2013-10-24",
       "organisation_type": "SOCIETE",
       "themes": "Droit d'accès au dossier personnel",
@@ -7012,7 +7033,7 @@
       "is_new": false
     },
     {
-      "id": "2013-10-24_U09DSUVURS",
+      "id": "2013-10-24_bcd2c2d0d2",
       "date": "2013-10-24",
       "organisation_type": "SOCIETE DE COMMERCE (TELEPHONIE MOBILE)",
       "themes": "Vidéosurveillance",
@@ -7031,7 +7052,7 @@
       "is_new": false
     },
     {
-      "id": "2013-10-24_U09DSUVURS",
+      "id": "2013-10-24_aad15c1c9c",
       "date": "2013-10-24",
       "organisation_type": "SOCIETE DE COMMERCE (TELEPHONIE MOBILE)",
       "themes": "Vidéosurveillance",
@@ -7050,7 +7071,7 @@
       "is_new": false
     },
     {
-      "id": "2013-07-25_QURNSU5JU1",
+      "id": "2013-07-25_1311ed7db2",
       "date": "2013-07-25",
       "organisation_type": "ADMINISTRATION",
       "themes": "Sport/police",
@@ -7070,7 +7091,7 @@
       "is_new": false
     },
     {
-      "id": "2013-07-18_RVRBQkxJU1",
+      "id": "2013-07-18_e21c2e1665",
       "date": "2013-07-18",
       "organisation_type": "ETABLISSEMENT PUBLIC",
       "themes": "Vote électronique",
@@ -7090,7 +7111,7 @@
       "is_new": false
     },
     {
-      "id": "2013-06-19_RVRBQkxJU1",
+      "id": "2013-06-19_9cc1c1d563",
       "date": "2013-06-19",
       "organisation_type": "ETABLISSEMENT BANCAIRE",
       "themes": "Maintien d'inscription au FICP malgré la régularisation de situation",
@@ -7109,7 +7130,7 @@
       "is_new": false
     },
     {
-      "id": "2013-05-30_UEFSVEkgUE",
+      "id": "2013-05-30_4ccb232157",
       "date": "2013-05-30",
       "organisation_type": "PARTI POLITIQUE",
       "themes": "Vidéosurveillance",
@@ -7128,7 +7149,7 @@
       "is_new": false
     },
     {
-      "id": "2013-05-16_QURNSU5JU1",
+      "id": "2013-05-16_bb6d89dc82",
       "date": "2013-05-16",
       "organisation_type": "ADMINISTRATION",
       "themes": "Formalités préalables et coopération",
@@ -7148,7 +7169,7 @@
       "is_new": false
     },
     {
-      "id": "2013-04-11_U09DSUVURS",
+      "id": "2013-04-11_9c36734a8e",
       "date": "2013-04-11",
       "organisation_type": "SOCIETE DE RAFFINAGE",
       "themes": "Vote électronique",
@@ -7167,7 +7188,7 @@
       "is_new": false
     },
     {
-      "id": "2013-03-21_RkVERVJBVE",
+      "id": "2013-03-21_3f3d6e2e1a",
       "date": "2013-03-21",
       "organisation_type": "FEDERATION SPORTIVE",
       "themes": "Gestion des licenciés, liste d'exclusion, vidéosurveillance",
@@ -7186,7 +7207,7 @@
       "is_new": false
     },
     {
-      "id": "2013-01-10_U1lORElDQV",
+      "id": "2013-01-10_196f550f72",
       "date": "2013-01-10",
       "organisation_type": "SYNDICAT DE COPROPRIETAIRES",
       "themes": "Vidéosurveillance",
@@ -7205,7 +7226,7 @@
       "is_new": false
     },
     {
-      "id": "2012-12-03_U09DSUVURV",
+      "id": "2012-12-03_d2cdb1dbbd",
       "date": "2012-12-03",
       "organisation_type": "SOCIETE",
       "themes": "Travail/accès dossier personnel",
@@ -7224,7 +7245,7 @@
       "is_new": false
     },
     {
-      "id": "2012-11-08_RVRBQkxJU1",
+      "id": "2012-11-08_873a434f12",
       "date": "2012-11-08",
       "organisation_type": "ETABLISSEMENT PUBLIC",
       "themes": "Cybersurveillance",
@@ -7244,7 +7265,7 @@
       "is_new": false
     },
     {
-      "id": "2012-09-20_Q09NTVVORU",
+      "id": "2012-09-20_9d3d5752ee",
       "date": "2012-09-20",
       "organisation_type": "COMMUNE",
       "themes": "Liste électorale",
@@ -7264,7 +7285,7 @@
       "is_new": false
     },
     {
-      "id": "2012-07-19_U09DSUVURS",
+      "id": "2012-07-19_6e00df5430",
       "date": "2012-07-19",
       "organisation_type": "SOCIETE DE VENTE A DISTANCE",
       "themes": "Données bancaires",
@@ -7283,7 +7304,7 @@
       "is_new": false
     },
     {
-      "id": "2012-06-22_U09DSUVURS",
+      "id": "2012-06-22_88464ee1b2",
       "date": "2012-06-22",
       "organisation_type": "SOCIETE D’ADDUCTION ET DE TRAITEMENT DE L’EAU",
       "themes": "Travail",
@@ -7302,7 +7323,7 @@
       "is_new": false
     },
     {
-      "id": "2012-06-21_U09DSUVURS",
+      "id": "2012-06-21_6d0397cba6",
       "date": "2012-06-21",
       "organisation_type": "SOCIETE INFORMATIQUE",
       "themes": "Travail",
@@ -7321,7 +7342,7 @@
       "is_new": false
     },
     {
-      "id": "2012-06-21_U09DSUVURS",
+      "id": "2012-06-21_9afa2ae873",
       "date": "2012-06-21",
       "organisation_type": "SOCIETE DE TRANSPORT",
       "themes": "Vidéosurveillance",
@@ -7340,7 +7361,7 @@
       "is_new": false
     },
     {
-      "id": "2012-06-01_TU9URVVSIE",
+      "id": "2012-06-01_c174119eef",
       "date": "2012-06-01",
       "organisation_type": "MOTEUR DE RECHERCHE",
       "themes": "Réseau social - internet",
@@ -7359,7 +7380,7 @@
       "is_new": false
     },
     {
-      "id": "2012-05-24_U1lORElDQV",
+      "id": "2012-05-24_77a581ae50",
       "date": "2012-05-24",
       "organisation_type": "SYNDICAT",
       "themes": "Fichier d'exclusion",
@@ -7378,7 +7399,7 @@
       "is_new": false
     },
     {
-      "id": "2012-05-24_VkVOVEVTIE",
+      "id": "2012-05-24_3fa80525ad",
       "date": "2012-05-24",
       "organisation_type": "VENTES AUX ENCHERES",
       "themes": "Fichier d'exclusion",
@@ -7397,7 +7418,7 @@
       "is_new": false
     },
     {
-      "id": "2012-05-24_VkVOVEVTIE",
+      "id": "2012-05-24_b0c1c2adf7",
       "date": "2012-05-24",
       "organisation_type": "VENTES AUX ENCHERES",
       "themes": "Fichier d'exclusion",
@@ -7416,7 +7437,7 @@
       "is_new": false
     },
     {
-      "id": "2012-05-03_R1JPVVBFIF",
+      "id": "2012-05-03_44b635fde4",
       "date": "2012-05-03",
       "organisation_type": "GROUPE SCOLAIRE",
       "themes": "Vidéosurveillance",
@@ -7435,7 +7456,7 @@
       "is_new": false
     },
     {
-      "id": "2012-03-29_Q09NTVVORU",
+      "id": "2012-03-29_828cae2096",
       "date": "2012-03-29",
       "organisation_type": "COMMUNE",
       "themes": "Collectivité locale",
@@ -7455,7 +7476,7 @@
       "is_new": false
     },
     {
-      "id": "2012-02-16_VU5JT04gUk",
+      "id": "2012-02-16_e669191e74",
       "date": "2012-02-16",
       "organisation_type": "UNION REGIONALE DE SYNDICATS",
       "themes": "Prospection syndicale",
@@ -7474,7 +7495,7 @@
       "is_new": false
     },
     {
-      "id": "2012-01-12_U09DSUVURS",
+      "id": "2012-01-12_912e965d61",
       "date": "2012-01-12",
       "organisation_type": "SOCIETE DE DIAGNOSTICS IMMOBILIERS",
       "themes": "Immobilier - prospection commerciale",
@@ -7493,7 +7514,7 @@
       "is_new": false
     },
     {
-      "id": "2011-12-11_RElTVFJJQl",
+      "id": "2011-12-11_318818ef7e",
       "date": "2011-12-11",
       "organisation_type": "DISTRIBUTEUR D’EAU / ASAINISSEMENT",
       "themes": "Gestion clients",
@@ -7512,7 +7533,7 @@
       "is_new": false
     },
     {
-      "id": "2011-12-01_Rk9VUk5JU1",
+      "id": "2011-12-01_03b28e3e49",
       "date": "2011-12-01",
       "organisation_type": "FOURNISSEUR D’ACCES INTERNET, TV",
       "themes": "Internet",
@@ -7531,7 +7552,7 @@
       "is_new": false
     },
     {
-      "id": "2011-11-18_SEVCRVJHRV",
+      "id": "2011-11-18_d49014ba28",
       "date": "2011-11-18",
       "organisation_type": "HEBERGEUR DE DONNEES DE SANTE",
       "themes": "Santé",
@@ -7550,7 +7571,7 @@
       "is_new": false
     },
     {
-      "id": "2011-10-06_U09DSUVURS",
+      "id": "2011-10-06_ac3540c7a2",
       "date": "2011-10-06",
       "organisation_type": "SOCIETE DE GESTION IMMOBILIERE",
       "themes": "Immobilier",
@@ -7569,7 +7590,7 @@
       "is_new": false
     },
     {
-      "id": "2011-10-06_VFJBTlNBQ1",
+      "id": "2011-10-06_a7032a15f8",
       "date": "2011-10-06",
       "organisation_type": "TRANSACTION ET GESTION DE BIENS IMMOBILIERS",
       "themes": "Immobilier",
@@ -7588,7 +7609,7 @@
       "is_new": false
     },
     {
-      "id": "2011-09-21_QU5OVUFJUk",
+      "id": "2011-09-21_55630cddd2",
       "date": "2011-09-21",
       "organisation_type": "ANNUAIRE",
       "themes": "aspiration de données sur des réseaux sociaux",
@@ -7607,7 +7628,7 @@
       "is_new": false
     },
     {
-      "id": "2011-07-21_UEFSVEkgUE",
+      "id": "2011-07-21_d74992f414",
       "date": "2011-07-21",
       "organisation_type": "PARTI POLITIQUE",
       "themes": "Elections",
@@ -7626,7 +7647,7 @@
       "is_new": false
     },
     {
-      "id": "2011-06-30_U09DSUVURS",
+      "id": "2011-06-30_a35664b859",
       "date": "2011-06-30",
       "organisation_type": "SOCIETE DE CONSTRUCTION",
       "themes": "Immobilier",

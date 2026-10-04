@@ -12,5 +12,19 @@
     },
     "id": "5aae4b20",
     "sent_at": "2026-10-04T13:48:45.273Z"
+  },
+  {
+    "kind": "radar_alert",
+    "to": "alerts@association.example",
+    "to_name": "Association (set your name in config/associations.json)",
+    "subject": "1 new CNIL decision with collective-action potential",
+    "body": "The CNIL published new sanctions that may open a collective action (action de groupe):\n\n- **HOPITAL PRIVE DE LA LOIRE** · CNIL 2026-07-21 · fine €500,000 · medium priority\n  Data breach: the CNIL found breaches of art. 32, art. 34; Fine: €500,000; Decision published on Légifrance; not yet on the CNIL's sanctions list\n\nReview them and start a case: http://localhost:3000/desk",
+    "related": {
+      "radar_ids": [
+        "2026-07-21_hopital-prive-loire-2026"
+      ]
+    },
+    "id": "20e65c51",
+    "sent_at": "2026-10-04T14:04:06.471Z"
   }
 ]

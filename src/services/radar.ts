@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { listCaseIds, readJson, readJsonOr, writeJson, writeText, readText } from "./storage.ts";
 
@@ -87,7 +88,8 @@ export function parseSanctionsPage(html: string): Omit<RadarItem, "case_id" | "f
       const link = decisionCell.match(/href="(https?:\/\/www\.legifrance\.gouv\.fr\/[^"]+)"/)?.[1] ?? null;
       const t = triage(themes, organisation_type, decision, Boolean(link));
       items.push({
-        id: `${date}_${link?.match(/CNILTEXT\d+/)?.[0] ?? Buffer.from(organisation_type + themes).toString("base64url").slice(0, 10)}`,
+        // Unique per decision: the Légifrance id, else a hash of the whole row (unpublished decisions have no link).
+        id: `${date}_${link?.match(/CNILTEXT\d+/)?.[0] ?? createHash("sha1").update(`${organisation_type}|${themes}|${decision}`).digest("hex").slice(0, 10)}`,
         date,
         organisation_type,
         themes,
@@ -102,6 +104,13 @@ export function parseSanctionsPage(html: string): Omit<RadarItem, "case_id" | "f
       });
     }
   }
+  // Some rows share a decision (e.g. two companies in one Légifrance text): number the repeats.
+  const count = new Map<string, number>();
+  for (const it of items) {
+    const n = (count.get(it.id) ?? 0) + 1;
+    count.set(it.id, n);
+    if (n > 1) it.id = `${it.id}-${n}`;
+  }
   return items.sort((a, b) => b.date.localeCompare(a.date));
 }
 
@@ -115,6 +124,33 @@ async function caseIndex(): Promise<Map<string, string>> {
     if (c.decision?.date && fine) index.set(`${c.decision.date}|${fine}`, id);
   }
   return index;
+}
+
+// A radar row built from a processed case (its own decision text), for decisions not yet on the CNIL list.
+async function processedItem(caseId: string): Promise<Omit<RadarItem, "first_seen_at" | "is_new"> | null> {
+  const c = await readJson(caseId, "case.json").catch(() => null);
+  if (!c?.decision?.date) return null;
+  const urls = JSON.parse(await fs.readFile(path.resolve("config/decisions.json"), "utf8").catch(() => "{}"));
+  const fine = c.decision.fine_total_eur ?? null;
+  const articles = (c.violations ?? []).map((v: any) => `art. ${v.gdpr_article}`).join(", ");
+  const isPublic = c.defendant?.legal_form === "public";
+  const themes = (c.violations ?? []).map((v: any) => v.label).join(" · ");
+  const t = triage(`Défaut de sécurité des données ${themes}`, isPublic ? "ORGANISME PUBLIC" : "", `Amende administrative de ${fine ?? 0} euros`, true);
+  return {
+    id: `${c.decision.date}_${caseId}`,
+    date: c.decision.date,
+    organisation_type: (c.defendant?.name ?? caseId).toUpperCase(),
+    themes: `${themes} (${articles}) · not yet on the CNIL list`,
+    decision: `${c.decision.reference}${fine ? ` · amende de ${fine.toLocaleString("fr-FR")} euros` : ""}`,
+    fine_eur: fine,
+    legifrance_url: urls[caseId]?.url ?? null,
+    data_breach: true,
+    public_body: isPublic,
+    status: isPublic ? "candidate_public" : "candidate",
+    priority: t.priority as RadarItem["priority"],
+    reasons: [`Data breach: the CNIL found breaches of ${articles}`, ...(isPublic ? ["Public body: different route and court (administrative)"] : []), ...(fine ? [`Fine: €${fine.toLocaleString("en-US")}`] : []), "Decision published on Légifrance; not yet on the CNIL's sanctions list"],
+    case_id: caseId,
+  };
 }
 
 // Save the Légifrance URL of each processed case (used for clickable § citations in the summary).
@@ -154,6 +190,14 @@ export async function scan(): Promise<RadarFeed & { new_count: number }> {
     first_seen_at: seen.get(i.id) ?? now,
     is_new: previous ? !seen.has(i.id) : false,
   }));
+  // Decisions the platform already processed from Légifrance but the CNIL list does not show yet (it lags behind).
+  const linked = new Set(items.map((i) => i.case_id).filter(Boolean));
+  for (const [, caseId] of cases) {
+    if (linked.has(caseId)) continue;
+    const extra = await processedItem(caseId);
+    if (extra) items.push({ ...extra, first_seen_at: seen.get(extra.id) ?? now, is_new: previous ? !seen.has(extra.id) : false });
+  }
+  items.sort((a, b) => b.date.localeCompare(a.date));
   await recordDecisionUrls(items);
   const feed: RadarFeed = { source: CNIL_SANCTIONS_URL, scanned_at: now, from_cache: fromCache, items };
   await writeJson("radar", "feed.json", feed);

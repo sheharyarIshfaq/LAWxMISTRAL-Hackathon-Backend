@@ -180,8 +180,11 @@ function computeSolvency(brief: Brief) {
   }
   const { ratio, rating } = rateSolvency(base.total_eur, revenueEur);
   const who = typeof rv === "object" && rv ? `${rv.entity ?? ""}${rv.year ? `, ${rv.year}` : ""}` : "";
+  const isPublic = ((d.nature?.value as string[] | null) ?? []).includes("public_body");
   d.solvency = field(rating, "computed", {
-    note: `Exposure €${(base.total_eur / 1e6).toFixed(1)}M ÷ revenue €${(revenueEur / 1e9).toFixed(2)}bn${who ? ` (${who})` : ""} = ${(ratio * 100).toFixed(1)}% → ${rating}. Rule: ${SOLVENCY_RULE}.`,
+    note: `Exposure €${(base.total_eur / 1e6).toFixed(1)}M ÷ revenue €${(revenueEur / 1e9).toFixed(2)}bn${who ? ` (${who})` : ""} = ${(ratio * 100).toFixed(1)}% → ${rating}. Rule: ${SOLVENCY_RULE}.${
+      isPublic ? " Public body: the figure is a budget, not commercial revenue, and claims against a public body follow the administrative route." : ""
+    }`,
     calc: { exposure_eur: base.total_eur, revenue_eur: revenueEur, ratio: Number(ratio.toFixed(4)), rule: SOLVENCY_RULE },
   });
 }

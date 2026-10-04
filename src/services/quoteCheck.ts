@@ -15,6 +15,8 @@ export function normalize(s: string): string {
     .replace(/(\w)-\s*\n\s*(\w)/g, "$1$2")
     .replace(/[*_]/g, "")
     .replace(/\s+/g, " ")
+    .replace(/ ([,.;:!?)])/g, "$1") // PDF text has stray spaces before punctuation ("convergents , leur")
+    .replace(/\( /g, "(")
     .trim()
     .replace(/^["'.,;:\s]+|["'.,;:\s]+$/g, "");
 }
@@ -37,6 +39,20 @@ function pagesContaining(quote: string, pages: Page[]): number[] {
   const target = normalize(quote);
   if (target.length < 10) return [];
   return pages.filter((p) => normalize(p.text).includes(target)).map((p) => p.page);
+}
+
+// Split into normalised words, keeping the original words aligned (punctuation-only tokens like "," dropped).
+function tokens(text: string): { words: string[]; norm: string[] } {
+  const words: string[] = [];
+  const norm: string[] = [];
+  for (const w of text.split(/\s+/)) {
+    const n = normalize(w);
+    if (n) {
+      words.push(w);
+      norm.push(n);
+    } else if (w && words.length) words[words.length - 1] += " " + w; // keep stray punctuation in the original text
+  }
+  return { words, norm };
 }
 
 // Longest common subsequence of two word lists (small inputs: quotes are ≤ ~40 words).
@@ -64,12 +80,11 @@ function sameMeaningMarkers(a: string[], b: string[]): boolean {
 // The model sometimes rewords a quote slightly (e.g. "la société" for "elle"). Find the passage of the
 // decision that matches at least 85% of the words in order, and return the decision's own text instead.
 export function repairQuote(quote: string, pages: Page[], threshold = 0.85): { quote: string; page: number } | null {
-  const q = normalize(quote).split(" ");
+  const q = tokens(quote).norm;
   if (q.length < 6) return null;
   let best: { score: number; quote: string; page: number } | null = null;
   for (const p of pages) {
-    const words = p.text.split(/\s+/).filter(Boolean);
-    const norm = words.map((w) => normalize(w));
+    const { words, norm } = tokens(p.text);
     const qSet = new Set(q);
     for (let start = 0; start < words.length; start++) {
       if (!qSet.has(norm[start])) continue;
@@ -88,11 +103,10 @@ export function repairQuote(quote: string, pages: Page[], threshold = 0.85): { q
 // The model sometimes stitches sentences together or swaps a word for a name. Keep the longest run of
 // consecutive words (at least 8) that appears verbatim in the decision, so the citation stays real.
 export function longestVerbatimPiece(quote: string, pages: Page[], minWords = 8): { quote: string; page: number } | null {
-  const q = normalize(quote).split(" ");
+  const q = tokens(quote).norm;
   let best: { len: number; quote: string; page: number } | null = null;
   for (const p of pages) {
-    const words = p.text.split(/\s+/).filter(Boolean);
-    const norm = words.map((w) => normalize(w));
+    const { words, norm } = tokens(p.text);
     const dp = new Array(norm.length + 1).fill(0);
     for (let i = 1; i <= q.length; i++) {
       for (let j = norm.length; j >= 1; j--) {

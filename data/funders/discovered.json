@@ -1,0 +1,274 @@
+[
+  {
+    "id": "a023cee0",
+    "name": "IVO Capital Partners",
+    "origin": "discovered",
+    "website": "https://www.ivocapital.com",
+    "description": "Funds collective actions, including consumer and data protection (GDPR) claims, as well as commercial litigation, arbitration, and competition cases.",
+    "jurisdictions": [
+      "FR",
+      "DE",
+      "ES",
+      "NL",
+      "PT"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "data_protection",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.ivocapital.com/en/2025/11/04/ivo-capital-partners-confirms-its-status-as-a-specialist-in-european-litigation-financing-with-the-launch-of-ivo-legal-strategies-fund-iv/",
+        "title": "IVO Capital Partners confirms its status as a specialist in European litigation financing with the launch of IVO Legal Strategies Fund IV - IVO Capital Partners"
+      },
+      {
+        "url": "https://www.wealthbriefing.com/html/article.php/investment-returns-from-lawsuits--ivo-capital-partners-launches-new-vehicle",
+        "title": "Investment Returns From Lawsuits – IVO Capital Partners Launches New Vehicle"
+      },
+      {
+        "url": "https://chambers.com/department/ivo-capital-partners-litigation-funding-litigation-support-58:2816:80:1:23018929",
+        "title": "IVO CAPITAL PARTNERS, Litigation Funding | Chambers Litigation Support Profile"
+      },
+      {
+        "url": "https://parisarbitrationweek.com/partner/ivo-capital-partners/",
+        "title": "IVO Capital Partners"
+      },
+      {
+        "url": "https://en.ivocapital.com/le-financement-de-contentieux/",
+        "title": "Litigation financing - IVO Capital Partners"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "0729f08f",
+    "name": "Burford Capital",
+    "origin": "discovered",
+    "website": "https://www.burfordcapital.com",
+    "description": "Funds collective actions, including in France, covering commercial litigation, arbitration, competition, data privacy, and mass claims.",
+    "jurisdictions": [
+      "FR",
+      "GB",
+      "US"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "data_protection",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      },
+      {
+        "url": "https://www.burfordcapital.com/loc/france-litigation-funding/",
+        "title": "Litigation Funding In France| Burford Capital"
+      },
+      {
+        "url": "https://www.burfordcapital.com/what-we-do/where-we-are/europe/",
+        "title": "Litigation Funding In Europe | Burford Capital"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "d0ef9dff",
+    "name": "Nivalion",
+    "origin": "discovered",
+    "website": "https://www.nivalion.com",
+    "description": "Funds collective actions, including consumer and data protection claims, as well as antitrust and mass consumer claims.",
+    "jurisdictions": [
+      "FR",
+      "CH",
+      "DE",
+      "AT"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "consumer",
+      "data_protection",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      },
+      {
+        "url": "https://www.businesseurope.eu/wp-content/uploads/2025/02/2024-09-02_commission_study_third_party_litigation_funding-8ea-1.pdf",
+        "title": "INTRODUCTION Third Party Litigation Funding"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "8cb8fdda",
+    "name": "Deminor",
+    "origin": "discovered",
+    "website": "https://www.deminor.com",
+    "description": "Funds collective actions, including investor and consumer claims, as well as antitrust and mass consumer claims.",
+    "jurisdictions": [
+      "FR",
+      "BE",
+      "LU",
+      "ES",
+      "IT"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "consumer",
+      "securities",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.deminor.com/en/litigation-funding/global-landscape/france/",
+        "title": "Litigation Funding Overview - France"
+      },
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      },
+      {
+        "url": "https://www.businesseurope.eu/wp-content/uploads/2025/02/2024-09-02_commission_study_third_party_litigation_funding-8ea-1.pdf",
+        "title": "INTRODUCTION Third Party Litigation Funding"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "10577074",
+    "name": "Profile Investment",
+    "origin": "discovered",
+    "website": null,
+    "description": "Funds collective actions in France.",
+    "jurisdictions": [
+      "FR"
+    ],
+    "funds_collective_actions": true,
+    "case_types": null,
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.deminor.com/en/litigation-funding/global-landscape/france/",
+        "title": "Litigation Funding Overview - France"
+      },
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "7e050f7e",
+    "name": "Fortress Investment Group",
+    "origin": "discovered",
+    "website": null,
+    "description": "Funds collective actions in France.",
+    "jurisdictions": [
+      "FR",
+      "US",
+      "GB"
+    ],
+    "funds_collective_actions": true,
+    "case_types": null,
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.deminor.com/en/litigation-funding/global-landscape/france/",
+        "title": "Litigation Funding Overview - France"
+      },
+      {
+        "url": "https://www.lexology.com/library/detail.aspx?g=c525a67d-c35f-430e-a4ec-d14be1a9e13a",
+        "title": "In review: third party litigation funding in France - Lexology"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "6af0dac0",
+    "name": "Omni Bridgeway",
+    "origin": "discovered",
+    "website": "https://www.omnibridgeway.com",
+    "description": "Funds collective actions, including in France, covering commercial litigation, arbitration, competition, and mass claims.",
+    "jurisdictions": [
+      "FR",
+      "GB",
+      "US"
+    ],
+    "funds_collective_actions": true,
+    "case_types": [
+      "competition",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://www.businesseurope.eu/wp-content/uploads/2025/02/2024-09-02_commission_study_third_party_litigation_funding-8ea-1.pdf",
+        "title": "INTRODUCTION Third Party Litigation Funding"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  },
+  {
+    "id": "0a3de2c2",
+    "name": "Willkie Farr & Gallagher LLP (Paris)",
+    "origin": "discovered",
+    "website": "https://www.willkie.com",
+    "description": "Advises on and facilitates funding for collective actions, including consumer and data protection claims.",
+    "jurisdictions": [
+      "FR",
+      "US",
+      "GB"
+    ],
+    "funds_collective_actions": null,
+    "case_types": [
+      "competition",
+      "data_protection",
+      "other"
+    ],
+    "min_claim_eur": null,
+    "max_investment_eur": null,
+    "accepts_public_defendants": null,
+    "contact": null,
+    "sources": [
+      {
+        "url": "https://practiceguides.chambers.com/practice-guides/collective-redress-class-actions-2025/france",
+        "title": "Collective Redress & Class Actions 2025 - France | Global Practice Guides | Chambers and Partners"
+      }
+    ],
+    "created_at": "2026-10-04T13:22:08.559Z"
+  }
+]

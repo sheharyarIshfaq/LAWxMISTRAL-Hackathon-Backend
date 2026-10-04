@@ -2,20 +2,16 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUp, Gavel, Scale, ShieldCheck, Users } from "lucide-react";
-import {
-  ApiError,
-  chat,
-  type ChatCitation,
-  type ChatStep,
-  type ChatTurn,
-} from "@/lib/api";
-import { AgentActivity } from "@/components/agent-activity";
+import { ApiError, chatStream, type ChatCitation, type ChatTurn } from "@/lib/api";
+import { AgentActivity, type LiveStep } from "@/components/agent-activity";
 import { Logo } from "@/components/logo";
 import { proseClass, renderMarkdown } from "@/lib/markdown";
 
 type Message = ChatTurn & {
   citations?: ChatCitation[];
-  steps?: ChatStep[];
+  steps?: LiveStep[];
+  thinking?: string;
+  live?: boolean;
   error?: boolean;
 };
 
@@ -74,7 +70,7 @@ export function CaseChat({
 
   useEffect(() => {
     if (messages.length)
-      end.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      end.current?.scrollIntoView({ behavior: busy ? "auto" : "smooth", block: "end" });
   }, [messages, busy]);
 
   const send = async (question: string) => {
@@ -86,22 +82,33 @@ export function CaseChat({
     setMessages((m) => [...m, { role: "user", content: q }]);
     setInput("");
     setBusy(true);
+    // The assistant message is created at once and filled as events stream in.
+    setMessages((m) => [...m, { role: "assistant", content: "", steps: [], thinking: "", live: true }]);
+    const update = (fn: (m: Message) => Message) =>
+      setMessages((all) => {
+        const next = [...all];
+        next[next.length - 1] = fn(next[next.length - 1]);
+        return next;
+      });
     try {
-      const r = await chat(caseId, q, history);
-      setMessages((m) => [
-        ...m,
-        {
-          role: "assistant",
-          content: r.answer,
-          citations: r.citations,
-          steps: r.steps,
-        },
-      ]);
+      await chatStream(caseId, q, history, (e) => {
+        if (e.type === "step")
+          update((m) => {
+            const steps = [...(m.steps ?? [])];
+            const i = steps.findIndex((s) => s.id === e.id);
+            const row = { id: e.id, label: e.label, detail: e.detail, status: e.status };
+            if (i === -1) steps.push(row);
+            else steps[i] = row;
+            return { ...m, steps };
+          });
+        else if (e.type === "thinking") update((m) => ({ ...m, thinking: (m.thinking ?? "") + e.text }));
+        else if (e.type === "text") update((m) => ({ ...m, content: m.content + e.text }));
+        else if (e.type === "done") update((m) => ({ ...m, content: e.answer, citations: e.citations, live: false }));
+        else if (e.type === "error") update((m) => ({ ...m, content: e.message, error: true, live: false }));
+      });
+      update((m) => ({ ...m, live: false }));
     } catch (e) {
-      setMessages((m) => [
-        ...m,
-        { role: "assistant", content: (e as ApiError).message, error: true },
-      ]);
+      update((m) => ({ ...m, content: (e as ApiError).message, error: true, live: false }));
     } finally {
       setBusy(false);
     }
@@ -163,17 +170,23 @@ export function CaseChat({
                         : "border-line bg-panel"
                     }`}
                   >
-                    {!m.error ? <AgentActivity steps={m.steps} /> : null}
+                    {!m.error ? <AgentActivity steps={m.steps} thinking={m.thinking} running={m.live} /> : null}
+                    {m.live && !m.content ? (
+                      <span className="inline-flex items-center gap-1.5 py-1">
+                        <span className="dot" />
+                        <span className="dot" />
+                        <span className="dot" />
+                      </span>
+                    ) : null}
                     {m.error ? (
                       m.content
                     ) : (
                       <div
                         className={proseClass}
                         dangerouslySetInnerHTML={{
-                          __html: withCitationChips(
-                            renderMarkdown(m.content),
-                            m.citations,
-                          ),
+                          __html: m.live
+                            ? renderMarkdown(m.content).replace(/(<\/p>\s*)?$/, '<span class="caret"></span>$1')
+                            : withCitationChips(renderMarkdown(m.content), m.citations),
                         }}
                       />
                     )}
@@ -190,19 +203,7 @@ export function CaseChat({
                 </div>
               ),
             )}
-            {busy ? (
-              <div className="flex items-start gap-3">
-                <span className="mt-1 flex size-9 items-center justify-center rounded-full bg-white ring-1 ring-line">
-                  <Logo size={22} />
-                </span>
-                <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-line bg-panel px-5 py-4">
-                  <AgentActivity running />
-                  <span className="dot" />
-                  <span className="dot" />
-                  <span className="dot" />
-                </div>
-              </div>
-            ) : null}
+
             <div ref={end} />
           </div>
         </div>

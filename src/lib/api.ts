@@ -67,6 +67,42 @@ export const briefPdfUrl = (id: string) => `${API_URL}/cases/${id}/brief.pdf`;
 export type ChatTurn = { role: "user" | "assistant"; content: string };
 export type ChatCitation = { quote: string; page: number; paragraph: string | null; verified: boolean; url: string | null };
 export type ChatStep = { label: string; detail: string; status: "ok" | "warn" };
+export type ChatEvent =
+  | { type: "step"; id: string; label: string; detail: string; status: "running" | "ok" | "warn" }
+  | { type: "thinking"; text: string }
+  | { type: "text"; text: string }
+  | { type: "done"; answer: string; citations: ChatCitation[]; steps: ChatStep[] }
+  | { type: "error"; message: string };
+
+// Streamed chat (NDJSON): calls onEvent for each step, thinking delta, answer delta and the final checked answer.
+export async function chatStream(id: string, question: string, history: ChatTurn[], onEvent: (e: ChatEvent) => void) {
+  let res: Response;
+  try {
+    res = await fetch(`${API_URL}/cases/${id}/chat/stream`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question, history }),
+    });
+  } catch {
+    throw new ApiError(`Cannot reach the backend at ${API_URL}. Is it running (npm run dev)?`, 0, "unreachable");
+  }
+  if (!res.ok || !res.body) {
+    const body = await res.json().catch(() => null);
+    throw new ApiError(body?.error ?? `Request failed (${res.status})`, res.status);
+  }
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+    for (const line of lines) if (line.trim()) onEvent(JSON.parse(line) as ChatEvent);
+  }
+  if (buffer.trim()) onEvent(JSON.parse(buffer) as ChatEvent);
+}
 export const chat = (id: string, question: string, history: ChatTurn[]) =>
   call<{ answer: string; citations: ChatCitation[]; steps: ChatStep[] }>(`/cases/${id}/chat`, { method: "POST", body: JSON.stringify({ question, history }) });
 

@@ -324,3 +324,7 @@ a.cite:hover { background: var(--fill); color: #fff; }
 a.cite.cite-warn:hover { background: #b54708; color: #fff; }
 /* The decision's own words, set apart from the answer. */
 .dq { font-family: var(--font-serif); font-style: italic; color: var(--paper); }
+
+/* Caret at the end of an answer while it streams. */
+.caret { display: inline-block; width: 7px; height: 1em; margin-left: 2px; vertical-align: -2px; background: var(--fill); animation: caret 1s steps(2) infinite; }
+@keyframes caret { 50% { opacity: 0; } }

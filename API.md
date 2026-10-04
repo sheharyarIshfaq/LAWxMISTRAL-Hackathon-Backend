@@ -308,6 +308,15 @@ Enum values:
 }
 ```
 
+### Value of the claim (`brief.value`)
+
+Rebuilt on every read from `config/assumptions.json` (the legal team's opt-in table, €150 per victim) and the case's category of harm, so a config change shows up immediately.
+
+- `harm_category`: one row of the legal team's opt-in table, chosen by the model from the decision (`source: "assessment"`, with quote; `note` gives the reason and other rows that also fit). The association can switch it with `PATCH { "edits": { "value.harm_category": "<exact row name>" } }`; anything not in the table → 400. The totals recalculate.
+- `scenarios.value`: `[{ name: "low" | "base" | "high", opt_in_rate, opt_ins, compensation_per_victim_eur, total_eur, funder_eur, victims_eur, sources }]` — computed in code; `sources` are the footnote numbers of the legal team's table.
+- `opt_in_expected.value`: `{ expected_pct, std_dev_pts }` — expected opt-in in this category across past cases (not a probability of success).
+- `compensation_per_victim_eur`: 150 (legal team), editable by the association.
+
 ## `PATCH /cases/:id/brief`
 
 The association edits the brief before sending it to investors. Keys are dot paths to fields; values replace `value`. Returns the updated `{ brief }`. Edits survive pipeline re-runs.
@@ -359,7 +368,7 @@ Structured summary of the decision (legal team's prompt): Markdown, sections 0�
 
 ## `GET /cases/:id/brief.pdf`
 
-Downloads the funding brief as a PDF (page 1: brief in the card layout with a platform-assessment strip, page 2: platform assessment, page 3+: structured summary of the decision with § citations). Includes the association's edits. Takes ~2 s.
+Downloads the funding brief as a PDF (page 1: brief in the card layout, page 2+: structured summary of the decision with § citations; the platform assessment is left out for now). Includes the association's edits. Takes ~2 s.
 
 ## `GET /cases/:id/scorecard`
 

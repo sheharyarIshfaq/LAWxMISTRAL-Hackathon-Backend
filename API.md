@@ -10,7 +10,10 @@ Base URL: `http://localhost:3001` · JSON everywhere · CORS open.
 - `page` is `null` when there is no quote (e.g. unsupported claims, assumptions).
 - Citations: to show a quote in context, call `GET /cases/:id/pages/:page` and highlight `quote` inside `text`.
 - No endpoint ever returns a probability of winning.
-- Errors: `{ "error": "message" }` with status `404` (unknown case/page), `400` (bad input or locked field), `500` (server/model failure), `501` (not implemented yet).
+- Errors: always JSON `{ "error": "message", "code"?: "..." }`. Show `error` to the user as is.
+  - `400` bad input (invalid JSON, missing field, locked brief field) · `404` unknown case, page or route
+  - AI service problems: `503` `ai_rate_limited` (try again in a few seconds) · `504` `ai_timeout` · `502` `ai_auth` / `ai_unavailable` / `ai_unreachable` / `ai_bad_output`
+  - `500` `internal` (unexpected; the server keeps running)
 
 ---
 
@@ -22,7 +25,7 @@ Base URL: `http://localhost:3001` · JSON everywhere · CORS open.
 
 ## `GET /cases`
 
-All cases, newest decision first.
+Demo-ready cases (brief, summary and category of harm generated), newest decision first. `?all=true` also lists the mock and partly processed cases (`ready: false`).
 
 ```json
 [
@@ -33,7 +36,8 @@ All cases, newest decision first.
     "fine_total_eur": 42000000,
     "people_affected": 24000000,
     "data_types": ["identity", "contact", "iban"],
-    "mock": true
+    "mock": true,
+    "ready": false
   }
 ]
 ```

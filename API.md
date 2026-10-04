@@ -481,16 +481,18 @@ One page of the decision text, for showing a citation in context.
 { "page": 3, "text": "4. La violation concerne les données de plus de 24 millions de contrats d'abonnés, ..." }
 ```
 
-## `POST /cases/:id/chat` — *not implemented yet (returns 501)*
+## `POST /cases/:id/chat`
 
-Request:
+Chatbot over the decision (association or investor). Answers only from the decision text; general class-action procedure is marked as general information. Never gives a chance of winning. Replies in the language of the question. ~7 s.
+
+Request (`history` optional; the last 6 exchanges are used):
 
 ```json
 {
   "question": "Combien de personnes sont concernées ?",
   "history": [
     { "role": "user", "content": "Quelle est l'amende ?" },
-    { "role": "assistant", "content": "42 millions d'euros au total ..." }
+    { "role": "assistant", "content": "27 000 000 euros ..." }
   ]
 }
 ```
@@ -498,8 +500,17 @@ Request:
 Response:
 
 ```json
-{ "answer": "La violation concerne plus de 24 millions de contrats : \"La violation concerne les données de plus de 24 millions de contrats d'abonnés\" (p. 3)." }
+{
+  "answer": "La violation de données a concerné **24 633 469 contrats** ... \"Au total, l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats, ...\" (p. 3)",
+  "citations": [
+    { "quote": "Au total, l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats, ...", "page": 3, "paragraph": "§ 21", "verified": true }
+  ]
+}
 ```
+
+- `answer` is Markdown. Quotes appear as `"..." (p. N)`; open them with `GET /cases/:id/pages/:n` or `/decisions/<id>.pdf#page=N`.
+- Every quote is checked by code; slightly reworded quotes are replaced with the decision's exact words. An unverified quote shows `⚠ not found in the decision` in the answer and `verified: false` in `citations`.
+- `400` if `question` is missing.
 
 ## `POST /cases` — *not implemented yet (returns 501)*
 

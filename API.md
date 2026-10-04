@@ -115,6 +115,7 @@ Every value in the brief is a **field** object. Style it by `source`:
 | `computed` | Calculated in code (scenarios) | **No** (change the assumptions) |
 | `assumption` | From `config/assumptions.json` (legal team) | Yes |
 | `association` | Entered or edited by the association (`note: "Edited by the association"`) | Yes |
+| `web` | Found by web search, with `source_url` (e.g. latest revenue) | Yes |
 | `missing` | Not in the decision, `value: null`, `note` says what's expected (e.g. "To be provided") | Yes |
 
 Show a warning badge when a field has a `quote` and `quote_verified` is `false`.
@@ -320,6 +321,14 @@ Rebuilt on every read from `config/assumptions.json` (the legal team's opt-in ta
 - `scenarios.value`: `[{ name: "low" | "base" | "high", opt_in_rate, opt_ins, compensation_per_victim_eur, total_eur, funder_eur, victims_eur, sources }]` — computed in code; `sources` are the footnote numbers of the legal team's table.
 - `opt_in_expected.value`: `{ expected_pct, std_dev_pts }` — expected opt-in in this category across past cases (not a probability of success).
 - `compensation_per_victim_eur`: 150 (legal team), editable by the association.
+
+### Defendant solvency (`brief.defendant`)
+
+Legal team's rule, computed in code on every read: **exposure ÷ revenue**, where exposure = victims × € per victim × base opt-in rate (the base scenario total). `strong` < 10% · `medium` 10–50% · `low` > 50%.
+
+- `current_revenue`: latest annual revenue found by web search (`source: "web"`, `source_url` = where the figure comes from), or the revenue stated in the decision if none was found (`source: "decision"`). Value `{ amount_eur, entity, year }`. The association can correct it with `PATCH { "edits": { "defendant.current_revenue": { "amount_eur": 500000000, "entity": "…", "year": 2025 } } }`; solvency recalculates.
+- `solvency`: `source: "computed"`, value `strong | medium | low`, `note` explains the calculation, `calc: { exposure_eur, revenue_eur, ratio, rule }`. Locked (400 on edit).
+- `revenue`: the revenue stated in the decision (may be the parent group's), with its quote.
 
 ## `PATCH /cases/:id/brief`
 

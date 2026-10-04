@@ -1,0 +1,311 @@
+{
+  "case_id": "free-mobile-2026",
+  "generated_at": "2026-10-04T11:01:36.713Z",
+  "edited_at": null,
+  "header": {
+    "action_name": {
+      "value": "FREE MOBILE data breach action",
+      "source": "computed"
+    },
+    "defendant": {
+      "value": "FREE MOBILE",
+      "source": "decision"
+    },
+    "source_decision": {
+      "value": {
+        "authority": "CNIL",
+        "reference": "Délibération SAN-2026-001 du 8 janvier 2026",
+        "date": "2026-01-08"
+      },
+      "source": "decision"
+    },
+    "legal_basis": {
+      "value": [
+        {
+          "article": "GDPR art. 5-1-e",
+          "label": "storage limitation",
+          "quote": "la société conservait donc des données à caractère personnel de millions d’anciens abonnés pendant une durée excessive",
+          "page": 4,
+          "quote_verified": true
+        },
+        {
+          "article": "GDPR art. 32",
+          "label": "security of processing",
+          "quote": "la société n’avait pas déployé les moyens suffisants pour être en mesure de détecter les activités suspectes sur son VPN",
+          "page": 15,
+          "quote_verified": true
+        },
+        {
+          "article": "GDPR art. 34",
+          "label": "communication of a personal data breach to the data subject",
+          "quote": "le courriel d’information initial n’a pas constitué une communication appropriée",
+          "page": 21,
+          "quote_verified": true
+        }
+      ],
+      "source": "decision"
+    },
+    "status": {
+      "value": null,
+      "source": "missing",
+      "note": "Appeal status not stated in the decision"
+    }
+  },
+  "harm": {
+    "quantified": {
+      "value": "to_be_proven",
+      "source": "assessment",
+      "quote": "la formation restreinte considère que l’accès non autorisé ou la divulgation des données traitées par la société est de nature à créer un préjudice moral et matériel pour les personnes concernées.",
+      "page": 11,
+      "quote_verified": true
+    },
+    "nature": {
+      "value": [
+        "financial",
+        "non_material"
+      ],
+      "source": "assessment",
+      "quote": "la formation restreinte considère que l’accès non autorisé ou la divulgation des données traitées par la société est de nature à créer un préjudice moral et matériel pour les personnes concernées.",
+      "page": 11,
+      "quote_verified": true
+    },
+    "description": {
+      "value": "The decision recognises a risk of financial harm (e.g., fraudulent payments using exposed IBANs) and non-material harm (e.g., distress, fear of identity theft, phishing attempts) for the affected individuals due to the data breach.",
+      "source": "assessment",
+      "quote": "la formation restreinte considère que l’accès non autorisé ou la divulgation des données traitées par la société est de nature à créer un préjudice moral et matériel pour les personnes concernées.",
+      "page": 11,
+      "quote_verified": true
+    }
+  },
+  "victims": {
+    "number": {
+      "value": 24633469,
+      "source": "decision",
+      "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats",
+      "page": 3,
+      "quote_verified": true,
+      "note": "contracts"
+    },
+    "identifiable": {
+      "value": "yes",
+      "source": "assessment",
+      "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
+      "page": 2,
+      "quote_verified": true
+    },
+    "categories": {
+      "value": [
+        "consumers"
+      ],
+      "source": "assessment",
+      "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
+      "page": 2,
+      "quote_verified": true
+    },
+    "proof_of_membership": {
+      "value": "the breach notification email sent between 24 and 29 October 2024",
+      "source": "assessment",
+      "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
+      "page": 2,
+      "quote_verified": true
+    },
+    "subgroups": {
+      "value": [
+        "customers whose IBAN was exposed (convergent customers)",
+        "customers whose identity, contact, and contractual data were exposed"
+      ],
+      "source": "assessment",
+      "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel, de manière échelonnée entre le 24 et le 29 octobre 2024",
+      "page": 2,
+      "quote_verified": true
+    }
+  },
+  "defendant": {
+    "name": {
+      "value": "FREE MOBILE",
+      "source": "decision"
+    },
+    "nature": {
+      "value": [
+        "private_company"
+      ],
+      "source": "assessment",
+      "quote": "En 2024, le chiffre d’affaires de la société ILIAD était de 10,024 milliards d’euros pour un résultat net de 367 millions d’euros.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "solvency": {
+      "value": "strong",
+      "source": "assessment",
+      "quote": "En 2024, le chiffre d’affaires de la société ILIAD était de 10,024 milliards d’euros pour un résultat net de 367 millions d’euros.",
+      "page": 2,
+      "quote_verified": true,
+      "note": "The parent group ILIAD had a revenue of 10.024 billion euros in 2024."
+    },
+    "revenue": {
+      "value": {
+        "amount_eur": 10024000000,
+        "entity": "ILIAD",
+        "year": 2024
+      },
+      "source": "decision",
+      "quote": "En 2024, le chiffre d’affaires de la société ILIAD était de 10,024 milliards d’euros pour un résultat net de 367 millions d’euros.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "group": {
+      "value": "ILIAD",
+      "source": "decision",
+      "quote": "En 2024, le chiffre d’affaires de la société ILIAD était de 10,024 milliards d’euros pour un résultat net de 367 millions d’euros.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "insurance": {
+      "value": null,
+      "source": "missing",
+      "note": "Not stated in the decision"
+    },
+    "competent_court": {
+      "value": "civil",
+      "source": "assumption"
+    }
+  },
+  "value": {
+    "formula": "Total = victims who opt in × compensation per victim",
+    "scenarios": {
+      "value": [
+        {
+          "name": "low",
+          "opt_in_rate": 0.005,
+          "opt_ins": 123167,
+          "compensation_per_victim_eur": 150,
+          "total_eur": 18475102
+        },
+        {
+          "name": "mid",
+          "opt_in_rate": 0.02,
+          "opt_ins": 492669,
+          "compensation_per_victim_eur": 150,
+          "total_eur": 73900407
+        },
+        {
+          "name": "high",
+          "opt_in_rate": 0.05,
+          "opt_ins": 1231673,
+          "compensation_per_victim_eur": 150,
+          "total_eur": 184751018
+        }
+      ],
+      "source": "computed",
+      "note": "Opt-in rates and € per victim are assumptions (rate based on: iban)"
+    },
+    "funding_sought_eur": {
+      "value": null,
+      "source": "missing",
+      "note": "To be set by the association"
+    },
+    "funder_share": {
+      "value": 0.3,
+      "source": "assumption"
+    },
+    "benchmarks_note": {
+      "value": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025).",
+      "source": "assumption"
+    }
+  },
+  "timeline": {
+    "expected_duration_years": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "limitation_ends": {
+      "value": null,
+      "source": "missing",
+      "note": "To be confirmed by counsel"
+    },
+    "facts": {
+      "value": {
+        "start": "2024-09-28",
+        "end": "2024-10-22"
+      },
+      "source": "decision",
+      "quote": "Celle-ci a duré du 28 septembre au 22 octobre 2024.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "source_decision": {
+      "value": "2026-01-08",
+      "source": "decision"
+    },
+    "filing": {
+      "value": null,
+      "source": "missing",
+      "note": "Target date"
+    },
+    "judgment_on_liability": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    },
+    "victims_opt_in": {
+      "value": null,
+      "source": "missing",
+      "note": "Period"
+    },
+    "compensation_paid": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    }
+  },
+  "association": {
+    "name": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "certified_since": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "statutory_purpose_url": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "counsel": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "contact": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    }
+  },
+  "framework": {
+    "no_funder_influence": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funding_publicly_disclosed": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "conflict_of_interest_policy": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funder_has_no_ties_to_defendant": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    }
+  }
+}

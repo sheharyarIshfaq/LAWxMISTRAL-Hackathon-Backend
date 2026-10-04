@@ -1,0 +1,307 @@
+{
+  "case_id": "hopital-prive-loire-2026",
+  "generated_at": "2026-10-04T11:01:51.417Z",
+  "edited_at": null,
+  "header": {
+    "action_name": {
+      "value": "HOPITAL PRIVE DE LA LOIRE data breach action",
+      "source": "computed"
+    },
+    "defendant": {
+      "value": "HOPITAL PRIVE DE LA LOIRE",
+      "source": "decision"
+    },
+    "source_decision": {
+      "value": {
+        "authority": "CNIL",
+        "reference": "Délibération SAN-2026-009 du 21 juillet 2026",
+        "date": "2026-07-21"
+      },
+      "source": "decision"
+    },
+    "legal_basis": {
+      "value": [
+        {
+          "article": "GDPR art. 32",
+          "label": "security of processing",
+          "quote": "l’hôpital n’a pas mis en œuvre un niveau de sécurité adapté.",
+          "page": 10,
+          "quote_verified": true
+        },
+        {
+          "article": "GDPR art. 34",
+          "label": "communication of a personal data breach to the data subject",
+          "quote": "aucune information n’a été délivrée aux 202 246 personnes désignées comme tiers de confiance par des patients de l’hôpital",
+          "page": 18,
+          "quote_verified": true
+        }
+      ],
+      "source": "decision"
+    },
+    "status": {
+      "value": null,
+      "source": "missing",
+      "note": "Appeal status not stated in the decision"
+    }
+  },
+  "harm": {
+    "quantified": {
+      "value": "to_be_proven",
+      "source": "assessment",
+      "quote": "La formation restreinte considère que l’accès non autorisé ou la divulgation des données contenues dans le DPI de l’hôpital est de nature à créer un préjudice moral et matériel pour les personnes concernées.",
+      "page": 7,
+      "quote_verified": true
+    },
+    "nature": {
+      "value": [
+        "financial",
+        "non_material"
+      ],
+      "source": "assessment",
+      "quote": "La formation restreinte considère que l’accès non autorisé ou la divulgation des données contenues dans le DPI de l’hôpital est de nature à créer un préjudice moral et matériel pour les personnes concernées.",
+      "page": 7,
+      "quote_verified": true
+    },
+    "description": {
+      "value": "The breach exposed victims to risks of identity theft, phishing, and reputational or discriminatory harm due to the unauthorized disclosure of sensitive personal and health data.",
+      "source": "assessment",
+      "quote": "La formation restreinte considère que l’accès non autorisé ou la divulgation des données contenues dans le DPI de l’hôpital est de nature à créer un préjudice moral et matériel pour les personnes concernées.",
+      "page": 7,
+      "quote_verified": true
+    }
+  },
+  "victims": {
+    "number": {
+      "value": 524867,
+      "source": "decision",
+      "quote": "l’attaquant est parvenu à se connecter au dossier patient informatisé de l’hôpital le 26 juin 2025, en utilisant les identifiants du compte d’un médecin libéral rattaché à l’hôpital. Il a alors multiplié les requêtes pour comprendre leur fonctionnement ainsi que l’arborescence du site.",
+      "page": 3,
+      "quote_verified": true,
+      "note": "persons"
+    },
+    "identifiable": {
+      "value": "yes",
+      "source": "assessment",
+      "quote": "a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique (communiqué de presse sur la page d’accueil de son site",
+      "page": 18,
+      "quote_verified": true
+    },
+    "categories": {
+      "value": [
+        "consumers",
+        "other"
+      ],
+      "source": "assessment",
+      "quote": "a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique (communiqué de presse sur la page d’accueil de son site",
+      "page": 18,
+      "quote_verified": true
+    },
+    "proof_of_membership": {
+      "value": "The breach notification sent by the hospital (courriels, SMS, courriers postaux, or communiqué de presse)",
+      "source": "assessment",
+      "quote": "a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique (communiqué de presse sur la page d’accueil de son site",
+      "page": 18,
+      "quote_verified": true
+    },
+    "subgroups": {
+      "value": [
+        "Patients whose data was exfiltrated (524,867)",
+        "Patients whose national ID card recto was exposed (46,185)",
+        "Patients whose health data was exposed (43)",
+        "Persons designated as trusted third parties by patients (202,246)"
+      ],
+      "source": "assessment",
+      "quote": "a contacté ses patients par différents biais afin de les informer de la survenance d’une attaque informatique (communiqué de presse sur la page d’accueil de son site",
+      "page": 18,
+      "quote_verified": true
+    }
+  },
+  "defendant": {
+    "name": {
+      "value": "HOPITAL PRIVE DE LA LOIRE",
+      "source": "decision"
+    },
+    "nature": {
+      "value": [
+        "private_company"
+      ],
+      "source": "assessment",
+      "quote": "Entre les mois de juillet 2024 et juin 2025, l’hôpital a réalisé un chiffre d’affaires d’environ 93,4 millions d’euros",
+      "page": 2,
+      "quote_verified": false
+    },
+    "solvency": {
+      "value": "strong",
+      "source": "assessment",
+      "quote": "Entre les mois de juillet 2024 et juin 2025, l’hôpital a réalisé un chiffre d’affaires d’environ 93,4 millions d’euros",
+      "page": 2,
+      "quote_verified": false,
+      "note": "The hospital had a revenue of approximately €93.4 million in 2024-2025 and is part of the RAMSAY SANTE group, a major European healthcare provider."
+    },
+    "revenue": {
+      "value": {
+        "amount_eur": 93400000,
+        "entity": "HOPITAL PRIVE DE LA LOIRE",
+        "year": 2025
+      },
+      "source": "decision",
+      "quote": "Entre les mois de juillet 2024 et juin 2025, l’hôpital a réalisé un chiffre d’affaires d’environ 93,4 millions d’euros",
+      "page": 2,
+      "quote_verified": false
+    },
+    "group": {
+      "value": "RAMSAY SANTE",
+      "source": "decision",
+      "quote": "Entre les mois de juillet 2024 et juin 2025, l’hôpital a réalisé un chiffre d’affaires d’environ 93,4 millions d’euros",
+      "page": 2,
+      "quote_verified": false
+    },
+    "insurance": {
+      "value": null,
+      "source": "missing",
+      "note": "Not stated in the decision"
+    },
+    "competent_court": {
+      "value": "civil",
+      "source": "assumption"
+    }
+  },
+  "value": {
+    "formula": "Total = victims who opt in × compensation per victim",
+    "scenarios": {
+      "value": [
+        {
+          "name": "low",
+          "opt_in_rate": 0.005,
+          "opt_ins": 2624,
+          "compensation_per_victim_eur": 500,
+          "total_eur": 1312168
+        },
+        {
+          "name": "mid",
+          "opt_in_rate": 0.02,
+          "opt_ins": 10497,
+          "compensation_per_victim_eur": 500,
+          "total_eur": 5248670
+        },
+        {
+          "name": "high",
+          "opt_in_rate": 0.05,
+          "opt_ins": 26243,
+          "compensation_per_victim_eur": 500,
+          "total_eur": 13121675
+        }
+      ],
+      "source": "computed",
+      "note": "Opt-in rates and € per victim are assumptions (rate based on: health)"
+    },
+    "funding_sought_eur": {
+      "value": null,
+      "source": "missing",
+      "note": "To be set by the association"
+    },
+    "funder_share": {
+      "value": 0.3,
+      "source": "assumption"
+    },
+    "benchmarks_note": {
+      "value": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025).",
+      "source": "assumption"
+    }
+  },
+  "timeline": {
+    "expected_duration_years": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "limitation_ends": {
+      "value": null,
+      "source": "missing",
+      "note": "To be confirmed by counsel"
+    },
+    "facts": {
+      "value": {
+        "start": "2025-06-26",
+        "end": "2025-07-01"
+      },
+      "source": "decision",
+      "quote": "il résulte de ces investigations que l’attaquant est parvenu à se connecter au dossier patient informatisé de l’hôpital le 26 juin 2025",
+      "page": 3,
+      "quote_verified": true
+    },
+    "source_decision": {
+      "value": "2026-07-21",
+      "source": "decision"
+    },
+    "filing": {
+      "value": null,
+      "source": "missing",
+      "note": "Target date"
+    },
+    "judgment_on_liability": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    },
+    "victims_opt_in": {
+      "value": null,
+      "source": "missing",
+      "note": "Period"
+    },
+    "compensation_paid": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    }
+  },
+  "association": {
+    "name": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "certified_since": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "statutory_purpose_url": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "counsel": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "contact": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    }
+  },
+  "framework": {
+    "no_funder_influence": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funding_publicly_disclosed": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "conflict_of_interest_policy": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funder_has_no_ties_to_defendant": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    }
+  }
+}

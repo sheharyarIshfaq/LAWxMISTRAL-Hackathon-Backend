@@ -1,16 +1,16 @@
 ## 1. The case in three sentences
-FREE MOBILE, a private telecommunications provider, suffered a data breach via a compromised VPN and internal tool (MOBO) between 28 September and 21 October 2024. The attacker accessed data tied to 24,633,469 contracts. The CNIL sanctioned FREE MOBILE with a €27,000,000 fine.
+FREE MOBILE suffered a data breach via a compromised VPN and internal tool, exposing subscriber data. The incident affected 24,633,469 contracts. The CNIL imposed a €27,000,000 fine for multiple GDPR violations.
 
 ## 2. What the CNIL established
 - Storage limitation: "la société conservait donc des données à caractère personnel de millions d’anciens abonnés pendant une durée excessive" (p. 4).
 - Security of processing: "la société n’avait pas déployé les moyens suffisants pour être en mesure de détecter les activités suspectes sur son VPN" (p. 15).
-- Communication of a personal data breach: "le courriel d’information initial n’a pas constitué une communication appropriée" (p. 21).
+- Communication of a breach: "le courriel d’information initial n’a pas constitué une communication appropriée" (p. 21).
 
 ## 3. The group
-All individuals whose data was exposed under the 24,633,469 affected contracts qualify to join. The CNIL states: "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats" (p. 3).
+All holders of the 24,633,469 affected contracts would qualify to join. The CNIL states the breach concerned "24 633 469 contrats" (p. 3).
 
 ## 4. The harm
-The leaked data includes identity, contact, and IBAN information, exposing victims to fraud and phishing risks. 2,614 complaints were filed with the CNIL: "la CNIL avait reçu 2 614 plaintes de personnes concernées par cette violation de données" (p. 2). Individual harm must still be proven in court.
+Exposed data types include identity, contact details, and IBAN. This exposes victims to fraud or phishing risks, as evidenced by 2,614 complaints received by the CNIL: "la CNIL avait reçu 2 614 plaintes de personnes concernées par cette violation de données" (p. 2). Individual harm must still be proven in court.
 
 ## 5. Estimated recovery
 Recovery is estimated as: people affected × opt-in rate × compensation per person.
@@ -26,7 +26,7 @@ Recovery is estimated as: people affected × opt-in rate × compensation per per
 - *Assumption:* the CNIL counts contracts, not persons; each one is treated as one person here.
 
 ## 6. Risks
-Appeal status is not stated in the decision. Opt-in rates and individual harm levels are uncertain. FREE MOBILE is a private, well-resourced defendant. It is unclear whether the leaked data was published or sold.
+Appeal status is not stated in the decision. Opt-in rates and individual harm levels are uncertain. FREE MOBILE is a private entity, and its annual revenue is not disclosed. Whether the leaked data was published or sold is not stated in the decision.
 
 ## 7. Compliance statement
 The association retains full control of the action. The funder has no influence over its initiation or conduct. Funder identity and key contract terms will be disclosed publicly.

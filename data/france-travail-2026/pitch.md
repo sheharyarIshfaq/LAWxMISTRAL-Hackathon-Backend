@@ -1,14 +1,14 @@
 ## 1. The case in three sentences
-FRANCE TRAVAIL, a public employment services body, suffered a data breach in 2024 where attackers exfiltrated 25 GB of personal data. The breach involved unauthorized access via compromised CAP EMPLOI advisor accounts using social engineering. The incident affected 36,820,828 people.
+FRANCE TRAVAIL, a public employment services body, suffered a data breach in 2024 where attackers used social engineering to compromise CAP EMPLOI advisor accounts and exfiltrate data. The breach exposed personal data of 36,820,828 people. The CNIL sanctioned FRANCE TRAVAIL with a €5,000,000 fine.
 
 ## 2. What the CNIL established
-- Insufficient technical and organizational measures to ensure data security: "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD" (p. 13).
+- Security of processing: "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD" (p. 13).
 
 ## 3. The group
 All 36,820,828 individuals whose data was exfiltrated would qualify to join the group. The CNIL states the breach concerned "36 820 828 personnes" (p. 3).
 
 ## 4. The harm
-The leaked data includes identity and contact information, as well as other data types, exposing victims to risks such as identity theft or targeted phishing. Individual harm must still be proven in court. The CNIL confirms the exfiltration of "25 giga octets (Go) de données concernant 36 820 828 personnes" (p. 3).
+The leaked data includes identity and contact information, exposing victims to risks such as identity theft or targeted phishing. Individual harm must still be proven in court.
 
 ## 5. Estimated recovery
 Recovery is estimated as: people affected × opt-in rate × compensation per person.
@@ -23,7 +23,7 @@ Recovery is estimated as: people affected × opt-in rate × compensation per per
 - *Assumption:* funder share of 30% of gross recovery.
 
 ## 6. Risks
-Appeal status is not stated in the decision. Opt-in rates and individual harm levels are uncertain. FRANCE TRAVAIL is a public body, which may affect litigation dynamics. Missing details include whether the data was published or sold, fraud reports, and notification adequacy.
+Appeal status is not stated in the decision. Opt-in rates and individual harm levels are uncertain. FRANCE TRAVAIL is a public entity, so claims may need to be brought in administrative court. Key details like revenue, complaint counts, or evidence of fraud/phishing are missing.
 
 ## 7. Compliance statement
-The association retains full control of the action. The funder has no influence over its initiation or conduct. Funder identity and key contract terms will be disclosed publicly.
+The association retains full control of the action; the funder has no influence over its initiation or conduct. The funder’s identity and key contract terms will be disclosed publicly.

@@ -1,0 +1,293 @@
+{
+  "case_id": "france-travail-2026",
+  "generated_at": "2026-10-04T11:01:59.175Z",
+  "edited_at": null,
+  "header": {
+    "action_name": {
+      "value": "FRANCE TRAVAIL data breach action",
+      "source": "computed"
+    },
+    "defendant": {
+      "value": "FRANCE TRAVAIL",
+      "source": "decision"
+    },
+    "source_decision": {
+      "value": {
+        "authority": "CNIL",
+        "reference": "Délibération SAN–2026-003 du 22 janvier 2026",
+        "date": "2026-01-22"
+      },
+      "source": "decision"
+    },
+    "legal_basis": {
+      "value": [
+        {
+          "article": "GDPR art. 32",
+          "label": "security of processing",
+          "quote": "FRANCE TRAVAIL a manqué à ses obligations issues de l’article 32 du RGPD",
+          "page": 13,
+          "quote_verified": true
+        }
+      ],
+      "source": "decision"
+    },
+    "status": {
+      "value": null,
+      "source": "missing",
+      "note": "Appeal status not stated in the decision"
+    }
+  },
+  "harm": {
+    "quantified": {
+      "value": "to_be_proven",
+      "source": "assessment",
+      "quote": "les attaquants ont accédé aux données de […] (nom d’usage, nom de naissance, prénom, sexe, date de naissance, NIR, adresse, code postal, numéro de téléphone, adresse électronique, adresse géographique (région d’appartenance), référence individuelle, statut de demandeur d’emploi (inscrit, radié ou identifié), date de début et de fin d’inscription)",
+      "page": 3,
+      "quote_verified": true
+    },
+    "nature": {
+      "value": [
+        "financial",
+        "non_material"
+      ],
+      "source": "assessment",
+      "quote": "les attaquants ont accédé aux données de […] (nom d’usage, nom de naissance, prénom, sexe, date de naissance, NIR, adresse, code postal, numéro de téléphone, adresse électronique, adresse géographique (région d’appartenance), référence individuelle, statut de demandeur d’emploi (inscrit, radié ou identifié), date de début et de fin d’inscription)",
+      "page": 3,
+      "quote_verified": true
+    },
+    "description": {
+      "value": "Risk of fraud (e.g., with leaked NIR) and non-material harm such as distress or fear of misuse of personal data, including sensitive health-related data.",
+      "source": "assessment",
+      "quote": "les attaquants ont accédé aux données de […] (nom d’usage, nom de naissance, prénom, sexe, date de naissance, NIR, adresse, code postal, numéro de téléphone, adresse électronique, adresse géographique (région d’appartenance), référence individuelle, statut de demandeur d’emploi (inscrit, radié ou identifié), date de début et de fin d’inscription)",
+      "page": 3,
+      "quote_verified": true
+    }
+  },
+  "victims": {
+    "number": {
+      "value": 36820828,
+      "source": "decision",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes",
+      "page": 3,
+      "quote_verified": true,
+      "note": "persons"
+    },
+    "identifiable": {
+      "value": "yes",
+      "source": "assessment",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes vers des plateformes d’hébergement externes. Cela correspond aux données non seulement des personnes inscrites auprès de FRANCE TRAVAIL au cours des 20 dernières années, mais également de celles non inscrites sur la liste des demandeurs d’emploi mais possédant un espace candidat sur le site web",
+      "page": 3,
+      "quote_verified": true
+    },
+    "categories": {
+      "value": [
+        "consumers",
+        "other"
+      ],
+      "source": "assessment",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes vers des plateformes d’hébergement externes. Cela correspond aux données non seulement des personnes inscrites auprès de FRANCE TRAVAIL au cours des 20 dernières années, mais également de celles non inscrites sur la liste des demandeurs d’emploi mais possédant un espace candidat sur le site web",
+      "page": 3,
+      "quote_verified": true
+    },
+    "proof_of_membership": {
+      "value": "Notification of the personal data breach by FRANCE TRAVAIL",
+      "source": "assessment",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes vers des plateformes d’hébergement externes. Cela correspond aux données non seulement des personnes inscrites auprès de FRANCE TRAVAIL au cours des 20 dernières années, mais également de celles non inscrites sur la liste des demandeurs d’emploi mais possédant un espace candidat sur le site web",
+      "page": 3,
+      "quote_verified": true
+    },
+    "subgroups": {
+      "value": [
+        "Persons inscribed with FRANCE TRAVAIL over the last 20 years",
+        "Persons not inscribed as job seekers but with a candidate account on 'francetravail.fr'"
+      ],
+      "source": "assessment",
+      "quote": "les attaquants ont exfiltré de cette manière 25 giga octets (Go) de données concernant 36 820 828 personnes vers des plateformes d’hébergement externes. Cela correspond aux données non seulement des personnes inscrites auprès de FRANCE TRAVAIL au cours des 20 dernières années, mais également de celles non inscrites sur la liste des demandeurs d’emploi mais possédant un espace candidat sur le site web",
+      "page": 3,
+      "quote_verified": true
+    }
+  },
+  "defendant": {
+    "name": {
+      "value": "FRANCE TRAVAIL",
+      "source": "decision"
+    },
+    "nature": {
+      "value": [
+        "public_body"
+      ],
+      "source": "assessment",
+      "quote": "L’opérateur FRANCE TRAVAIL (ci-après, \"l’opérateur\" ou \"l’organisme\") sis Le Cinetic 1-5, 1 avenue du Docteur Gley à Paris (75020), est un établissement public administratif placé sous la tutelle du Ministère chargé de l’emploi. FRANCE TRAVAIL est doté de l’autonomie financière.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "solvency": {
+      "value": null,
+      "source": "missing",
+      "quote": "L’opérateur FRANCE TRAVAIL (ci-après, \"l’opérateur\" ou \"l’organisme\") sis Le Cinetic 1-5, 1 avenue du Docteur Gley à Paris (75020), est un établissement public administratif placé sous la tutelle du Ministère chargé de l’emploi. FRANCE TRAVAIL est doté de l’autonomie financière.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "revenue": {
+      "value": null,
+      "source": "missing",
+      "quote": "L’opérateur FRANCE TRAVAIL (ci-après, \"l’opérateur\" ou \"l’organisme\") sis Le Cinetic 1-5, 1 avenue du Docteur Gley à Paris (75020), est un établissement public administratif placé sous la tutelle du Ministère chargé de l’emploi. FRANCE TRAVAIL est doté de l’autonomie financière.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "group": {
+      "value": null,
+      "source": "missing",
+      "quote": "L’opérateur FRANCE TRAVAIL (ci-après, \"l’opérateur\" ou \"l’organisme\") sis Le Cinetic 1-5, 1 avenue du Docteur Gley à Paris (75020), est un établissement public administratif placé sous la tutelle du Ministère chargé de l’emploi. FRANCE TRAVAIL est doté de l’autonomie financière.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "insurance": {
+      "value": null,
+      "source": "missing",
+      "note": "Not stated in the decision"
+    },
+    "competent_court": {
+      "value": "administrative",
+      "source": "assumption"
+    }
+  },
+  "value": {
+    "formula": "Total = victims who opt in × compensation per victim",
+    "scenarios": {
+      "value": [
+        {
+          "name": "low",
+          "opt_in_rate": 0.005,
+          "opt_ins": 184104,
+          "compensation_per_victim_eur": 50,
+          "total_eur": 9205207
+        },
+        {
+          "name": "mid",
+          "opt_in_rate": 0.02,
+          "opt_ins": 736417,
+          "compensation_per_victim_eur": 50,
+          "total_eur": 36820828
+        },
+        {
+          "name": "high",
+          "opt_in_rate": 0.05,
+          "opt_ins": 1841041,
+          "compensation_per_victim_eur": 50,
+          "total_eur": 92052070
+        }
+      ],
+      "source": "computed",
+      "note": "Opt-in rates and € per victim are assumptions (rate based on: identity, contact)"
+    },
+    "funding_sought_eur": {
+      "value": null,
+      "source": "missing",
+      "note": "To be set by the association"
+    },
+    "funder_share": {
+      "value": 0.3,
+      "source": "assumption"
+    },
+    "benchmarks_note": {
+      "value": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025).",
+      "source": "assumption"
+    }
+  },
+  "timeline": {
+    "expected_duration_years": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "limitation_ends": {
+      "value": null,
+      "source": "missing",
+      "note": "To be confirmed by counsel"
+    },
+    "facts": {
+      "value": {
+        "start": "2024-02-06",
+        "end": "2024-03-05"
+      },
+      "source": "decision",
+      "quote": "L’attaque, qui s’est étendue du mardi 6 février au mardi 5 mars 2024, a ciblé spécifiquement des comptes de salariés CAP EMPLOI.",
+      "page": 3,
+      "quote_verified": true
+    },
+    "source_decision": {
+      "value": "2026-01-22",
+      "source": "decision"
+    },
+    "filing": {
+      "value": null,
+      "source": "missing",
+      "note": "Target date"
+    },
+    "judgment_on_liability": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    },
+    "victims_opt_in": {
+      "value": null,
+      "source": "missing",
+      "note": "Period"
+    },
+    "compensation_paid": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    }
+  },
+  "association": {
+    "name": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "certified_since": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "statutory_purpose_url": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "counsel": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "contact": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    }
+  },
+  "framework": {
+    "no_funder_influence": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funding_publicly_disclosed": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "conflict_of_interest_policy": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funder_has_no_ties_to_defendant": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    }
+  }
+}

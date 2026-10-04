@@ -38,7 +38,7 @@ const SOURCE_LABEL: Record<string, string> = {
   association: "Association",
   missing: "To be provided",
 };
-const tag = (f?: Field) => (f ? `<span class="tag t-${f.source}">${SOURCE_LABEL[f.source]}</span>` : "");
+const tag = (f?: Field) => (f && f.source !== "assessment" ? `<span class="tag t-${f.source}">${SOURCE_LABEL[f.source]}</span>` : "");
 const check = (f: { quote_verified?: boolean; quote_fixed?: string }) =>
   f.quote_verified
     ? f.quote_fixed === "trimmed" || f.quote_fixed === "repaired"

@@ -2,7 +2,7 @@
 
 Base URL: `http://localhost:3001` · JSON everywhere · CORS open.
 
-> **Mock data:** `mock-free-2026` is hand-written sample data (`"mock": true`) kept as a stable fixture. Real cases (`free-mobile-2026`, `free-2026`, `france-travail-2026`, `hopital-prive-loire-2026`) appear in `GET /cases` as the pipeline produces them; same shapes. Show a "mock" badge when `mock` is true.
+> **Mock data:** `mock-free-2026` is hand-written sample data (`"mock": true`) kept as a stable fixture. Real cases (`free-mobile-2026`, `france-travail-2026`, `hopital-prive-loire-2026`) appear in `GET /cases` as the pipeline produces them; same shapes. Show a "mock" badge when `mock` is true.
 
 ## Conventions
 

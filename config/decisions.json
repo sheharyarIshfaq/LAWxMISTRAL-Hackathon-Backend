@@ -1,5 +1,14 @@
 {
-  "free-mobile-2026": { "reference": "SAN-2026-001", "url": null },
-  "hopital-prive-loire-2026": { "reference": "SAN-2026-009", "url": null },
-  "france-travail-2026": { "reference": "SAN-2026-003", "url": null }
+  "free-mobile-2026": {
+    "reference": "SAN-2026-001",
+    "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053352594"
+  },
+  "hopital-prive-loire-2026": {
+    "reference": "SAN-2026-009",
+    "url": null
+  },
+  "france-travail-2026": {
+    "reference": "SAN-2026-003",
+    "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671"
+  }
 }

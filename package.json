@@ -2,10 +2,10 @@
   "name": "llm-hackathon",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "scripts": {
-    "dev": "tsx watch server.ts",
-    "start": "tsx server.ts",
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],

@@ -323,6 +323,23 @@ Rebuilt on every read from `config/assumptions.json` (the legal team's opt-in ta
 - `opt_in_expected.value`: `{ expected_pct, std_dev_pts }` — expected opt-in in this category across past cases (not a probability of success).
 - `compensation_per_victim_eur`: 150 (legal team), editable by the association.
 
+### Legal-team rules: victim identifiability and "is the harm quantified?"
+
+`brief.victims.identifiable` and `brief.harm.quantified` follow the legal team's rules (`prompts/identifiability.txt`, `prompts/harm-quantified.txt`). The value is the level (`yes | partly | no`, `quantified | quantifiable | to_be_proven`); `note` is the ready-to-show sentence, e.g. "Yes: Subscribers notified by email between 24 and 29 October 2024 (§ 21, § 3)"; `detail` holds the reasoning:
+
+```json
+{
+  "level": "yes",
+  "statement": "Subscribers notified by email between 24 and 29 October 2024 …",
+  "list_holder": { "answer": "yes", "evidence": "…", "quote": "…", "quote_verified": true, "paragraph": "§ 21", "url": "https://www.legifrance.gouv.fr/…#:~:text=21.%20Au%20total…" },
+  "proof": { "answer": "yes", "evidence": "…", "quote": "…", "paragraph": "§ 3", "url": "…" },
+  "subgroups": [],
+  "weakening": [{ "wording": "anciens abonnés", "explanation": "…", "sources": [{ "paragraph": "§ 34", "url": "…" }, { "paragraph": "§ 37", "url": "…" }] }]
+}
+```
+
+Harm `detail`: `{ level, justification, quotes: [{ quote, paragraph, url }], subgroups: [{ group, level, justification, paragraph, url }] }`. Every § is found by code from a verified quote (never written by the model) and links to the passage on Légifrance.
+
 ### Defendant solvency (`brief.defendant`)
 
 Legal team's rule, computed in code on every read: **exposure ÷ revenue**, where exposure = victims × € per victim × base opt-in rate (the base scenario total). `strong` < 10% · `medium` 10–50% · `low` > 50%.

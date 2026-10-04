@@ -89,7 +89,7 @@ export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages
     if (!para && !fragment && !quote) note = "No quotation or text fragment to check this citation against.";
     else if (!para && quoteOk) note = `${note ? note + " " : ""}Text fragment not found in the decision.`;
 
-    citations.push({ id, label: finalLabel, cited_label: label.trim(), page: para?.page ?? null, fragment: exact ?? (para ? null : fragment), quote: quoteText, verified, note });
+    citations.push({ id, label: finalLabel, cited_label: label.trim(), page: para?.page ?? null, fragment: exact ?? fragment, quote: quoteText, verified, note });
     let before = whole.slice(0, whole.lastIndexOf("["));
     if (quote && quoteText && quoteText !== quote) before = before.replace(quote, quoteText);
     return `${before}[${finalLabel}](cite:${id})`;
@@ -99,14 +99,15 @@ export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages
 
 // Turn cite:ID markers into links: the official URL (+ text fragment) when known, else the local decision PDF page,
 // or plain "(§ N)" for print. Unverified citations get a visible warning.
-export function renderCitations(summary: Summary, opts: { url: string | null; localPdf?: string; plain?: boolean }): string {
+// Turn cite:ID markers into links. `viewer`: our decision viewer, which scrolls to the paragraph and highlights the
+// cited words (reliable; Légifrance loads its text with JavaScript, so its #:~:text= highlights do not work).
+// `url`: official Légifrance page. `plain`: "(§ N)" without a link. Unverified citations get a visible warning.
+export function renderCitations(summary: Summary, opts: { url?: string | null; viewer?: (citationId: number) => string; plain?: boolean }): string {
   const byId = new Map(summary.citations.map((c) => [c.id, c]));
-  return summary.markdown.replace(/\[([^\]]+)\]\(cite:(\d+)\)/g, (_m, label: string, id: string) => {
-    const c = byId.get(Number(id));
+  return summary.markdown.replace(/\[([^\]]+)\]\(cite:(\d+)\)/g, (_m, label: string, cid: string) => {
+    const c = byId.get(Number(cid));
     const warn = c && !c.verified ? " ⚠" : "";
-    let href: string | null = null;
-    if (opts.url) href = opts.url + (c?.fragment ? `#:~:text=${encodeURIComponent(c.fragment)}` : "");
-    else if (opts.localPdf && c?.page) href = `${opts.localPdf}#page=${c.page}`;
+    const href = opts.viewer ? opts.viewer(Number(cid)) : opts.url ?? null;
     return opts.plain || !href ? `(${label}${warn})` : `[${label}${warn}](${href})`;
   });
 }

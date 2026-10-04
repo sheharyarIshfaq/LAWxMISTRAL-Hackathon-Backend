@@ -7,6 +7,7 @@ import { matchesForCase } from "../services/matching.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
+import { decisionPage, viewerLink } from "../services/viewer.ts";
 
 type CaseParams = { id: string };
 type PageParams = { id: string; n: string };
@@ -86,7 +87,12 @@ export async function getSummary(req: Request<CaseParams>, res: Response) {
   const summary = await readJson<Summary>(id, "summary.json");
   const url = await decisionUrl(id);
   // Links go to the official Légifrance page (scrolling to the passage) when its URL is known, else to the local PDF page.
-  res.json({ markdown: renderCitations(summary, { url, localPdf: `/decisions/${id}.pdf` }), citations: summary.citations, decision_url: url });
+  // Each citation opens our decision viewer, scrolled to the paragraph with the cited words highlighted.
+  res.json({
+    markdown: renderCitations(summary, { viewer: (c) => viewerLink(id, c, true) }),
+    citations: summary.citations.map((c) => ({ ...c, viewer_url: viewerLink(id, c.id, true) })),
+    decision_url: url,
+  });
 }
 
 // The funding brief as a PDF (brief, platform assessment, summary), with the association's edits.
@@ -97,7 +103,7 @@ export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   const summary = await readJsonOr<Summary | null>(id, "summary.json", null);
   const url = await decisionUrl(id);
-  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { url, plain: !url }) : null);
+  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { viewer: (c) => viewerLink(id, c, true) }) : null);
   const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
   res.download(pdfPath, `${id}-funding-brief.pdf`);
 }
@@ -139,4 +145,10 @@ export function createCase(_req: Request, res: Response) {
 // Funders matched to this case, strong → weak, with the reasons. Plain code, no probability.
 export async function getMatches(req: Request<CaseParams>, res: Response) {
   res.json(await matchesForCase(req.params.id));
+}
+
+// The decision as a web page; ?c=<citation id> (or ?q=<words>&para=<§ N>) scrolls to and highlights the cited passage.
+export async function getDecisionPage(req: Request<CaseParams>, res: Response) {
+  const q = req.query as Record<string, string | undefined>;
+  res.type("html").send(await decisionPage(req.params.id, { c: q.c, q: q.q, para: q.para }));
 }

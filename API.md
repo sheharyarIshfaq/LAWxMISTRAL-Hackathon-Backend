@@ -10,7 +10,7 @@ Base URL: `http://localhost:3001` · JSON everywhere · CORS open.
 - `page` is `null` when there is no quote (e.g. unsupported claims, assumptions).
 - Citations: to show a quote in context, call `GET /cases/:id/pages/:page` and highlight `quote` inside `text`.
 - No endpoint ever returns a probability of winning.
-- Errors: `{ "error": "message" }` with status `404` (unknown case/page), `400` (bad input), `500` (server/model failure), `501` (not implemented yet).
+- Errors: `{ "error": "message" }` with status `404` (unknown case/page), `400` (bad input or locked field), `500` (server/model failure), `501` (not implemented yet).
 
 ---
 
@@ -94,11 +94,231 @@ Any field may be `null` when the decision doesn't state it; the field is then li
 
 ## `GET /cases/:id/pitch`
 
-The association's funding pitch as Markdown. Citations appear as `"quote" (p. N)`.
+The funding brief for the association → investor screen (structured, one block per card), plus the same pitch as Markdown (for export/email). `brief` is `null` for the mock case.
 
 ```json
-{ "markdown": "## 1. The case in three sentences\n\nIn October 2024, an attacker ..." }
+{ "brief": { ... }, "markdown": "## 1. The case in three sentences\n\n..." }
 ```
+
+### Fields: `{ value, source, quote?, page?, quote_verified?, note? }`
+
+Every value in the brief is a **field** object. Style it by `source`:
+
+| `source` | Meaning | Editable by association |
+| --- | --- | --- |
+| `decision` | Fact from the CNIL decision (with quote + page when available) | **No** |
+| `assessment` | Model's classification, backed by a quote (e.g. solvency, harm nature) | Yes |
+| `computed` | Calculated in code (scenarios) | **No** (change the assumptions) |
+| `assumption` | From `config/assumptions.json` (legal team) | Yes |
+| `association` | Entered or edited by the association (`note: "Edited by the association"`) | Yes |
+| `missing` | Not in the decision, `value: null`, `note` says what's expected (e.g. "To be provided") | Yes |
+
+Show a warning badge when a field has a `quote` and `quote_verified` is `false`.
+
+Enum values:
+- `header.status`: `final` | `under_appeal` (or `null` / `missing`)
+- `harm.quantified`: `quantified` | `quantifiable` | `to_be_proven`
+- `harm.nature`: list of `financial`, `non_material`, `overcharge`, `loss_of_chance`
+- `victims.identifiable`: `yes` | `partly` | `no`
+- `victims.categories`: list of `consumers`, `businesses`, `retail_investors`, `employees`, `other`
+- `defendant.nature`: list of `private_company`, `listed_group`, `public_body`, `association_or_union`
+- `defendant.solvency`: `strong` | `medium` | `low`
+- `defendant.competent_court`: `civil` | `administrative`
+- `value.funder_share`: fraction (0.3 = 30%) · `value.funding_sought_eur`: euros
+
+### Example (Free Mobile, abridged)
+
+```json
+{
+  "case_id": "free-mobile-2026",
+  "generated_at": "2026-10-04T11:01:36.713Z",
+  "edited_at": null,
+  "header": {
+    "action_name": {
+      "value": "FREE MOBILE data breach action",
+      "source": "computed"
+    },
+    "defendant": {
+      "value": "FREE MOBILE",
+      "source": "decision"
+    },
+    "source_decision": {
+      "value": {
+        "authority": "CNIL",
+        "reference": "Délibération SAN-2026-001 du 8 janvier 2026",
+        "date": "2026-01-08"
+      },
+      "source": "decision"
+    },
+    "legal_basis": {
+      "value": [
+        {
+          "article": "GDPR art. 34",
+          "label": "communication of a personal data breach to the data subject",
+          "quote": "le courriel d’information initial n’a pas constitué une c...",
+          "page": 21,
+          "quote_verified": true
+        },
+        "..."
+      ],
+      "source": "decision"
+    },
+    "status": {
+      "value": null,
+      "source": "missing",
+      "note": "Appeal status not stated in the decision"
+    }
+  },
+  "harm": {
+    "quantified": {
+      "value": "to_be_proven",
+      "source": "assessment",
+      "quote": "la formation restreinte considère que l’accès non autoris...",
+      "page": 11,
+      "quote_verified": true
+    },
+    "nature": "{ same shape }",
+    "description": "{ same shape }"
+  },
+  "victims": {
+    "number": {
+      "value": 24633469,
+      "source": "decision",
+      "quote": "l’attaquant a pu prendre connaissance, des données concer...",
+      "page": 3,
+      "quote_verified": true,
+      "note": "contracts"
+    },
+    "identifiable": "...",
+    "categories": "...",
+    "proof_of_membership": "...",
+    "subgroups": "..."
+  },
+  "defendant": {
+    "name": "...",
+    "nature": "...",
+    "solvency": {
+      "value": "strong",
+      "source": "assessment",
+      "quote": "En 2024, le chiffre d’affaires de la société ILIAD était ...",
+      "page": 2,
+      "quote_verified": true,
+      "note": "The parent group ILIAD had a revenue of 10.024 billion euros in 2024."
+    },
+    "revenue": {
+      "value": {
+        "amount_eur": 10024000000,
+        "entity": "ILIAD",
+        "year": 2024
+      },
+      "source": "decision",
+      "quote": "En 2024, le chiffre d’affaires de la société ILIAD était ...",
+      "page": 2,
+      "quote_verified": true
+    },
+    "group": "...",
+    "insurance": {
+      "value": null,
+      "source": "missing",
+      "note": "Not stated in the decision"
+    },
+    "competent_court": {
+      "value": "civil",
+      "source": "assumption"
+    }
+  },
+  "value": {
+    "formula": "Total = victims who opt in × compensation per victim",
+    "scenarios": {
+      "value": [
+        {
+          "name": "mid",
+          "opt_in_rate": 0.02,
+          "opt_ins": 492669,
+          "compensation_per_victim_eur": 150,
+          "total_eur": 73900407
+        },
+        "low, mid, high"
+      ],
+      "source": "computed",
+      "note": "Opt-in rates and € per victim are assumptions (rate based on: iban)"
+    },
+    "funding_sought_eur": {
+      "value": null,
+      "source": "missing",
+      "note": "To be set by the association"
+    },
+    "funder_share": {
+      "value": 0.3,
+      "source": "assumption"
+    },
+    "benchmarks_note": "..."
+  },
+  "timeline": {
+    "expected_duration_years": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "limitation_ends": "...",
+    "facts": {
+      "value": {
+        "start": "2024-09-28",
+        "end": "2024-10-22"
+      },
+      "source": "decision",
+      "quote": "Celle-ci a duré du 28 septembre au 22 octobre 2024.",
+      "page": 2,
+      "quote_verified": true
+    },
+    "source_decision": {
+      "value": "2026-01-08",
+      "source": "decision"
+    },
+    "filing": {
+      "value": null,
+      "source": "missing",
+      "note": "Target date"
+    },
+    "judgment_on_liability": "...",
+    "victims_opt_in": "...",
+    "compensation_paid": "..."
+  },
+  "association": {
+    "name": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "certified_since": "...",
+    "statutory_purpose_url": "...",
+    "counsel": "...",
+    "contact": "..."
+  },
+  "framework": {
+    "no_funder_influence": {
+      "value": false,
+      "source": "association",
+      "note": "Confirmed by the association"
+    },
+    "funding_publicly_disclosed": "...",
+    "conflict_of_interest_policy": "...",
+    "funder_has_no_ties_to_defendant": "..."
+  }
+}
+```
+
+## `PATCH /cases/:id/brief`
+
+The association edits the brief before sending it to investors. Keys are dot paths to fields; values replace `value`. Returns the updated `{ brief }`. Edits survive pipeline re-runs.
+
+```json
+{ "edits": { "association.name": "Association X", "value.funding_sought_eur": 3000000, "framework.no_funder_influence": true } }
+```
+
+- An edited field becomes `source: "association"`, its quote is removed, `note: "Edited by the association"`.
+- Editing a `decision` or `computed` field → `400 { "error": "victims.number comes from the CNIL decision and cannot be edited" }`.
+- Unknown path → `400`. Nothing is saved if any edit in the request is rejected.
 
 ## `GET /cases/:id/scorecard`
 

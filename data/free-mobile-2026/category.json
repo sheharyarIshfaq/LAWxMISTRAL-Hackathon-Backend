@@ -1,13 +1,45 @@
 {
   "category": "Violation de données par défaut de sécurité, victimes identifiées",
+  "rule": "If the decision supports a data-breach row (\"Violation de données…\"), choose among those only; then the most conservative one (lowest base opt-in rate) whose quote is verified",
+  "matches": [
+    {
+      "category": "Violation de données par défaut de sécurité, victimes identifiées",
+      "reason": "The decision confirms a data breach due to security failures, and the victims were identified as they were individually notified.",
+      "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel,",
+      "page": 2,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    {
+      "category": "Violation de données sensibles (santé, banque)",
+      "reason": "The breach exposed IBAN data, which is classified as sensitive banking data.",
+      "quote": "pour les clients dits convergents, leur IBAN",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "category": "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+      "reason": "The decision highlights excessive data retention and failure to implement data minimization principles.",
+      "quote": "la société conservait donc des données à caractère personnel de millions d’anciens abonnés pendant une durée excessive",
+      "page": 4,
+      "quote_verified": true
+    },
+    {
+      "category": "Sous-traitance, registre, analyse d'impact, protection dès la conception",
+      "reason": "The decision notes failures in security measures, which are part of the broader obligations under this category.",
+      "quote": "la société n’avait pas mis en place de mesure permettant de trier les données",
+      "page": 4,
+      "quote_verified": true
+    }
+  ],
+  "reason": "The decision confirms a data breach due to security failures, and the victims were identified as they were individually notified.",
+  "quote": "a informé les personnes concernées de la survenance de la violation de données, par courriel,",
+  "page": 2,
+  "quote_verified": true,
   "other_categories": [
     "Violation de données sensibles (santé, banque)",
-    "Violation de données non communiquée aux victimes",
-    "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude"
+    "Défaut d'information, conservation excessive, défaut de minimisation, inexactitude",
+    "Sous-traitance, registre, analyse d'impact, protection dès la conception"
   ],
-  "reason": "The decision clearly identifies a data breach caused by security failures, affecting identified victims (24+ million contracts), with confirmed access to personal data including IBANs.",
-  "quote": "l’attaquant a pu prendre connaissance, des données concernant 24 633 469 contrats,",
-  "page": 3,
-  "quote_verified": true,
   "quote_fixed": "repaired"
 }

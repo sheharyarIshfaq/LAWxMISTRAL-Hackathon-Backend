@@ -45,6 +45,7 @@ export type Scenario = { name: "low" | "base" | "high"; opt_in_rate: number; opt
 
 export type Brief = {
   case_id: string;
+  finalized_at: string | null;
   header: { action_name: Field<string>; defendant: Field<string> };
   victims: { number: Field<number> };
   value: { scenarios: Field<Scenario[]>; harm_category: Field<string>; funder_share: Field<number>; opt_in_expected: Field<{ expected_pct: number; std_dev_pts: number | null }> };
@@ -129,3 +130,62 @@ export const eur = (n: number | null | undefined) =>
 export const num = (n: number | null | undefined) => (n == null ? "—" : n.toLocaleString("en-US"));
 export const day = (d: string | null | undefined) =>
   d ? new Date(d + (d.length === 10 ? "T00:00:00" : "")).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—";
+
+// ---- Workflow: monitoring, workspace, finalize & send ----
+export type MonitorState = {
+  interval_hours: number;
+  last_run: string | null;
+  next_run: string | null;
+  last_result: { total: number; new: number; new_candidates: number; emails: number; from_cache: boolean } | null;
+  error: string | null;
+};
+export type Email = { id: string; kind: "radar_alert" | "brief_to_funder"; to: string; to_name: string; subject: string; body: string; related: Record<string, unknown>; sent_at: string };
+export type WorkItem = {
+  radar_id: string;
+  case_id: string | null;
+  organisation_type: string;
+  date: string;
+  fine_eur: number | null;
+  legifrance_url: string | null;
+  status: "ready" | "analysis_requested";
+  started_at: string;
+};
+export type Delivery = { id: string; case_id: string; funder_id: string; funder_name: string; message: string | null; sent_at: string };
+
+export const getMonitor = () => call<MonitorState>("/monitor");
+export const getOutbox = (kind?: Email["kind"]) => call<Email[]>(`/outbox${kind ? `?kind=${kind}` : ""}`);
+export const listWorkspace = () => call<WorkItem[]>("/workspace");
+export const startWork = (radarId: string) => call<WorkItem>("/workspace", { method: "POST", body: JSON.stringify({ radar_id: radarId }) });
+export const finalizeBrief = (id: string) => call<{ brief: Brief }>(`/cases/${id}/finalize`, { method: "POST" });
+export const reopenBrief = (id: string) => call<{ brief: Brief }>(`/cases/${id}/reopen`, { method: "POST" });
+export const sendToFunders = (id: string, funderIds: string[], message: string) =>
+  call<{ sent: Delivery[]; deliveries: Delivery[] }>(`/cases/${id}/send`, { method: "POST", body: JSON.stringify({ funder_ids: funderIds, message }) });
+export const getDeliveries = (id: string) => call<Delivery[]>(`/cases/${id}/deliveries`);
+
+// ---- Funder side ----
+export type ReceivedPitch = Delivery & {
+  defendant: string;
+  action_name: string | null;
+  association: string | null;
+  decision: { authority: string; reference: string; date: string } | null;
+  victims: number | null;
+  victims_unit: string | null;
+  claim_low_eur: number | null;
+  claim_base_eur: number | null;
+  claim_high_eur: number | null;
+  harm_category: string | null;
+  solvency: string | null;
+  funding_sought_eur: number | null;
+};
+export type FunderDashboard = {
+  funder: { id: string; name: string; funder_type: string | null };
+  pitches_received: number;
+  total_claim_base_eur: number;
+  total_victims: number;
+  by_category: { label: string; n: number }[];
+  by_solvency: { label: string; n: number }[];
+  latest: ReceivedPitch[];
+};
+export const getFunderPitches = (id: string) => call<ReceivedPitch[]>(`/funders/${id}/pitches`);
+export const getFunderDashboard = (id: string) => call<FunderDashboard>(`/funders/${id}/dashboard`);
+export const listAllDeliveries = () => call<Delivery[]>("/deliveries");

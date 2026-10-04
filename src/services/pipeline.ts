@@ -1,10 +1,11 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { askJson, askText } from "./mistral.ts";
-import { addQuoteFlags, quoteOk } from "./quoteCheck.ts";
+import { addQuoteFlags, quoteOk, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { readJson, writeJson, writeText, type Page } from "./storage.ts";
 import { computeRecovery, loadAssumptions, recoveryTable } from "./recovery.ts";
+import { generateBrief } from "./brief.ts";
 
 const prompt = (name: string) => fs.readFile(path.resolve("prompts", name), "utf8");
 
@@ -25,7 +26,7 @@ export async function extractCase(id: string, pages: Page[]) {
   const [system, schema] = await Promise.all([prompt("extract.txt"), prompt("schema.json")]);
   const result = await askJson(`${system}\n${EXTRACT_FORMAT}\n\nSCHEMA:\n${schema}`, withPageMarkers(pages));
   const caseJson = { ...result, case_id: id };
-  return addQuoteFlags(caseJson, pages);
+  return requoteFailed(addQuoteFlags(caseJson, pages), pages);
 }
 
 export async function runExtract(id: string) {
@@ -104,8 +105,9 @@ function checkPitch(markdown: string, input: unknown, pages: Page[]) {
 
 export async function runPitch(id: string) {
   const [caseJson, pages] = await Promise.all([readJson(id, "case.json"), readJson<Page[]>(id, "pages.json")]);
-  const result = await generatePitch(caseJson, pages);
+  const [result, brief] = await Promise.all([generatePitch(caseJson, pages), generateBrief(caseJson, pages)]);
   await writeText(id, "pitch.md", result.markdown + "\n");
+  await writeJson(id, "brief.json", brief);
   if (result.recovery) await writeJson(id, "recovery.json", result.recovery);
-  return result;
+  return { ...result, brief };
 }

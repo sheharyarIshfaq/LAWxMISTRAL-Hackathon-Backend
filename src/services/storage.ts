@@ -26,6 +26,15 @@ export async function readJson<T = any>(id: string, file: string): Promise<T> {
   return JSON.parse(await read(id, file));
 }
 
+export async function readJsonOr<T>(id: string, file: string, fallback: T): Promise<T> {
+  try {
+    return await readJson<T>(id, file);
+  } catch (err) {
+    if (err instanceof NotFound) return fallback;
+    throw err;
+  }
+}
+
 export async function readText(id: string, file: string): Promise<string> {
   return read(id, file);
 }

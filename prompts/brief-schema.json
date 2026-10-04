@@ -1,0 +1,34 @@
+{
+  "harm": {
+    "quantified": "quantified | quantifiable | to_be_proven",
+    "nature": ["financial", "non_material", "overcharge", "loss_of_chance"],
+    "description": "",
+    "quote": "",
+    "page": 0
+  },
+  "victims": {
+    "identifiable": "yes | partly | no",
+    "categories": ["consumers", "businesses", "retail_investors", "employees", "other"],
+    "proof_of_membership": "",
+    "subgroups": [""],
+    "quote": "",
+    "page": 0
+  },
+  "defendant": {
+    "nature": ["private_company", "listed_group", "public_body", "association_or_union"],
+    "revenue_eur": null,
+    "revenue_entity": "",
+    "revenue_year": null,
+    "group": "",
+    "solvency": "strong | medium | low",
+    "solvency_reason": "",
+    "quote": "",
+    "page": 0
+  },
+  "facts": {
+    "start": "",
+    "end": "",
+    "quote": "",
+    "page": 0
+  }
+}

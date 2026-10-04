@@ -1,6 +1,10 @@
 {
   "_status": "PLACEHOLDERS from the build kit, not legal figures. To be confirmed by the legal team.",
-  "opt_in_rate": { "low": 0.005, "mid": 0.02, "high": 0.05 },
+  "opt_in_rate": {
+    "low": 0.005,
+    "mid": 0.02,
+    "high": 0.05
+  },
   "compensation_per_person_eur": {
     "identity": 50,
     "contact": 50,
@@ -9,5 +13,10 @@
   },
   "multiple_data_types_rule": "highest",
   "count_contracts_as_persons": true,
-  "funder_share": 0.3
+  "funder_share": 0.3,
+  "competent_court_by_legal_form": {
+    "private": "civil",
+    "public": "administrative"
+  },
+  "benchmarks_note": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025)."
 }

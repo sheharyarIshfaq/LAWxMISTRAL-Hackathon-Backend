@@ -3,6 +3,7 @@
 import { readJsonOr } from "../src/services/storage.ts";
 import { loadBrief } from "../src/services/brief.ts";
 import { platformAssessment, type Scorecard } from "../src/services/scorecard.ts";
+import { decisionUrl, renderCitations, type Summary } from "../src/services/summary.ts";
 import { printPdf, renderReportHtml } from "../src/services/report.ts";
 
 const ids = process.argv.slice(2);
@@ -16,8 +17,9 @@ for (const id of ids) {
     const brief = await loadBrief(id);
     if (!brief) throw new Error("no brief yet");
     const sc = await readJsonOr<Scorecard | null>(id, "scorecard.json", null);
-    const summary = await readJsonOr(id, "summary.json", null);
-    const html = await renderReportHtml({ ...brief, platform_assessment: platformAssessment(sc, brief) }, summary);
+    const summary = await readJsonOr<Summary | null>(id, "summary.json", null);
+    const url = await decisionUrl(id);
+    const html = await renderReportHtml({ ...brief, platform_assessment: platformAssessment(sc, brief) }, summary ? renderCitations(summary, { url, plain: !url }) : null);
     const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
     console.log(`✓ ${id} → ${pdfPath}`);
   } catch (err: any) {

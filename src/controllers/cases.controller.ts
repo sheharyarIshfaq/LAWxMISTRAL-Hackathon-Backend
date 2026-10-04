@@ -3,6 +3,7 @@ import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type 
 import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
+import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
 
 type CaseParams = { id: string };
 type PageParams = { id: string; n: string };
@@ -62,17 +63,21 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
 }
 
 export async function getSummary(req: Request<CaseParams>, res: Response) {
-  const { sentences } = await readJson(req.params.id, "summary.json");
-  res.json({ sentences });
+  const { id } = req.params;
+  const summary = await readJson<Summary>(id, "summary.json");
+  const url = await decisionUrl(id);
+  // Links go to the official Légifrance page (scrolling to the passage) when its URL is known, else to the local PDF page.
+  res.json({ markdown: renderCitations(summary, { url, localPdf: `/decisions/${id}.pdf` }), citations: summary.citations, decision_url: url });
 }
 
-// The funding brief as a PDF (brief + summary + verification appendix), with the association's edits.
+// The funding brief as a PDF (brief, platform assessment, summary), with the association's edits.
 export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   const { id } = req.params;
   const brief = await briefWithAssessment(id);
   if (!brief) throw new NotFound(`${id} has no brief yet`);
-  const summary = await readJsonOr(id, "summary.json", null);
-  const html = await renderReportHtml(brief, summary);
+  const summary = await readJsonOr<Summary | null>(id, "summary.json", null);
+  const url = await decisionUrl(id);
+  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { url, plain: !url }) : null);
   const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
   res.download(pdfPath, `${id}-funding-brief.pdf`);
 }

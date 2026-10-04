@@ -15,7 +15,7 @@ const CRITERION_LABEL: Record<string, string> = {
   defendant: "Defendant",
   recoverability: "Recoverability",
 };
-import type { SummarySentence } from "./summary.ts";
+import { marked } from "marked";
 
 const CHROME = process.env.CHROME_PATH ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
@@ -64,7 +64,7 @@ function card(title: string, icon: string, cls: string, body: string) {
   return `<section class="card ${cls}"><h2>${esc(title)}<span class="icon">${icon}</span></h2><div class="body">${body}</div></section>`;
 }
 
-export async function renderReportHtml(brief: Brief & { platform_assessment?: Assessment }, summary: { sentences: SummarySentence[] } | null) {
+export async function renderReportHtml(brief: Brief & { platform_assessment?: Assessment }, summaryMarkdown: string | null) {
   const pa = brief.platform_assessment ?? null;
   const b = brief;
   const people = b.victims.number.value as number | null;
@@ -178,10 +178,10 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
       </div></section>`
     : "";
 
-  const summaryPage = summary
-    ? `<section class="page-break doc"><h2 class="doc-h">Summary of the decision</h2>
-      <p class="muted">${esc((b.header.source_decision.value as any)?.reference)}. Plain-language summary; each sentence is followed by the passage of the decision that supports it.</p>
-      <ol class="summary">${summary.sentences.map((s) => `<li><p>${esc(s.text)}</p>${cite(s)}</li>`).join("")}</ol></section>`
+  const summaryPage = summaryMarkdown
+    ? `<section class="page-break doc md"><h2 class="doc-h">Summary of the decision</h2>
+      <p class="muted">${esc((b.header.source_decision.value as any)?.reference)}. Every fact cites the paragraph (§) of the decision; each citation was checked against the decision text by code (⚠ = could not be verified).</p>
+      ${marked.parse(summaryMarkdown, { async: false }) as string}</section>`
     : "";
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(b.header.action_name.value)} – funding brief</title><style>${CSS}</style></head>
@@ -246,6 +246,8 @@ main { padding: 8px 0 0; }
 .footer { background: #172238; color: #fff; border-radius: 8px; padding: 10px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; break-inside: avoid; }
 .footer .eyebrow { color: #f0c05a; display: block; } .footer div { margin: 2px 0; } .footer .muted { color: #c9d1e3; }
 .page-break { break-before: page; }
+.md { font-size: 11px; line-height: 1.5; } .md h1, .md h2:not(.doc-h) { font-size: 14px; color: #172238; margin: 14px 0 4px; border-bottom: 1px solid #eaecf0; padding-bottom: 2px; }
+.md h3, .md h4 { font-size: 12px; color: #172238; margin: 10px 0 2px; } .md p { margin: 0 0 7px; } .md a { color: #2350a8; text-decoration: none; font-weight: 600; }
 .pa-strip { margin-top: 8px; background: #f0c05a; color: #172238; border-radius: 6px; padding: 5px 10px; font-size: 10px; }
 .pa .pa-summary { font-size: 12px; margin: 6px 0 10px; }
 .pa-table { width: 100%; border-collapse: collapse; font-size: 10.5px; } .pa-table td { padding: 6px 6px; border-bottom: 1px solid #eaecf0; vertical-align: top; }

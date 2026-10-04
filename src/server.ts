@@ -11,6 +11,8 @@ app.use(cors);
 
 app.use("/health", healthRoutes);
 app.use("/cases", casesRoutes);
+// Decision PDFs, so summary citations can open /decisions/<id>.pdf#page=N when no Légifrance URL is set.
+app.use("/decisions", express.static("decisions"));
 
 app.use(errorHandler);
 

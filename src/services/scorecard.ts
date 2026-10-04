@@ -4,7 +4,7 @@ import { askJson } from "./mistral.ts";
 import { addQuoteFlags, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { loadBrief, type Brief, type Field } from "./brief.ts";
-import type { SummarySentence } from "./summary.ts";
+import { renderCitations, type Summary } from "./summary.ts";
 import { NotFound, readJson, readJsonOr, writeJson, type Page } from "./storage.ts";
 
 export const CRITERIA = [
@@ -32,7 +32,7 @@ const show = (v: unknown): string =>
   Array.isArray(v) ? v.map(show).join(", ") : v && typeof v === "object" ? Object.values(v).filter((x) => x != null).map(show).join(" · ") : String(v);
 
 // The pitch the investor receives, one claim per line: the brief's filled-in fields plus the summary sentences.
-export function briefToClaims(brief: Brief, summary: { sentences: SummarySentence[] } | null): string {
+export function briefToClaims(brief: Brief, summary: Summary | null): string {
   const b = brief;
   const lines: string[] = [];
   const add = (text: string, f: Field) => {
@@ -63,7 +63,12 @@ export function briefToClaims(brief: Brief, summary: { sentences: SummarySentenc
   add("Funder share", b.value.funder_share);
   add("Breach period", b.timeline.facts);
   for (const [k, f] of Object.entries(b.timeline)) if (!["facts", "source_decision"].includes(k)) add(`Timeline ${k}`, f as Field);
-  for (const s of summary?.sentences ?? []) lines.push(`- ${s.text}`);
+  // Summary paragraphs (citations as plain "(§ N)", bold removed), one claim line each.
+  if (summary)
+    for (const para of renderCitations(summary, { url: null, plain: true }).split(/\n\s*\n/)) {
+      const text = para.replace(/^#+\s.*$/gm, "").replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
+      if (text.length > 40) lines.push(`- ${text}`);
+    }
   return lines.join("\n");
 }
 
@@ -91,7 +96,7 @@ export type Scorecard = {
   brief_edited_at: string | null;
 };
 
-export async function generateScorecard(brief: Brief, summary: { sentences: SummarySentence[] } | null, pages: Page[]): Promise<Scorecard> {
+export async function generateScorecard(brief: Brief, summary: Summary | null, pages: Page[]): Promise<Scorecard> {
   const system = `${await fs.readFile(path.resolve("prompts/verify.txt"), "utf8")}\n${VERIFY_FORMAT}`;
   const user = `PITCH:\n${briefToClaims(brief, summary)}\n\nDECISION:\n${withPageMarkers(pages)}`;
   // The model sometimes returns scores as an object keyed by criterion, or skips some: normalise, retry once if incomplete.

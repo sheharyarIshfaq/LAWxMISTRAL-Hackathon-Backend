@@ -294,22 +294,22 @@
     "no_funder_influence": {
       "value": false,
       "source": "association",
-      "note": "Confirmed by the association"
+      "note": "To be confirmed by the association"
     },
     "funding_publicly_disclosed": {
       "value": false,
       "source": "association",
-      "note": "Confirmed by the association"
+      "note": "To be confirmed by the association"
     },
     "conflict_of_interest_policy": {
       "value": false,
       "source": "association",
-      "note": "Confirmed by the association"
+      "note": "To be confirmed by the association"
     },
     "funder_has_no_ties_to_defendant": {
       "value": false,
       "source": "association",
-      "note": "Confirmed by the association"
+      "note": "To be confirmed by the association"
     }
   }
 }

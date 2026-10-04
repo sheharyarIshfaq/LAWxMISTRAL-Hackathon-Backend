@@ -1,4 +1,7 @@
 import { execFile } from "node:child_process";
+import { existsSync } from "node:fs";
+import { pathToFileURL } from "node:url";
+
 import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
@@ -6,7 +9,26 @@ import type { Brief, Field } from "./brief.ts";
 
 import { marked } from "marked";
 
-const CHROME = process.env.CHROME_PATH ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+// Chrome (or Chromium / Edge) renders the PDF. CHROME_PATH wins; otherwise the usual install paths on macOS, Windows and Linux.
+const CHROME_CANDIDATES = [
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/Applications/Chromium.app/Contents/MacOS/Chromium",
+  "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+  `${process.env.LOCALAPPDATA ?? ""}\\Google\\Chrome\\Application\\chrome.exe`,
+  "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "/usr/bin/google-chrome",
+  "/usr/bin/google-chrome-stable",
+  "/usr/bin/chromium",
+  "/usr/bin/chromium-browser",
+];
+function chromePath(): string {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const found = CHROME_CANDIDATES.find((p) => existsSync(p));
+  if (!found) throw new Error("Chrome not found: install Google Chrome or set CHROME_PATH in .env to render the brief PDF");
+  return found;
+}
 
 const esc = (v: unknown) => String(v ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const blank = (label = " ") => `<span class="blank">[${esc(label)}]</span>`;
@@ -198,7 +220,7 @@ export async function printPdf(html: string, outPdf: string) {
   const htmlPath = outPdf.replace(/\.pdf$/, ".html");
   await fs.mkdir(path.dirname(outPdf), { recursive: true });
   await fs.writeFile(htmlPath, html);
-  await promisify(execFile)(CHROME, ["--headless=new", "--disable-gpu", "--no-pdf-header-footer", `--print-to-pdf=${path.resolve(outPdf)}`, `file://${path.resolve(htmlPath)}`], { timeout: 60000 });
+  await promisify(execFile)(chromePath(), ["--headless=new", "--disable-gpu", "--no-pdf-header-footer", `--print-to-pdf=${path.resolve(outPdf)}`, pathToFileURL(path.resolve(htmlPath)).href], { timeout: 60000 });
   return { htmlPath, pdfPath: outPdf };
 }
 

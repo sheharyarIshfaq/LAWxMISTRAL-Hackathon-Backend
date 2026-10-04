@@ -8,7 +8,8 @@
     "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit",
     "pages": "tsx scripts/extract-pages.ts",
-    "extract": "tsx scripts/extract.ts"
+    "extract": "tsx scripts/extract.ts",
+    "pitch": "tsx scripts/pitch.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,59 +1,35 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Library, Sparkles } from "lucide-react";
-import { DealBook } from "@/components/deal-book";
-import { InvestorChat } from "@/components/investor-chat";
-import { SidebarWithTabs, useTabs, type NavItem } from "@/components/sidebar-with-tabs";
+import { Library } from "lucide-react";
+import { CaseFile } from "@/components/case-file";
+import { CaseList } from "@/components/case-list";
+import { SidebarWithTabs, type NavItem } from "@/components/sidebar-with-tabs";
 
-const navItems: NavItem[] = [
-  { id: "pitches", label: "Pitches", icon: Library },
-  { id: "ai", label: "AI", icon: Sparkles },
-];
+// Investor side: the pitches they receive, each with the brief, the decision summary and the chatbot.
+const navItems: NavItem[] = [{ id: "pitches", label: "Pitches", icon: Library }];
 
-function investorNav(id: string) {
-  if (id === "analyst" || id === "research") return "ai";
-  return id;
-}
+const investorNav = () => "pitches";
 
-function NavBridge({ bind }: { bind: (go: (navId: string) => void) => void }) {
-  const { setActiveNav } = useTabs();
-  bind(setActiveNav);
-  return null;
-}
-
-export function InvestorDashboard({ entryNav, matterId: entryMatter }: { entryNav?: string; matterId?: string }) {
-  const [matterId, setMatterId] = useState(entryMatter ?? "");
-  const go = useRef<(navId: string) => void>(() => {});
+export function InvestorDashboard({ matterId: entryCase }: { entryNav?: string; matterId?: string }) {
+  const [caseId, setCaseId] = useState(entryCase ?? "");
 
   return (
     <SidebarWithTabs
       companyName="Bina.ai"
-      storageKey="atrium-investor-tabs"
+      storageKey="bina-investor-tabs-v2"
       navItems={navItems}
       mapNavId={investorNav}
-      entryNav={entryNav ? investorNav(entryNav) : undefined}
       defaultNavId="pitches"
-      renderContent={(navId) => (
-        <>
-          <NavBridge bind={(fn) => { go.current = fn; }} />
-          {navId === "pitches" ? (
-            <DealBook
-              onOpen={(id) => {
-                setMatterId(id);
-                go.current("ai");
-              }}
-            />
-          ) : null}
-          {navId === "ai" ? <InvestorChat matterId={matterId} onMatter={setMatterId} /> : null}
-        </>
-      )}
+      renderContent={() =>
+        caseId ? <CaseFile key={caseId} caseId={caseId} mode="investor" onBack={() => setCaseId("")} /> : <CaseList mode="investor" onOpen={setCaseId} />
+      }
       footer={
         <div className="min-w-0">
           <p className="text-xs text-faint">Investor desk</p>
           <Link href="/desk" className="text-sm font-medium text-gold">
-            NGO dashboard
+            Association desk
           </Link>
         </div>
       }

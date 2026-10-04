@@ -76,11 +76,13 @@ export function briefToClaims(brief: Brief, summary: Summary | null): string {
 
 // Belt and braces: drop any sentence that states a probability or chance of success.
 const PROBABILITY = /(\d+\s?%[^.]*\b(chance|probabilit|likel|succe|win))|\b(probabilit(y|é)|chance[s]? (of|de) (success|winning|succès|gagner)|likelihood of (success|winning)|likely to (win|succeed))/i;
-function stripProbability(text: string): string {
+// Refusals ("I cannot estimate the chance of winning") are kept: they are exactly what we want the model to say.
+const REFUSAL = /\b(cannot|can't|can not|never|not|no|unable|impossible|won't|do not|does not|ne\b|n'|pas|aucun|jamais|impossible)\b/i;
+export function stripProbability(text: string): string {
   return text
     .split(/(?<=[.!?])\s+/)
     .filter((s) => {
-      if (!PROBABILITY.test(s)) return true;
+      if (!PROBABILITY.test(s) || REFUSAL.test(s)) return true;
       console.warn(`  removed probability statement: "${s}"`);
       return false;
     })

@@ -38,7 +38,7 @@ export async function ocrPdf(source: string): Promise<Page[]> {
   return res.pages.map((p) => ({ page: p.index + 1, text: p.markdown }));
 }
 
-type Message = { role: "system" | "user" | "assistant"; content: string };
+export type Message = { role: "system" | "user" | "assistant"; content: string };
 
 async function complete(messages: Message[], opts: { temperature: number; json?: boolean }): Promise<string> {
   const res = await mistral().chat.complete({
@@ -51,6 +51,11 @@ async function complete(messages: Message[], opts: { temperature: number; json?:
   if (typeof content === "string") return content;
   if (Array.isArray(content)) return content.map((c: any) => c.text ?? "").join("");
   throw new Error("Empty response from Mistral");
+}
+
+// Multi-turn conversation (chatbot): system prompt + previous turns + new question.
+export async function askChat(messages: Message[], temperature = 0.1): Promise<string> {
+  return complete(messages, { temperature });
 }
 
 export async function askText(system: string, user: string, temperature = 0.2): Promise<string> {

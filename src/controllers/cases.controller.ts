@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type Page } from "../services/storage.ts";
 import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
 import { findRow, loadAssumptions } from "../services/recovery.ts";
+import { chat as chatWithDecision } from "../services/chat.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
@@ -111,8 +112,12 @@ export async function getPage(req: Request<PageParams>, res: Response) {
   res.json({ page: page.page, text: page.text });
 }
 
-export function chat(_req: Request<CaseParams>, res: Response) {
-  res.status(501).json({ error: "Chat not implemented yet" });
+// Body: { question, history?: [{ role: "user" | "assistant", content }] }. Answers only from the decision, quotes checked.
+export async function chat(req: Request<CaseParams>, res: Response) {
+  const { question, history } = req.body ?? {};
+  if (typeof question !== "string" || !question.trim()) return res.status(400).json({ error: "Body must be { question, history? }" });
+  if (history !== undefined && !Array.isArray(history)) return res.status(400).json({ error: "history must be an array of { role, content }" });
+  res.json(await chatWithDecision(req.params.id, question.trim(), history ?? []));
 }
 
 export function createCase(_req: Request, res: Response) {

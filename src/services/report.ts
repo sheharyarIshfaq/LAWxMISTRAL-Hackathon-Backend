@@ -132,8 +132,7 @@ export async function renderReportHtml(brief: Brief & { platform_assessment?: As
       ${scenarios.map((s) => `<tr><td>${s.name[0].toUpperCase() + s.name.slice(1)} <span class="muted">(${pct(s.opt_in_rate)})</span></td><td>${num(s.opt_ins)}</td><td>€${num(s.compensation_per_victim_eur)}</td><td><b>${eurM(s.total_eur)}</b></td></tr>`).join("") || `<tr><td colspan="4">${blank("cannot be computed")}</td></tr>`}
     </tbody></table>
     <div class="duo">
-      <div class="box dark"><div class="label">Funding sought</div><div class="big">${funding ? eurM(funding) : "€[ ]M"}</div></div>
-      <div class="box light"><div class="label">Funder's share ${tag(b.value.funder_share)}</div><div class="big">${b.value.funder_share.value != null ? pct(b.value.funder_share.value as number) : "[ ] %"}</div></div>
+      <div class="box light"><div class="label">Funder's share</div><div class="big">${b.value.funder_share.value != null ? pct(b.value.funder_share.value as number) : "[ ] %"}</div></div>
     </div>
     <p class="muted">${(b.value.opt_in_expected.value as any) ? `Expected opt-in in this category: ${(b.value.opt_in_expected.value as any).expected_pct}% ± ${(b.value.opt_in_expected.value as any).std_dev_pts} pts. ` : ""}€${num(b.value.compensation_per_victim_eur.value as number)} per victim. ${esc(b.value.scenarios.note)} ${esc(b.value.benchmarks_note.value)}</p>`);
 

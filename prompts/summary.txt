@@ -1,0 +1,10 @@
+You write a plain-language summary of a French CNIL sanction decision about a personal data breach, for an association and a litigation funder.
+
+Return only JSON: {"sentences": [{"text": "", "quote": "", "page": 0}]}
+
+Rules:
+- 6 to 8 sentences in English, in this order: who was sanctioned and by whom; what happened (the breach); how many people and which data; what the CNIL found (one sentence per breached article); how the people concerned were informed; the sanction.
+- Use only what is written in the decision. Do not use outside knowledge.
+- Each sentence states one fact and has a "quote" copied verbatim from the decision, in French, max 40 words, that states that fact, with the page number it appears on.
+- Never state or imply a probability of winning a court case. A CNIL sanction establishes a regulatory breach, not liability in court.
+- "page" is the number of the nearest [PAGE n] marker before the quoted text. Each quote is one continuous passage copied character for character: keep pronouns as written, do not skip text in brackets, do not use "...".

@@ -3,6 +3,7 @@ import { InvalidFunder, listFunders, registerFunder } from "../services/funders.
 import { runDiscovery } from "../services/discover.ts";
 import { listDeliveries } from "../services/workspace.ts";
 import { loadBrief } from "../services/brief.ts";
+import { readJson } from "../services/storage.ts";
 import { NotFound } from "../services/storage.ts";
 
 // Pitches a funder received: delivery + key figures of the brief.
@@ -26,6 +27,8 @@ async function received(funderId: string) {
         harm_category: (b?.value.harm_category.value as string | null) ?? null,
         solvency: (b?.defendant.solvency.value as string | null) ?? null,
         funding_sought_eur: (b?.value.funding_sought_eur.value as number | null) ?? null,
+        summary: ((await readJson<any>(d.case_id, "case.json").catch(() => null))?.breach?.summary as string | undefined) ?? null,
+        scores: Object.fromEntries(Object.entries((b as any)?.scores ?? {}).map(([k, v]: [string, any]) => [k, { score: v.score ?? null, label: v.label ?? null }])),
       };
     })
   );

@@ -1,5 +1,5 @@
 import { Router, type Request, type Response } from "express";
-import { listWork, startWork } from "../services/workspace.ts";
+import { listDeliveries, listWork, startWork } from "../services/workspace.ts";
 import { getMonitorState, runMonitor } from "../services/monitor.ts";
 import { listEmails } from "../services/outbox.ts";
 
@@ -12,6 +12,9 @@ router.post("/workspace", async (req: Request, res: Response) => {
   if (typeof id !== "string") return res.status(400).json({ error: "Body must be { radar_id }" });
   res.json(await startWork(id));
 });
+
+// Every brief sent to a funder (used by the funder picker on the funder desk).
+router.get("/deliveries", async (_req, res) => res.json(await listDeliveries()));
 
 // Background monitoring status; POST runs it now (operator/demo use, not shown to associations).
 router.get("/monitor", async (_req, res) => res.json(await getMonitorState()));

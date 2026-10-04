@@ -522,7 +522,7 @@ Fetches the CNIL list and re-triages (~1 s, no model call). If the CNIL site is 
 **Finalize and send.**
 - `POST /cases/:id/finalize` / `POST /cases/:id/reopen` → `{ brief }` with `brief.finalized_at`. While finalized, `PATCH /brief` returns 400.
 - `POST /cases/:id/send { funder_ids: [...], message? }` → `{ sent, deliveries }`. 400 if not finalized. One delivery + one outbox email per funder; already-sent funders are skipped.
-- `GET /cases/:id/deliveries` → `[{ id, case_id, funder_id, funder_name, message, sent_at }]`
+- `GET /cases/:id/deliveries` → `[{ id, case_id, funder_id, funder_name, message, sent_at }]`; `GET /deliveries` → all of them
 
 **Funder side** (no login: the app picks the funder).
 - `GET /funders/:id/pitches` → pitches received: delivery + `{ defendant, action_name, association, decision, victims, victims_unit, claim_low_eur, claim_base_eur, claim_high_eur, harm_category, solvency, funding_sought_eur }`

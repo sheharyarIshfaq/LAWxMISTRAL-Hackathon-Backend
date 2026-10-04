@@ -26,18 +26,5 @@
     },
     "id": "20e65c51",
     "sent_at": "2026-10-04T14:04:06.471Z"
-  },
-  {
-    "kind": "brief_to_funder",
-    "to": "https://www.burfordcapital.com",
-    "to_name": "Burford Capital",
-    "subject": "Funding brief: HOPITAL PRIVE DE LA LOIRE data breach action",
-    "body": "Sequi quia temporibu is seeking funding for a collective action (action de groupe) based on Délibération SAN-2026-009 du 21 juillet 2026.\n\nRead the brief and question the decision: http://localhost:3000/book",
-    "related": {
-      "case_id": "hopital-prive-loire-2026",
-      "delivery_id": "f046178c"
-    },
-    "id": "d89f3ff2",
-    "sent_at": "2026-10-04T14:06:14.475Z"
   }
 ]

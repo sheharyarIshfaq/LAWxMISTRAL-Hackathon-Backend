@@ -218,5 +218,6 @@
     "private": "civil",
     "public": "administrative"
   },
-  "benchmarks_note": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025)."
+  "benchmarks_note": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025).",
+  "category_rule": "most_conservative"
 }

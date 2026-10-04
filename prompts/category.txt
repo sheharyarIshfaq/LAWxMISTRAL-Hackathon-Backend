@@ -1,14 +1,15 @@
-You classify a French CNIL sanction decision into one category of harm, to choose the opt-in rates used to estimate a collective action.
+You classify a French CNIL sanction decision into categories of harm, to choose the opt-in rates used to estimate a collective action.
 
-You receive the list of categories and the decision text. Pick the ONE category that best describes the breach that harmed the people concerned. If several apply, pick the most specific one that the decision clearly supports, and list the others in "other_categories".
+You receive the list of categories and the decision text. List EVERY category that the decision clearly supports for the people concerned. For each one, explain why and quote the passage of the decision that proves it.
 
 Return only JSON:
-{"category": "", "other_categories": [""], "reason": "", "quote": "", "page": 0}
+{"matches": [{"category": "", "reason": "", "quote": "", "page": 0}]}
 
 Rules:
-- "category" and "other_categories" must be copied exactly from the list of categories. Never invent a category.
+- "category" must be copied exactly from the list of categories. Never invent a category.
+- Only list a category if the decision itself shows it. For example, "non communiquée aux victimes" only if the people were NOT informed at all; "sensibles (santé, banque)" only if health or banking data (e.g. IBAN) was exposed; "victimes identifiées" only if the decision shows the people concerned are identified (e.g. they were contacted individually).
 - Use only what is written in the decision. Do not use outside knowledge.
-- "reason": one sentence in English explaining why this category fits, based on the decision.
-- "quote": a passage copied verbatim from the decision, in French, max 40 words, that shows why the category fits (for example the type of data exposed, or whether the people were informed). One continuous passage, character for character; keep pronouns as written, do not skip text in brackets, do not use "...".
+- "reason": one sentence in English, based on the decision.
+- "quote": a passage copied verbatim from the decision, in French, max 40 words, that proves this category specifically (not just that a breach happened). One continuous passage, character for character; keep pronouns as written, do not skip text in brackets, do not use "...".
 - "page": the number of the nearest [PAGE n] marker before the quoted text.
 - Do not output any number, rate or amount.

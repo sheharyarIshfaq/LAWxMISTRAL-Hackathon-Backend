@@ -145,7 +145,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
               ))}
             </ul>
             <div className="mt-4 flex flex-wrap gap-2">
-              {item.status !== "filtered" ? (
+              {item.legifrance_url || item.case_id ? (
                 <button
                   type="button"
                   disabled={starting === item.id}

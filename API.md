@@ -322,26 +322,44 @@ The association edits the brief before sending it to investors. Keys are dot pat
 
 ## `GET /cases/:id/summary`
 
-Plain-language summary of the decision, 6–8 sentences, each with the supporting quote.
+Structured summary of the decision (legal team's prompt): Markdown, sections 0–6 (Identification, Facts: Who/What/Where/When, Procedure, Legal basis, Arguments, Decision, Appeal). Every fact ends with a citation link to the paragraph (§) of the decision. ~1,500 words.
 
 ```json
 {
-  "sentences": [
-    {
-      "text": "The CNIL imposed a fine of 27 million euros on Free Mobile for the breaches.",
-      "quote": "prononcer à l’encontre de la société FREE MOBILE, une amende administrative d’un montant de 27 000 000 (vingt-sept millions) d’euros ...",
-      "page": 28,
-      "quote_verified": true
-    }
-  ]
+  "markdown": "### 0. Identification\n\nThe decision is **SAN-2026-001** of **8 January 2026** ... [§ 21](https://www.legifrance.gouv.fr/...#:~:text=prendre%20connaissance%2C%20des%20donn%C3%A9es) ...",
+  "citations": [
+{
+  "id": 1,
+  "label": "header",
+  "cited_label": "header",
+  "page": 1,
+  "fragment": "Délibération SAN-2026-001",
+  "quote": null,
+  "verified": true,
+  "note": null
+},
+{
+  "id": 13,
+  "label": "§ 20",
+  "cited_label": "§ 20",
+  "page": null,
+  "fragment": "données d’identité, données de contact",
+  "quote": null,
+  "verified": false,
+  "note": "Text fragment not found in the decision."
+}
+  ],
+  "decision_url": null
 }
 ```
 
-`quote_fixed` (optional, on any quote object): `page_corrected` | `repaired` | `trimmed` when code replaced the model's page or wording with the decision's own text. Show "check support" for `repaired`/`trimmed`.
+- Links point to the official Légifrance page and scroll to the cited words (`#:~:text=`) once `decision_url` is set in `config/decisions.json`. Until then they open the local PDF at the right page: `/decisions/<id>.pdf#page=N` (served by the API).
+- Every citation was checked by code: its words must be in the cited paragraph. Wrong § numbers are corrected (`cited_label` = what the model wrote, `label` = where the words actually are).
+- `verified: false` → the link text ends with ` ⚠`; show a warning. `note` explains why.
 
 ## `GET /cases/:id/brief.pdf`
 
-Downloads the funding brief as a PDF (page 1: brief in the card layout with a platform-assessment strip, page 2: platform assessment, page 3: summary of the decision with quotes). Includes the association's edits. Takes ~2 s.
+Downloads the funding brief as a PDF (page 1: brief in the card layout with a platform-assessment strip, page 2: platform assessment, page 3+: structured summary of the decision with § citations). Includes the association's edits. Takes ~2 s.
 
 ## `GET /cases/:id/scorecard`
 

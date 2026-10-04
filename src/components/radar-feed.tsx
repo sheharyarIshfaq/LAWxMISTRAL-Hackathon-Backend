@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ExternalLink, RefreshCw } from "lucide-react";
-import { ApiError, day, eur, getRadar, scanRadar, type RadarFeed as Feed, type RadarItem } from "@/lib/api";
+import { ExternalLink, Mail } from "lucide-react";
+import { ApiError, day, eur, getMonitor, getOutbox, getRadar, startWork, type Email, type MonitorState, type RadarFeed as Feed, type RadarItem, type WorkItem } from "@/lib/api";
+import { proseClass, renderMarkdown } from "@/lib/markdown";
 
 const FILTERS = [
+  { id: "all", label: "All", test: () => true },
   { id: "candidate", label: "Candidates", test: (i: RadarItem) => i.status === "candidate" },
   { id: "public", label: "Public bodies", test: (i: RadarItem) => i.status === "candidate_public" },
   { id: "breach", label: "All data breaches", test: (i: RadarItem) => i.data_breach },
   { id: "filtered", label: "Filtered out", test: (i: RadarItem) => i.status === "filtered" },
-  { id: "all", label: "All", test: () => true },
 ] as const;
 
 const PRIORITY_STYLE: Record<string, string> = {
@@ -18,13 +19,18 @@ const PRIORITY_STYLE: Record<string, string> = {
   low: "bg-elevated text-muted",
 };
 
-// Step 1 of the flow: the CNIL publishes sanctions; the radar flags the data breaches worth a collective action.
-export function RadarFeed({ onOpenCase }: { onOpenCase: (caseId: string) => void }) {
+const when = (iso: string | null) => (iso ? new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "—");
+
+// Step 1 of the flow: a background job monitors the CNIL and emails associations; here they see every decision
+// and pick the ones to work on.
+export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }) {
   const [feed, setFeed] = useState<Feed | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("candidate");
-  const [scanning, setScanning] = useState(false);
-  const [lastScan, setLastScan] = useState<string | null>(null);
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
+  const [monitor, setMonitor] = useState<MonitorState | null>(null);
+  const [alert, setAlert] = useState<Email | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [starting, setStarting] = useState<string | null>(null);
 
   const load = () =>
     getRadar()
@@ -36,6 +42,8 @@ export function RadarFeed({ onOpenCase }: { onOpenCase: (caseId: string) => void
 
   useEffect(() => {
     load();
+    getMonitor().then(setMonitor).catch(() => null);
+    getOutbox("radar_alert").then((e) => setAlert(e[0] ?? null)).catch(() => null);
   }, []);
 
   const rows = useMemo(() => {
@@ -43,40 +51,38 @@ export function RadarFeed({ onOpenCase }: { onOpenCase: (caseId: string) => void
     return (feed?.items ?? []).filter(test);
   }, [feed, filter]);
 
-  const rescan = async () => {
-    setScanning(true);
+  const work = async (item: RadarItem) => {
+    setStarting(item.id);
     try {
-      const r = await scanRadar();
-      setLastScan(r.new ? `${r.new} new decision${r.new > 1 ? "s" : ""} found` : "No new decision since the last scan");
-      await load();
+      onStarted(await startWork(item.id));
     } catch (e) {
       setError((e as ApiError).message);
     } finally {
-      setScanning(false);
+      setStarting(null);
     }
   };
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h1 className="font-serif text-3xl text-paper">CNIL radar</h1>
-          <p className="mt-1 text-[13px] text-faint">
-            Every sanction published by the CNIL, triaged for collective-action potential.
-            {feed ? ` Last scan ${day(feed.scanned_at.slice(0, 10))}${feed.from_cache ? " (saved copy)" : ""}.` : ""}
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={rescan}
-          disabled={scanning}
-          className="inline-flex h-9 cursor-pointer items-center gap-2 rounded-xl bg-elevated px-3 text-sm font-medium hover:bg-hover disabled:opacity-50"
-        >
-          <RefreshCw className={`size-4 ${scanning ? "animate-spin" : ""}`} /> {scanning ? "Scanning…" : "Scan CNIL now"}
-        </button>
+      <div>
+        <h1 className="font-serif text-3xl text-paper">Decisions</h1>
+        <p className="mt-1 text-[13px] text-faint">Every sanction published by the CNIL, triaged for collective-action potential.</p>
       </div>
-      {lastScan ? <p className="mt-2 text-[13px] text-gold">{lastScan}</p> : null}
-
+      <div className="mt-4 rounded-xl bg-panel p-3 text-[13px] text-muted">
+        <p>
+          <span className="mr-1.5 inline-block size-2 rounded-full bg-[#12b76a] align-middle" />
+          Monitoring the CNIL automatically{monitor ? ` every ${monitor.interval_hours} h · last check ${when(monitor.last_run)} · next check ${when(monitor.next_run)}` : ""}. New
+          decisions worth a collective action are emailed to you.
+        </p>
+        {alert ? (
+          <div className="mt-2 border-t border-line pt-2">
+            <button type="button" onClick={() => setShowAlert((v) => !v)} className="inline-flex cursor-pointer items-center gap-1.5 font-medium text-gold">
+              <Mail className="size-4" /> Last alert: {alert.subject} · {when(alert.sent_at)}
+            </button>
+            {showAlert ? <div className={`mt-2 rounded-lg bg-ink p-3 ${proseClass} text-[13px]`} dangerouslySetInnerHTML={{ __html: renderMarkdown(alert.body) }} /> : null}
+          </div>
+        ) : null}
+      </div>
       {feed ? (
         <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
           {[
@@ -139,16 +145,15 @@ export function RadarFeed({ onOpenCase }: { onOpenCase: (caseId: string) => void
               ))}
             </ul>
             <div className="mt-4 flex flex-wrap gap-2">
-              {item.case_id ? (
+              {item.status !== "filtered" ? (
                 <button
                   type="button"
-                  onClick={() => onOpenCase(item.case_id!)}
-                  className="h-10 cursor-pointer rounded-xl bg-fill px-3 text-sm font-semibold text-white hover:bg-fill-2"
+                  disabled={starting === item.id}
+                  onClick={() => work(item)}
+                  className="h-10 cursor-pointer rounded-xl bg-fill px-3 text-sm font-semibold text-white hover:bg-fill-2 disabled:opacity-50"
                 >
-                  Open the case
+                  {starting === item.id ? "Opening…" : "Work on this case"}
                 </button>
-              ) : item.status !== "filtered" ? (
-                <span className="inline-flex h-10 items-center rounded-xl bg-elevated px-3 text-sm text-faint">Not processed yet</span>
               ) : null}
               {item.legifrance_url ? (
                 <a

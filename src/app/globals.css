@@ -20,7 +20,8 @@
   --sky: #d3e4f5;
   --background: var(--ink);
   --foreground: var(--paper);
-  --apple: var(--font-body), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  /* SF Pro via the system font, then Helvetica Neue and Helvetica. */
+  --apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @theme inline {
@@ -58,9 +59,9 @@
   --color-ring: var(--fill);
   --animate-collapsible-down: collapsible-down 200ms ease-out;
   --animate-collapsible-up: collapsible-up 200ms ease-out;
-  --font-sans: var(--font-body), -apple-system, sans-serif;
-  --font-serif: var(--font-display), Georgia, serif;
-  --font-mono: var(--font-code), ui-monospace, monospace;
+  --font-sans: var(--apple);
+  --font-serif: var(--apple);
+  --font-mono: var(--apple);
   --color-sky: var(--sky);
 }
 
@@ -78,21 +79,20 @@ body {
 
 /* Display sizes tighten; body stays at the system font's own tracking. */
 .font-serif {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: -0.022em;
   font-optical-sizing: auto;
 }
 
 h1.font-serif {
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
 }
 
 /* Small uppercase labels, used as eyebrows above titles. */
 .eyebrow {
-  font-family: var(--font-code), ui-monospace, monospace;
   font-size: 11px;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold);
 }

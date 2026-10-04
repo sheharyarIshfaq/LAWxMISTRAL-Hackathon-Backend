@@ -7,7 +7,8 @@ import { matchesForCase } from "../services/matching.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
-import { decisionPage, viewerLink } from "../services/viewer.ts";
+import { decisionPage, legifranceLink, viewerLink } from "../services/viewer.ts";
+import { buildParagraphs } from "../services/paragraphs.ts";
 
 type CaseParams = { id: string };
 type PageParams = { id: string; n: string };
@@ -82,15 +83,27 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   res.json({ brief: await briefWithAssessment(id) });
 }
 
+// Citation id → link: Légifrance (scrolled to the passage) when the decision URL is known, else our viewer.
+async function citationLinker(id: string): Promise<(citationId: number) => string> {
+  const [summary, url, pages] = await Promise.all([readJsonOr<Summary | null>(id, "summary.json", null), decisionUrl(id), readJson<Page[]>(id, "pages.json")]);
+  const paragraphs = buildParagraphs(pages);
+  const byId = new Map((summary?.citations ?? []).map((c) => [c.id, c]));
+  return (cid) => {
+    const c = byId.get(cid);
+    return url && c ? legifranceLink(url, c, paragraphs) : viewerLink(id, cid, true);
+  };
+}
+
 export async function getSummary(req: Request<CaseParams>, res: Response) {
   const { id } = req.params;
   const summary = await readJson<Summary>(id, "summary.json");
   const url = await decisionUrl(id);
   // Links go to the official Légifrance page (scrolling to the passage) when its URL is known, else to the local PDF page.
-  // Each citation opens our decision viewer, scrolled to the paragraph with the cited words highlighted.
+  // Each citation opens the official Légifrance text scrolled to the cited paragraph (fallback: our viewer).
+  const link = await citationLinker(id);
   res.json({
-    markdown: renderCitations(summary, { viewer: (c) => viewerLink(id, c, true) }),
-    citations: summary.citations.map((c) => ({ ...c, viewer_url: viewerLink(id, c.id, true) })),
+    markdown: renderCitations(summary, { viewer: link }),
+    citations: summary.citations.map((c) => ({ ...c, url: link(c.id), viewer_url: viewerLink(id, c.id, true) })),
     decision_url: url,
   });
 }
@@ -103,7 +116,7 @@ export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   const summary = await readJsonOr<Summary | null>(id, "summary.json", null);
   const url = await decisionUrl(id);
-  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { viewer: (c) => viewerLink(id, c, true) }) : null);
+  const html = await renderReportHtml(brief, summary ? renderCitations(summary, { viewer: await citationLinker(id) }) : null);
   const { pdfPath } = await printPdf(html, `reports/${id}-funding-brief.pdf`);
   res.download(pdfPath, `${id}-funding-brief.pdf`);
 }

@@ -88,3 +88,36 @@ export async function askJson<T = any>(system: string, user: string): Promise<T>
     return JSON.parse(second);
   }
 }
+
+// Streaming chat with the model's reasoning: calls onThinking / onText with each delta as it arrives.
+// Reasoning is on ("high" is the only level this model offers besides "none"); the thinking is shown, never trusted.
+export async function streamChat(
+  messages: Message[],
+  onThinking: (delta: string) => void,
+  onText: (delta: string) => void,
+  temperature = 0.1
+): Promise<string> {
+  const stream = await mistral().chat.stream(
+    { model: CHAT_MODEL, temperature, reasoningEffort: "high", messages },
+    { timeoutMs: 90000, retries: { strategy: "backoff", backoff: { initialInterval: 1000, maxInterval: 5000, exponent: 1.5, maxElapsedTime: 20000 }, retryConnectionErrors: true } }
+  );
+  let text = "";
+  for await (const event of stream) {
+    const content = event.data.choices[0]?.delta?.content;
+    if (!content) continue;
+    if (typeof content === "string") {
+      text += content;
+      onText(content);
+      continue;
+    }
+    for (const chunk of content as any[]) {
+      if (chunk.type === "thinking") onThinking((chunk.thinking ?? []).map((t: any) => t.text ?? "").join(""));
+      else if (typeof chunk.text === "string") {
+        text += chunk.text;
+        onText(chunk.text);
+      }
+    }
+  }
+  if (!text.trim()) throw new Error("Empty response from Mistral");
+  return text;
+}

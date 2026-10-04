@@ -585,6 +585,18 @@ Response:
 - Every quote is checked by code; slightly reworded quotes are replaced with the decision's exact words. An unverified quote shows `⚠ not found in the decision` in the answer and `verified: false` in `citations`.
 - `400` if `question` is missing.
 
+## `POST /cases/:id/chat/stream`
+
+Same body and pipeline as `POST /cases/:id/chat`, streamed as NDJSON (`application/x-ndjson`, one JSON event per line) so the client can show the agent's work live. The model runs with reasoning on (`reasoningEffort: "high"`).
+
+| Event | Fields | When |
+| --- | --- | --- |
+| `step` | `id`, `label`, `detail`, `status` (`running` / `ok` / `warn`) | When a step starts, and again when it ends (same `id`). Ids: `read`, `think`, `answer`, `check`, `locate`, `filter` |
+| `thinking` | `text` | Each delta of the model's reasoning. Shown, not checked |
+| `text` | `text` | The answer, one complete sentence at a time; sentences stating a chance of winning are dropped before sending |
+| `done` | `answer`, `citations`, `steps` | The checked answer (quotes verified or repaired), which replaces the streamed text |
+| `error` | `message` | The agent failed |
+
 ## `POST /cases` — *not implemented yet (returns 501)*
 
 Runs the full pipeline on a decision and saves the results. Slow (a minute or more); the demo uses preloaded cases.

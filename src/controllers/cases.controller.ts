@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type Page } from "../services/storage.ts";
 import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
 import { findRow, loadAssumptions } from "../services/recovery.ts";
-import { chat as chatWithDecision } from "../services/chat.ts";
+import { chat as chatWithDecision, chatStream as streamChatWithDecision } from "../services/chat.ts";
 import { matchesForCase } from "../services/matching.ts";
 import { listDeliveries, sendBrief, WorkflowError } from "../services/workspace.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
@@ -134,6 +134,22 @@ export async function chat(req: Request<CaseParams>, res: Response) {
   if (typeof question !== "string" || !question.trim()) return res.status(400).json({ error: "Body must be { question, history? }" });
   if (history !== undefined && !Array.isArray(history)) return res.status(400).json({ error: "history must be an array of { role, content }" });
   res.json(await chatWithDecision(req.params.id, question.trim(), history ?? []));
+}
+
+// Same as chat, streamed as NDJSON (one event per line) so the client sees the steps, the reasoning and the answer live.
+export async function chatStream(req: Request<CaseParams>, res: Response) {
+  const { question, history } = req.body ?? {};
+  if (typeof question !== "string" || !question.trim()) return res.status(400).json({ error: "Body must be { question, history? }" });
+  if (history !== undefined && !Array.isArray(history)) return res.status(400).json({ error: "history must be an array of { role, content }" });
+  res.writeHead(200, { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "no-cache, no-transform", "X-Accel-Buffering": "no" });
+  res.flushHeaders();
+  const send = (e: unknown) => res.write(JSON.stringify(e) + "\n");
+  try {
+    await streamChatWithDecision(req.params.id, question.trim(), history ?? [], send);
+  } catch (e) {
+    send({ type: "error", message: e instanceof Error ? e.message : "The agent did not answer." });
+  }
+  res.end();
 }
 
 export function createCase(_req: Request, res: Response) {

@@ -13,6 +13,7 @@ router.get("/:id/brief.html", cases.getBriefHtml);
 router.get("/:id/summary", cases.getSummary);
 router.get("/:id/pages/:n", cases.getPage);
 router.post("/:id/chat", cases.chat);
+router.post("/:id/chat/stream", cases.chatStream);
 router.get("/:id/matches", cases.getMatches);
 router.post("/:id/finalize", cases.finalizeBrief);
 router.post("/:id/reopen", cases.reopenBrief);

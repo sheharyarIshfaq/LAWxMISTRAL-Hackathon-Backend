@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { askChat, CHAT_MODEL, type Message } from "./mistral.ts";
+import { askChat, CHAT_MODEL, streamChat, type Message } from "./mistral.ts";
 
 const CHAT_MODEL_LABEL = `Mistral (${CHAT_MODEL})`;
 import { quoteOk, repairQuote } from "./quoteCheck.ts";
@@ -99,4 +99,100 @@ export async function chat(id: string, question: string, history: Message[] = []
       : { label: "No chance-of-winning statement", detail: "Checked by code: none found", status: "ok" },
   ];
   return { answer, citations: cs, steps };
+}
+
+export type ChatEvent =
+  | { type: "step"; id: string; label: string; detail: string; status: "running" | "ok" | "warn" }
+  | { type: "thinking"; text: string }
+  | { type: "text"; text: string }
+  | { type: "done"; answer: string; citations: ChatCitation[]; steps: ChatStep[] }
+  | { type: "error"; message: string };
+
+// Same pipeline as chat(), streamed: each step is sent when it starts and when it ends, the model's thinking as it
+// is produced, and the answer sentence by sentence (only sentences that pass the chance-of-winning filter).
+// The final "done" event carries the checked answer (quotes verified or repaired), which replaces the streamed text.
+export async function chatStream(id: string, question: string, history: Message[], send: (e: ChatEvent) => void) {
+  const step = (id: string, label: string, detail: string, status: "running" | "ok" | "warn" = "ok") => send({ type: "step", id, label, detail, status });
+
+  step("read", "Reading the decision", "", "running");
+  const pages = await readJson<Page[]>(id, "pages.json");
+  const template = await fs.readFile(path.resolve("prompts/chat.txt"), "utf8");
+  const system = template.replace("{decision_text_with_page_markers}", withPageMarkers(pages)) + "\n" + CHAT_FORMAT;
+  const turns = history
+    .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+    .slice(-HISTORY_TURNS * 2);
+  step("read", "Read the decision", `${pages.length} pages of the CNIL decision${turns.length ? `, plus the last ${turns.length} messages of this conversation` : ""}`);
+
+  step("think", `Reasoning with ${CHAT_MODEL_LABEL}`, "The model's own reasoning, streamed as it is produced", "running");
+  let thought = false;
+  let answering = false;
+  let pending = "";
+  let removedLive = false;
+  const flush = (final: boolean) => {
+    const parts = pending.split(/(?<=[.!?…»"”)])\s+/);
+    const keep = final ? parts : parts.slice(0, -1);
+    pending = final ? "" : (parts.at(-1) ?? "");
+    for (const sentence of keep) {
+      if (!sentence) continue;
+      const clean = stripProbability(sentence);
+      if (!clean.trim()) removedLive = true;
+      else send({ type: "text", text: clean + " " });
+    }
+  };
+  const raw = await streamChat(
+    [{ role: "system", content: system }, ...turns, { role: "user", content: question }],
+    (delta) => {
+      thought = true;
+      send({ type: "thinking", text: delta });
+    },
+    (delta) => {
+      if (!answering) {
+        answering = true;
+        step("think", `Reasoned with ${CHAT_MODEL_LABEL}`, thought ? "The model's own reasoning, shown as it was produced (not checked: only the answer's quotes are)" : "No reasoning returned for this question");
+        step("answer", "Writing the answer", "Instructed to answer only from the decision and to quote it word for word", "running");
+      }
+      pending += delta;
+      flush(false);
+    }
+  );
+  flush(true);
+  step("answer", "Wrote the answer", "Answer only from the decision, quotes copied word for word");
+
+  step("check", "Checking quotes against the decision text", "", "running");
+  const checked = checkAnswer(raw, pages, await decisionUrl(id));
+  const filtered = stripProbability(checked.answer).trim();
+  const answer = filtered ||
+    "I can't estimate the chance of winning a case: the CNIL decision establishes a regulatory breach, not liability in court. I can tell you what the decision says about the facts, the breaches and the sanction.";
+  const cs = checked.citations;
+  const ok = cs.filter((c) => c.verified).length;
+  const steps: ChatStep[] = [];
+  const record = (sid: string, s: ChatStep) => {
+    steps.push(s);
+    step(sid, s.label, s.detail, s.status);
+  };
+  steps.push(
+    { label: "Read the decision", detail: `${pages.length} pages of the CNIL decision${turns.length ? `, plus the last ${turns.length} messages of this conversation` : ""}`, status: "ok" },
+    { label: `Reasoned with ${CHAT_MODEL_LABEL}`, detail: thought ? "The model's own reasoning, shown as it was produced (not checked: only the answer's quotes are)" : "No reasoning returned for this question", status: "ok" },
+    { label: "Wrote the answer", detail: "Answer only from the decision, quotes copied word for word", status: "ok" }
+  );
+  record(
+    "check",
+    cs.length
+      ? {
+          label: `Checked ${cs.length} quote${cs.length > 1 ? "s" : ""} against the decision text`,
+          detail: `${ok} found word for word${checked.repaired ? ` (${checked.repaired} slightly reworded, replaced by the exact text)` : ""}${cs.length - ok ? `, ${cs.length - ok} not found and marked ⚠` : ""}`,
+          status: ok === cs.length ? "ok" : "warn",
+        }
+      : { label: "No quote in the answer", detail: "Nothing to check against the decision", status: "warn" }
+  );
+  const located = cs.filter((c) => c.paragraph).map((c) => c.paragraph);
+  if (located.length) record("locate", { label: "Located the paragraphs", detail: `${[...new Set(located)].join(", ")} · each links to the passage on Légifrance`, status: "ok" });
+  const removed = removedLive || checked.answer.replace(/\s+/g, "") !== filtered.replace(/\s+/g, "");
+  record(
+    "filter",
+    removed
+      ? { label: "Removed a statement about the chance of winning", detail: "Bina.ai never estimates the chance of success", status: "warn" }
+      : { label: "No chance-of-winning statement", detail: "Checked by code: none found", status: "ok" }
+  );
+  send({ type: "done", answer, citations: cs, steps });
 }

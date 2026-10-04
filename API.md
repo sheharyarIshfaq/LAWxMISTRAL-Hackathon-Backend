@@ -340,6 +340,23 @@ Rebuilt on every read from `config/assumptions.json` (the legal team's opt-in ta
 
 Harm `detail`: `{ level, justification, quotes: [{ quote, paragraph, url }], subgroups: [{ group, level, justification, paragraph, url }] }`. Every § is found by code from a verified quote (never written by the model) and links to the passage on Légifrance.
 
+### Scores (`brief.scores`)
+
+The legal team's five scores, computed in code on every read (`src/services/scores.ts`, checked by `npm run test-scores` against their Free Mobile test case). Each is `{ score: 0-100, explanation, label? }`, or `{ score: null, reason }` when an input is missing (never defaulted).
+
+```json
+{
+  "value":     { "score": 79, "explanation": "Base-scenario damages of €147.8M: 25 × log10(total / €100k)." },
+  "victims":   { "score": 100, "explanation": "Identifiable yes (40) + proof: individual notification (30) + consumers (15) + 24,633,469 victims (15)." },
+  "defendant": { "score": 62, "label": "Medium", "explanation": "Damages €147.8M ÷ net income of FREE MOBILE SAS €730.4M = 20.2% → Medium." },
+  "harm":      { "score": 70, "explanation": "to be proven (10) + financial + non material (35) + recognised explicit (§ 82) (25)." },
+  "timeline":  { "score": null, "reason": "Limitation period end date not provided (to be confirmed by counsel)" }
+}
+```
+
+- `defendant` uses the latest **net income** of the defendant entity (web search, `revenue.json`); `brief.defendant.solvency` = its label in lowercase (`strong | medium | low`), `calc: { score, exposure_eur, net_income_eur, ratio, entity, year }`.
+- `timeline` needs the association's `timeline.limitation_ends` and `timeline.expected_duration_years`.
+
 ### Defendant solvency (`brief.defendant`)
 
 Legal team's rule, computed in code on every read: **exposure ÷ revenue**, where exposure = victims × € per victim × base opt-in rate (the base scenario total). `strong` < 10% · `medium` 10–50% · `low` > 50%.

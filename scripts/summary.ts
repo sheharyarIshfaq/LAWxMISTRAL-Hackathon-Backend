@@ -1,4 +1,5 @@
-// Runs the SUMMARY step: data/<id>/pages.json -> data/<id>/summary.json, every sentence with a checked quote.
+// Runs the SUMMARY step (legal team's prompt): data/<id>/pages.json -> data/<id>/summary.json
+// (Markdown with § citations, each checked against the decision by code).
 // Usage: npm run summary -- <id> [<id> ...]
 import "dotenv/config";
 import { runSummary } from "../src/services/summary.ts";
@@ -12,10 +13,12 @@ if (!ids.length) {
 for (const id of ids) {
   const t0 = Date.now();
   try {
-    const { sentences } = await runSummary(id);
-    const ok = sentences.filter((s) => s.quote_verified).length;
-    console.log(`✓ ${id} in ${((Date.now() - t0) / 1000).toFixed(0)}s → data/${id}/summary.json (quotes verified ${ok}/${sentences.length})`);
-    for (const s of sentences) console.log(`  ${s.quote_verified ? "✓" : "✗"} p.${s.page}  ${s.text}`);
+    const { markdown, citations } = await runSummary(id);
+    const ok = citations.filter((c) => c.verified).length;
+    const relabelled = citations.filter((c) => c.label !== c.cited_label).length;
+    console.log(`✓ ${id} in ${((Date.now() - t0) / 1000).toFixed(0)}s → data/${id}/summary.json (${markdown.split(/\s+/).length} words)`);
+    console.log(`  citations verified: ${ok}/${citations.length} | § corrected by code: ${relabelled}`);
+    for (const c of citations.filter((c) => !c.verified || c.note)) console.log(`  ${c.verified ? "✓" : "✗"} [${c.cited_label}→${c.label}] ${c.note ?? ""} ${c.quote ? `«${c.quote.slice(0, 60)}»` : c.fragment ? `#${c.fragment}` : ""}`);
   } catch (err: any) {
     console.error(`✗ ${id}: ${err.message}`);
   }

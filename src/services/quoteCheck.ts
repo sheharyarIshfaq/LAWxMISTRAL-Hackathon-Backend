@@ -87,7 +87,7 @@ export function repairQuote(quote: string, pages: Page[], threshold = 0.85): { q
 
 // The model sometimes stitches sentences together or swaps a word for a name. Keep the longest run of
 // consecutive words (at least 8) that appears verbatim in the decision, so the citation stays real.
-function longestVerbatimPiece(quote: string, pages: Page[], minWords = 8): { quote: string; page: number } | null {
+export function longestVerbatimPiece(quote: string, pages: Page[], minWords = 8): { quote: string; page: number } | null {
   const q = normalize(quote).split(" ");
   let best: { len: number; quote: string; page: number } | null = null;
   for (const p of pages) {

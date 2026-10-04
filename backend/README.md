@@ -4,7 +4,7 @@ Turns CNIL data-breach sanctions into fundable collective actions (*action de gr
 
 A CNIL sanction already establishes the fault, the facts and the number of people affected. Bina.ai watches the CNIL, summarises each decision with the legal team's method, builds a funding brief an association can send, matches it with litigation funders, and lets funders question the decision through an agent.
 
-Built for the LLM × Law hackathon (Mistral, Paris, 2026). The frontend lives in [`LAWxMISTRAL-Hackathon-Frontend/`](LAWxMISTRAL-Hackathon-Frontend/README.md).
+Built for the LLM × Law hackathon (Mistral, Paris, 2026). The frontend lives in [`../frontend`](../frontend/README.md). To run both at once, see the [root README](../README.md).
 
 ## Trust rules
 

@@ -1,0 +1,17 @@
+{
+  "name": "bina-ai",
+  "private": true,
+  "description": "CNIL data-breach sanctions turned into fundable collective actions",
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "postinstall": "node scripts/setup.mjs",
+    "dev": "concurrently -n api,web -c blue,green \"npm --prefix backend run dev\" \"npm --prefix frontend run dev -- --port 3000\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev -- --port 3000"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

@@ -1,6 +1,6 @@
 # Bina.ai — frontend
 
-The two desks of Bina.ai: CNIL data-breach sanctions turned into fundable collective actions (*action de groupe*). The API is the backend in the parent repository (see its README and `API.md`).
+The two desks of Bina.ai: CNIL data-breach sanctions turned into fundable collective actions (*action de groupe*). The API is in [`../backend`](../backend/README.md) (endpoints in `API.md`). To run both at once, see the [root README](../README.md).
 
 ## Run
 

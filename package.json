@@ -18,7 +18,8 @@
     "smoke": "tsx scripts/smoke.ts",
     "revenue": "tsx scripts/revenue.ts",
     "assess": "tsx scripts/assess.ts",
-    "import-funders": "tsx scripts/import-funders.ts"
+    "import-funders": "tsx scripts/import-funders.ts",
+    "test-scores": "tsx scripts/test-scores.ts"
   },
   "keywords": [],
   "author": "",

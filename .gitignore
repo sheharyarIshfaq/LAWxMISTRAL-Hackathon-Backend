@@ -1,5 +1,7 @@
 node_modules/
 .env
+.env.local
 .DS_Store
-reports/*.html
+backend/reports/*.html
+# The old standalone frontend repo (merged into frontend/)
 LAWxMISTRAL-Hackathon-Frontend/

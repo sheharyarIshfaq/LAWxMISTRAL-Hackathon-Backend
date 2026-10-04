@@ -90,7 +90,7 @@ export type Funder = {
   web_facts?: string[];
 };
 export type Criterion = { criterion: string; status: "met" | "not_met" | "unknown"; detail: string };
-export type Match = { funder: Funder; fit: "strong" | "partial" | "weak"; met: number; not_met: number; unknown: number; criteria: Criterion[]; note: string };
+export type Match = { funder: Funder; fit: "strong" | "partial" | "weak"; met: number; not_met: number; unknown: number; to_confirm: string[]; criteria: Criterion[]; note: string };
 export const getMatches = (id: string, limit?: number) =>
   call<{ case_id: string; claim_base_eur: number | null; total: number; counts: Record<"strong" | "partial" | "weak", number>; matches: Match[] }>(
     `/cases/${id}/matches${limit ? `?limit=${limit}` : ""}`

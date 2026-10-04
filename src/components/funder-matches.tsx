@@ -51,7 +51,7 @@ export function FunderMatches({
     <div>
       <p className="text-[13px] text-faint">
         {data.total} funders checked against this case (base claim {eur(data.claim_base_eur)}): {data.counts.strong} strong, {data.counts.partial} partial,{" "}
-        {data.counts.weak} weak. Matching is done in code, criterion by criterion; unknown facts are never assumed.
+        {data.counts.weak} weak. Matching is done in code, criterion by criterion. Strong = the key criteria are confirmed and nothing failed; facts still unknown are listed as &quot;to confirm&quot;, never assumed.
       </p>
       <div className="mt-3 flex flex-wrap gap-1">
         {(["all", "strong", "partial", "weak"] as const).map((f) => (
@@ -97,6 +97,9 @@ function MatchRow({ m, selected, onToggle, sent }: { m: Match; selected?: boolea
           )
         ) : null}
         <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase ${FIT_STYLE[m.fit]}`}>{m.fit}</span>
+        {m.to_confirm.length ? (
+          <span className="rounded-full bg-elevated px-2 py-0.5 text-[11px] text-muted">to confirm: {m.to_confirm.map((c) => (LABEL[c] ?? c).toLowerCase()).join(", ")}</span>
+        ) : null}
         <h3 className="text-base font-semibold text-paper">{f.name}</h3>
         {f.demo ? <span className="rounded-full bg-elevated px-2 py-0.5 text-[11px] text-muted">Fictional demo profile</span> : null}
         <span className="ml-auto text-[12px] text-faint">{ORIGIN[f.origin]}{f.funder_type ? ` · ${f.funder_type}` : ""}</span>

@@ -3,7 +3,8 @@ import path from "node:path";
 import { askJson } from "./mistral.ts";
 import { addQuoteFlags, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
-import { computeRecovery, loadAssumptions } from "./recovery.ts";
+import { computeRecovery, findRow, loadAssumptions, type Assumptions } from "./recovery.ts";
+import type { HarmCategory } from "./category.ts";
 import { readJsonOr, type Page } from "./storage.ts";
 
 // Where each value in the brief comes from. The frontend styles fields by source.
@@ -37,7 +38,6 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
   const [system, schema, a] = await Promise.all([prompt("brief.txt"), prompt("brief-schema.json"), loadAssumptions()]);
   const m = await requoteFailed(addQuoteFlags(await askJson(`${system}\n${BRIEF_FORMAT}\n\nSCHEMA:\n${schema}`, withPageMarkers(pages)), pages), pages);
   const c = caseJson;
-  const recovery = computeRecovery(c, a);
   const status = c.decision?.under_appeal === true ? "under_appeal" : c.decision?.under_appeal === false ? "final" : null;
 
   return {
@@ -79,23 +79,8 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
       insurance: missing("Not stated in the decision"),
       competent_court: field((a as any).competent_court_by_legal_form?.[c.defendant?.legal_form], "assumption"),
     },
-    value: {
-      formula: "Total = victims who opt in × compensation per victim",
-      scenarios: field(
-        recovery?.scenarios.map((s) => ({
-          name: s.name,
-          opt_in_rate: s.opt_in_rate,
-          opt_ins: Math.round(recovery.people_affected * s.opt_in_rate),
-          compensation_per_victim_eur: recovery.compensation_per_person_eur,
-          total_eur: s.gross_eur,
-        })),
-        "computed",
-        { note: recovery ? `Opt-in rates and € per victim are assumptions (rate based on: ${recovery.compensation_basis.join(", ")})` : "Cannot be computed from the decision" }
-      ),
-      funding_sought_eur: missing("To be set by the association"),
-      funder_share: field(a.funder_share, "assumption"),
-      benchmarks_note: field((a as any).benchmarks_note, "assumption"),
-    },
+    // Rebuilt on every read by withValue(): opt-in table row, rates and totals come from config + category.json.
+    value: valueSection(null, a),
     timeline: {
       expected_duration_years: missing(),
       limitation_ends: missing("To be confirmed by counsel"),
@@ -124,6 +109,36 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
 
 export type Brief = Awaited<ReturnType<typeof generateBrief>>;
 
+// "Value of the claim": the model only chose the table row (category.json); every number comes from config, in code.
+function valueSection(cat: HarmCategory | null, a: Assumptions) {
+  return {
+    formula: "Total = victims who opt in × compensation per victim",
+    harm_category: cat?.category
+      ? field(cat.category, "assessment", { quote: cat.quote, page: cat.page, quote_verified: cat.quote_verified, ...(cat.quote_fixed ? { quote_fixed: cat.quote_fixed as any } : {}), note: [cat.reason, cat.other_categories.length ? `Also fits: ${cat.other_categories.join("; ")}.` : ""].filter(Boolean).join(" ") })
+      : missing("Category of harm not classified yet"),
+    scenarios: missing("Cannot be computed") as Field<any>,
+    opt_in_expected: missing("Cannot be computed") as Field<any>,
+    compensation_per_victim_eur: field(a.compensation_per_victim_eur, "assumption", { note: "Legal team" }),
+    funding_sought_eur: missing("To be set by the association"),
+    funder_share: field(a.funder_share, "assumption"),
+    benchmarks_note: field(a.benchmarks_note, "assumption"),
+  };
+}
+
+// Fill in the computed scenarios from the (possibly association-edited) category, € per victim and funder share.
+function computeValue(brief: Brief, a: Assumptions) {
+  const v = brief.value as ReturnType<typeof valueSection>;
+  const category = v.harm_category.value as string | null;
+  const perVictim = (v.compensation_per_victim_eur.value as number | null) ?? a.compensation_per_victim_eur;
+  const share = (v.funder_share.value as number | null) ?? a.funder_share;
+  const r = computeRecovery(brief.victims.number.value as number | null, brief.victims.number.note, category, { ...a, compensation_per_victim_eur: perVictim, funder_share: share });
+  const row = findRow(a, category);
+  v.scenarios = r
+    ? field(r.scenarios, "computed", { note: `Opt-in rates from the legal team's table for "${r.category}"; ${r.people_affected_unit !== "persons" ? `the CNIL counts ${r.people_affected_unit}, each treated as one person` : "persons"}.` })
+    : missing(category ? (row ? "This category has no opt-in data in the table" : "Category not in the opt-in table") : "Category of harm not classified yet");
+  v.opt_in_expected = r && r.expected_pct !== null ? field({ expected_pct: r.expected_pct, std_dev_pts: r.std_dev_pts }, "computed", { note: "Expected opt-in rate across past cases in this category (not a probability of success)" }) : missing("Cannot be computed");
+}
+
 export class EditRejected extends Error {}
 
 // Apply association edits like { "association.name": "X", "value.funding_sought_eur": 2000000 }.
@@ -149,10 +164,18 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
   return brief;
 }
 
-// The generated brief with the association's edits (stored separately in brief-edits.json) applied on top.
+// The generated brief, with the Value section rebuilt from config + category.json and the association's edits
+// (stored separately in brief-edits.json) applied on top; then the totals are computed.
 export async function loadBrief(id: string): Promise<Brief | null> {
   const brief = await readJsonOr<Brief | null>(id, "brief.json", null);
   if (!brief) return null;
-  const edits = await readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {});
-  return Object.keys(edits).length ? applyEdits(brief, edits) : brief;
+  const [cat, a, edits] = await Promise.all([
+    readJsonOr<HarmCategory | null>(id, "category.json", null),
+    loadAssumptions(),
+    readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {}),
+  ]);
+  (brief as any).value = valueSection(cat, a);
+  if (Object.keys(edits).length) applyEdits(brief, edits);
+  computeValue(brief, a);
+  return brief;
 }

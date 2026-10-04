@@ -57,6 +57,8 @@ export function briefToClaims(brief: Brief, summary: Summary | null): string {
   add("Defendant group", b.defendant.group);
   add("Defendant insurance", b.defendant.insurance);
   add("Competent court", b.defendant.competent_court);
+  // The category is a row of the legal team's opt-in table, chosen from the decision: a methodology choice, not a fact.
+  if (b.value.harm_category.value) lines.push(`- Opt-in rates taken from the legal team's table row "${b.value.harm_category.value}" (assumption)`);
   for (const s of (b.value.scenarios.value as any[] | null) ?? [])
     lines.push(`- Recovery scenario ${s.name}: ${s.opt_ins} opt-ins (${s.opt_in_rate * 100}%) x €${s.compensation_per_victim_eur} = €${s.total_eur} (assumption)`);
   add("Funding sought (EUR)", b.value.funding_sought_eur);

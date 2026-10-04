@@ -3,7 +3,8 @@ import path from "node:path";
 import { askJson, askText } from "./mistral.ts";
 import { addQuoteFlags, quoteOk, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
-import { readJson, writeJson, writeText, type Page } from "./storage.ts";
+import { readJson, readJsonOr, writeJson, writeText, type Page } from "./storage.ts";
+import type { HarmCategory } from "./category.ts";
 import { computeRecovery, loadAssumptions, recoveryTable } from "./recovery.ts";
 import { generateBrief } from "./brief.ts";
 
@@ -63,10 +64,10 @@ function withoutUnverifiedQuotes(value: any): any {
   return value;
 }
 
-export async function generatePitch(caseJson: any, pages: Page[]) {
+export async function generatePitch(caseJson: any, pages: Page[], category: HarmCategory | null) {
   const assumptions = await loadAssumptions();
-  const recovery = computeRecovery(caseJson, assumptions);
-  const { _status, ...assumptionValues } = assumptions as any;
+  const recovery = computeRecovery(caseJson.breach?.people_affected, caseJson.breach?.people_affected_unit, category?.category, assumptions);
+  const assumptionValues = { harm_category: recovery?.category ?? null, compensation_per_victim_eur: assumptions.compensation_per_victim_eur, funder_share: assumptions.funder_share };
   const input = { case: withoutUnverifiedQuotes(caseJson), assumptions: assumptionValues, recovery };
 
   const system = `${await prompt("pitch.txt")}\n${PITCH_FORMAT}`;
@@ -104,8 +105,8 @@ function checkPitch(markdown: string, input: unknown, pages: Page[]) {
 }
 
 export async function runPitch(id: string) {
-  const [caseJson, pages] = await Promise.all([readJson(id, "case.json"), readJson<Page[]>(id, "pages.json")]);
-  const [result, brief] = await Promise.all([generatePitch(caseJson, pages), generateBrief(caseJson, pages)]);
+  const [caseJson, pages, category] = await Promise.all([readJson(id, "case.json"), readJson<Page[]>(id, "pages.json"), readJsonOr<HarmCategory | null>(id, "category.json", null)]);
+  const [result, brief] = await Promise.all([generatePitch(caseJson, pages, category), generateBrief(caseJson, pages)]);
   await writeText(id, "pitch.md", result.markdown + "\n");
   await writeJson(id, "brief.json", brief);
   if (result.recovery) await writeJson(id, "recovery.json", result.recovery);

@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { listCaseIds, readJson, readJsonOr, readText, writeJson, NotFound, type Page } from "../services/storage.ts";
 import { applyEdits, EditRejected, loadBrief } from "../services/brief.ts";
+import { findRow, loadAssumptions } from "../services/recovery.ts";
 import { platformAssessment, runCheck, type Scorecard } from "../services/scorecard.ts";
 import { printPdf, renderReportHtml } from "../services/report.ts";
 import { decisionUrl, renderCitations, type Summary } from "../services/summary.ts";
@@ -49,6 +50,11 @@ export async function editBrief(req: Request<CaseParams>, res: Response) {
   const { id } = req.params;
   const edits = req.body?.edits;
   if (!edits || typeof edits !== "object" || Array.isArray(edits)) return res.status(400).json({ error: "Body must be { edits: { path: value } }" });
+  if ("value.harm_category" in edits) {
+    const row = findRow(await loadAssumptions(), edits["value.harm_category"]);
+    if (!row) return res.status(400).json({ error: "value.harm_category must be one of the categories of the opt-in table" });
+    edits["value.harm_category"] = row.category;
+  }
   const brief = await loadBrief(id);
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   try {
@@ -73,7 +79,8 @@ export async function getSummary(req: Request<CaseParams>, res: Response) {
 // The funding brief as a PDF (brief, platform assessment, summary), with the association's edits.
 export async function getBriefPdf(req: Request<CaseParams>, res: Response) {
   const { id } = req.params;
-  const brief = await briefWithAssessment(id);
+  // Funder check (platform assessment) left out of the PDF for now.
+  const brief = await loadBrief(id);
   if (!brief) throw new NotFound(`${id} has no brief yet`);
   const summary = await readJsonOr<Summary | null>(id, "summary.json", null);
   const url = await decisionUrl(id);

@@ -1,0 +1,119 @@
+{
+  "mock": true,
+  "claims": [
+    {
+      "claim": "The CNIL fined Free Mobile and Free €42 million in total.",
+      "status": "supported",
+      "quote": "une amende administrative de 27 millions d'euros à l'encontre de la société FREE MOBILE et de 15 millions d'euros à l'encontre de la société FREE",
+      "page": 6,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The breach concerns more than 24 million subscriber contracts.",
+      "status": "supported",
+      "quote": "La violation concerne les données de plus de 24 millions de contrats d'abonnés",
+      "page": 3,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The CNIL found a breach of article 34 because the email to subscribers was incomplete.",
+      "status": "supported",
+      "quote": "le courriel adressé aux personnes concernées ne contenait pas l'ensemble des informations requises par l'article 34 du RGPD",
+      "page": 5,
+      "note": "",
+      "quote_verified": true
+    },
+    {
+      "claim": "The leak exposes victims to fraudulent direct debits.",
+      "status": "overstated",
+      "quote": "dont plusieurs font état de tentatives d'hameçonnage",
+      "page": 3,
+      "note": "The decision mentions phishing attempts reported in complaints, not fraudulent direct debits.",
+      "quote_verified": true
+    },
+    {
+      "claim": "All 24 million subscribers had their IBAN leaked.",
+      "status": "unsupported",
+      "quote": "",
+      "page": null,
+      "note": "The decision says only some contracts contained an IBAN.",
+      "quote_verified": false
+    },
+    {
+      "claim": "Opt-in rate of 0.5% / 2% / 5% and €150 per person.",
+      "status": "assumption",
+      "quote": "",
+      "page": null,
+      "note": "Labelled as an assumption in the pitch; not verified.",
+      "quote_verified": false
+    }
+  ],
+  "scores": [
+    {
+      "criterion": "fault_established",
+      "rating": "strong",
+      "reason": "The CNIL found breaches of articles 32 and 34; appeal status is unknown.",
+      "quote": "Les sociétés n'ont pas mis en œuvre les mesures techniques et organisationnelles appropriées",
+      "page": 4,
+      "quote_verified": true
+    },
+    {
+      "criterion": "data_sensitivity",
+      "rating": "medium",
+      "reason": "IBANs were leaked for part of the group; the rest is identity and contact data only.",
+      "quote": "pour une partie des abonnés, l'IBAN",
+      "page": 2,
+      "quote_verified": true
+    },
+    {
+      "criterion": "group_size",
+      "rating": "strong",
+      "reason": "More than 24 million contracts, though the number of distinct persons is not stated.",
+      "quote": "plus de 24 millions de contrats d'abonnés",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "criterion": "harm_evidence",
+      "rating": "medium",
+      "reason": "Over 2,500 complaints, several reporting phishing; no finding that data was published or sold.",
+      "quote": "la CNIL a reçu plus de 2 500 plaintes de personnes concernées",
+      "page": 3,
+      "quote_verified": true
+    },
+    {
+      "criterion": "victim_notification_failure",
+      "rating": "strong",
+      "reason": "The CNIL found a breach of article 34.",
+      "quote": "ne contenait pas l'ensemble des informations requises par l'article 34 du RGPD",
+      "page": 5,
+      "quote_verified": true
+    },
+    {
+      "criterion": "defendant",
+      "rating": "strong",
+      "reason": "Private telecommunications operators; revenue not stated in the decision.",
+      "quote": "Les sociétés FREE MOBILE et FREE sont des opérateurs de communications électroniques",
+      "page": 1,
+      "quote_verified": true
+    },
+    {
+      "criterion": "recoverability",
+      "rating": "medium",
+      "reason": "Treating contracts as persons and applying the IBAN rate to the whole group may be aggressive.",
+      "quote": "",
+      "page": null,
+      "quote_verified": false
+    }
+  ],
+  "red_flags": [
+    "Appeal status before the Conseil d'État is not stated in the decision.",
+    "Group size is given in contracts, not persons.",
+    "Check the limitation period for compensation claims.",
+    "Confirm the association meets the standing requirements for an action de groupe.",
+    "Missing information: defendant revenue; whether data was published or sold."
+  ],
+  "summary": "The CNIL decision establishes security and notification failures by a solvent private defendant affecting a very large group. Harm evidence is limited to complaints and phishing reports, and the recovery estimate depends on aggressive assumptions about group size and compensation."
+}

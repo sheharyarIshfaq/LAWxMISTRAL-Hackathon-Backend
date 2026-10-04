@@ -87,7 +87,7 @@ function MatchRow({ m, selected, onToggle, sent }: { m: Match; selected?: boolea
   const f = m.funder;
   const link = f.website ?? f.lookup_url ?? null;
   return (
-    <li className={`rounded-xl bg-panel p-4 ${selected ? "outline outline-2 outline-gold" : ""}`}>
+    <li className={`card p-4 ${selected ? "outline outline-2 outline-gold" : ""}`}>
       <div className="flex flex-wrap items-center gap-2">
         {onToggle ? (
           sent ? (

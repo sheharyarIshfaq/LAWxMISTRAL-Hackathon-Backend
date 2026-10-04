@@ -1,9 +1,10 @@
 "use client";
 
+import { PageHeader } from "@/components/page-header";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Bot, FolderOpen, Landmark, ScrollText, Send } from "lucide-react";
-import { CaseChat } from "@/components/case-chat";
+import { AgentPanel } from "@/components/agent-panel";
 import { CaseFile } from "@/components/case-file";
 import { CasePicker } from "@/components/case-picker";
 import { FunderMatches } from "@/components/funder-matches";
@@ -78,18 +79,14 @@ export function NgoDashboard({ entryNav, matterId: entryCase }: { entryNav?: str
           ) : null}
           {navId === "funders" ? <FundersTab caseId={current} options={pickerOptions} onCase={setCaseId} onOpenCase={() => go.current("cases")} /> : null}
           {navId === "agent" ? (
-            <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-              <div className="flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <h1 className="font-serif text-3xl text-paper">Agent</h1>
-                  <p className="mt-1 text-[13px] text-faint">Ask questions about the decision behind a case.</p>
-                </div>
-                <CasePicker options={pickerOptions} value={current} onChange={setCaseId} label="Attached case" />
-              </div>
-              <div className="mt-5">
-                {current ? <CaseChat key={current} caseId={current} defendant="" /> : <p className="text-sm text-muted">Start a case from Decisions first.</p>}
-              </div>
-            </div>
+            <AgentPanel
+              title="Ask the decision"
+              subtitle="Questions about the decision behind one of your cases."
+              options={pickerOptions}
+              value={current}
+              onChange={setCaseId}
+              empty="Start a case from Decisions first."
+            />
           ) : null}
         </>
       )}
@@ -108,10 +105,9 @@ export function NgoDashboard({ entryNav, matterId: entryCase }: { entryNav?: str
 function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[]; onOpen: (caseId: string) => void; onDecisions: () => void }) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-      <h1 className="font-serif text-3xl text-paper">Cases</h1>
-      <p className="mt-1 text-[13px] text-faint">The decisions you chose to work on. Open one to complete and send the funding brief.</p>
+      <PageHeader eyebrow="Your workspace" title="Cases" description="The decisions you chose to work on. Open one to complete, finalize and send the funding brief." />
       {!work.length ? (
-        <div className="mt-6 rounded-xl bg-panel p-5 text-sm text-muted">
+        <div className="mt-6 card p-5 text-sm text-muted">
           No case yet.{" "}
           <button type="button" onClick={onDecisions} className="cursor-pointer font-medium text-gold">
             Pick a decision to work on
@@ -123,7 +119,7 @@ function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[]; onOpen
         {work.map((w) => (
           <li key={w.radar_id}>
             {w.case_id ? (
-              <button type="button" onClick={() => onOpen(w.case_id!)} className="w-full cursor-pointer rounded-xl bg-panel p-4 text-left hover:bg-elevated">
+              <button type="button" onClick={() => onOpen(w.case_id!)} className="w-full cursor-pointer card p-4 text-left hover:bg-elevated">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h2 className="font-serif text-xl capitalize text-paper">{w.organisation_type.toLowerCase()}</h2>
                   <span className="text-[13px] text-faint">CNIL · {day(w.date)}</span>
@@ -131,7 +127,7 @@ function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[]; onOpen
                 <p className="mt-1 text-sm text-muted">Fine {eur(w.fine_eur)} · brief ready</p>
               </button>
             ) : (
-              <div className="rounded-xl bg-panel p-4 opacity-80">
+              <div className="card p-4 opacity-80">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h2 className="font-serif text-xl capitalize text-paper">{w.organisation_type.toLowerCase()}</h2>
                   <span className="text-[13px] text-faint">CNIL · {day(w.date)}</span>
@@ -195,11 +191,11 @@ function FundersTab({
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 md:px-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h1 className="font-serif text-3xl text-paper">Funders</h1>
-          <p className="mt-1 text-[13px] text-faint">The legal team&apos;s list of funders, completed by web search, matched to your case. Select the ones to send the brief to.</p>
-        </div>
+      <PageHeader
+        eyebrow="Matchmaking"
+        title="Funders"
+        description="The legal team's list of funders, completed by web search, matched to your case. Select the ones to send the brief to."
+      >
         <CasePicker
           options={options}
           value={caseId}
@@ -209,7 +205,7 @@ function FundersTab({
             setStatus(null);
           }}
         />
-      </div>
+      </PageHeader>
 
       {!caseId ? <p className="mt-6 text-sm text-muted">Start a case from Decisions first.</p> : null}
       {caseId && finalized === false ? (
@@ -223,7 +219,7 @@ function FundersTab({
 
       {caseId ? (
         <>
-          <div className="sticky top-0 z-10 mt-5 flex flex-wrap items-end gap-3 rounded-xl bg-panel p-3 shadow-sm">
+          <div className="sticky top-0 z-10 mt-5 flex flex-wrap items-end gap-3 card p-3 shadow-sm">
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}

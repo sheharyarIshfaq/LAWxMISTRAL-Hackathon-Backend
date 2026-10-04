@@ -1,11 +1,11 @@
 "use client";
 
+import { PageHeader } from "@/components/page-header";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Inbox, LayoutDashboard, Sparkles } from "lucide-react";
-import { CaseChat } from "@/components/case-chat";
+import { AgentPanel } from "@/components/agent-panel";
 import { CaseFile } from "@/components/case-file";
-import { CasePicker } from "@/components/case-picker";
 import { SidebarWithTabs, useTabs, type NavItem } from "@/components/sidebar-with-tabs";
 import { day, eur, getFunderDashboard, getFunderPitches, listAllDeliveries, listFunders, num, type Funder, type FunderDashboard, type ReceivedPitch } from "@/lib/api";
 
@@ -63,9 +63,9 @@ export function InvestorDashboard({ entryNav, matterId: entryCase }: { entryNav?
   const currentChat = chatCase || options[0]?.id || "";
 
   const picker = (
-    <div className="border-b border-line bg-panel px-4 py-2.5 md:px-6">
+    <div className="border-b border-line bg-gradient-to-r from-sky/50 to-transparent px-4 py-2.5 md:px-6">
       <label className="flex flex-wrap items-center gap-2 text-[13px] text-faint">
-        Signed in as
+        <span className="font-mono text-[10px] uppercase tracking-[0.12em]">Signed in as</span>
         <select value={funderId} onChange={(e) => setFunderId(e.target.value)} className="h-8 max-w-xs rounded-lg border border-line bg-white px-2 text-sm text-paper">
           {funders.map((f) => (
             <option key={f.id} value={f.id}>
@@ -121,17 +121,15 @@ export function InvestorDashboard({ entryNav, matterId: entryCase }: { entryNav?
             )
           ) : null}
           {navId === "ai" ? (
-            <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-              <div className="flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <h1 className="font-serif text-3xl text-paper">AI</h1>
-                  <p className="mt-1 text-[13px] text-faint">Question the CNIL decision behind a pitch you received.</p>
-                </div>
-                <CasePicker options={options} value={currentChat} onChange={setChatCase} label="Attached pitch" />
-              </div>
-              <div className="mt-5">
-                {currentChat ? <CaseChat key={currentChat} caseId={currentChat} defendant="" /> : <p className="text-sm text-muted">No pitch received yet.</p>}
-              </div>
+            <div className="h-[calc(100%-45px)]">
+              <AgentPanel
+                title="Question a pitch"
+                subtitle="Question the CNIL decision behind a pitch you received."
+                options={options}
+                value={currentChat}
+                onChange={setChatCase}
+                empty="No pitch received yet."
+              />
             </div>
           ) : null}
         </>
@@ -151,14 +149,13 @@ export function InvestorDashboard({ entryNav, matterId: entryCase }: { entryNav?
 function PitchList({ pitches, onOpen }: { pitches: ReceivedPitch[] | null; onOpen: (caseId: string) => void }) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-      <h1 className="font-serif text-3xl text-paper">Pitches received</h1>
-      <p className="mt-1 text-[13px] text-faint">Funding briefs associations sent you. Every fact is traceable to the CNIL decision.</p>
+      <PageHeader eyebrow="Inbox" title="Pitches received" description="Funding briefs associations sent you. Every fact is traceable to the CNIL decision." />
       {!pitches ? <p className="mt-6 text-sm text-muted">Loading…</p> : null}
-      {pitches && !pitches.length ? <p className="mt-6 rounded-xl bg-panel p-5 text-sm text-muted">No pitch received yet.</p> : null}
+      {pitches && !pitches.length ? <p className="mt-6 card p-5 text-sm text-muted">No pitch received yet.</p> : null}
       <ul className="mt-5 space-y-3">
         {pitches?.map((p) => (
           <li key={p.id}>
-            <button type="button" onClick={() => onOpen(p.case_id)} className="w-full cursor-pointer rounded-xl bg-panel p-4 text-left hover:bg-elevated">
+            <button type="button" onClick={() => onOpen(p.case_id)} className="w-full cursor-pointer card p-4 text-left hover:bg-elevated">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="font-serif text-xl text-paper">{p.defendant}</h2>
                 <span className="text-[13px] text-faint">Received {day(p.sent_at.slice(0, 10))}</span>
@@ -209,13 +206,12 @@ function Dashboard({ funderId, onOpen }: { funderId: string; onOpen: (caseId: st
   ];
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 md:px-6">
-      <h1 className="font-serif text-3xl text-paper">{d.funder.name}</h1>
-      <p className="mt-1 text-[13px] text-faint">{d.funder.funder_type ?? "Funder"} · overview of the pitches you received</p>
+      <PageHeader eyebrow={d.funder.funder_type ?? "Funder"} title={d.funder.name} description="Overview of the pitches you received." />
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        {tiles.map(([label, value]) => (
-          <div key={label} className="rounded-xl bg-panel p-4">
-            <p className="text-2xl font-semibold tabular-nums text-paper">{value}</p>
-            <p className="text-[12px] text-faint">{label}</p>
+        {tiles.map(([label, value], i) => (
+          <div key={label} className={`rise rise-${i + 1} ${i === 0 ? "rounded-2xl bg-paper p-5 text-white shadow-[0_12px_30px_-12px_rgba(23,43,77,0.6)]" : "card p-5"}`}>
+            <p className={`font-mono text-[10px] uppercase tracking-[0.12em] ${i === 0 ? "text-sky" : "text-faint"}`}>{label}</p>
+            <p className={`mt-2 font-serif text-4xl tabular-nums ${i === 0 ? "text-white" : "text-paper"}`}>{value}</p>
           </div>
         ))}
       </div>
@@ -225,12 +221,12 @@ function Dashboard({ funderId, onOpen }: { funderId: string; onOpen: (caseId: st
           <Breakdown title="By category of harm" rows={d.by_category} />
         </div>
       ) : (
-        <p className="mt-6 rounded-xl bg-panel p-5 text-sm text-muted">No pitch received yet. Associations send funding briefs from their desk.</p>
+        <p className="mt-6 card p-5 text-sm text-muted">No pitch received yet. Associations send funding briefs from their desk.</p>
       )}
       {d.latest.length ? (
         <div className="mt-6">
           <h2 className="text-sm font-semibold text-paper">Latest pitches</h2>
-          <ul className="mt-2 divide-y divide-line rounded-xl bg-panel">
+          <ul className="mt-2 divide-y divide-line card">
             {d.latest.map((p) => (
               <li key={p.id}>
                 <button type="button" onClick={() => onOpen(p.case_id)} className="flex w-full cursor-pointer flex-wrap items-baseline justify-between gap-2 px-4 py-3 text-left hover:bg-elevated">
@@ -251,7 +247,7 @@ function Dashboard({ funderId, onOpen }: { funderId: string; onOpen: (caseId: st
 function Breakdown({ title, rows }: { title: string; rows: { label: string; n: number }[] }) {
   const max = Math.max(1, ...rows.map((r) => r.n));
   return (
-    <div className="rounded-xl bg-panel p-4">
+    <div className="card p-4">
       <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">{title}</p>
       <ul className="mt-3 space-y-2">
         {rows.map((r) => (

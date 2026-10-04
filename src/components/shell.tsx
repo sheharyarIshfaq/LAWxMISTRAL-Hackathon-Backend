@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Wordmark } from "@/components/logo";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
@@ -23,8 +24,8 @@ export function Shell({ children }: { children: ReactNode }) {
       </a>
       <header className="chrome sticky top-0 z-30">
         <div className="mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-2.5 md:px-6">
-          <Link href="/" className="text-[1.35rem] leading-none font-semibold tracking-[-0.03em] text-paper">
-            Bina.ai
+          <Link href="/" aria-label="Bina.ai home">
+            <Wordmark />
           </Link>
           <nav className="flex flex-wrap items-center justify-end gap-2 text-sm" aria-label="Primary">
             <div className="flex items-center gap-0.5 rounded-full bg-elevated p-1">

@@ -33,7 +33,7 @@ export default async function Home() {
       <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-8 pt-14 md:px-6 md:pt-20 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
         <div>
           <Kicker n="01">CNIL sanctions, turned into fundable collective actions</Kicker>
-          <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[0.95] tracking-tight text-paper md:text-7xl">From a CNIL sanction to a funded action de groupe.</h1>
+          <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[0.95] tracking-tight text-paper md:text-7xl">From a CNIL sanction to a <em className="text-gold">funded</em> action de groupe.</h1>
           <div className="mt-6 h-0.5 w-10 rounded-full bg-gold" aria-hidden />
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             When the CNIL sanctions a data breach, its decision already establishes the fault, the facts and the number of people affected. Bina.ai finds those

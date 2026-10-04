@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHeader } from "@/components/page-header";
 import { useEffect, useMemo, useState } from "react";
 import { ExternalLink, Mail } from "lucide-react";
 import { ApiError, day, eur, getMonitor, getOutbox, getRadar, startWork, type Email, type MonitorState, type RadarFeed as Feed, type RadarItem, type WorkItem } from "@/lib/api";
@@ -65,11 +66,8 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-      <div>
-        <h1 className="font-serif text-3xl text-paper">Decisions</h1>
-        <p className="mt-1 text-[13px] text-faint">Every sanction published by the CNIL, triaged for collective-action potential.</p>
-      </div>
-      <div className="mt-4 rounded-xl bg-panel p-3 text-[13px] text-muted">
+      <PageHeader eyebrow="Monitoring · CNIL" title="Decisions" description="Every sanction published by the CNIL, triaged for collective-action potential. Qualified decisions have a funding brief ready." />
+      <div className="mt-4 card p-3 text-[13px] text-muted">
         <p>
           <span className="mr-1.5 inline-block size-2 rounded-full bg-[#12b76a] align-middle" />
           Monitoring the CNIL automatically{monitor ? ` every ${monitor.interval_hours} h · last check ${when(monitor.last_run)} · next check ${when(monitor.next_run)}` : ""}. New
@@ -92,7 +90,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
             ["Candidates", feed.stats.candidates],
             ["High priority", feed.stats.high_priority],
           ].map(([label, n]) => (
-            <div key={label} className="rounded-xl bg-panel p-3">
+            <div key={label} className="card p-3">
               <p className="text-2xl font-semibold tabular-nums text-paper">{n}</p>
               <p className="text-[12px] text-faint">{label}</p>
             </div>
@@ -122,9 +120,9 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
       {error ? <p className="mt-6 rounded-xl bg-[#fee4e2] p-3 text-sm text-[#b42318]">{error}</p> : null}
       {!feed && !error ? <p className="mt-6 text-sm text-muted">Loading the CNIL radar…</p> : null}
 
-      <ul className="mt-4 divide-y divide-line">
+      <ul className="mt-4 divide-y divide-line [&>li.card]:border-y-line">
         {rows.map((item) => (
-          <li key={item.id} className="py-5">
+          <li key={item.id} className={item.case_id ? "card my-3 border-l-4 border-l-gold bg-gradient-to-r from-sky/40 to-white px-5 py-5" : "py-5"}>
             <div className="flex flex-wrap items-center gap-2">
               {item.is_new ? <span className="rounded-full bg-gold px-2 py-0.5 text-[11px] font-semibold text-white">NEW</span> : null}
               {item.case_id ? <span className="rounded-full bg-[#e0eaff] px-2 py-0.5 text-[11px] font-semibold text-[#2d31a6]">QUALIFIED · brief ready</span> : null}

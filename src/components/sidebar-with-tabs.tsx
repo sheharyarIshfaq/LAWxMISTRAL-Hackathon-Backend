@@ -1,5 +1,6 @@
 "use client";
 
+import { Logo } from "@/components/logo";
 import {
   createContext,
   useCallback,
@@ -344,10 +345,8 @@ function MobileSidebar({
         <SheetTitle className="sr-only">Sidebar navigation</SheetTitle>
         <div className="flex h-full flex-col bg-sidebar">
           <div className="flex items-center gap-3 border-b border-sidebar-border p-5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sidebar-primary text-sm font-bold text-white">
-              {companyName.charAt(0)}
-            </div>
-            <span className="text-base font-semibold text-sidebar-foreground">{companyName}</span>
+            <Logo size={30} />
+            <span className="font-serif text-lg text-sidebar-foreground">{companyName}</span>
           </div>
           <div className="flex-1 py-4">
             <SidebarNavigation
@@ -557,10 +556,8 @@ export function SidebarWithTabs({
             >
               <div className={cn("flex h-[52px] items-center border-b border-sidebar-border px-4", isCollapsed ? "justify-center" : "justify-between")}>
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sm font-bold text-white">
-                    {companyName.charAt(0)}
-                  </div>
-                  {!isCollapsed ? <span className="truncate text-sm font-semibold tracking-tight">{companyName}</span> : null}
+                  <Logo size={26} />
+                  {!isCollapsed ? <span className="truncate font-serif text-lg tracking-tight">{companyName}</span> : null}
                 </div>
                 {!isCollapsed ? (
                   <Button variant="ghost" size="icon" aria-label="Collapse sidebar" onClick={() => setIsCollapsed(true)}>
@@ -584,7 +581,7 @@ export function SidebarWithTabs({
                 />
               </div>
               <div className="flex h-[73px] items-center overflow-hidden border-t border-sidebar-border px-4">
-                {!isCollapsed ? footer : <div className="mx-auto h-8 w-8 rounded-full bg-sidebar-primary text-center text-sm leading-8 font-bold text-white">{companyName.charAt(0)}</div>}
+                {!isCollapsed ? footer : <Logo size={24} className="mx-auto" />}
               </div>
             </motion.aside>
 
@@ -659,18 +656,10 @@ export function SidebarWithTabs({
                     activeTabIndex !== 0 && "md:rounded-tl-3xl",
                   )}
                 >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`${activeTabId}-${activeNavId}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      className="h-full"
-                    >
-                      {renderContent(activeNavId)}
-                    </motion.div>
-                  </AnimatePresence>
+                  {/* Instant swap with a short fade-in (no exit animation: waiting for it made tab changes feel slow). */}
+                  <div key={`${activeTabId}-${activeNavId}`} className="rise h-full">
+                    {renderContent(activeNavId)}
+                  </div>
                 </div>
               </main>
             </div>

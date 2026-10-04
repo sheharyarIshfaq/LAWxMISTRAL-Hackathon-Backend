@@ -102,7 +102,7 @@ export function CaseFile({
       </div>
 
       {mode === "association" ? (
-        <div className="mt-5 flex flex-wrap items-center gap-3 rounded-xl bg-panel p-3">
+        <div className="mt-5 flex flex-wrap items-center gap-3 card p-3">
           <span className={`rounded-full px-2.5 py-1 text-[12px] font-semibold ${finalizedAt ? "bg-[#dcfae6] text-[#085d3a]" : "bg-elevated text-muted"}`}>
             {finalizedAt ? `Finalized ${day(finalizedAt.slice(0, 10))}` : "Draft"}
           </span>
@@ -170,7 +170,7 @@ export function CaseFile({
 
         {tab === "summary" ? (
           summary ? (
-            <article className="rounded-xl bg-panel p-6">
+            <article className="card p-6">
               <p className="mb-4 text-[13px] text-faint">
                 Every fact cites the paragraph (§) of the decision; each link opens Légifrance with the passage highlighted (scroll down to it). Each citation was
                 checked against the decision text by code{unverified ? `: ${unverified} of ${summary.citations.length} could not be verified and are marked ⚠` : ""}.

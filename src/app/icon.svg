@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="195 75 430 470" width="430" height="470">
+  <!-- Manche -->
+  <line x1="502" y1="427" x2="584" y2="510" stroke="#172B4D" stroke-width="38" stroke-linecap="round"/>
+  <!-- Queue (partie claire), dessinée en premier -->
+  <path d="M286.2,411.3 A142,142 0 0 1 253.1,325.0" fill="none" stroke="#D3E4F5" stroke-width="56" stroke-linecap="round"/>
+  <!-- Anneau de la loupe (corps) -->
+  <path d="M315.6,202.3 A142,142 0 1 1 286.2,411.3" fill="none" stroke="#2F5FA3" stroke-width="56" stroke-linecap="butt"/>
+
+  <!-- Tête du renard -->
+  <!-- Oreilles -->
+  <polygon points="218,97 288,148 224,165" fill="#A8CBEB"/>
+  <polygon points="360,97 352,165 288,148" fill="#B8D6F1"/>
+  <polygon points="233,118 270,150 235,153" fill="#FFFFFF"/>
+  <polygon points="345,118 342,153 306,150" fill="#FFFFFF"/>
+  <!-- Front -->
+  <polygon points="224,165 288,148 288,192" fill="#97BDE5"/>
+  <polygon points="288,148 352,165 288,192" fill="#B0D0EE"/>
+  <!-- Bas du visage -->
+  <polygon points="224,165 288,192 288,262" fill="#3866AD"/>
+  <polygon points="352,165 288,262 288,192" fill="#4F80C4"/>
+  <!-- Yeux -->
+  <polygon points="246,181 272,191 266,197 251,191" fill="#172B4D"/>
+  <polygon points="330,181 304,191 310,197 325,191" fill="#172B4D"/>
+  <!-- Museau -->
+  <polygon points="268,228 308,228 298,245 278,245" fill="#FFFFFF"/>
+  <polygon points="278,245 298,245 288,262" fill="#172B4D"/>
+</svg>

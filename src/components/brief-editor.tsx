@@ -82,7 +82,7 @@ export function BriefEditor({ caseId, locked, onSaved }: { caseId: string; locke
   };
 
   return (
-    <div className="rounded-xl bg-panel p-4">
+    <div className="card p-4">
       <p className="text-[13px] text-faint">
         Add your association&apos;s details. Facts from the CNIL decision are locked and can&apos;t be edited.
         {locked ? " The brief is finalized: reopen it to edit." : ""}

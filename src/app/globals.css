@@ -3,23 +3,24 @@
 /* Light materials: gray page, white cards, gray fills. Blue is #0071E3 so
    both white-on-blue buttons and blue text on white meet WCAG AA. */
 :root {
-  --ink: #f5f5f7;
+  /* Palette from the logo: navy ink, reading-glass blue, pale sky, on warm paper. */
+  --ink: #f6f4ef;
   --panel: #ffffff;
-  --elevated: #e5e5ea;
-  --hover: #d1d1d6;
-  --line: rgba(60, 60, 67, 0.18);
-  --gold: #0071e3;
-  --gold-2: #0062c7;
-  --fill: #0071e3;
-  --fill-2: #0062c7;
-  --paper: #1d1d1f;
-  --muted: #424245;
-  --faint: #6e6e73;
+  --elevated: #eceff5;
+  --hover: #dde4ef;
+  --line: rgba(23, 43, 77, 0.12);
+  --gold: #2f5fa3;
+  --gold-2: #244c86;
+  --fill: #2f5fa3;
+  --fill-2: #244c86;
+  --paper: #172b4d;
+  --muted: #3e4d66;
+  --faint: #6b7891;
   --warn: #9a3412;
+  --sky: #d3e4f5;
   --background: var(--ink);
   --foreground: var(--paper);
-  /* SF Pro via the system font, then Helvetica Neue and Helvetica. */
-  --apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --apple: var(--font-body), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 @theme inline {
@@ -44,9 +45,9 @@
   --color-accent: var(--elevated);
   --color-accent-foreground: var(--paper);
   --color-border: var(--line);
-  --color-sidebar: #f5f5f7;
+  --color-sidebar: #eef0f4;
   --color-sidebar-foreground: var(--paper);
-  --color-sidebar-accent: #e5e5ea;
+  --color-sidebar-accent: #dfe6f1;
   --color-sidebar-accent-foreground: var(--paper);
   --color-sidebar-border: var(--line);
   --color-sidebar-primary: var(--fill);
@@ -57,13 +58,19 @@
   --color-ring: var(--fill);
   --animate-collapsible-down: collapsible-down 200ms ease-out;
   --animate-collapsible-up: collapsible-up 200ms ease-out;
-  --font-sans: var(--apple);
-  --font-serif: var(--apple);
-  --font-mono: var(--apple);
+  --font-sans: var(--font-body), -apple-system, sans-serif;
+  --font-serif: var(--font-display), Georgia, serif;
+  --font-mono: var(--font-code), ui-monospace, monospace;
+  --color-sky: var(--sky);
 }
 
 body {
-  background: var(--ink);
+  /* Warm paper with a faint grain and two soft washes of the logo blues. */
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(211, 228, 245, 0.55), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(168, 203, 235, 0.25), transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.17 0 0 0 0 0.3 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    var(--ink);
   color: var(--paper);
   font-family: var(--apple);
   font-optical-sizing: auto;
@@ -71,14 +78,37 @@ body {
 
 /* Display sizes tighten; body stays at the system font's own tracking. */
 .font-serif {
-  font-weight: 600;
-  letter-spacing: -0.022em;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
   font-optical-sizing: auto;
 }
 
 h1.font-serif {
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
 }
+
+/* Small uppercase labels, used as eyebrows above titles. */
+.eyebrow {
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Staggered fade-up on page load. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-1 { animation-delay: 0.04s; } .rise-2 { animation-delay: 0.08s; } .rise-3 { animation-delay: 0.12s; } .rise-4 { animation-delay: 0.16s; }
+
+/* Typing indicator for the agent. */
+@keyframes blink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+.dot { width: 6px; height: 6px; border-radius: 9999px; background: var(--gold); animation: blink 1.2s infinite both; }
+.dot:nth-child(2) { animation-delay: 0.15s; } .dot:nth-child(3) { animation-delay: 0.3s; }
 
 .chrome {
   background: rgba(245, 245, 247, 0.8);
@@ -88,6 +118,15 @@ h1.font-serif {
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
+
+/* White card with a hairline border and a soft navy shadow. */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 1px 0 rgba(23, 43, 77, 0.03), 0 8px 24px -16px rgba(23, 43, 77, 0.18);
+}
+a.card:hover, button.card:hover { border-color: rgba(47, 95, 163, 0.35); }
 
 .surface {
   background: var(--panel);
@@ -107,12 +146,12 @@ a:active {
 }
 
 ::selection {
-  background: #0071e3;
+  background: #2f5fa3;
   color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid #0071e3;
+  outline: 2px solid #2f5fa3;
   outline-offset: 3px;
 }
 

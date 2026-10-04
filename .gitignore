@@ -5,3 +5,4 @@ node_modules/
 backend/reports/*.html
 # The old standalone frontend repo (merged into frontend/)
 LAWxMISTRAL-Hackathon-Frontend/
+backup-free-mobile-brief.pdf

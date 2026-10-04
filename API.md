@@ -341,29 +341,45 @@ Plain-language summary of the decision, 6–8 sentences, each with the supportin
 
 ## `GET /cases/:id/brief.pdf`
 
-Downloads the funding brief as a PDF (page 1: brief in the card layout, page 2: summary of the decision with quotes). Includes the association's edits. Takes ~2 s.
+Downloads the funding brief as a PDF (page 1: brief in the card layout with a platform-assessment strip, page 2: platform assessment, page 3: summary of the decision with quotes). Includes the association's edits. Takes ~2 s.
 
 ## `GET /cases/:id/scorecard`
 
-Funder view: every pitch claim checked against the decision, plus scores and red flags.
+Funder check (investor view): every claim of the brief + summary checked against the decision, 7 criteria rated, red flags. No probability of success anywhere.
 
 ```json
 {
   "claims": [
     {
-      "claim": "The breach concerns more than 24 million subscriber contracts.",
+      "claim": "Defendant: FREE MOBILE",
       "status": "supported",
-      "quote": "La violation concerne les données de plus de 24 millions de contrats d'abonnés",
-      "page": 3,
+      "quote": "prononçant une sanction pécuniaire à l'encontre de la société FREE MOBILE",
+      "page": 1,
       "note": "",
       "quote_verified": true
     },
     {
-      "claim": "All 24 million subscribers had their IBAN leaked.",
-      "status": "unsupported",
-      "quote": "",
+      "claim": "Victim subgroups: customers whose IBAN was exposed (convergent customers), customers whose identity, contact, and contractual data were exposed",
+      "status": "supported",
+      "quote": "leurs données d’identité, leurs données de contact, leurs données contractuelles et, po...",
+      "page": 3,
+      "note": "Quote not found word for word in the decision: check manually.",
+      "quote_verified": false
+    },
+    {
+      "claim": "Harm: The decision recognises a risk of financial harm (e.g., fraudulent payments using exposed IBANs) and non-material harm (e.g., distress, fear of identity theft, phishing attempts) for the affected individuals due to the data breach.",
+      "status": "overstated",
+      "quote": "exposées à des risques liés à la revente de leurs données à des personnes malveillantes...",
+      "page": 11,
+      "note": "The decision acknowledges risks but does not explicitly state that financial harm or non-material harm occurred.",
+      "quote_verified": true
+    },
+    {
+      "claim": "Is the harm quantified: to_be_proven",
+      "status": "assumption",
+      "quote": null,
       "page": null,
-      "note": "The decision says only some contracts contained an IBAN.",
+      "note": "",
       "quote_verified": false
     }
   ],
@@ -371,21 +387,64 @@ Funder view: every pitch claim checked against the decision, plus scores and red
     {
       "criterion": "fault_established",
       "rating": "strong",
-      "reason": "The CNIL found breaches of articles 32 and 34; appeal status is unknown.",
-      "quote": "Les sociétés n'ont pas mis en œuvre les mesures techniques et organisationnelles appropriées",
-      "page": 4,
+      "reason": "The CNIL explicitly found breaches of GDPR Articles 5-1-e, 32, and 34.",
+      "quote": "manquements aux articles 5-1-e), 32 et 34 du RGPD",
+      "page": 3,
       "quote_verified": true
-    }
+    },
+    "... 7 criteria, always in this order"
   ],
-  "red_flags": ["Appeal status before the Conseil d'État is not stated in the decision."],
-  "summary": "Two sentences, never a probability of success.",
-  "mock": true
+  "red_flags": [
+    "Appeal status: The decision can be appealed before the Conseil d'État within two months of notification.",
+    "Limitation period: Verify the applicable limitation period for GDPR-based claims in France.",
+    "..."
+  ],
+  "summary": "The CNIL decision confirms multiple GDPR breaches by Free Mobile, including data retention, security, and notification failures, affecting a very large group with sensitive data. However, actual harm and recoverability remain speculative and must be proven in court.",
+  "counts": {
+    "supported": 19,
+    "overstated": 1,
+    "unsupported": 0,
+    "assumption": 8,
+    "to_check": 3
+  },
+  "ratings": {
+    "strong": 5,
+    "medium": 2,
+    "weak": 0
+  },
+  "checked_at": "2026-10-04T11:37:58.038Z",
+  "stale": false,
+  "mock": false
 }
 ```
 
-- `status`: `supported` | `overstated` | `unsupported` | `assumption`
-- `rating`: `strong` | `medium` | `weak`
-- `criterion`: `fault_established`, `data_sensitivity`, `group_size`, `harm_evidence`, `victim_notification_failure`, `defendant`, `recoverability`
+- `status`: `supported` | `overstated` | `unsupported` | `assumption`. A `supported` claim with `quote_verified: false` means the model's quote could not be found word for word: show it as **"to check"** (counted in `counts.to_check`, not in `counts.supported`).
+- `rating`: `strong` | `medium` | `weak`, or `null` if the criterion could not be assessed.
+- `criterion` (always all 7, in this order): `fault_established`, `data_sensitivity`, `group_size`, `harm_evidence`, `victim_notification_failure`, `defendant`, `recoverability`
+- `stale: true` means the association edited the brief after this check: call `POST /cases/:id/check` before sending it to investors.
+- The mock case returns the older shape (`counts`, `ratings`, `checked_at` are `null`).
+
+## `POST /cases/:id/check`
+
+Re-runs the funder check on the current brief (association edits included). One model call, **~25 s**. Returns the same shape as `GET /cases/:id/scorecard` with `stale: false`.
+
+## `brief.platform_assessment` (in `GET /cases/:id/pitch`)
+
+The same check, shown on the brief itself so investors see it immediately. **Locked**: `PATCH /cases/:id/brief` on any `platform_assessment.*` path returns 400. `null` if the case has not been checked yet.
+
+```json
+{
+  "source": "platform",
+  "note": "Independent check by the platform against the CNIL decision. Cannot be edited by the association. No probability of success is given.",
+  "stale": false,
+  "checked_at": "2026-10-04T12:10:00.000Z",
+  "counts": { "supported": 19, "to_check": 3, "overstated": 1, "unsupported": 0, "assumption": 8 },
+  "ratings": { "strong": 5, "medium": 2, "weak": 0 },
+  "scores": [ "... same as scorecard.scores" ],
+  "red_flags": [ "..." ],
+  "summary": "..."
+}
+```
 
 ## `GET /cases/:id/pages/:n`
 

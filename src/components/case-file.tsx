@@ -20,7 +20,7 @@ import {
   type Delivery,
 } from "@/lib/api";
 import { BriefEditor } from "@/components/brief-editor";
-import { proseClass, renderMarkdown } from "@/lib/markdown";
+import { SummaryView } from "@/components/summary-view";
 
 type Tab = "brief" | "summary";
 
@@ -170,13 +170,7 @@ export function CaseFile({
 
         {tab === "summary" ? (
           summary ? (
-            <article className="card p-6">
-              <p className="mb-4 text-[13px] text-faint">
-                Every fact cites the paragraph (§) of the decision; each link opens Légifrance with the passage highlighted (scroll down to it). Each citation was
-                checked against the decision text by code{unverified ? `: ${unverified} of ${summary.citations.length} could not be verified and are marked ⚠` : ""}.
-              </p>
-              <div className={proseClass} dangerouslySetInnerHTML={{ __html: renderMarkdown(summary.markdown) }} />
-            </article>
+            <SummaryView markdown={summary.markdown} total={summary.citations.length} unverified={unverified} />
           ) : (
             <p className="text-sm text-muted">No summary for this case yet.</p>
           )

@@ -1,0 +1,13 @@
+{
+  "_status": "PLACEHOLDERS from the build kit, not legal figures. To be confirmed by the legal team.",
+  "opt_in_rate": { "low": 0.005, "mid": 0.02, "high": 0.05 },
+  "compensation_per_person_eur": {
+    "identity": 50,
+    "contact": 50,
+    "iban": 150,
+    "health": 500
+  },
+  "multiple_data_types_rule": "highest",
+  "count_contracts_as_persons": true,
+  "funder_share": 0.3
+}

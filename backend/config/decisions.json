@@ -10,5 +10,12 @@
   "france-travail-2026": {
     "reference": "SAN-2026-003",
     "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000053408671"
+  },
+  "google-dma-search-2026": {
+    "reference": "DMA.100193",
+    "url": "https://ec.europa.eu/competition/digital_markets_act/cases/202636/DMA_100193_2301.pdf",
+    "kind": "eu-dma",
+    "authority": "European Commission",
+    "language": "en"
   }
 }

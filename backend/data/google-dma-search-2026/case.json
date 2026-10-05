@@ -1,0 +1,84 @@
+{
+  "case_id": "google-dma-search-2026",
+  "decision": {
+    "regulator": "European Commission",
+    "reference": "DMA.100193 · C(2026) 5358 final",
+    "date": "2026-07-23",
+    "fine_total_eur": 460000000,
+    "fines": [
+      {
+        "entity": "Alphabet Inc.",
+        "amount_eur": 460000000
+      }
+    ],
+    "under_appeal": null,
+    "source_url": null
+  },
+  "defendant": {
+    "name": "Alphabet Inc.",
+    "legal_form": "private",
+    "sector": "global technology company, specialised in internet-related services and products that include online advertising technologies, search, cloud computing, software and hardware",
+    "annual_revenue_eur": null
+  },
+  "breach": {
+    "date_start": "2024-03-07",
+    "ongoing": true,
+    "summary": "Alphabet does not comply with Article 6(5) of Regulation (EU) 2022/1925 with regard to Alphabet’s online search engine core platform service Google Search as it treats more favourably in ranking Alphabet’s other core platform services and distinct services than similar services of third parties.",
+    "conduct": "Alphabet treats more favourably in ranking and related indexing and crawling its own distinct or additional services (including comparison-shopping services, flights intermediation service, trains intermediation service, lodging intermediation service, intermediation service for local places Google Maps, translation services, sports results information services and gaming services) than similar services of third parties on Google Search.",
+    "services_affected": [
+      "Google Search (Online Search Engine core platform service)",
+      "Google Shopping (comparison-shopping service)",
+      "Google Flights (flights intermediation service)",
+      "Google Trains (trains intermediation service)",
+      "Google Hotels (lodging intermediation service)",
+      "Google Maps (intermediation service for local places)",
+      "Google Translate (translation service)",
+      "Google Sports (sports results information service)",
+      "Google Games (gaming service)"
+    ],
+    "affected_parties": [
+      "business users",
+      "end users"
+    ],
+    "people_affected": null,
+    "people_affected_unit": null,
+    "quote": "Alphabet does not comply with Article 6(5) of Regulation (EU) 2022/1925 with regard to Alphabet’s online search engine (“OSE”) core",
+    "page": 3,
+    "quote_verified": true,
+    "quote_fixed": "trimmed"
+  },
+  "violations": [
+    {
+      "law": "DMA",
+      "article": "6(5)",
+      "label": "self-preferencing in ranking",
+      "finding": "Alphabet treats more favourably in ranking and related indexing and crawling its own distinct or additional services than similar services of third parties on Google Search.",
+      "quote": "shall not treat more favourably, in ranking and related indexing and crawling, services and products offered by the gatekeeper itself than similar services or products of a third party",
+      "page": 7,
+      "quote_verified": true
+    }
+  ],
+  "remedies": {
+    "cease_and_desist": "Alphabet Inc. shall within 60 calendar days of notification of this Decision, bring effectively to an end the non-compliance with Article 6(5) of Regulation (EU) 2022/1925. Alphabet Inc. shall provide the Commission with explanations on how it plans to comply with this Decision within 60 calendar days from the date of notification of this Decision. Alphabet Inc. shall refrain from repeating any conduct described in Article 1, and from any conduct having the same or equivalent object or effect.",
+    "deadline_days": 60,
+    "periodic_penalty": "If the addressee of this Decision fails to comply with Article 3 within 60 calendar days from the date of notification of this Decision, it shall incur periodic penalty payments not exceeding the limit stipulated in Article 31(1) of Regulation (EU) 2022/1925, from the date on which it is required to bring the non-compliance effectively to an end pursuant to Article 3, until the date on which it complies with the Decision.",
+    "quote": "the Commission shall order the gatekeeper to cease and desist with the non-compliance within an appropriate deadline and to provide explanations on how it plans to comply with that decision",
+    "page": 147,
+    "quote_verified": true,
+    "quote_fixed": "page_corrected"
+  },
+  "harm_evidence": {
+    "effects_on_business_users": "Relevant third-party offers and content are presented to users with less prominence as a result of Alphabet’s non-compliant conduct. Offers and content provided by a number of businesses are ranked less prominently on the SERP as compared to Alphabet’s own services.",
+    "effects_on_end_users": "A large number of users established or located in the Union are affected by Alphabet’s non-compliance with Article 6(5) of Regulation (EU) 2022/1925.",
+    "quote": "the Google Search CPS had a large number of monthly active end users established or located in the Union in 2022 ([300-400 million] signed-in accounts and [400-500 million] signed-out cookie counts)",
+    "page": 141,
+    "quote_verified": true
+  },
+  "missing_information": [
+    "decision.source_url",
+    "decision.under_appeal",
+    "defendant.annual_revenue_eur",
+    "breach.people_affected",
+    "breach.people_affected_unit"
+  ]
+}

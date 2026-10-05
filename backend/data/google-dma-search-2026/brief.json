@@ -1,0 +1,310 @@
+{
+  "case_id": "google-dma-search-2026",
+  "generated_at": "2026-10-05T11:20:17.163Z",
+  "edited_at": null,
+  "finalized_at": null,
+  "header": {
+    "action_name": {
+      "value": "Alphabet Inc. self-preferencing in ranking action",
+      "source": "computed"
+    },
+    "defendant": {
+      "value": "Alphabet Inc.",
+      "source": "decision"
+    },
+    "source_decision": {
+      "value": {
+        "authority": "European Commission",
+        "reference": "DMA.100193 · C(2026) 5358 final",
+        "date": "2026-07-23"
+      },
+      "source": "decision"
+    },
+    "legal_basis": {
+      "value": [
+        {
+          "article": "DMA art. 6(5)",
+          "label": "self-preferencing in ranking",
+          "quote": "shall not treat more favourably, in ranking and related indexing and crawling, services and products offered by the gatekeeper itself than similar services or products of a third party",
+          "page": 7,
+          "quote_verified": true
+        }
+      ],
+      "source": "decision"
+    },
+    "status": {
+      "value": null,
+      "source": "missing",
+      "note": "Appeal status not stated in the decision"
+    }
+  },
+  "harm": {
+    "quantified": {
+      "value": "to_be_proven",
+      "source": "assessment",
+      "quote": "the Commission concludes that Alphabet gives its products unit and its product ads unit more favourable treatment in ranking on Google Search, as compared to similar services offered by third parties.",
+      "page": 53,
+      "quote_verified": true
+    },
+    "nature": {
+      "value": [
+        "financial",
+        "loss_of_chance"
+      ],
+      "source": "assessment",
+      "quote": "the Commission concludes that Alphabet gives its products unit and its product ads unit more favourable treatment in ranking on Google Search, as compared to similar services offered by third parties.",
+      "page": 53,
+      "quote_verified": true
+    },
+    "description": {
+      "value": "Third-party services are ranked less prominently on Google Search compared to Alphabet’s own distinct or additional services, limiting their visibility and ability to compete. This reduces opportunities for third-party services to reach users and generate traffic or revenue.",
+      "source": "assessment",
+      "quote": "the Commission concludes that Alphabet gives its products unit and its product ads unit more favourable treatment in ranking on Google Search, as compared to similar services offered by third parties.",
+      "page": 53,
+      "quote_verified": true
+    }
+  },
+  "victims": {
+    "number": {
+      "value": null,
+      "source": "missing",
+      "quote": "Alphabet does not comply with Article 6(5) of Regulation (EU) 2022/1925 with regard to Alphabet’s online search engine (“OSE”) core",
+      "page": 3,
+      "quote_verified": true,
+      "quote_fixed": "trimmed",
+      "note": null
+    },
+    "identifiable": {
+      "value": "yes",
+      "source": "assessment",
+      "quote": "Third parties offer services, which have similar functionalities to those of Alphabet’s flight intermediation service that is ranked on and embedded in the SERP.",
+      "page": 68,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    "categories": {
+      "value": [
+        "businesses"
+      ],
+      "source": "assessment",
+      "quote": "Third parties offer services, which have similar functionalities to those of Alphabet’s flight intermediation service that is ranked on and embedded in the SERP.",
+      "page": 68,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    "proof_of_membership": {
+      "value": "having a website indexed by Google Search and providing similar services to those offered by Alphabet in the relevant categories (e.g., comparison shopping services, vertical search services, or other intermediation services).",
+      "source": "assessment",
+      "quote": "Third parties offer services, which have similar functionalities to those of Alphabet’s flight intermediation service that is ranked on and embedded in the SERP.",
+      "page": 68,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    },
+    "subgroups": {
+      "value": [
+        "comparison shopping services (CSSs)",
+        "vertical search services (VSSs) for flights, trains, lodging, and local places",
+        "online map services",
+        "translation services",
+        "sports information services",
+        "games services"
+      ],
+      "source": "assessment",
+      "quote": "Third parties offer services, which have similar functionalities to those of Alphabet’s flight intermediation service that is ranked on and embedded in the SERP.",
+      "page": 68,
+      "quote_verified": true,
+      "quote_fixed": "repaired"
+    }
+  },
+  "defendant": {
+    "name": {
+      "value": "Alphabet Inc.",
+      "source": "decision"
+    },
+    "nature": {
+      "value": [
+        "listed_group"
+      ],
+      "source": "assessment",
+      "quote": "Alphabet’s total worldwide turnover in the business year ending 31 December 2025 was USD 402 836 000 000 (approximately EUR 356 509 860 000).",
+      "page": 141,
+      "quote_verified": true
+    },
+    "solvency": {
+      "value": "strong",
+      "source": "assessment",
+      "quote": "Alphabet’s total worldwide turnover in the business year ending 31 December 2025 was USD 402 836 000 000 (approximately EUR 356 509 860 000).",
+      "page": 141,
+      "quote_verified": true,
+      "note": "Alphabet Inc. had a total worldwide turnover of approximately EUR 356,509,860,000 in 2025 and an estimated market capitalisation of approximately EUR 3,124,137,600,000, making it one of the largest technology companies in the world."
+    },
+    "revenue": {
+      "value": {
+        "amount_eur": 356509860000,
+        "entity": "Alphabet Inc.",
+        "year": 2025
+      },
+      "source": "decision",
+      "quote": "Alphabet’s total worldwide turnover in the business year ending 31 December 2025 was USD 402 836 000 000 (approximately EUR 356 509 860 000).",
+      "page": 141,
+      "quote_verified": true
+    },
+    "group": {
+      "value": "Alphabet",
+      "source": "decision",
+      "quote": "Alphabet’s total worldwide turnover in the business year ending 31 December 2025 was USD 402 836 000 000 (approximately EUR 356 509 860 000).",
+      "page": 141,
+      "quote_verified": true
+    },
+    "current_revenue": {
+      "value": null,
+      "source": "missing",
+      "note": "Latest revenue not looked up yet"
+    },
+    "insurance": {
+      "value": null,
+      "source": "missing",
+      "note": "Not stated in the decision"
+    },
+    "competent_court": {
+      "value": "civil",
+      "source": "assumption"
+    }
+  },
+  "value": {
+    "formula": "To be set by an economic expert",
+    "harm_category": {
+      "value": null,
+      "source": "missing",
+      "note": "No opt-in table for this kind of case: the claim value needs an expert estimate (e.g. lost profits of the businesses disadvantaged over the period of non-compliance)"
+    },
+    "category_alternatives": {
+      "value": null,
+      "source": "missing",
+      "note": "Not applicable"
+    },
+    "scenarios": {
+      "value": null,
+      "source": "missing",
+      "note": "No opt-in table for this kind of case: the claim value needs an expert estimate (e.g. lost profits of the businesses disadvantaged over the period of non-compliance)"
+    },
+    "opt_in_expected": {
+      "value": null,
+      "source": "missing",
+      "note": "Not applicable"
+    },
+    "compensation_per_victim_eur": {
+      "value": null,
+      "source": "missing",
+      "note": "Not applicable: harm per party to be estimated"
+    },
+    "funding_sought_eur": {
+      "value": null,
+      "source": "missing",
+      "note": "To be set by the association"
+    },
+    "funder_share": {
+      "value": 0.3,
+      "source": "assumption"
+    },
+    "benchmarks_note": {
+      "value": "Benchmarks: minimum claim of €2–4M in France; investment of about 1/10 of claim value (European Commission study, 2025).",
+      "source": "assumption"
+    }
+  },
+  "timeline": {
+    "expected_duration_years": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "limitation_ends": {
+      "value": null,
+      "source": "missing",
+      "note": "To be confirmed by counsel"
+    },
+    "facts": {
+      "value": {
+        "start": "2024-03-07",
+        "end": null
+      },
+      "source": "decision",
+      "quote": "The Commission finds that Alphabet’s non-compliance with Article 6(5) of Regulation (EU) 2022/1925 commenced on the date when that provision became applicable to it, that is on 7 March 2024, which is six months after the online search engine Google Search was listed in the Alphabet designation decision. This non-compliance is still ongoing at the date of adoption of this Decision.",
+      "page": 135,
+      "quote_verified": true
+    },
+    "source_decision": {
+      "value": "2026-07-23",
+      "source": "decision"
+    },
+    "filing": {
+      "value": null,
+      "source": "missing",
+      "note": "Target date"
+    },
+    "judgment_on_liability": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    },
+    "victims_opt_in": {
+      "value": null,
+      "source": "missing",
+      "note": "Period"
+    },
+    "compensation_paid": {
+      "value": null,
+      "source": "missing",
+      "note": "Estimate"
+    }
+  },
+  "association": {
+    "name": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "certified_since": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "statutory_purpose_url": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "counsel": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    },
+    "contact": {
+      "value": null,
+      "source": "missing",
+      "note": "To be provided"
+    }
+  },
+  "framework": {
+    "no_funder_influence": {
+      "value": false,
+      "source": "association",
+      "note": "To be confirmed by the association"
+    },
+    "funding_publicly_disclosed": {
+      "value": false,
+      "source": "association",
+      "note": "To be confirmed by the association"
+    },
+    "conflict_of_interest_policy": {
+      "value": false,
+      "source": "association",
+      "note": "To be confirmed by the association"
+    },
+    "funder_has_no_ties_to_defendant": {
+      "value": false,
+      "source": "association",
+      "note": "To be confirmed by the association"
+    }
+  }
+}

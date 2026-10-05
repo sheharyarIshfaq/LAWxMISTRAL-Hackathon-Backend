@@ -1,0 +1,46 @@
+{
+  "identifiability": {
+    "level": "no",
+    "statement": "No evidence in the decision indicates that victims are identifiable as no list of victims is held and no proof of membership is provided.",
+    "list_holder": {
+      "answer": "no",
+      "evidence": "No mention of a list of victims, contracts, invoices, or individual notifications in the decision.",
+      "quote": "",
+      "page": 0,
+      "quote_verified": false,
+      "paragraph": null,
+      "url": null
+    },
+    "proof": {
+      "answer": "no",
+      "evidence": "No evidence of individual notifications, contracts, invoices, or bank statements proving membership.",
+      "quote": "",
+      "page": 0,
+      "quote_verified": false,
+      "paragraph": null,
+      "url": null
+    },
+    "subgroups": [],
+    "weakening": [],
+    "proof_type": "none",
+    "notified_count": null,
+    "group_count": null,
+    "other_proof": null
+  },
+  "harm": {
+    "level": "to_be_proven",
+    "justification": "The decision does not quantify or provide a method to calculate the harm. It focuses on non-compliance with Article 6(5) of the DMA, which concerns unfair ranking practices, but does not establish or quantify any specific harm to users, businesses, or competition. The assessment is based on legal non-compliance rather than measurable damage.",
+    "quotes": [
+      {
+        "quote": "the assessment to be carried out by the Commission is independent “from the actual, potential or presumed effects of the conduct of a given gatekeeper covered by this Regulation on competition on a given market”.",
+        "page": 116,
+        "quote_verified": true,
+        "quote_fixed": "repaired",
+        "paragraph": "recital 551",
+        "url": "https://ec.europa.eu/competition/digital_markets_act/cases/202636/DMA_100193_2301.pdf#page=116"
+      }
+    ],
+    "subgroups": []
+  },
+  "assessed_at": "2026-10-05T11:18:08.975Z"
+}

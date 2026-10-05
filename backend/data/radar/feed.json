@@ -1,8 +1,30 @@
 {
   "source": "https://www.cnil.fr/fr/les-sanctions-prononcees-par-la-cnil",
-  "scanned_at": "2026-10-04T14:56:45.618Z",
+  "scanned_at": "2026-10-05T11:32:30.344Z",
   "from_cache": false,
   "items": [
+    {
+      "id": "2026-07-23_google-dma-search-2026",
+      "date": "2026-07-23",
+      "organisation_type": "ALPHABET INC.",
+      "themes": "self-preferencing in ranking (DMA art. 6(5))",
+      "decision": "DMA.100193 · C(2026) 5358 final · fine of €460,000,000",
+      "fine_eur": 460000000,
+      "legifrance_url": "https://ec.europa.eu/competition/digital_markets_act/cases/202636/DMA_100193_2301.pdf",
+      "data_breach": false,
+      "public_body": false,
+      "status": "candidate",
+      "priority": "high",
+      "reasons": [
+        "Breach found by the European Commission: DMA art. 6(5)",
+        "Fine: €460,000,000",
+        "Competition harm to the businesses disadvantaged: claim value to be estimated by an expert"
+      ],
+      "case_id": "google-dma-search-2026",
+      "authority": "European Commission",
+      "first_seen_at": "2026-10-05T11:15:43.314Z",
+      "is_new": false
+    },
     {
       "id": "2026-07-21_hopital-prive-loire-2026",
       "date": "2026-07-21",

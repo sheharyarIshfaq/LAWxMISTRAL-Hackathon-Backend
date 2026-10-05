@@ -1,0 +1,965 @@
+{
+  "markdown": "# Summary of European Commission Decision DMA.100193 – Alphabet – Google Search – Article 6(5) DMA\n\n---\n\n## 0. Identification\n\nThe **European Commission** adopted **Decision DMA.100193** on **23 July 2026** under **Articles 29(1)(a), 30(1)(a) and 31(1)(h) of Regulation (EU) 2022/1925 (Digital Markets Act, \"DMA\")** against **Alphabet Inc.** (including all entities it controls, collectively **\"Alphabet\"**) for non-compliance with **Article 6(5) DMA** regarding its **online search engine (OSE) core platform service Google Search**.\nThis is a **non-compliance decision** imposing a **fine**, a **cease-and-desist order** and **periodic penalty payments**. The text is a **non-confidential version** with redactions.\nAn **appeal is possible to the General Court of the European Union** under Article 263 TFEU; the decision does not mention any appeal lodged to date.\n**One-sentence summary**: The Commission finds that **Alphabet has not complied with Article 6(5) DMA from 7 March 2024** by treating its own distinct or additional services (e.g. comparison-shopping, flights, trains, lodging, local places, Google Maps, translation, sports results, games) **more favourably in ranking on Google Search than similar third-party services**, and imposes a **fine of EUR 460 000 000**, a **cease-and-desist order within 60 days** and **periodic penalty payments** in case of continued non-compliance.\n\n---\n\n---\n\n## 1. Facts\n\n### Who\n\n**Alphabet Inc.** is a **publicly traded company** headquartered in **Mountain View, California, USA**, operating globally in internet-related services and products, including **Google Search** ([recital 1](cite:1)).\n**Google Ireland Ltd**, an Alphabet subsidiary established in Ireland, is the **legal entity providing Google Search in the Union** ([recital 1](cite:2)).\nAlphabet was **designated as a gatekeeper** for **Google Search** (among other core platform services) by Commission decision of **5 September 2023** ([recital 4](cite:3)).\nAlphabet’s **total worldwide turnover** in the business year ending **31 December 2025 was USD 402 836 000 000** (approximately **EUR 356 509 860 000**) ([recital 675](cite:4)).\n\nThe **businesses and users disadvantaged** are **third-party services similar to Alphabet’s distinct or additional services** ranked on Google Search, including:\n- **Vertical search services (VSSs)** such as **comparison-shopping services (CSSs)** (e.g. Idealo, Kelkoo, Guenstiger) ([recital 198](cite:5)).\n- **Flights, trains, lodging and local places intermediation services** (e.g. Skyscanner, Kayak, Expedia, Booking.com, TripAdvisor) ([recital 293](cite:6)).\n- **Online map services** (e.g. Apple Maps, Bing Maps) ([recital 501](cite:7)).\n- **Translation, sports information and games services** (e.g. DeepL, Linguee, Kicker.de, solitaired.com) ([recital 529](cite:8)).\n\nThe decision **does not state the number of disadvantaged parties**.\n\n### What\n\nThe **practice found** is that **Alphabet treats more favourably in ranking on Google Search its own distinct or additional services** than **similar services of third parties** ([recital 2](cite:9)).\nThe **gatekeeper’s own services favoured** include:\n- **Intermediation services** for **products** (Google Shopping), **flights**, **trains**, **lodging** and **local places** (e.g. restaurants) ([recital 113](cite:10)).\n- **Google Maps** ([recital 493](cite:11)).\n- **Content-related services**: **translation** (Google Translate), **sports information** and **games** ([recital 523](cite:12)).\n\nThe **third-party services disadvantaged** are **similar services** in the same categories (e.g. CSSs, VSSs for flights/trains/lodging/places, map services, translation services, sports information services, games websites) ([recital 198](cite:13)).\n\n**Effects on business users, competitors and end users** as described by the Commission:\n- **Third-party services are ranked less prominently** on the **Google Search Engine Results Page (SERP)**, reducing their **visibility and traffic** ([recital 213](cite:14)).\n- **Alphabet’s own services are embedded in dedicated units** (e.g. product ads unit, products unit, airlines unit, trains unit, lodging unit, places unit, translation unit, sports unit, games unit) **at the top of the SERP**, with **enhanced features** (e.g. interactive maps, query shortcut chips, preview pages) that **facilitate comparison and transactions directly on the SERP** ([recital 93](cite:15)).\n- **Third-party services cannot match this prominence** as they are **relegated to organic results, rich web results or dedicated tabs** (e.g. ‘Product comparison sites’, ‘Flight sites’, ‘Places sites’) that **do not offer the same level of interactivity or visibility** ([recital 214](cite:16)).\n\n**Measures the gatekeeper proposed or tested**:\n- **March 2024 changes**: Alphabet introduced **new designs for third-party services** (e.g. rich web results for CSSs, dedicated CSS units, new tabs for VSSs) to **increase their prominence** ([recital 226](cite:17)).\n- The Commission **found these measures insufficient** to ensure **equal prominence** between Alphabet’s own services and similar third-party services ([recital 248](cite:18)).\n\n**Uncertainties or open points the Commission leaves**:\n- The Commission **does not prescribe specific compliance measures** but requires Alphabet to **ensure equal treatment** in ranking between its own services and similar third-party services ([recital 713](cite:19)).\n\n### Where\n\nThe **territory concerned** is the **European Union** ([recital 670](cite:20))).\n\n### When\n\n- **Start of the obligation**: **7 March 2024** (six months after Alphabet’s designation as gatekeeper for Google Search) ([recital 5](cite:21)%20of%20Regulation)).\n- **Non-compliance is ongoing** at the date of the decision (**23 July 2026**) ([recital 641](cite:22)).\n- **Opening of proceedings**: **25 March 2024** ([recital 7](cite:23)).\n- **Preliminary findings**: **19 March 2025** ([recital 10](cite:24)).\n- **Alphabet’s replies**: **18 May 2025** (response to preliminary findings) ([recital 15](cite:25)).\n- **Date of the decision**: **23 July 2026** ([header](cite:26)).\n\n---\n\n---\n\n## 2. Procedure\n\n- **Origin**: The Commission **designated Alphabet as a gatekeeper** for Google Search on **5 September 2023** ([recital 4](cite:27)).\n- **Steps**:\n  - **Compliance reports**: Alphabet submitted **annual compliance reports** on **7 March 2024**, **6 March 2025** and **6 March 2026**, confirming no changes to its March 2024 measures ([recital 6](cite:28)).\n  - **Opening of proceedings**: **25 March 2024** ([recital 7](cite:29)).\n  - **Requests for information (RFIs)**: Four RFIs sent to Alphabet between **6 May 2024 and 2 August 2024** ([recital 8](cite:30)).\n  - **Preliminary findings**: **19 March 2025** ([recital 10](cite:31)).\n  - **Access to file**: Granted to Alphabet’s external advisers between **24 March 2025 and 8 April 2025** ([recital 14](cite:32))).\n  - **Alphabet’s reply**: **18 May 2025** ([recital 15](cite:33)).\n- **Rights of defence**:\n  - Alphabet **requested access to the file** on **20 March 2025** and **raised concerns** about redactions ([recitals 11-12](cite:34)).\n  - The Commission **rejected some claims** but granted access to **non-confidential versions of cited documents** and **full file access to external advisers** ([recitals 13-14](cite:35)).\n- **Procedural objections raised by Alphabet**:\n  - **Scope of investigation**: Alphabet argued the Commission **exceeded the scope of the Opening Decision** by including **content-related queries** (e.g. sports, translation, games) and **free units** (e.g. products unit) ([recital 604](cite:36)).\n  - **Breach of sound administration**: Alphabet claimed the Commission **adopted a prejudicial position**, **did not conduct a genuine investigation**, **disregarded third-party evidence** and **relied on complainants’ arguments** ([recital 616](cite:37)).\n  - **Access to file**: Alphabet argued it was **denied full access to the file** ([recital 631](cite:38)).\n- **Outcome of procedural objections**:\n  - The Commission **rejected all objections**, finding the investigation **within scope**, **impartial** and **respectful of Alphabet’s rights of defence** ([recital 607](cite:39)).\n- **Parallel proceedings**: The decision **does not mention any parallel proceedings** before national authorities or courts.\n- **Precedents or case law cited**:\n  - **Google Shopping** (General Court and Court of Justice judgments) ([recital 81](cite:40)).\n  - **ByteDance v Commission** (General Court judgment on DMA procedural framework) ([recital 634](cite:41)).\n\n---\n\n---\n\n## 3. Legal basis\n\n- **Obligation breached**: **Article 6(5) DMA**, which prohibits gatekeepers from **treating more favourably in ranking and related indexing and crawling their own services or products than similar services or products of third parties** ([recital 18](cite:42)%20of%20Regulation)).\n- **Legal framework**:\n  - **Recital 51 DMA**: Clarifies that gatekeepers may **reserve better ranking for their own services**, including **other core platform services embedded in OSE results** ([recital 20](cite:43)).\n  - **Recital 52 DMA**: Defines **more favourable treatment** as **any differentiated or preferential treatment in ranking**, including **all forms of relative prominence** (display, rating, linking, voice results) ([recital 21](cite:44)).\n  - **Article 2(23) DMA**: Defines **search results** broadly as **any information returned in response to a query**, including **paid or unpaid results, direct answers or embedded services** ([recital 23](cite:45))).\n  - **Article 2(22) DMA**: Defines **ranking** as **relative prominence or relevance given to search results** ([recital 24](cite:46))).\n- **Points examined and not retained**:\n  - The Commission **did not retain Alphabet’s argument** that **OSEs and OISs overlap** in purpose, finding a **clear legal distinction** between the two ([recital 54](cite:47)).\n  - The Commission **did not retain Alphabet’s argument** that **user perceptions or expectations** should determine whether a service is distinct or additional to an OSE, as this would **undermine consistent interpretation** of Article 6(5) DMA ([recital 61](cite:48)).\n\n---\n\n---\n---\n## 4. Arguments\n\n### Alphabet’s arguments on the existence of distinct or additional services\n**Alphabet argues that** the units on Google Search (e.g. product ads unit, products unit, airlines unit) **are not distinct or additional services** but **part of the OSE’s purpose** to provide **relevant results** to users.\n- Alphabet claims that **OSEs may display results in any format** (including direct answers, grouped results, transaction-related information) and **from any data source** (crawling, data feeds, licensed data) ([recital 50](cite:49)).\n- Alphabet argues that **OSEs facilitate transactions** and **enable users to compare results**, which is **consistent with their purpose** ([recital 42](cite:50)).\n- Alphabet contends that **query shortcut chips** are **input mechanisms for users** and **not indicative of distinct services** ([recital 151](cite:51)).\n- Alphabet argues that **the units do not have full OIS functionality** and **cannot operate as separate services** ([recital 150](cite:52)).\n\n**The Commission answers that**:\n- A service is **distinct or additional to an OSE** if it **has a different purpose** (e.g. **transactional intermediation**) or **is not assembled by searching in principle all websites** ([recital 28](cite:53)).\n- **Functionalities** (e.g. filtering, comparing offers, query shortcut chips) and **data sources** (e.g. data feeds from pre-selected websites) **indicate a distinct service** when they **go beyond the purpose of an OSE** ([recital 158](cite:54)).\n- **User expectations or perceptions are irrelevant** for determining the purpose of a service ([recital 61](cite:55)).\n\n**Outcome**: **Rejected**.\n\n---\n\n### Alphabet’s arguments on the similarity of third-party services\n**Alphabet argues that** the Commission **failed to establish an objective benchmark** for determining **similar third-party services** and that **similarity should be equated with substitutability** under competition law.\n- Alphabet claims that **third-party services are not similar** if they **do not serve the same purpose for users** or **are not alternatives** ([recital 69](cite:56)).\n\n**The Commission answers that**:\n- **Similarity** is determined by **comparing functionalities and tasks performed** by the services, **not by substitutability** ([recital 65](cite:57)).\n- **Differences in monetisation or business models** are **not material** for the assessment ([recital 207](cite:58)).\n\n**Outcome**: **Rejected**.\n\n---\n### Alphabet’s arguments on more favourable treatment\n**Alphabet argues that** the Commission **misapplied the legal test** for **more favourable treatment** under Article 6(5) DMA.\n- Alphabet claims that **Article 6(5) DMA is about equality of opportunity, not outcome**, and that **differential treatment is not prohibited if it is not arbitrary or discriminatory** ([recital 79](cite:59))).\n- Alphabet argues that **the Commission failed to show a tangible advantage** for Alphabet’s services or a **commensurate disadvantage** for third parties ([recital 80](cite:60)).\n- Alphabet contends that **the March 2024 changes** (e.g. rich web results for CSSs, dedicated tabs for VSSs) **compensated for any favourable treatment** ([recital 225](cite:61)).\n\n**The Commission answers that**:\n- **More favourable treatment** includes **any differentiated or preferential treatment in ranking**, regardless of **tangible effects** ([recital 75](cite:62)).\n- The **March 2024 changes did not ensure equal prominence** between Alphabet’s services and similar third-party services ([recital 248](cite:63)).\n- **Conditioning equal prominence on requirements that do not apply to Alphabet’s own services** (e.g. requiring third-party CSSs to become business partners) **does not eliminate favourable treatment** ([recital 78](cite:64)).\n\n**Outcome**: **Rejected**.\n\n---\n### Alphabet’s arguments on the fine\n**Alphabet argues that** a fine is **not warranted** because:\n- The case is **novel** (first application of Article 6(5) DMA) and the Commission **refrains from imposing fines in novel cases** under competition law ([recital 654](cite:65)).\n- **Article 6(5) DMA lacks clarity and specificity** ([recital 656](cite:66))).\n- **Compliance is complex** and requires **balancing stakeholder interests** ([recital 657](cite:67)).\n- Alphabet **acted in good faith** and **engaged constructively** with the Commission ([recital 658](cite:68)).\n\n**The Commission answers that**:\n- **Negligence is established** as Alphabet **could not have been unaware** of the non-compliance, given the **clear language of Article 6(5) DMA**, **Commission guidance** and **repeated exchanges** with Alphabet ([recital 647](cite:69)).\n- **Novelty does not preclude fines** under the DMA, which **expressly provides for fines** for non-compliance with Article 6 ([recital 659](cite:70)).\n- **Good faith engagement does not offset non-compliance** ([recital 666](cite:71)).\n\n**Outcome**: **Rejected**.\n\n---\n### Alphabet’s arguments on periodic penalty payments\n**Alphabet argues that** periodic penalty payments are **unwarranted** because:\n- The Commission **did not provide reasoning** for imposing the **maximum amount** ([recital 718](cite:72)).\n- Imposing the **maximum amount would be contrary to Commission precedent** ([recital 719](cite:73)).\n- The **maximum amount is only appropriate in the most egregious cases** ([recital 720](cite:74)).\n- The Commission should **take into account mitigating factors** ([recital 721](cite:75)).\n\n**The Commission answers that**:\n- **Reasoning was provided** in the Preliminary Findings ([recital 722](cite:76)).\n- **Precedents are not binding**, and the **circumstances of this case justify periodic penalty payments** ([recital 723](cite:77)).\n- **Mitigating factors do not offset the seriousness of the non-compliance** ([recital 726](cite:78)).\n\n**Outcome**: **Rejected**.\n\n---\n### Remaining weak points\nThe Commission **partly conceded** that:\n- **User expectations or perceptions are subjective** and **not a reliable basis** for determining the purpose of a service ([recital 61](cite:79)).\n- **The DMA is a new regulatory framework**, and this is **one of the first non-compliance decisions** under Article 6(5) DMA, which **justifies a mitigating factor** in the fine calculation ([recital 689](cite:80)).\n\nThe Commission **left open** whether:\n- **Further changes by Alphabet** (beyond the March 2024 measures) **could achieve compliance** ([recital 713](cite:81)).\n\n---\n---\n---\n## 5. Decision\n\n### Fine\n- **Amount**: **EUR 460 000 000** ([operative part, Article 2](cite:82)).\n- **Criteria used** (Article 30(4) DMA):\n  - **Gravity**: **Serious**, as the non-compliance **covered the entire Union**, **affected a large number of users and businesses**, involved **multiple services** and Alphabet is a **very large company** ([recitals 669-676](cite:83)%202022/1925%20lists%20the%20gravity)).\n  - **Duration**: **Medium** (approximately **28 months**, from **7 March 2024 to 23 July 2026**) ([recital 684](cite:84)).\n  - **Recurrence**: **Not applicable** (first DMA non-compliance decision for Alphabet) ([recital 687](cite:85)).\n  - **Mitigating circumstance**: **Novelty of the DMA framework** ([recital 689](cite:86)).\n- **Cap**: The fine is **below the 10 % cap** of Alphabet’s **total worldwide turnover** (EUR 356 509 860 000) ([recital 701](cite:87))).\n\n### Cease and desist\n- **Content**: Alphabet must **bring the non-compliance effectively to an end** within **60 calendar days** from notification of the decision ([operative part, Article 3](cite:88)).\n- **Obligations**:\n  - **Cease treating its own distinct or additional services more favourably in ranking** than similar third-party services on Google Search ([recital 710](cite:89)).\n  - **Ensure equal treatment** in terms of **relative prominence** between its own services and similar third-party services ([recital 711](cite:90)).\n  - **Provide explanations** on how it plans to comply within **60 days** ([operative part, Article 3](cite:91)).\n  - **Refrain from repeating the non-compliant conduct** or any conduct with the **same or equivalent object or effect** ([operative part, Article 3](cite:92)).\n\n### Periodic penalty payments\n- **Ceiling**: **Not exceeding the limit stipulated in Article 31(1) DMA** (up to **5 % of average daily worldwide turnover**) ([operative part, Article 4](cite:93)).\n- **Starting point**: **From the date on which compliance is due** (after 60 days from notification) **until the date of compliance** ([operative part, Article 4](cite:94)).\n\n---\n---\n## 6. Appeal\n\n- **Court**: **General Court of the European Union** (Article 263 TFEU) ([recital 642](cite:95)).\n- **Deadline**: **To be checked by the tool** (the decision does not specify the deadline) ([recital 642](cite:96)).\n- **Appeal lodged**: The decision **does not mention any appeal** lodged to date.",
+  "citations": [
+    {
+      "id": 1,
+      "label": "recital 1",
+      "cited_label": "recital 1",
+      "page": 3,
+      "fragment": "Alphabet Inc. is a publicly",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 2,
+      "label": "recital 1",
+      "cited_label": "recital 1",
+      "page": 3,
+      "fragment": "The legal entity providing",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 3,
+      "label": "recital 4",
+      "cited_label": "recital 4",
+      "page": 4,
+      "fragment": "On 5 September 2023,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 4,
+      "label": "recital 675",
+      "cited_label": "recital 675",
+      "page": 142,
+      "fragment": "Alphabet’s total worldwide turnover",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 5,
+      "label": "recital 198",
+      "cited_label": "recital 198",
+      "page": 50,
+      "fragment": "When a user submits a product-related",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 6,
+      "label": "recital 293",
+      "cited_label": "recitals 294, 344, 401, 462",
+      "page": 68,
+      "fragment": "third-party flight VSSs",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 294, 344, 401, 462; the passage is in recital 293."
+    },
+    {
+      "id": 7,
+      "label": "recital 501",
+      "cited_label": "recital 501",
+      "page": 108,
+      "fragment": "Similar to Google Maps,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 8,
+      "label": "recital 529",
+      "cited_label": "recitals 529, 561, 587",
+      "page": 113,
+      "fragment": "A wide range of third-party",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 529, 561, 587; the passage is in recital 529."
+    },
+    {
+      "id": 9,
+      "label": "recital 2",
+      "cited_label": "recital 2",
+      "page": 3,
+      "fragment": "This Decision finds that Alphabet",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 10,
+      "label": "recital 113",
+      "cited_label": "recitals 113, 274, 325, 378, 443",
+      "page": 32,
+      "fragment": "Alphabet provides two CSSs",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 113, 274, 325, 378, 443; the passage is in recital 113."
+    },
+    {
+      "id": 11,
+      "label": "recital 493",
+      "cited_label": "recital 493",
+      "page": 107,
+      "fragment": "Google Maps is an online-based",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 12,
+      "label": "recital 523",
+      "cited_label": "recitals 523, 558, 582",
+      "page": 112,
+      "fragment": "The translation unit displayed",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 523, 558, 582; the passage is in recital 523."
+    },
+    {
+      "id": 13,
+      "label": "recital 198",
+      "cited_label": "recitals 198-200, 293-296, 344-347, 400-408, 461-469, 500-501, 529, 561, 587",
+      "page": 50,
+      "fragment": "When a user submits a product-related",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 198-200, 293-296, 344-347, 400-408, 461-469, 500-501, 529, 561, 587; the passage is in recital 198."
+    },
+    {
+      "id": 14,
+      "label": "recital 213",
+      "cited_label": "recitals 213-223, 304-308, 357-362, 417-424, 477-485, 530-533, 562-563, 588-590",
+      "page": 52,
+      "fragment": "Third-party CSSs also have opportunities",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 213-223, 304-308, 357-362, 417-424, 477-485, 530-533, 562-563, 588-590; the passage is in recital 213."
+    },
+    {
+      "id": 15,
+      "label": "recital 93",
+      "cited_label": "recitals 95-128, 268-280, 323-331, 374-386, 440-451, 519-528, 553-557, 579-586",
+      "page": 22,
+      "fragment": "As shown in Image 1,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 95-128, 268-280, 323-331, 374-386, 440-451, 519-528, 553-557, 579-586; the passage is in recital 93."
+    },
+    {
+      "id": 16,
+      "label": "recital 214",
+      "cited_label": "recitals 214-223, 305-308, 359-362, 418-424, 478-485",
+      "page": 52,
+      "fragment": "As regards free search results,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 214-223, 305-308, 359-362, 418-424, 478-485; the passage is in recital 214."
+    },
+    {
+      "id": 17,
+      "label": "recital 226",
+      "cited_label": "recitals 226-231, 310, 364, 429",
+      "page": 54,
+      "fragment": "First, Alphabet contends that as part",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 226-231, 310, 364, 429; the passage is in recital 226."
+    },
+    {
+      "id": 18,
+      "label": "recital 248",
+      "cited_label": "recitals 248-267, 316-317, 367, 433",
+      "page": 58,
+      "fragment": "The Commission’s position as to why",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 248-267, 316-317, 367, 433; the passage is in recital 248."
+    },
+    {
+      "id": 19,
+      "label": "recital 713",
+      "cited_label": "recital 713",
+      "page": 149,
+      "fragment": "It is for Alphabet to identify",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 20,
+      "label": "recital 670",
+      "cited_label": "recital 670",
+      "page": 141,
+      "fragment": "Alphabet’s non-compliance with Article 6(5",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 21,
+      "label": "recital 5",
+      "cited_label": "recital 5",
+      "page": 5,
+      "fragment": "Pursuant to Article 3(10",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 22,
+      "label": "recital 641",
+      "cited_label": "recital 641",
+      "page": 135,
+      "fragment": "The Commission finds that Alphabet’s non-compliance",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 23,
+      "label": "recital 7",
+      "cited_label": "recital 7",
+      "page": 5,
+      "fragment": "On 25 March 2024,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 24,
+      "label": "recital 10",
+      "cited_label": "recital 10",
+      "page": 5,
+      "fragment": "On 19 March 2025,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 25,
+      "label": "recital 15",
+      "cited_label": "recital 15",
+      "page": null,
+      "fragment": "On 18 May 25",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 26,
+      "label": "header",
+      "cited_label": "header",
+      "page": null,
+      "fragment": null,
+      "quote": null,
+      "verified": false,
+      "note": "No quotation or text fragment to check this citation against."
+    },
+    {
+      "id": 27,
+      "label": "recital 4",
+      "cited_label": "recital 4",
+      "page": 4,
+      "fragment": "On 5 September 2023,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 28,
+      "label": "recital 6",
+      "cited_label": "recitals 6, 9, 16",
+      "page": 5,
+      "fragment": "On 7 March 2024,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 6, 9, 16; the passage is in recital 6."
+    },
+    {
+      "id": 29,
+      "label": "recital 7",
+      "cited_label": "recital 7",
+      "page": null,
+      "fragment": "On 25 March 24",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 30,
+      "label": "recital 8",
+      "cited_label": "recital 8",
+      "page": 5,
+      "fragment": "In the context of those proceedings,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 31,
+      "label": "recital 10",
+      "cited_label": "recital 10",
+      "page": 5,
+      "fragment": "On 19 March 2025,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 32,
+      "label": "recital 14",
+      "cited_label": "recital 14",
+      "page": 6,
+      "fragment": "In application of Article 8(3",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 33,
+      "label": "recital 15",
+      "cited_label": "recital 15",
+      "page": null,
+      "fragment": "On 18 May 25",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 34,
+      "label": "recitals 11-12",
+      "cited_label": "recitals 11-12",
+      "page": null,
+      "fragment": "On 20 March 25",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 35,
+      "label": "recitals 13-14",
+      "cited_label": "recitals 13-14",
+      "page": null,
+      "fragment": "On 21 March 25",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 36,
+      "label": "recital 604",
+      "cited_label": "recitals 604-606",
+      "page": 127,
+      "fragment": "Alphabet claims that the Commission’s",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 604-606; the passage is in recital 604."
+    },
+    {
+      "id": 37,
+      "label": "recital 616",
+      "cited_label": "recitals 616-620",
+      "page": 129,
+      "fragment": "Alphabet claims that the Commission’s",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 616-620; the passage is in recital 616."
+    },
+    {
+      "id": 38,
+      "label": "recital 631",
+      "cited_label": "recitals 631-632",
+      "page": 133,
+      "fragment": "According to Alphabet,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 631-632; the passage is in recital 631."
+    },
+    {
+      "id": 39,
+      "label": "recital 607",
+      "cited_label": "recitals 607-640",
+      "page": 127,
+      "fragment": "the Commission fully complied",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 607-640; the passage is in recital 607."
+    },
+    {
+      "id": 40,
+      "label": "recital 81",
+      "cited_label": "recitals 43, 117, 126-127, 195-196",
+      "page": 20,
+      "fragment": "judgment of 10 November 2021,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 43, 117, 126-127, 195-196; the passage is in recital 81."
+    },
+    {
+      "id": 41,
+      "label": "recital 634",
+      "cited_label": "recitals 634, 664, 723",
+      "page": 134,
+      "fragment": "The General Court confirmed",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 634, 664, 723; the passage is in recital 634."
+    },
+    {
+      "id": 42,
+      "label": "recital 18",
+      "cited_label": "recital 18",
+      "page": 1,
+      "fragment": "Article 6(5",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 43,
+      "label": "recital 20",
+      "cited_label": "recital 20",
+      "page": 7,
+      "fragment": "Recital 51 of Regulation",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 44,
+      "label": "recital 21",
+      "cited_label": "recital 21",
+      "page": 8,
+      "fragment": "Recital 52 of Regulation",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 45,
+      "label": "recital 23",
+      "cited_label": "recital 23",
+      "page": 8,
+      "fragment": "Article 2, point (23),",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 46,
+      "label": "recital 24",
+      "cited_label": "recital 24",
+      "page": 8,
+      "fragment": "Article 2, point (22),",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 47,
+      "label": "recital 54",
+      "cited_label": "recitals 54-56",
+      "page": 14,
+      "fragment": "In the third place, contrary",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 54-56; the passage is in recital 54."
+    },
+    {
+      "id": 48,
+      "label": "recital 61",
+      "cited_label": "recitals 61-64",
+      "page": 16,
+      "fragment": "Third, the Commission agrees with Alphabet",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 61-64; the passage is in recital 61."
+    },
+    {
+      "id": 49,
+      "label": "recital 50",
+      "cited_label": "recitals 38-48, 136-152",
+      "page": 13,
+      "fragment": "First, as regards the output of an OSE,",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 38-48, 136-152; the passage is in recital 50."
+    },
+    {
+      "id": 50,
+      "label": "recital 42",
+      "cited_label": "recitals 42-44, 140-143",
+      "page": 12,
+      "fragment": "In the fourth place, Alphabet submits that OSEs",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 42-44, 140-143; the passage is in recital 42."
+    },
+    {
+      "id": 51,
+      "label": "recital 151",
+      "cited_label": "recitals 145-149",
+      "page": 40,
+      "fragment": "In the first place, with regard to the Commission’s",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 145-149; the passage is in recital 151."
+    },
+    {
+      "id": 52,
+      "label": "recital 150",
+      "cited_label": "recitals 150-152",
+      "page": 40,
+      "fragment": "Eighth, Alphabets claims that neither the product",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 150-152; the passage is in recital 150."
+    },
+    {
+      "id": 53,
+      "label": "recital 28",
+      "cited_label": "recitals 27-37, 50-64",
+      "page": 9,
+      "fragment": "To determine whether Alphabet offers a service",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 27-37, 50-64; the passage is in recital 28."
+    },
+    {
+      "id": 54,
+      "label": "recital 158",
+      "cited_label": "recitals 158-187",
+      "page": 41,
+      "fragment": "The Commission did not err in its analysis",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 158-187; the passage is in recital 158."
+    },
+    {
+      "id": 55,
+      "label": "recital 61",
+      "cited_label": "recitals 61-64",
+      "page": 16,
+      "fragment": "Third, the Commission agrees with Alphabet",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 61-64; the passage is in recital 61."
+    },
+    {
+      "id": 56,
+      "label": "recital 69",
+      "cited_label": "recitals 69-70, 201-204",
+      "page": 18,
+      "fragment": "First, according to Alphabet, the Commission fails",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 69-70, 201-204; the passage is in recital 69."
+    },
+    {
+      "id": 57,
+      "label": "recital 65",
+      "cited_label": "recitals 65-68, 205-207",
+      "page": 17,
+      "fragment": "To determine whether there is non-compliance",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 65-68, 205-207; the passage is in recital 65."
+    },
+    {
+      "id": 58,
+      "label": "recital 207",
+      "cited_label": "recital 207",
+      "page": 51,
+      "fragment": "Third, the Commission disagrees with Alphabet’s",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 59,
+      "label": "recital 79",
+      "cited_label": "recitals 79-83",
+      "page": 20,
+      "fragment": "According to Alphabet, the fact that Article 6(5",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 79-83; the passage is in recital 79."
+    },
+    {
+      "id": 60,
+      "label": "recital 80",
+      "cited_label": "recitals 80-81, 239-244",
+      "page": 20,
+      "fragment": "First, Alphabet argues that the non-discrimination",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 80-81, 239-244; the passage is in recital 80."
+    },
+    {
+      "id": 61,
+      "label": "recital 225",
+      "cited_label": "recitals 224-238, 309-315, 363-366, 428-432",
+      "page": 54,
+      "fragment": "Alphabet argues that the Commission’s arguments",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 224-238, 309-315, 363-366, 428-432; the passage is in recital 225."
+    },
+    {
+      "id": 62,
+      "label": "recital 75",
+      "cited_label": "recitals 75-78, 84-89",
+      "page": 19,
+      "fragment": "To determine whether Alphabet is treating its own",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 75-78, 84-89; the passage is in recital 75."
+    },
+    {
+      "id": 63,
+      "label": "recital 248",
+      "cited_label": "recitals 248-267, 316-317, 367, 433",
+      "page": 58,
+      "fragment": "The Commission’s position as to why the changes",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 248-267, 316-317, 367, 433; the passage is in recital 248."
+    },
+    {
+      "id": 64,
+      "label": "recital 78",
+      "cited_label": "recital 78",
+      "page": 19,
+      "fragment": "In this context, conditioning the provision",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 65,
+      "label": "recital 654",
+      "cited_label": "recitals 654-655",
+      "page": 137,
+      "fragment": "Alphabet argues, in essence, that even if the Commission",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 654-655; the passage is in recital 654."
+    },
+    {
+      "id": 66,
+      "label": "recital 656",
+      "cited_label": "recital 656",
+      "page": 138,
+      "fragment": "Second, Alphabet claims that Article 6(5",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 67,
+      "label": "recital 657",
+      "cited_label": "recital 657",
+      "page": 138,
+      "fragment": "Third, Alphabet alleges that rendering its search",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 68,
+      "label": "recital 658",
+      "cited_label": "recital 658",
+      "page": 138,
+      "fragment": "Fourth, Alphabet maintains that it has made",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 69,
+      "label": "recital 647",
+      "cited_label": "recitals 647-653, 659-668",
+      "page": 136,
+      "fragment": "The Commission finds that Alphabet acted at the very",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 647-653, 659-668; the passage is in recital 647."
+    },
+    {
+      "id": 70,
+      "label": "recital 659",
+      "cited_label": "recitals 660-664",
+      "page": 138,
+      "fragment": "First, while it is true that Regulation",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 660-664; the passage is in recital 659."
+    },
+    {
+      "id": 71,
+      "label": "recital 666",
+      "cited_label": "recitals 666-668",
+      "page": 140,
+      "fragment": "Fourth, while it is true that Alphabet has engaged",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 666-668; the passage is in recital 666."
+    },
+    {
+      "id": 72,
+      "label": "recital 718",
+      "cited_label": "recital 718",
+      "page": 150,
+      "fragment": "First, Alphabet contends that, in the Preliminary",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 73,
+      "label": "recital 719",
+      "cited_label": "recital 719",
+      "page": 150,
+      "fragment": "Second, Alphabet claims that imposing the maximum",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 74,
+      "label": "recital 720",
+      "cited_label": "recital 720",
+      "page": 150,
+      "fragment": "Third, Alphabet alleges that imposing the maximum",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 75,
+      "label": "recital 721",
+      "cited_label": "recital 721",
+      "page": 150,
+      "fragment": "Fourth, Alphabet maintains that when imposing",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 76,
+      "label": "recital 722",
+      "cited_label": "recital 722",
+      "page": 150,
+      "fragment": "First, contrary to what Alphabet maintains,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 77,
+      "label": "recital 723",
+      "cited_label": "recitals 723-725",
+      "page": 150,
+      "fragment": "Second, as regards the three Commission precedents",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 723-725; the passage is in recital 723."
+    },
+    {
+      "id": 78,
+      "label": "recital 726",
+      "cited_label": "recital 726",
+      "page": 151,
+      "fragment": "Fourth, Alphabet’s argument that the Commission should",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 79,
+      "label": "recital 61",
+      "cited_label": "recitals 61-64",
+      "page": 16,
+      "fragment": "Third, the Commission agrees with Alphabet",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 61-64; the passage is in recital 61."
+    },
+    {
+      "id": 80,
+      "label": "recital 689",
+      "cited_label": "recital 689",
+      "page": 144,
+      "fragment": "The Commission concludes that there is a mitigating",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 81,
+      "label": "recital 713",
+      "cited_label": "recital 713",
+      "page": 149,
+      "fragment": "It is for Alphabet to identify and implement",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 82,
+      "label": "operative part, Article 2",
+      "cited_label": "operative part, Article 2",
+      "page": 151,
+      "fragment": "For the non-compliance referred to in Article 1,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 83,
+      "label": "recitals 669-676",
+      "cited_label": "recitals 669-676",
+      "page": 1,
+      "fragment": "Regulation (EU)",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 84,
+      "label": "recital 684",
+      "cited_label": "recitals 684-685",
+      "page": 143,
+      "fragment": "The Commission finds that Alphabet’s non-compliance",
+      "quote": null,
+      "verified": true,
+      "note": "Model cited recitals 684-685; the passage is in recital 684."
+    },
+    {
+      "id": 85,
+      "label": "recital 687",
+      "cited_label": "recital 687",
+      "page": 144,
+      "fragment": "The recurrence factor is not relevant",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 86,
+      "label": "recital 689",
+      "cited_label": "recital 689",
+      "page": 144,
+      "fragment": "The Commission concludes that there is a mitigating",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 87,
+      "label": "recital 701",
+      "cited_label": "recital 701",
+      "page": 146,
+      "fragment": "As explained in recital (675)",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 88,
+      "label": "operative part, Article 3",
+      "cited_label": "operative part, Article 3",
+      "page": 151,
+      "fragment": "Alphabet Inc. shall within 60 calendar days",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 89,
+      "label": "recital 710",
+      "cited_label": "recital 710",
+      "page": 148,
+      "fragment": "To comply with the Cease and Desist Order,",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 90,
+      "label": "recital 711",
+      "cited_label": "recital 711",
+      "page": 148,
+      "fragment": "To do so, Alphabet should, in particular, ensure",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 91,
+      "label": "operative part, Article 3",
+      "cited_label": "operative part, Article 3",
+      "page": 151,
+      "fragment": "Alphabet Inc. shall provide the Commission with explanations",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 92,
+      "label": "operative part, Article 3",
+      "cited_label": "operative part, Article 3",
+      "page": 151,
+      "fragment": "Alphabet Inc. shall refrain from repeating",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 93,
+      "label": "operative part, Article 4",
+      "cited_label": "operative part, Article 4",
+      "page": 151,
+      "fragment": "If the addressee of this Decision fails",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 94,
+      "label": "operative part, Article 4",
+      "cited_label": "operative part, Article 4",
+      "page": 151,
+      "fragment": "from the date on which it is required to bring",
+      "quote": null,
+      "verified": true,
+      "note": null
+    },
+    {
+      "id": 95,
+      "label": "recital 642",
+      "cited_label": "recital 642",
+      "page": null,
+      "fragment": "appeal possible to the General Court",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    },
+    {
+      "id": 96,
+      "label": "recital 642",
+      "cited_label": "recital 642",
+      "page": null,
+      "fragment": "appeal possible to the General Court",
+      "quote": null,
+      "verified": false,
+      "note": "Text fragment not found in the decision."
+    }
+  ]
+}

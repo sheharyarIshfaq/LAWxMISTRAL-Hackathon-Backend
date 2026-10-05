@@ -9,6 +9,7 @@ import type { Revenue } from "./solvency.ts";
 import { refs } from "./assess.ts";
 import { defendantScore, harmScore, timelineScore, valueScore, victimsScore, type Score } from "./scores.ts";
 import { readJsonOr, type Page } from "./storage.ts";
+import { decisionInfo, promptFor, type DecisionInfo } from "./decisionKind.ts";
 
 // Where each value in the brief comes from. The frontend styles fields by source.
 export type Source = "decision" | "assessment" | "computed" | "assumption" | "association" | "web" | "missing";
@@ -41,7 +42,8 @@ Output format:
 - "page" is the number of the nearest [PAGE n] marker before the quoted text. Each quote is one continuous passage copied character for character; do not skip text in brackets, do not use "...", never replace a pronoun with a name.`;
 
 export async function generateBrief(caseJson: any, pages: Page[]) {
-  const [system, schema, a] = await Promise.all([prompt("brief.txt"), prompt("brief-schema.json"), loadAssumptions()]);
+  const id = caseJson.case_id as string;
+  const [system, schema, a, info] = await Promise.all([promptFor(id, "brief.txt"), promptFor(id, "brief-schema.json"), loadAssumptions(), decisionInfo(id)]);
   const m = await requoteFailed(addQuoteFlags(await askJson(`${system}\n${BRIEF_FORMAT}\n\nSCHEMA:\n${schema}`, withPageMarkers(pages)), pages), pages);
   const c = caseJson;
   const status = c.decision?.under_appeal === true ? "under_appeal" : c.decision?.under_appeal === false ? "final" : null;
@@ -52,11 +54,14 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
     edited_at: null as string | null,
     finalized_at: null as string | null, // set when the association finalizes the brief (required before sending)
     header: {
-      action_name: field(`${c.defendant?.name ?? "Data breach"} data breach action`, "computed"),
+      action_name: field(
+        info.kind === "cnil" ? `${c.defendant?.name ?? "Data breach"} data breach action` : `${c.defendant?.name ?? "Gatekeeper"} ${c.violations?.[0]?.label ?? "DMA"} action`,
+        "computed"
+      ),
       defendant: field(c.defendant?.name, "decision"),
       source_decision: field({ authority: c.decision?.regulator, reference: c.decision?.reference, date: c.decision?.date }, "decision"),
       legal_basis: field(
-        (c.violations ?? []).map((v: any) => ({ article: `GDPR art. ${v.gdpr_article}`, label: v.label, ...cited(v) })),
+        (c.violations ?? []).map((v: any) => ({ article: v.law ? `${v.law} art. ${v.article}` : `GDPR art. ${v.gdpr_article}`, label: v.label, ...cited(v) })),
         "decision"
       ),
       status: field(status, "decision", status ? {} : { note: "Appeal status not stated in the decision" }),
@@ -88,7 +93,7 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
       competent_court: field((a as any).competent_court_by_legal_form?.[c.defendant?.legal_form], "assumption"),
     },
     // Rebuilt on every read by withValue(): opt-in table row, rates and totals come from config + category.json.
-    value: valueSection(null, a),
+    value: valueSection(null, a, info),
     timeline: {
       expected_duration_years: missing(),
       limitation_ends: missing("To be confirmed by counsel"),
@@ -118,7 +123,22 @@ export async function generateBrief(caseJson: any, pages: Page[]) {
 export type Brief = Awaited<ReturnType<typeof generateBrief>>;
 
 // "Value of the claim": the model only chose the table row (category.json); every number comes from config, in code.
-function valueSection(cat: HarmCategory | null, a: Assumptions) {
+function valueSection(cat: HarmCategory | null, a: Assumptions, info?: DecisionInfo) {
+  // The legal team's opt-in table covers CNIL data-breach cases only: for other decisions the claim value needs an expert.
+  if (info && info.kind !== "cnil") {
+    const note = "No opt-in table for this kind of case: the claim value needs an expert estimate (e.g. lost profits of the businesses disadvantaged over the period of non-compliance)";
+    return {
+      formula: "To be set by an economic expert",
+      harm_category: missing(note),
+      category_alternatives: missing("Not applicable") as Field<any>,
+      scenarios: missing(note) as Field<any>,
+      opt_in_expected: missing("Not applicable") as Field<any>,
+      compensation_per_victim_eur: missing("Not applicable: harm per party to be estimated"),
+      funding_sought_eur: missing("To be set by the association"),
+      funder_share: field(a.funder_share, "assumption"),
+      benchmarks_note: field(a.benchmarks_note, "assumption"),
+    };
+  }
   return {
     formula: "Total = victims who opt in × compensation per victim",
     harm_category: cat?.category
@@ -161,12 +181,12 @@ function applyAssessments(brief: Brief, x: any) {
   }
 }
 
-function revenueField(r: Revenue | null): Field<any> {
+function revenueField(r: Revenue | null, authority = "CNIL"): Field<any> {
   if (!r) return missing("Latest revenue not looked up yet");
   const v = { amount_eur: r.amount_eur, entity: r.entity, year: r.year };
   return r.origin === "web"
     ? field(v, "web", { source_url: r.source?.url, note: `Found by web search: ${r.source?.title ?? r.source?.url}` })
-    : field(v, "decision", { note: "Revenue stated in the CNIL decision (no more recent figure found on the web)" });
+    : field(v, "decision", { note: `Revenue stated in the ${authority} decision (no more recent figure found on the web)` });
 }
 
 // Defendant: legal team's score on base-scenario damages ÷ latest net income of the same entity (Low / Medium / Strong).
@@ -265,7 +285,7 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
     for (const k of parts) target = target?.[k];
     if (!target || typeof target !== "object" || !("source" in target)) throw new EditRejected(`Unknown field: ${p}`);
     if (target.source === "decision" || target.source === "computed")
-      throw new EditRejected(`${p} comes from the ${target.source === "decision" ? "CNIL decision" : "calculation"} and cannot be edited`);
+      throw new EditRejected(`${p} comes from the ${target.source === "decision" ? "decision" : "calculation"} and cannot be edited`);
     target.value = value;
     target.source = "association";
     target.quote = null;
@@ -282,19 +302,20 @@ export function applyEdits(brief: Brief, edits: Record<string, unknown>): Brief 
 export async function loadBrief(id: string): Promise<Brief | null> {
   const brief = await readJsonOr<Brief | null>(id, "brief.json", null);
   if (!brief) return null;
-  const [cat, a, edits, revenue, assessments] = await Promise.all([
+  const [cat, a, edits, revenue, assessments, info] = await Promise.all([
     readJsonOr<HarmCategory | null>(id, "category.json", null),
     loadAssumptions(),
     readJsonOr<Record<string, unknown>>(id, "brief-edits.json", {}),
     readJsonOr<Revenue | null>(id, "revenue.json", null),
     readJsonOr<any>(id, "assessments.json", null),
+    decisionInfo(id),
   ]);
   if (assessments) applyAssessments(brief, assessments);
-  (brief as any).value = valueSection(cat, a);
-  (brief.defendant as any).current_revenue = revenueField(revenue);
+  (brief as any).value = valueSection(cat, a, info);
+  (brief.defendant as any).current_revenue = revenueField(revenue, info.authority);
   if (Object.keys(edits).length) applyEdits(brief, edits);
   brief.finalized_at = typeof edits._finalized_at === "string" ? edits._finalized_at : null;
-  computeValue(brief, a);
+  if (info.kind === "cnil") computeValue(brief, a);
   computeSolvency(brief, revenue);
   computeScores(brief, assessments, revenue);
   return brief;

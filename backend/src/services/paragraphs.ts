@@ -1,8 +1,9 @@
 import { normalize } from "./quoteCheck.ts";
 import type { Page } from "./storage.ts";
 
-// A CNIL decision is cited by numbered paragraph ("§ 21"), plus the header/recitals before § 1
-// and the operative part ("PAR CES MOTIFS") at the end.
+// A CNIL decision is cited by numbered paragraph ("21." → "§ 21"); a European Commission decision by numbered
+// recital ("(613)" → "recital 613"). Plus the header before the first one and the operative part at the end
+// ("PAR CES MOTIFS" / "HAS ADOPTED THIS DECISION").
 export type Paragraph = { label: string; n: number | null; page: number; text: string; norm: string; loose: string };
 
 // Punctuation-insensitive form, for short text fragments ("connaissance, des données" = "connaissance des données").
@@ -12,7 +13,7 @@ export const loose = (s: string) => normalize(s).replace(/[,;:()«»"“”.!?]/
 export function labelMatches(cited: string, p: Paragraph): boolean {
   const c = normalize(cited);
   if (c === normalize(p.label)) return true;
-  if (p.label === "operative part") return /operative|dispositif|par ces motifs|end of decision/.test(c);
+  if (p.label === "operative part") return /operative|dispositif|par ces motifs|has adopted|article [1-9]\b|end of decision/.test(c);
   if (p.label === "header") return /header|recital|visa|vu /.test(c);
   return false;
 }
@@ -21,18 +22,21 @@ export function buildParagraphs(pages: Page[]): Paragraph[] {
   const out: Paragraph[] = [];
   let current = { label: "header", n: null as number | null, page: pages[0]?.page ?? 1, lines: [] as string[] };
   let last = 0;
+  // One numbering style per document: EU recitals "(1)" if the text has them, else CNIL paragraphs "1.".
+  const recitals = pages.some((p) => /^\s*\(1\)\s+\S/m.test(p.text));
+  const numbered = recitals ? /^\s*\((\d{1,4})\)\s+\S/ : /^\s*(\d{1,3})\.\s+\S/;
   const push = () => {
     const text = current.lines.join("\n").trim();
     if (text) out.push({ label: current.label, n: current.n, page: current.page, text, norm: normalize(text), loose: loose(text) });
   };
   for (const p of pages) {
     for (const line of p.text.split("\n")) {
-      const m = line.match(/^\s*(\d{1,3})\.\s+\S/);
+      const m = line.match(numbered);
       if (m && Number(m[1]) === last + 1 && current.label !== "operative part") {
         push();
         last = Number(m[1]);
-        current = { label: `§ ${last}`, n: last, page: p.page, lines: [line] };
-      } else if (/^\s*PAR CES MOTIFS/.test(line)) {
+        current = { label: recitals ? `recital ${last}` : `§ ${last}`, n: last, page: p.page, lines: [line] };
+      } else if (/^\s*(PAR CES MOTIFS|HAS ADOPTED THIS DECISION)/.test(line)) {
         push();
         current = { label: "operative part", n: null, page: p.page, lines: [line] };
       } else current.lines.push(line);

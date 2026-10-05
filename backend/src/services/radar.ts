@@ -1,3 +1,4 @@
+import { decisionInfo } from "./decisionKind.ts";
 import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
@@ -21,6 +22,7 @@ export type RadarItem = {
   priority: "high" | "medium" | "low" | null; // candidates only: fine ≥ €1M / ≥ €100k / below
   reasons: string[];
   case_id: string | null; // our processed case for this decision, if any
+  authority?: string; // "CNIL" when absent; e.g. "European Commission" for a processed DMA decision
   first_seen_at: string;
   is_new: boolean; // appeared in the latest scan
 };
@@ -131,6 +133,28 @@ async function processedItem(caseId: string): Promise<Omit<RadarItem, "first_see
   const c = await readJson(caseId, "case.json").catch(() => null);
   if (!c?.decision?.date) return null;
   const urls = JSON.parse(await fs.readFile(path.resolve("config/decisions.json"), "utf8").catch(() => "{}"));
+  const info = await decisionInfo(caseId);
+  // A decision from another authority (e.g. a European Commission DMA decision): not a CNIL data breach.
+  if (info.kind !== "cnil") {
+    const fine = c.decision.fine_total_eur ?? null;
+    const articles = (c.violations ?? []).map((v: any) => `${v.law ?? ""} art. ${v.article ?? v.gdpr_article}`.trim()).join(", ");
+    return {
+      id: `${c.decision.date}_${caseId}`,
+      date: c.decision.date,
+      organisation_type: (c.defendant?.name ?? caseId).toUpperCase(),
+      themes: `${(c.violations ?? []).map((v: any) => v.label).join(" · ")} (${articles})`,
+      decision: `${c.decision.reference}${fine ? ` · fine of €${fine.toLocaleString("en-US")}` : ""}`,
+      fine_eur: fine,
+      legifrance_url: urls[caseId]?.url ?? null,
+      data_breach: false,
+      public_body: false,
+      status: "candidate",
+      priority: fine && fine >= 1_000_000 ? "high" : fine && fine >= 100_000 ? "medium" : "low",
+      reasons: [`Breach found by the ${info.authority}: ${articles}`, ...(fine ? [`Fine: €${fine.toLocaleString("en-US")}`] : []), "Competition harm to the businesses disadvantaged: claim value to be estimated by an expert"],
+      case_id: caseId,
+      authority: info.authority,
+    };
+  }
   const fine = c.decision.fine_total_eur ?? null;
   const articles = (c.violations ?? []).map((v: any) => `art. ${v.gdpr_article}`).join(", ");
   const isPublic = c.defendant?.legal_form === "public";

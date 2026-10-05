@@ -1,0 +1,54 @@
+{
+  "case_id": "",
+  "decision": {
+    "regulator": "European Commission",
+    "reference": "",
+    "date": "",
+    "fine_total_eur": 0,
+    "fines": [{"entity": "", "amount_eur": 0}],
+    "under_appeal": null,
+    "source_url": ""
+  },
+  "defendant": {
+    "name": "",
+    "legal_form": "private | public",
+    "sector": "",
+    "annual_revenue_eur": null
+  },
+  "breach": {
+    "date_start": "",
+    "ongoing": null,
+    "summary": "",
+    "conduct": "",
+    "services_affected": [""],
+    "affected_parties": [""],
+    "people_affected": null,
+    "people_affected_unit": "businesses | users",
+    "quote": "",
+    "page": 0
+  },
+  "violations": [
+    {
+      "law": "DMA",
+      "article": "6(5)",
+      "label": "self-preferencing in ranking",
+      "finding": "",
+      "quote": "",
+      "page": 0
+    }
+  ],
+  "remedies": {
+    "cease_and_desist": "",
+    "deadline_days": null,
+    "periodic_penalty": "",
+    "quote": "",
+    "page": 0
+  },
+  "harm_evidence": {
+    "effects_on_business_users": "",
+    "effects_on_end_users": "",
+    "quote": "",
+    "page": 0
+  },
+  "missing_information": []
+}

@@ -1,3 +1,4 @@
+import { decisionInfo } from "./decisionKind.ts";
 import { askJson, mistral, CHAT_MODEL } from "./mistral.ts";
 import { readJson, writeJson } from "./storage.ts";
 
@@ -23,13 +24,18 @@ export function rateSolvency(exposureEur: number, revenueEur: number) {
 const SEARCH = (name: string, group: string | null) =>
   `Find the most recent annual revenue (chiffre d'affaires) and net income (résultat net) of the French legal entity ${name} itself (its own company accounts, e.g. from company registries such as Pappers, Societe.com or Infogreffe), not of its parent group${group ? ` ${group}` : ""}. Only if ${name} publishes no accounts at all, give the group's figures and say so. Both figures must be for the same entity and year. Search the web. Give the amounts in euros, the fiscal year, which entity they belong to, and the source.`;
 
+// A non-French defendant (e.g. a gatekeeper under the DMA): its consolidated figures from its annual report.
+const SEARCH_GROUP = (name: string) =>
+  `Find the most recent full-year consolidated revenue and net income of ${name}, from its annual report or annual filing (e.g. Form 10-K). Both figures must be for the same entity and fiscal year. Search the web. Give the amounts in euros (convert from US dollars at the rate stated in the source, or say the currency), the fiscal year, which entity they belong to, and the source.`;
+
 const STRUCTURE = `You extract one revenue figure from web search results. The text cites sources with markers like [S1].
 Return only JSON: {"amount_eur": 0, "net_income_eur": 0, "year": 0, "entity": "", "source": "S1"}
 Rules: take the most recent full-year revenue (chiffre d'affaires) stated in the text, in euros as an integer (convert "10,2 milliards" to 10200000000). "net_income_eur" is the net income (résultat net) of the same entity and year, negative for a loss; null if not stated. "entity" is the company the figures belong to. "source" is the marker that follows the figures in the text. If no revenue with a source marker is stated, return {"amount_eur": null, "net_income_eur": null, "year": null, "entity": null, "source": null}. Never estimate.`;
 
 // Web search (Mistral agent) for the defendant's latest revenue. Only a URL that the search really returned is kept.
-export async function findRevenue(name: string, group: string | null): Promise<Revenue | null> {
-  const res: any = await mistral().beta.conversations.start({ model: CHAT_MODEL, inputs: SEARCH(name, group), tools: [{ type: "web_search" }], store: false } as any);
+export async function findRevenue(name: string, group: string | null, consolidated = false): Promise<Revenue | null> {
+  const query = consolidated ? SEARCH_GROUP(name) : SEARCH(name, group);
+  const res: any = await mistral().beta.conversations.start({ model: CHAT_MODEL, inputs: query, tools: [{ type: "web_search" }], store: false } as any);
   const sources = new Map<string, { url: string; title: string }>();
   const byUrl = new Map<string, string>();
   let text = "";
@@ -61,7 +67,7 @@ export async function runRevenue(id: string): Promise<Revenue | null> {
   const group = brief.defendant?.group?.value ?? null;
   let revenue: Revenue | null = null;
   try {
-    revenue = await findRevenue(name, group);
+    revenue = await findRevenue(name, group, (await decisionInfo(id)).kind !== "cnil");
   } catch (err: any) {
     console.warn(`  web search failed: ${err.message}`);
   }

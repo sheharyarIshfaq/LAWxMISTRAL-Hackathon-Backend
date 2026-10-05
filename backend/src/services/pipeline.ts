@@ -7,6 +7,7 @@ import { readJson, readJsonOr, writeJson, writeText, type Page } from "./storage
 import type { HarmCategory } from "./category.ts";
 import { computeRecovery, loadAssumptions, recoveryTable } from "./recovery.ts";
 import { generateBrief } from "./brief.ts";
+import { decisionInfo, promptFor } from "./decisionKind.ts";
 
 const prompt = (name: string) => fs.readFile(path.resolve("prompts", name), "utf8");
 
@@ -23,10 +24,25 @@ Output format:
 - "missing_information" is a list of field paths, e.g. "decision.under_appeal".
 - Write "summary", "attack_vector", "sector", "label" and "finding" in English.`;
 
+// Same notes for European Commission DMA decisions (English quotes, DMA fields).
+const EXTRACT_FORMAT_EU = `
+Output format:
+- Return one JSON object with exactly the keys of the schema below. Do not add, rename or remove keys.
+- The schema shows placeholder values. Where it shows options separated by "|", output exactly one of them.
+- "page" is the number of the nearest [PAGE n] marker before the quoted text.
+- Each quote must be one continuous passage copied character for character from the decision. Do not add, drop, reorder or replace words. Do not use "..." and do not join text from different places. Do not skip text in brackets or parentheses inside the passage; choose a shorter passage instead. Do not include the [PAGE n] marker or a recital number like "(613)" in a quote.
+- "missing_information" is a list of field paths, e.g. "decision.under_appeal".
+- Write every text field in English.`;
+
 export async function extractCase(id: string, pages: Page[]) {
-  const [system, schema] = await Promise.all([prompt("extract.txt"), prompt("schema.json")]);
-  const result = await askJson(`${system}\n${EXTRACT_FORMAT}\n\nSCHEMA:\n${schema}`, withPageMarkers(pages));
+  const info = await decisionInfo(id);
+  const [system, schema] = await Promise.all([promptFor(id, "extract.txt"), promptFor(id, "schema.json")]);
+  const format = info.kind === "cnil" ? EXTRACT_FORMAT : EXTRACT_FORMAT_EU;
+  const result = await askJson(`${system}\n${format}\n\nSCHEMA:\n${schema}`, withPageMarkers(pages));
   const caseJson = { ...result, case_id: id };
+  // The case number we registered (e.g. "DMA.100193") leads the reference, before the document number the model found.
+  if (info.kind !== "cnil" && info.reference && caseJson.decision && !String(caseJson.decision.reference ?? "").includes(info.reference))
+    caseJson.decision.reference = [info.reference, caseJson.decision.reference].filter(Boolean).join(" · ");
   return requoteFailed(addQuoteFlags(caseJson, pages), pages);
 }
 
@@ -106,6 +122,13 @@ function checkPitch(markdown: string, input: unknown, pages: Page[]) {
 
 export async function runPitch(id: string) {
   const [caseJson, pages, category] = await Promise.all([readJson(id, "case.json"), readJson<Page[]>(id, "pages.json"), readJsonOr<HarmCategory | null>(id, "category.json", null)]);
+  // The Markdown pitch prompt (prompts/pitch.txt) is written for CNIL data-breach cases; other decisions get the structured brief only.
+  if ((await decisionInfo(id)).kind !== "cnil") {
+    const brief = await generateBrief(caseJson, pages);
+    await writeJson(id, "brief.json", brief);
+    await writeText(id, "pitch.md", "");
+    return { markdown: "", recovery: null, checks: { quotes: [], unknown_numbers: [] }, brief };
+  }
   const [result, brief] = await Promise.all([generatePitch(caseJson, pages, category), generateBrief(caseJson, pages)]);
   await writeText(id, "pitch.md", result.markdown + "\n");
   await writeJson(id, "brief.json", brief);

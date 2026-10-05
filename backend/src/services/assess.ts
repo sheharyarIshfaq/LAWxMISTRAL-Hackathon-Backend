@@ -5,14 +5,15 @@ import { addQuoteFlags, requoteFailed } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { buildParagraphs, locate, type Paragraph } from "./paragraphs.ts";
 import { legifranceLink } from "./legifrance.ts";
+import { decisionInfo, quoteLanguage } from "./decisionKind.ts";
 import { decisionUrl } from "./summary.ts";
 import { readJson, writeJson, type Page } from "./storage.ts";
 
 // Formatting notes only; the legal rules are the legal team's text in prompts/identifiability.txt and harm-quantified.txt.
-const QUOTE_RULES = `- Every "quote" is copied verbatim from the decision, in French, max 40 words: one continuous passage, character for character, keeping pronouns as written, no "...". "page" is the number of the nearest [PAGE n] marker before it. The tool finds the paragraph (§) number itself: do not write § numbers in any text field.
-- Write every text field ("statement", "evidence", "explanation", "group", "justification") in English, even though the decision is in French. Return only JSON.`;
+const quoteRules = (language: string) => `- Every "quote" is copied verbatim from the decision, in ${language}, max 40 words: one continuous passage, character for character, keeping pronouns as written, no "...". "page" is the number of the nearest [PAGE n] marker before it. The tool finds the paragraph (§) number itself: do not write § numbers in any text field.
+- Write every text field ("statement", "evidence", "explanation", "group", "justification") in English. Return only JSON.`;
 
-const IDENTIFIABILITY_FORMAT = `
+const identifiabilityFormat = (language: string) => `
 Output format (JSON):
 {"level": "yes | partly | no",
  "statement": "the answer in one sentence naming the evidence, e.g. Subscribers notified by email between 24 and 29 October 2024",
@@ -28,16 +29,16 @@ Output format (JSON):
 - "notified_count" and "group_count": if only part of the group was individually notified, the number notified and the total number of people concerned, as written in the decision (integers); otherwise null. "other_proof": the proof available to those not notified ("indirect" or "none"), or null.
 - "subgroups" only if parts of the group differ (rule 3); otherwise [].
 - "weakening" (rule 4): go through the whole decision and list EVERY instance of: third parties; former customers or subscribers ("anciens abonnés", "anciens clients"); terminated contracts; a communication to the people concerned that the authority found insufficient (e.g. a breach of article 34). One item per instance, with its quote. Empty only if none appears.
-${QUOTE_RULES}`;
+${quoteRules(language)}`;
 
-const HARM_FORMAT = `
+const harmFormat = (language: string) => `
 Output format (JSON):
 {"level": "quantified | quantifiable | to_be_proven",
  "justification": "one or two sentences",
  "quotes": [{"quote": "", "page": 0}],
  "subgroups": [{"group": "", "level": "quantified | quantifiable | to_be_proven", "justification": "", "quote": "", "page": 0}]}
 - "quotes": the passages that justify the level (rules 1, 2 and 5). "subgroups" only if sub-groups differ (rule 4), otherwise [].
-${QUOTE_RULES}`;
+${quoteRules(language)}`;
 
 const prompt = (f: string) => fs.readFile(path.resolve("prompts", f), "utf8");
 
@@ -58,10 +59,12 @@ const LEVELS = { identifiability: ["yes", "partly", "no"], harm: ["quantified", 
 export async function runAssessments(id: string) {
   const pages = await readJson<Page[]>(id, "pages.json");
   const decision = withPageMarkers(pages);
-  const [idRules, harmRules] = await Promise.all([prompt("identifiability.txt"), prompt("harm-quantified.txt")]);
+  // The legal team's rules are generic ("the authority"), so they apply unchanged to every kind of decision.
+  const [idRules, harmRules, info] = await Promise.all([prompt("identifiability.txt"), prompt("harm-quantified.txt"), decisionInfo(id)]);
+  const language = quoteLanguage(info);
   const [identifiability, harm] = await Promise.all([
-    askJson<any>(`${idRules}\n${IDENTIFIABILITY_FORMAT}`, decision),
-    askJson<any>(`${harmRules}\n${HARM_FORMAT}`, decision),
+    askJson<any>(`${idRules}\n${identifiabilityFormat(language)}`, decision),
+    askJson<any>(`${harmRules}\n${harmFormat(language)}`, decision),
   ]);
   if (!LEVELS.identifiability.includes(identifiability.level)) identifiability.level = null;
   if (!LEVELS.harm.includes(harm.level)) harm.level = null;

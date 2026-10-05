@@ -53,8 +53,12 @@ const chips = (options: [string, string][], selected: string | string[] | null, 
   return `<div class="chips">${options.map(([v, l]) => `<span class="chip ${cls} ${sel.has(v) ? "on" : ""}">${sel.has(v) ? "☑" : "☐"} ${esc(l)}</span>`).join("")}</div>`;
 };
 
+// The authority whose decision the brief is built from ("CNIL", "European Commission"), set per render.
+let AUTHORITY = "CNIL";
 const SOURCE_LABEL: Record<string, string> = {
-  decision: "CNIL decision",
+  get decision() {
+    return `${AUTHORITY} decision`;
+  },
   assessment: "AI assessment",
   computed: "Computed",
   web: "Web source",
@@ -102,20 +106,28 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
   const current = (b.defendant as any).current_revenue?.value as { amount_eur: number; entity: string; year: number | null } | null;
   const solv = b.defendant.solvency.calc as { score: number; ratio: number; exposure_eur: number; net_income_eur: number; entity: string | null; year: number | null } | undefined;
   const today = new Date().toISOString().slice(0, 10);
+  AUTHORITY = (b.header.source_decision.value as any)?.authority ?? "CNIL";
+  const cnil = AUTHORITY === "CNIL";
+  const subgroups = (b.victims.subgroups.value as string[] | null) ?? [];
+  const lede = cnil
+    ? `${assoc ? esc(assoc) : blank("Association")}, a certified consumer association, seeks
+      <span class="gold">${funding ? eurM(funding) : "€[ to be set ]"}</span> to fund a French collective damages action (action de groupe)
+      against ${esc(b.header.defendant.value)} on behalf of ${people ? num(people) : blank("number")} victims${people && unit && unit !== "persons" ? ` (counted as ${esc(unit)} by the CNIL)` : ""}.`
+    : `${assoc ? esc(assoc) : blank("Association")} seeks
+      <span class="gold">${funding ? eurM(funding) : "€[ to be set ]"}</span> to fund a collective damages action against ${esc(b.header.defendant.value)}
+      on behalf of the businesses disadvantaged by the conduct the ${esc(AUTHORITY)} found (${people ? num(people) : blank("number to be established")}).`;
 
   const header = `
   <header class="hero">
     <div class="eyebrow"><span>FUNDING BRIEF · COLLECTIVE REDRESS ACTION</span><span>Confidential · ${day(today)}</span></div>
     <h1>${esc(b.header.action_name.value)}</h1>
-    <p class="lede">${assoc ? esc(assoc) : blank("Association")}, a certified consumer association, seeks
-      <span class="gold">${funding ? eurM(funding) : "€[ to be set ]"}</span> to fund a French collective damages action (action de groupe)
-      against ${esc(b.header.defendant.value)} on behalf of ${people ? num(people) : blank("number")} victims${people && unit && unit !== "persons" ? ` (counted as ${esc(unit)} by the CNIL)` : ""}.</p>
+    <p class="lede">${lede}</p>
     <div class="pills">
       <span class="pill">Source decision: ${esc((b.header.source_decision.value as any)?.authority)} ${esc((b.header.source_decision.value as any)?.reference)}</span>
       <span class="pill">Legal basis: ${legal.map((l) => esc(l.article)).join(", ") || "—"}</span>
       <span class="pill">Status: ${b.header.status.value ? esc(b.header.status.value) : "appeal status not stated in the decision"}</span>
     </div>
-    <div class="draft">DRAFT FOR LEGAL REVIEW · generated from the CNIL decision · every quote is checked word for word against the decision · values in [brackets] are to be provided</div>
+    <div class="draft">DRAFT FOR LEGAL REVIEW · generated from the ${esc(AUTHORITY)} decision · every quote is checked word for word against the decision · values in [brackets] are to be provided</div>
   </header>`;
 
   // Legal team's five scores (0-100), computed in code; "—" with the reason when an input is missing.
@@ -161,7 +173,19 @@ export async function renderReportHtml(brief: Brief, summaryMarkdown: string | n
       insurance ${blank()}, competent court ${esc(b.defendant.competent_court.value) || blank("civil / administrative")} ${tag(b.defendant.competent_court)}</p>
     ${cite(b.defendant.revenue)}`);
 
-  const value = card("Value of the claim", "€", "c-value", `
+  const value = !cnil
+    ? card("Value of the claim", "€", "c-value", `
+    <p>${esc(b.value.formula)} ${tag(b.value.scenarios)}</p>
+    <p>${esc(b.value.scenarios.note ?? "")}.</p>
+    <div class="label">Period</div>
+    <p>${facts ? monthSpan(facts.start, facts.end) : blank()}${facts && !facts.end ? " (ongoing at the date of the decision)" : ""}</p>
+    ${subgroups.length ? `<div class="label">Businesses disadvantaged (decision)</div><p>${subgroups.map(esc).join("; ")}</p>` : ""}
+    <div class="duo">
+      <div class="box dark"><div class="label">Claim value</div><div class="big">€[ expert ]</div><div class="sub">lost profits, to be estimated</div></div>
+      <div class="box light"><div class="label">Funder's share</div><div class="big">${b.value.funder_share.value != null ? pct(b.value.funder_share.value as number) : "[ ] %"}</div><div class="sub">of the amount recovered</div></div>
+    </div>
+    <p class="muted">The legal team's opt-in table covers CNIL data-breach cases only; it is not applied here. ${esc(b.value.benchmarks_note.value)}</p>`)
+    : card("Value of the claim", "€", "c-value", `
     <p>${esc(b.value.formula)} ${tag(b.value.scenarios)}</p>
     <div class="label">Category of harm (opt-in table)</div>
     <p class="cat">${b.value.harm_category.value ? esc(b.value.harm_category.value) : blank("not classified")} ${b.value.harm_category.source === "association" ? tag(b.value.harm_category) : ""}</p>

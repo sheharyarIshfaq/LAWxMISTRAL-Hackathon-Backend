@@ -5,6 +5,7 @@ import { longestVerbatimPiece, normalize, repairQuote } from "./quoteCheck.ts";
 import { withPageMarkers } from "./decisionText.ts";
 import { buildParagraphs, labelMatches, locate, originalWords, type Paragraph } from "./paragraphs.ts";
 import { readJson, writeJson, type Page } from "./storage.ts";
+import { decisionInfo, promptFor } from "./decisionKind.ts";
 
 export const URL_PLACEHOLDER = "{{DECISION_URL}}";
 
@@ -24,8 +25,18 @@ export type Summary = { markdown: string; citations: Citation[] };
 const SUMMARY_FORMAT = `
 Tool notes:
 - The decision text below has [PAGE n] markers from the PDF; they are not part of the decision. Cite paragraphs (§), never pages.
-- The decision URL is provided as the literal text ${URL_PLACEHOLDER}: write every link as [§ N](${URL_PLACEHOLDER}#:~:text=...) and replace it with nothing else. The tool replaces it with the real URL.
+- The decision URL is provided as the literal text ${URL_PLACEHOLDER}: write every link as [§ N](${URL_PLACEHOLDER}#:~:text=...) and replace it with nothing else. The tool replaces it with the real URL.`;
+// European Commission decisions are cited by recital.
+const SUMMARY_FORMAT_EU = `
+Tool notes:
+- The decision text below has [PAGE n] markers from the PDF; they are not part of the decision. Cite recitals ("recital 613") or the operative part, never pages or footnotes.
+- The decision URL is provided as the literal text ${URL_PLACEHOLDER}: write every link as [recital N](${URL_PLACEHOLDER}#:~:text=...) and replace it with nothing else. The tool replaces it with the real URL.
 - Add a text fragment to every link, not only to decisive facts: the tool uses it to check that the cited paragraph really contains the fact. The fragment is 3 to 6 consecutive words copied exactly as they appear in the decision (never a whole sentence, never reworded); URL-encoding is optional.
+- Return only the Markdown summary, no preamble and no code fences.`;
+const SUMMARY_FORMAT_TAIL = `
+- Cite one recital per link ("recital 613"), never a range ("recitals 669-676"): pick the recital that states the fact.
+- Every link MUST end with #:~:text= and a fragment; a link without a fragment cannot be checked and is shown to the reader as unverified.
+- Add a text fragment to every link, not only to decisive facts: the tool uses it to check that the cited recital really contains the fact. The fragment is 3 to 6 consecutive words copied exactly as they appear in the decision (never a whole sentence, never reworded); URL-encoding is optional.
 - Return only the Markdown summary, no preamble and no code fences.`;
 
 const decode = (s: string) => {
@@ -38,7 +49,7 @@ const decode = (s: string) => {
 
 // Check every citation link in the summary against the decision, fix wrong § labels, and replace each
 // link with a numbered citation marker [§ N](cite:ID) that the renderer turns into a real link.
-export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages: Page[]): Summary {
+export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages: Page[], language: "fr" | "en" = "fr"): Summary {
   const citations: Citation[] = [];
   const linkRe = /(?:(["“«])\s*([^"”»]{6,}?)\s*["”»]\s*(?:\[[^\]]*\]\s*)?)?\[([^\]]+)\]\(\{\{DECISION_URL\}\}(?:#:~:text=([^)\s]*))?\)/g;
   const out = markdown.replace(linkRe, (whole, _q, quoteRaw: string | undefined, label: string, frag: string | undefined) => {
@@ -67,7 +78,9 @@ export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages
     // 2. A French quotation before the link must be in the decision too (repaired if slightly reworded).
     let quoteOk = true;
     let quoteText = quote;
-    if (quote && /[àâçéèêëîïôûùüÿœ']|\b(le|la|les|des|du|de|est|une|un|aux)\b/i.test(quote)) {
+    // A French decision: only French text in quotation marks is a quotation of it. An English decision: any quotation of 4+ words.
+    const isQuotation = quote && (language === "en" ? quote.split(/\s+/).length >= 4 : /[àâçéèêëîïôûùüÿœ']|\b(le|la|les|des|du|de|est|une|un|aux)\b/i.test(quote));
+    if (quote && isQuotation) {
       const qp = locate(quote, paragraphs, label);
       if (qp) para ??= qp;
       else {
@@ -79,7 +92,7 @@ export function verifyCitations(markdown: string, paragraphs: Paragraph[], pages
           note = "Quotation replaced with the decision's exact wording.";
         } else quoteOk = false;
       }
-    } else quoteText = null; // English text in quotes, not a quotation of the decision
+    } else quoteText = null; // text in quotation marks that is not a quotation of the decision
 
     // 3. No fragment and no quotation: nothing to check the label against.
     const verified = Boolean(para) && quoteOk;
@@ -111,16 +124,19 @@ export function renderCitations(summary: Summary, opts: { link?: (citationId: nu
   });
 }
 
-export async function generateSummary(pages: Page[]): Promise<Summary> {
-  const system = `${await fs.readFile(path.resolve("prompts/summary.txt"), "utf8")}\n${SUMMARY_FORMAT}`;
+export async function generateSummary(pages: Page[], id?: string): Promise<Summary> {
+  const info = id ? await decisionInfo(id) : null;
+  const eu = info && info.kind !== "cnil";
+  const rules = id ? await promptFor(id, "summary.txt") : await fs.readFile(path.resolve("prompts/summary.txt"), "utf8");
+  const system = `${rules}\n${eu ? SUMMARY_FORMAT_EU + SUMMARY_FORMAT_TAIL : SUMMARY_FORMAT}`;
   let markdown = await askText(system, `DECISION_URL: ${URL_PLACEHOLDER}\n\nDECISION:\n${withPageMarkers(pages)}`, 0);
   markdown = markdown.replace(/^```(?:markdown)?\n?|\n?```$/g, "").trim();
-  return verifyCitations(markdown, buildParagraphs(pages), pages);
+  return verifyCitations(markdown, buildParagraphs(pages), pages, info?.language ?? "fr");
 }
 
 export async function runSummary(id: string) {
   const pages = await readJson<Page[]>(id, "pages.json");
-  const summary = await generateSummary(pages);
+  const summary = await generateSummary(pages, id);
   await writeJson(id, "summary.json", summary);
   return summary;
 }

@@ -1,4 +1,5 @@
 import { loadBrief } from "./brief.ts";
+import { decisionInfo } from "./decisionKind.ts";
 import { listFunders, type Funder } from "./funders.ts";
 import { NotFound, readJson } from "./storage.ts";
 
@@ -46,8 +47,10 @@ export function matchFunder(funder: Funder, c: { claim_base_eur: number | null; 
 
   if (funder.case_types === null) add("case_type", "unknown", "Case types not stated");
   else {
-    const ok = funder.case_types.includes(c.case_type) || funder.case_types.includes("consumer");
-    add("case_type", ok ? "met" : "not_met", ok ? `Funds ${funder.case_types.filter((t) => t === c.case_type || t === "consumer").join(" / ").replace("_", " ")} claims` : `Funds ${funder.case_types.join(", ")} claims only`);
+    // Consumer funders cover data-protection claims (consumers are the victims); competition claims need a competition funder.
+    const fits = (t: string) => t === c.case_type || (c.case_type === "data_protection" && t === "consumer");
+    const ok = funder.case_types.some(fits);
+    add("case_type", ok ? "met" : "not_met", ok ? `Funds ${funder.case_types.filter(fits).join(" / ").replace("_", " ")} claims` : `Funds ${funder.case_types.join(", ")} claims only`);
   }
 
   if (funder.min_claim_eur === null || c.claim_base_eur === null) add("claim_size", "unknown", funder.min_claim_eur === null ? "Minimum claim size not stated" : "Claim value not computed yet");
@@ -93,7 +96,7 @@ export async function matchesForCase(id: string, limit?: number) {
     claim_base_eur: scenarios.find((s) => s.name === "base")?.total_eur ?? null,
     claim_low_eur: scenarios.find((s) => s.name === "low")?.total_eur ?? null,
     legal_form: caseJson.defendant?.legal_form ?? null,
-    case_type: "data_protection",
+    case_type: (await decisionInfo(id)).kind === "cnil" ? "data_protection" : "competition",
   };
   const matches = (await listFunders())
     .map((f) => matchFunder(f, facts))

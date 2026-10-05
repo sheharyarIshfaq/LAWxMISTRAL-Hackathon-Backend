@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
-import { day, eur, getCase, getDeliveries, getPitch, num, type CaseJson, type Delivery, type WorkItem } from "@/lib/api";
+import { affected, articleTags, day, eur, getCase, getDeliveries, getPitch, shortReference, type CaseJson, type Delivery, type WorkItem } from "@/lib/api";
 import { PageHeader } from "@/components/page-header";
 
 type Details = { c: CaseJson; base: number | null; solvency: string | null; finalized: boolean; sent: Delivery[]; category: string | null };
@@ -63,7 +63,7 @@ export function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[];
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-faint">
-                      CNIL · {d ? d.c.decision.reference.replace(/^Délibération (de la formation restreinte )?/, "") : day(w.date)}
+                      {d ? `${d.c.decision.regulator} · ${shortReference(d.c.decision.reference)}` : `CNIL · ${day(w.date)}`}
                     </p>
                     <h2 className="mt-1 font-serif text-2xl text-paper">{d?.c.defendant.name ?? w.organisation_type.toLowerCase().replace(/^./, (x) => x.toUpperCase())}</h2>
                   </div>
@@ -79,7 +79,7 @@ export function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[];
                   </div>
                   <div>
                     <dt className="text-faint">Affected</dt>
-                    <dd className="font-semibold tabular-nums text-paper">{d ? `${num(d.c.breach.people_affected)} ${d.c.breach.people_affected_unit}` : "—"}</dd>
+                    <dd className="font-semibold tabular-nums text-paper">{d ? affected(d.c) : "—"}</dd>
                   </div>
                   <div>
                     <dt className="text-faint">Claim (base)</dt>
@@ -98,9 +98,9 @@ export function WorkspaceList({ work, onOpen, onDecisions }: { work: WorkItem[];
                         {DATA_LABEL[t] ?? t}
                       </span>
                     ))}
-                    {d?.c.violations.map((v) => (
-                      <span key={v.gdpr_article} className="rounded-full bg-sky/70 px-2 py-0.5 text-[11px] text-gold-2">
-                        GDPR art. {v.gdpr_article}
+                    {(d ? articleTags(d.c) : []).map((t) => (
+                      <span key={t} className="rounded-full bg-sky/70 px-2 py-0.5 text-[11px] text-gold-2">
+                        {t}
                       </span>
                     ))}
                   </div>

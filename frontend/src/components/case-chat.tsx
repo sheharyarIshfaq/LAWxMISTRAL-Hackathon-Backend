@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUp, Gavel, Scale, ShieldCheck, Users } from "lucide-react";
-import { ApiError, chatStream, type ChatCitation, type ChatTurn } from "@/lib/api";
+import { ApiError, chatStream, getCase, type ChatCitation, type ChatTurn } from "@/lib/api";
 import { AgentActivity, type LiveStep } from "@/components/agent-activity";
 import { Logo } from "@/components/logo";
 import { proseClass, renderMarkdown } from "@/lib/markdown";
@@ -31,7 +31,7 @@ function withCitationChips(html: string, citations: ChatCitation[] = []) {
       const title = warn
         ? "Could not be verified against the decision"
         : c?.url
-          ? "Open the passage on Légifrance"
+          ? `Open the passage in the decision (${/legifrance/.test(c.url) ? "Légifrance" : "PDF"})`
           : `Page ${page} of the decision`;
       const chip = c?.url
         ? `<a class="cite${warn ? " cite-warn" : ""}" href="${esc(c.url)}" target="_blank" rel="noopener" title="${title}">${label}</a>`
@@ -54,6 +54,14 @@ const SUGGESTIONS = [
   { icon: Scale, text: "What is the chance of winning a class action?" },
 ];
 
+// For decisions of other authorities (e.g. a European Commission DMA decision).
+const SUGGESTIONS_OTHER = [
+  { icon: Users, text: "Which businesses are disadvantaged by the conduct, and how?" },
+  { icon: ShieldCheck, text: "Since when does the non-compliance run, and is it ongoing?" },
+  { icon: Gavel, text: "What does the decision say about the effects on competitors?" },
+  { icon: Scale, text: "What is the chance of winning a class action?" },
+];
+
 // Chat over one decision: answers only from the decision, every quote checked by the backend, no chance of winning.
 // Fills the height of its container: messages scroll, the composer stays at the bottom.
 export function CaseChat({
@@ -67,6 +75,11 @@ export function CaseChat({
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const end = useRef<HTMLDivElement>(null);
+  const [authority, setAuthority] = useState("CNIL");
+  useEffect(() => {
+    getCase(caseId).then((c) => setAuthority(c.decision.regulator)).catch(() => null);
+  }, [caseId]);
+  const suggestions = authority === "CNIL" ? SUGGESTIONS : SUGGESTIONS_OTHER;
 
   useEffect(() => {
     if (messages.length)
@@ -127,11 +140,11 @@ export function CaseChat({
                 What would you like to know?
               </h2>
               <p className="mt-2 max-w-md text-sm leading-relaxed text-faint">
-                Answers come only from the CNIL decision, with quotes checked
+                Answers come only from the {authority} decision, with quotes checked
                 word for word against it. No chance of winning is ever given.
               </p>
               <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">
-                {SUGGESTIONS.map(({ icon: Icon, text }, i) => (
+                {suggestions.map(({ icon: Icon, text }, i) => (
                   <button
                     key={text}
                     type="button"

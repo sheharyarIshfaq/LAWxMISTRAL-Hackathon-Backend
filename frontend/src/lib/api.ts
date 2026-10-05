@@ -35,9 +35,24 @@ export type CaseJson = {
   case_id: string;
   decision: { regulator: string; reference: string; date: string; fine_total_eur: number; fines: { entity: string; amount_eur: number }[]; under_appeal: boolean | null };
   defendant: { name: string; legal_form: string; sector: string };
-  breach: { summary: string; people_affected: number; people_affected_unit: string; data_types: string[] };
-  violations: { gdpr_article: string; label: string }[];
+  breach: { summary: string; people_affected: number | null; people_affected_unit: string | null; data_types?: string[] };
+  // CNIL: { gdpr_article }; other authorities (e.g. European Commission, DMA): { law, article }
+  violations: { gdpr_article?: string; law?: string; article?: string; label: string }[];
 };
+
+// Display helpers shared by every page, so CNIL and non-CNIL decisions read naturally.
+export const articles = (c: CaseJson) => {
+  const v = c.violations ?? [];
+  const gdpr = v.filter((x) => x.gdpr_article).map((x) => x.gdpr_article);
+  const other = v.filter((x) => !x.gdpr_article && x.article).map((x) => `${x.law ?? ""} art. ${x.article}`.trim());
+  return [gdpr.length ? `GDPR art. ${gdpr.join(", ")}` : "", ...other].filter(Boolean).join(" · ");
+};
+export const articleTags = (c: CaseJson) => (c.violations ?? []).map((x) => (x.gdpr_article ? `GDPR art. ${x.gdpr_article}` : `${x.law ?? ""} art. ${x.article}`.trim()));
+export const shortReference = (ref: string) => ref.replace(/^Délibération (de la formation restreinte )?/, "");
+export const affected = (c: CaseJson) =>
+  c.breach.people_affected ? `${num(c.breach.people_affected)} ${c.breach.people_affected_unit ?? ""}`.trim() : "Not stated in the decision";
+// "Légifrance" for French decisions, otherwise the authority's name (e.g. the European Commission's PDF).
+export const sourceName = (url: string | null | undefined, authority = "decision") => (url && /legifrance\.gouv\.fr/.test(url) ? "Légifrance" : authority);
 
 export type Field<T = unknown> = { value: T | null; source: string; quote?: string | null; page?: number | null; quote_verified?: boolean; note?: string; detail?: unknown; calc?: unknown };
 
@@ -150,6 +165,7 @@ export type RadarItem = {
   reasons: string[];
   case_id: string | null;
   is_new: boolean;
+  authority?: string; // "CNIL" when absent
 };
 export type RadarFeed = {
   source: string;

@@ -181,7 +181,7 @@ const SCORES: [string, string][] = [["value", "Value"], ["victims", "Victims"], 
 function PitchList({ pitches, onOpen, onAsk }: { pitches: ReceivedPitch[] | null; onOpen: (caseId: string) => void; onAsk: (caseId: string) => void }) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 md:px-6">
-      <PageHeader eyebrow="Inbox" title="Pitches received" description="Funding briefs associations sent you. Every fact is traceable to the CNIL decision." />
+      <PageHeader eyebrow="Inbox" title="Pitches received" description="Funding briefs associations sent you. Every fact is traceable to the source decision." />
       {!pitches ? <p className="mt-6 text-sm text-muted">Loading…</p> : null}
       {pitches && !pitches.length ? <p className="card mt-6 p-5 text-sm text-muted">No pitch received yet. Associations send funding briefs from their desk.</p> : null}
       <ul className="mt-6 space-y-4">
@@ -191,7 +191,7 @@ function PitchList({ pitches, onOpen, onAsk }: { pitches: ReceivedPitch[] | null
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-faint">
-                    {p.decision ? `${p.decision.authority} · ${p.decision.reference.replace(/^Délibération (de la formation restreinte )?/, "")}` : "CNIL decision"}
+                    {p.decision ? `${p.decision.authority} · ${p.decision.reference.replace(/^Délibération (de la formation restreinte )?/, "")}` : "Source decision"}
                   </p>
                   <h2 className="mt-1 font-serif text-2xl text-paper">{p.action_name ?? p.defendant}</h2>
                   <p className="mt-0.5 text-[13px] text-muted">From {p.association ?? "an association"}</p>

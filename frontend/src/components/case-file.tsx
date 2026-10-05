@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Download, ExternalLink, Send } from "lucide-react";
 import {
   ApiError,
+  affected,
+  articles,
   briefHtmlUrl,
   briefPdfUrl,
   day,
@@ -13,8 +15,9 @@ import {
   getDeliveries,
   getPitch,
   getSummary,
-  num,
   reopenBrief,
+  shortReference,
+  sourceName,
   type CaseJson,
   type Citation,
   type Delivery,
@@ -80,12 +83,11 @@ export function CaseFile({
 
       <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-[13px] text-faint">{c ? `${c.decision.regulator} · ${c.decision.reference} · ${day(c.decision.date)}` : "Loading…"}</p>
+          <p className="text-[13px] text-faint">{c ? `${c.decision.regulator} · ${shortReference(c.decision.reference)} · ${day(c.decision.date)}` : "Loading…"}</p>
           <h1 className="mt-1 font-serif text-4xl tracking-tight text-paper">{c?.defendant.name ?? caseId}</h1>
           {c ? (
             <p className="mt-2 text-sm text-muted">
-              Fine {eur(c.decision.fine_total_eur)} · {num(c.breach.people_affected)} {c.breach.people_affected_unit} affected · GDPR art.{" "}
-              {c.violations.map((v) => v.gdpr_article).join(", ")}
+              Fine {eur(c.decision.fine_total_eur)} · {c.breach.people_affected ? `${affected(c)} affected` : "number affected not stated"} · {articles(c)}
             </p>
           ) : null}
         </div>
@@ -95,7 +97,7 @@ export function CaseFile({
           </a>
           {summary?.decision_url ? (
             <a href={summary.decision_url} target="_blank" rel="noopener" className="inline-flex h-10 items-center gap-1.5 rounded-xl bg-elevated px-3 text-sm font-medium hover:bg-hover">
-              Légifrance <ExternalLink className="size-3.5" />
+              {sourceName(summary.decision_url, "Decision (PDF)")} <ExternalLink className="size-3.5" />
             </a>
           ) : null}
         </div>
@@ -172,7 +174,9 @@ export function CaseFile({
           summary ? (
             <article className="card p-6">
               <p className="mb-4 text-[13px] text-faint">
-                Every fact cites the paragraph (§) of the decision; each link opens Légifrance with the passage highlighted (scroll down to it). Each citation was
+                {summary.decision_url && !/legifrance/.test(summary.decision_url)
+                  ? "Every fact cites the recital of the decision; each link opens the decision's PDF at that page. Each citation was "
+                  : "Every fact cites the paragraph (§) of the decision; each link opens Légifrance with the passage highlighted (scroll down to it). Each citation was "}
                 checked against the decision text by code{unverified ? `: ${unverified} of ${summary.citations.length} could not be verified and are marked ⚠` : ""}.
               </p>
               <div className={proseClass} dangerouslySetInnerHTML={{ __html: renderMarkdown(summary.markdown) }} />

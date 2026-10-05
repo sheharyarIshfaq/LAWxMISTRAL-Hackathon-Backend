@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, FileText, Paperclip } from "lucide-react";
-import { eur, getCase, num, type CaseJson } from "@/lib/api";
+import { eur, getCase, num, shortReference, type CaseJson } from "@/lib/api";
 
 // The case attached to the chat, shown as a chip inside the input box; click it to attach another case.
 export function CaseAttach({ options, value, onChange }: { options: { id: string; label: string }[]; value: string; onChange: (id: string) => void }) {
@@ -44,7 +44,8 @@ export function CaseAttach({ options, value, onChange }: { options: { id: string
           <span className="block truncate text-[13px] font-semibold text-paper">{c?.defendant.name ?? "Attach a case"}</span>
           {c ? (
             <span className="block truncate text-[11px] text-faint">
-              CNIL {c.decision.reference.replace(/^Délibération (de la formation restreinte )?/, "")} · fine {eur(c.decision.fine_total_eur)} · {num(c.breach.people_affected)} affected
+              {c.decision.regulator} {shortReference(c.decision.reference)} · fine {eur(c.decision.fine_total_eur)}
+              {c.breach.people_affected ? ` · ${num(c.breach.people_affected)} affected` : ""}
             </span>
           ) : null}
         </span>

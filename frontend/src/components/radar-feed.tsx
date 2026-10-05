@@ -3,7 +3,7 @@
 import { PageHeader } from "@/components/page-header";
 import { useEffect, useMemo, useState } from "react";
 import { ExternalLink, Mail } from "lucide-react";
-import { ApiError, day, eur, getMonitor, getOutbox, getRadar, startWork, type Email, type MonitorState, type RadarFeed as Feed, type RadarItem, type WorkItem } from "@/lib/api";
+import { ApiError, day, eur, getMonitor, getOutbox, getRadar, startWork, type Email, type MonitorState, type RadarFeed as Feed, type RadarItem, type WorkItem, sourceName } from "@/lib/api";
 import { proseClass, renderMarkdown } from "@/lib/markdown";
 
 const FILTERS = [
@@ -130,7 +130,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
                 <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase ${PRIORITY_STYLE[item.priority]}`}>{item.priority} priority</span>
               ) : null}
               {item.public_body ? <span className="rounded-full bg-elevated px-2 py-0.5 text-[11px] font-medium text-muted">Public body</span> : null}
-              <span className="ml-auto text-[13px] text-faint">CNIL · {day(item.date)}</span>
+              <span className="ml-auto text-[13px] text-faint">{item.authority ?? "CNIL"} · {day(item.date)}</span>
             </div>
             <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
               <h2 className="font-serif text-xl capitalize text-paper">{item.organisation_type.toLowerCase()}</h2>
@@ -165,7 +165,7 @@ export function RadarFeed({ onStarted }: { onStarted: (work: WorkItem) => void }
                   rel="noopener"
                   className="inline-flex h-10 items-center gap-1.5 rounded-xl bg-elevated px-3 text-sm font-medium hover:bg-hover"
                 >
-                  Decision on Légifrance <ExternalLink className="size-3.5" />
+                  {sourceName(item.legifrance_url) === "Légifrance" ? "Decision on Légifrance" : "Decision (PDF)"} <ExternalLink className="size-3.5" />
                 </a>
               ) : null}
             </div>

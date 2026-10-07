@@ -9,7 +9,7 @@ A CNIL sanction already establishes the fault, the facts and the number of peopl
 4. matches it with litigation funders;
 5. lets funders question the decision through an agent that quotes it word for word and shows its reasoning live.
 
-Built for the LLM × Law hackathon (Mistral, Paris, 2026).
+1st place project, built for the LLM × Law hackathon (Mistral, Paris, 2026).
 
 | Folder | What | Port |
 | --- | --- | --- |
@@ -21,8 +21,8 @@ Built for the LLM × Law hackathon (Mistral, Paris, 2026).
 Needs **Node 20.9+** (22 recommended, see `.nvmrc`), a **Mistral API key**, and **Google Chrome** (only for downloading the brief as PDF).
 
 ```bash
-git clone git@github.com:Sebastianrodaaa/LAWxMISTRAL-Hackathon-Final.git
-cd LAWxMISTRAL-Hackathon-Final
+git clone git@github.com:sheharyarIshfaq/bina-ai.git
+cd bina-ai
 npm install          # installs root, backend and frontend; creates backend/.env and frontend/.env.local
 ```
 
